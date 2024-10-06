@@ -1,0 +1,1743 @@
+Ticker,Name,Added_Date,Removed_Date,Replaces,Removal_Reason
+DELL,Dell Technologies,"September 23, 2024",,ETSY,
+ERIE,Erie Indemnity,"September 23, 2024",,BIO,
+PLTR,Palantir Technologies,"September 23, 2024",,AAL,
+SW,Smurfit WestRock,"July 05, 2024",,WRK,
+CRWD,CrowdStrike,"June 24, 2024",,,
+GDDY,GoDaddy,"June 24, 2024",,,
+KKR,KKR,"June 24, 2024",,,
+VST,Vistra,"May 8, 2024",,,
+GEV,GE Vernova,"April 1, 2024",,,
+SOLV,Solventum,"April 1, 2024",,,
+DECK,Deckers Brands,"March 15, 2024",,ZION,
+SMCI,Supermicro,"March 15, 2024",,WHR,
+BLDR,Builders FirstSource,"December 15, 2023",,SEDG,
+JBL,Jabil,"December 15, 2023",,ALK,
+UBER,Uber,"December 15, 2023",,SEE,
+HUBB,Hubbell Incorporated,"October 17, 2023",,OGN,
+LULU,Lululemon Athletica,"October 17, 2023",,ATVI,
+VLTO,Veralto,"September 29, 2023",,,
+ABNB,Airbnb,"September 15, 2023",,NWL,
+BX,Blackstone Inc.,"September 15, 2023",,LNC,
+KVUE,Kenvue,"August 24, 2023",,AAP,
+PANW,Palo Alto Networks,"June 20, 2023",,DISH,
+AXON,Axon Enterprise,"May 3, 2023",,FRC,
+FICO,Fair Isaac,"March 17, 2023",,LUMN,
+BG,Bunge Global,"March 14, 2023",,SBNY,
+PODD,Insulet Corporation,"March 14, 2023",,SIVB,
+GEHC,GE HealthCare,"January 3, 2023",,,
+STLD,Steel Dynamics,"December 21, 2022",,ABMD,
+FSLR,First Solar,"December 20, 2022",,FBIN,
+ACGL,Arch Capital Group,"October 31, 2022",,TWTR,
+TRGP,Targa Resources,"October 11, 2022",,NLSN,
+EQT,EQT Corporation,"September 30, 2022",,DRE,
+PCG,PG&E Corporation,"September 30, 2022",,CTXS,
+CSGP,CoStar Group,"September 16, 2022",,PVH,
+INVH,Invitation Homes,"September 16, 2022",,PENN,
+KDP,Keurig Dr Pepper,"June 17, 2022",,UA,
+ON,ON Semiconductor,"June 17, 2022",,IPGP,
+VICI,Vici Properties,"June 7, 2022",,CERN,
+WBD,Warner Bros. Discovery,"February 26, 2010",,PBG,
+CPT,Camden Property Trust,"April 1, 2022",,PBCT,
+MOH,Molina Healthcare,"March 1, 2022",,,
+NDSN,Nordson Corporation,"February 14, 2022",,XLNX,
+CEG,Constellation Energy,"February 2, 2022",,GPS,
+FDS,FactSet,"December 17, 2021",,WU,
+EPAM,EPAM Systems,"December 13, 2021",,KSU,
+BRO,Brown & Brown,"September 17, 2021",,NOV,
+DAY,Dayforce,"September 17, 2021",,UNM,
+MTCH,Match Group,"September 17, 2021",,PRGO,
+TECH,Bio-Techne,"August 27, 2021",,MXIM,
+MRNA,Moderna,"July 20, 2021",,ALXN,
+CRL,Charles River Laboratories,"May 13, 2021",,FLIR,
+PTC,PTC Inc.,"April 19, 2021",,VAR,
+CZR,Caesars Entertainment,"March 19, 2021",,VNT,
+GNRC,Generac,"March 19, 2021",,XRX,
+NXPI,NXP Semiconductors,"March 19, 2021",,FLS,
+MPWR,Monolithic Power Systems,"February 11, 2021",,FTI,
+TRMB,Trimble Inc.,"January 20, 2021",,CXO,
+ENPH,Enphase Energy,"January 6, 2021",,TIF,
+TSLA,"Tesla, Inc.","December 18, 2020",,AIV,
+POOL,Pool Corporation,"October 6, 2020",,ETFC,
+CTLT,Catalent,"September 18, 2020",,KSS,
+TER,Teradyne,"September 18, 2020",,COTY,
+TDY,Teledyne Technologies,"June 19, 2020",,ADS,
+TYL,Tyler Technologies,"June 19, 2020",,HOG,
+WST,West Pharmaceutical Services,"May 21, 2020",,HP,
+DPZ,Domino's,"May 11, 2020",,CPRI,
+DXCM,Dexcom,"May 11, 2020",,AGN,
+CARR,Carrier Global,"April 2, 2020",,,
+OTIS,Otis Worldwide,"April 2, 2020",,,
+IR,Ingersoll Rand,"March 2, 2020",,XEC,
+PAYC,Paycom,"January 27, 2020",,WCG,
+LYV,Live Nation Entertainment,"December 20, 2019",,AMG,
+STE,Steris,"December 20, 2019",,MAC,
+ZBRA,Zebra Technologies,"December 20, 2019",,TRIP,
+ODFL,Old Dominion,"December 6, 2019",,STI,
+WRB,W. R. Berkley Corporation,"December 4, 2019",,VIAB,
+NOW,ServiceNow,"November 20, 2019",,CELG,
+LVS,Las Vegas Sands,"October 2, 2019",,NKTR,
+NVR,"NVR, Inc.","September 25, 2019",,JEF,
+CDW,CDW,"September 20, 2019",,TSS,
+IEX,IDEX Corporation,"August 8, 2019",,FL,
+LDOS,Leidos,"August 8, 2019",,APC,
+TROW,T. Rowe Price,"October 12, 1999",,DGN,
+TMUS,T-Mobile US,"July 12, 2019",,RHT,
+MKTX,MarketAxess,"June 28, 2019",,LLL,
+AMCR,Amcor,"June 6, 2019",,MAT,
+CTVA,Corteva,"May 31, 2019",,FLR,
+DD,DuPont,"June 3, 2019",,DWDP,
+DOW,Dow Inc.,"April 1, 2019",,,
+FOX,Fox Corporation (Class B),"September 18, 2015",,,
+FOXA,Fox Corporation (Class A),"December 17, 2004",,DLX,
+WAB,Wabtec,"February 26, 2019",,GT,
+ATO,Atmos Energy,"February 14, 2019",,NFX,
+TFX,Teleflex,"January 17, 2019",,PCG,
+CE,Celanese,"December 21, 2018",,ESRX,
+FANG,Diamondback Energy,"November 30, 2018",,SRCL,
+LW,Lamb Weston,"November 30, 2018",,COL,
+JKHY,Jack Henry & Associates,"November 12, 2018",,EQT,
+KEYS,Keysight Technologies,"November 5, 2018",,CA,
+FTNT,Fortinet,"October 10, 2018",,EVHC,
+ROL,"Rollins, Inc.","September 28, 2018",,ANDV,
+ANET,Arista Networks,"August 27, 2018",,GGP,
+CPRT,Copart,"June 29, 2018",,DPS,
+CPAY,Corpay,"June 19, 2018",,TWX,
+BR,Broadridge Financial Solutions,"June 15, 2018",,RRC,
+EVRG,Evergy,"June 4, 2018",,NAVI,
+MSCI,MSCI,"April 3, 2018",,CSRA,
+TTWO,Take-Two Interactive,"March 19, 2018",,SIG,
+HII,Huntington Ingalls Industries,"January 2, 2018",,,
+NCLH,Norwegian Cruise Line Holdings,"October 12, 2017",,LVLT,
+CDNS,Cadence Design Systems,"September 18, 2017",,SPLS,
+SBAC,SBA Communications,"August 31, 2017",,DD,
+IQV,IQVIA,"August 28, 2017",,WFM,
+AOS,A. O. Smith,"July 25, 2017",,BBBY,
+MGM,MGM Resorts,"July 25, 2017",,RAI,
+PKG,Packaging Corporation of America,"July 25, 2017",,MUR,
+RMD,ResMed,"July 25, 2017",,MNK,
+BKR,Baker Hughes,"April 9, 1987",,HT,
+ALGN,Align Technology,"June 19, 2017",,TDC,
+ANSS,Ansys,"June 19, 2017",,R,
+EG,Everest Group,"June 19, 2017",,MJN,
+HLT,Hilton Worldwide,"June 19, 2017",,YHOO,
+IT,Gartner,"April 4, 2017",,DNB,
+AMD,Advanced Micro Devices,"March 19, 2017",,URBN,
+ARE,Alexandria Real Estate Equities,"March 20, 2017",,FSLR,
+RJF,Raymond James Financial,"March 20, 2017",,FTR,
+SRE,Sempra,"June 29, 1998",,PET,
+SNPS,Synopsys,"March 15, 2017",,HAR,
+REG,Regency Centers,"March 1, 2017",,ENDP,
+CBOE,Cboe Global Markets,"February 28, 2017",,PBI,
+INCY,Incyte,"February 27, 2017",,SE,
+IDXX,Idexx Laboratories,"January 4, 2017",,STJ,
+MAA,Mid-America Apartment Communities,"December 1, 2016",,OI,
+D,Dominion Energy,"May 20, 1983",,VEL,
+HWM,Howmet Aerospace,"November 1, 2016",,AA,
+COO,Cooper Companies (The),"September 22, 2016",,HOT,
+CHTR,Charter Communications,"September 7, 2016",,EMC,
+MTD,Mettler Toledo,"September 6, 2016",,TYC,
+ALB,Albemarle Corporation,"June 30, 2016",,TE,
+FTV,Fortive,"July 1, 2016",,,
+LNT,Alliant Energy,"June 30, 2016",,GAS,
+TDG,TransDigm Group,"June 2, 2016",,BXLT,
+AJG,Arthur J. Gallagher & Co.,"May 27, 2016",,CCE,
+LKQ,LKQ Corporation,"May 20, 2016",,ARG,
+DLR,Digital Realty,"May 17, 2016",,TWC,
+GPN,Global Payments,"April 22, 2016",,GME,
+ULTA,Ulta Beauty,"April 15, 2016",,THC,
+CNC,Centene Corporation,"March 29, 2016",,VAL,
+HOLX,Hologic,"March 29, 2016",,POM,
+UDR,"UDR, Inc.","March 4, 2016",,GMCR,
+AWK,American Water Works,"March 3, 2016",,CNX,
+FRT,Federal Realty,"January 29, 2016",,BRCM,
+CFG,Citizens Financial Group,"January 29, 2016",,PCP,
+EXR,Extra Space Storage,"January 15, 2016",,ACE,
+WTW,Willis Towers Watson,"January 4, 2016",,FOSL,
+CHD,Church & Dwight,"December 28, 2015",,ALTR,
+SYF,Synchrony Financial,"November 17, 2015",,GNW,
+HPE,Hewlett Packard Enterprise,"November 2, 2015",,HCBK,
+VRSK,Verisk,"October 7, 2015",,JOY,
+NWS,News Corp (Class B),"September 18, 2015",,,
+UAL,United Airlines Holdings,"September 2, 2015",,HSP,
+PYPL,PayPal,"July 17, 2015",,NE,
+KHC,Kraft Heinz,"October 1, 2012",,ANR,
+JBHT,J.B. Hunt,"June 30, 2015",,TEG,
+QRVO,Qorvo,"June 11, 2015",,LO,
+O,Realty Income,"April 6, 2015",,WIN,
+EQIX,Equinix,"March 20, 2015",,DNR,
+HSIC,Henry Schein,"March 17, 2015",,CFN,
+SWKS,Skyworks Solutions,"March 11, 2015",,PETM,
+HCA,HCA Healthcare,"January 26, 2015",,SWY,
+RCL,Royal Caribbean Group,"December 4, 2014",,BMS,
+UHS,Universal Health Services,"September 19, 2014",,GHC,
+URI,United Rentals,"September 19, 2014",,BTU,
+MLM,Martin Marietta Materials,"July 1, 2014",,X,
+AVGO,Broadcom,"May 7, 2014",,LSI,
+GOOGL,Alphabet Inc. (Class A),"March 31, 2006",,BR,
+ESS,Essex Property Trust,"April 1, 2014",,CLF,
+TSCO,Tractor Supply,"January 23, 2014",,LIFE,
+META,Meta Platforms,"December 20, 2013",,TER,
+MHK,Mohawk Industries,"December 20, 2013",,VIAV,
+ALLE,Allegion,"November 29, 2013",,JCP,
+AME,Ametek,"September 20, 2013",,LDOS,
+VRTX,Vertex Pharmaceuticals,"September 20, 2013",,AMD,
+DAL,Delta Air Lines,"September 10, 2013",,BMC,
+NWSA,News Corp (Class A),"June 28, 2013",,APOL,
+ZTS,Zoetis,"June 21, 2013",,FHN,
+GM,General Motors,"June 6, 2013",,HNZ,
+REGN,Regeneron,"April 30, 2013",,TMUS,
+ABBV,AbbVie,"January 1, 2013",,FHI,
+APTV,Aptiv,"December 21, 2012",,TIE,
+GRMN,Garmin,"December 11, 2012",,RRD,
+HUM,Humana,"November 30, 1995",,FNB,
+DG,Dollar General,"November 30, 2012",,CBE,
+MDLZ,Mondelez International,"March 30, 2007",,TSG,
+PNR,Pentair,"September 28, 2012",,ATGE,
+LYB,LyondellBasell,"September 4, 2012",,SHLD,
+STX,Seagate Technology,"June 29, 2012",,PGN,
+LRCX,Lam Research,"June 5, 2012",,NVLS,
+MNST,Monster Beverage,"June 28, 2012",,HSH,
+KMI,Kinder Morgan,"May 24, 2012",,EP,
+PSX,Phillips 66,"April 30, 2012",,SVU,
+CCI,Crown Castle,"March 13, 2012",,CEG,
+BWA,BorgWarner,"December 16, 2011",,AKS,
+DLTR,Dollar Tree,"December 16, 2011",,SUNEQ,
+XYL,Xylem Inc.,"October 31, 2011",,ITT,
+TEL,TE Connectivity,"October 14, 2011",,CEPH,
+MOS,Mosaic Company (The),"September 23, 2011",,NSM,
+ACN,Accenture,"July 5, 2011",,MI,
+FCX,Freeport-McMoRan,"July 28, 1995",,SKY,
+MPC,Marathon Petroleum,"June 30, 2011",,RSH,
+CMG,Chipotle Mexican Grill,"April 27, 2011",,NOVL,
+BLK,BlackRock,"April 1, 2011",,GENZ,
+EW,Edwards Lifesciences,"March 31, 2011",,Q,
+FFIV,"F5, Inc.","December 17, 2010",,KODK,
+NFLX,Netflix,"December 17, 2010",,ODP,
+TT,Trane Technologies,"November 16, 2010",,PTV,
+JCI,Johnson Controls,"August 26, 2010",,SII,
+CB,Chubb Limited,"July 14, 2010",,MIL,
+KMX,CarMax,"June 28, 2010",,XTO,
+OKE,ONEOK,"March 12, 2010",,BDK,
+BRK-B,Berkshire Hathaway,"February 12, 2010",,BNI,
+NRG,NRG Energy,"January 27, 2010",,JAVA,
+ROP,Roper Technologies,"December 22, 2009",,VAL,
+ROST,Ross Stores,"December 18, 2009",,DYN,
+V,Visa Inc.,"December 18, 2009",,CIEN,
+BKNG,Booking Holdings,"November 3, 2009",,SGP,
+FMC,FMC Corporation,"August 18, 2009",,CTX,
+ES,Eversource Energy,"March 16, 2009",,JCI,
+PWR,Quanta Services,"June 30, 2009",,TT,
+WDC,Western Digital,"June 30, 2009",,EQ,
+ORLY,O'Reilly Auto Parts,"March 26, 2009",,NE,
+HRL,Hormel Foods,"March 3, 2009",,ACAS,
+VTR,Ventas,"March 3, 2009",,JNY,
+WELL,Welltower,"January 29, 2009",,SOV,
+IRM,Iron Mountain,"January 5, 2009",,UST,
+RSG,Republic Services,"December 4, 2008",,AW,
+WYNN,Wynn Resorts,"November 13, 2008",,ASH,
+SJM,J.M. Smucker Company (The),"November 5, 2008",,TEX,
+WEC,WEC Energy Group,"October 30, 2008",,MTG,
+NDAQ,"Nasdaq, Inc.","October 21, 2008",,DDS,
+APH,Amphenol,"September 29, 2008",,WEN,
+LHX,L3Harris,"September 19, 2008",,,
+CRM,Salesforce,"September 12, 2008",,,
+FAST,Fastenal,"September 12, 2008",,,
+CF,CF Industries,"August 26, 2008",,EDS,
+IVZ,Invesco,"August 20, 2008",,IAC,
+DVA,DaVita,"July 30, 2008",,IHRT,
+MA,Mastercard,"July 17, 2008",,CB,
+CTRA,Coterra,"June 20, 2008",,BC,
+ISRG,Intuitive Surgical,"June 2, 2008",,BSC,
+DOC,Healthpeak Properties,"March 28, 2008",,CBH,
+PM,Philip Morris International,"March 28, 2008",,CC,
+AMT,American Tower,"November 16, 2007",,AT,
+J,Jacobs Solutions,"October 25, 2007",,AV,
+EXPD,Expeditors International,"October 9, 2007",,TXU,
+EXPE,Expedia Group,"October 1, 2007",,SLR,
+ICE,Intercontinental Exchange,"September 25, 2007",,,
+MCHP,Microchip Technology,"September 7, 2007",,CBSS,
+AKAM,Akamai Technologies,"July 11, 2007",,BMET,
+DFS,Discover Financial,"June 29, 2007",,ADCT,
+AIZ,Assurant,"April 9, 2007",,RLGY,
+HST,Host Hotels & Resorts,"March 19, 2007",,PD,
+CHRW,C.H. Robinson,"March 1, 2007",,HMA,
+RL,Ralph Lauren Corporation,"February 1, 2007",,CMVT,
+AVB,AvalonBay Communities,"January 9, 2007",,SBL,
+CTSH,Cognizant,"November 16, 2006",,ACV,
+CBRE,CBRE Group,"November 9, 2006",,FSH,
+FIS,Fidelity National Information Services,"November 9, 2006",,LPX,
+CME,CME Group,"August 10, 2006",,KMG,
+JNPR,Juniper Networks,"June 1, 2006",,ABS,
+KIM,Kimco Realty,"March 31, 2006",,JP,
+BXP,"BXP, Inc.","March 31, 2006",,CIN,
+GOOG,Alphabet Inc. (Class C),"April 3, 2014",,,
+VRSN,Verisign,"January 31, 2006",,RBK,
+EL,Estée Lauder Companies (The),"January 4, 2006",,,
+AMZN,Amazon,"November 18, 2005",,T,
+LEN,Lennar,"October 3, 2005",,,
+AMP,Ameriprise Financial,"September 30, 2005",,PVN,
+PSA,Public Storage,"August 18, 2005",,DAL,
+TSN,Tyson Foods,"August 10, 2005",,UCL,
+STZ,Constellation Brands,"July 1, 2005",,GLK,
+DHI,D. R. Horton,"July 1, 2005",,VRTS,
+LH,LabCorp,"October 29, 2004",,SOTR,
+TPR,"Tapestry, Inc.","August 31, 2004",,CF,
+TMO,Thermo Fisher Scientific,"December 31, 1996",,SHN,
+GILD,Gilead Sciences,"June 30, 2004",,ONE,
+VTRS,Viatris,"April 22, 2004",,PCS,
+MTB,M&T Bank,"February 26, 2004",,CE,
+BIIB,Biogen,"November 12, 2003",,BGEN,
+PLD,Prologis,"July 7, 2003",,,
+GEN,Gen Digital,"March 28, 2003",,HI,
+MKC,McCormick & Company,"March 20, 2003",,EHC,
+STT,State Street Corporation,"August 15, 1997",,NYN,
+VLO,Valero Energy,"April 28, 2004",,JHF,
+DGX,Quest Diagnostics,"December 11, 2002",,TRW,
+CMCSA,Comcast,"November 18, 2002",,CMCSK,
+TRV,Travelers Companies (The),"July 1, 1976",,MML,
+ELV,Elevance Health,"July 24, 2002",,CNO,
+EA,Electronic Arts,"July 19, 2002",,PDG,
+EBAY,eBay,"July 19, 2002",,AL,
+GS,Goldman Sachs,"July 19, 2002",,UN,
+PFG,Principal Financial Group,"July 19, 2002",,ABX,
+PRU,Prudential Financial,"July 19, 2002",,NT,
+UPS,United Parcel Service,"July 19, 2002",,RD,
+SPG,Simon Property Group,"June 25, 2002",,CNXT,
+WAT,Waters Corporation,"December 31, 2001",,FMC,
+EQR,Equity Residential,"November 30, 2001",,NSI,
+NVDA,Nvidia,"November 29, 2001",,ENRNQ,
+PPL,PPL Corporation,"November 24, 1995",,CBS,
+COR,Cencora,"August 29, 2001",,OKE,
+ZBH,Zimmer Biomet,"August 6, 2001",,TKR,
+FI,Fiserv,"March 30, 2001",,OK,
+TXN,Texas Instruments,"March 12, 2001",,,
+CTAS,Cintas,"February 28, 2001",,SUB,
+SYK,Stryker Corporation,"December 11, 2000",,RML,
+MET,MetLife,"December 8, 2000",,VO,
+INTU,Intuit,"December 8, 2000",,OI,
+EOG,EOG Resources,"November 1, 2000",,EFU,
+NI,NiSource,"November 1, 2000",,CG,
+DVN,Devon Energy,"August 29, 2000",,GAP,
+SBUX,Starbucks,"June 7, 2000",,SMS,
+A,Agilent Technologies,"June 2, 2000",,NC,
+ROK,Rockwell Automation,"March 12, 2000",,,
+USB,U.S. Bancorp,"December 31, 1998",,AN,
+ADI,Analog Devices,"October 11, 1999",,AIT,
+PNW,Pinnacle West,"October 1, 1999",,PHB,
+QCOM,Qualcomm,"July 21, 1999",,TA,
+VMC,Vulcan Materials Company,"June 30, 1999",,PVT,
+BBY,Best Buy,"June 29, 1999",,ATI,
+NTAP,NetApp,"June 24, 1999",,ASND,
+AFL,Aflac,"May 27, 1999",,MWI,
+MCK,McKesson Corporation,"January 12, 1999",,HBOC,
+CCL,Carnival,"December 21, 1998",,GRN,
+DHR,Danaher Corporation,"November 17, 1998",,STO,
+AES,AES Corporation,"October 1, 1998",,FCN,
+PAYX,Paychex,"September 30, 1998",,DI,
+WM,Waste Management,"July 16, 1998",,WMX,
+RF,Regions Financial Corporation,"August 27, 1998",,DIGI,
+COF,Capital One,"June 30, 1998",,RYI,
+MCO,Moody's Corporation,"October 2, 2000",,DNB,
+MAR,Marriott International,"October 11, 1993",,MHS,
+BEN,Franklin Templeton,"April 28, 1998",,CFL,
+NTRS,Northern Trust,"January 29, 1998",,PAS,
+OMC,Omnicom Group,"December 23, 1997",,FLM,
+CINF,Cincinnati Financial,"December 17, 1997",,HFS,
+TFC,Truist Financial,"December 3, 1997",,BEV,
+FE,FirstEnergy,"November 28, 1997",,,
+YUM,Yum! Brands,"October 6, 1997",,SRR,
+KLAC,KLA Corporation,"September 12, 1997",,AMH,
+HBAN,Huntington Bancshares,"August 5, 1997",,TXU,
+PGR,Progressive Corporation,"August 1, 1997",,MD,
+APA,APA Corporation,"July 25, 1997",,INGR,
+EFX,Equifax,"June 18, 1997",,PEL,
+SCHW,Charles Schwab Corporation,"May 30, 1997",,DWD,
+CAH,Cardinal Health,"May 23, 1997",,CRR,
+ADBE,Adobe Inc.,"May 5, 1997",,GLD,
+AZO,AutoZone,"December 31, 1996",,LUB,
+AON,Aon,"April 22, 1996",,LOR,
+FITB,Fifth Third Bank,"March 7, 1996",,HDLM,
+ALL,Allstate,"July 12, 1995",,SPXC,
+DRI,Darden Restaurants,"May 26, 1995",,HMX,
+L,Loews Corporation,"May 9, 1995",,CIC,
+BK,BNY Mellon,"March 30, 1995",,MXS,
+AMAT,Applied Materials,"March 15, 1995",,ML,
+GLW,Corning Inc.,"February 27, 1995",,,
+BSX,Boston Scientific,"February 23, 1995",,NEC,
+PARA,Paramount Global,"September 29, 1994",,BV,
+MU,Micron Technology,"September 26, 1994",,AAV,
+LUV,Southwest Airlines,"July 12, 1994",,UAL,
+UNH,UnitedHealth Group,"June 30, 1994",,GEB,
+MSFT,Microsoft,"June 6, 1994",,SYN,
+KEY,KeyCorp,"March 1, 1994",,CNA,
+EMN,Eastman Chemical Company,"January 3, 1994",,NL,
+CSCO,Cisco,"December 30, 1993",,TIC,
+COST,Costco,"October 21, 1993",,PCLB,
+MS,Morgan Stanley,"September 21, 1995",,SFX,
+IPG,Interpublic Group of Companies (The),"October 29, 1992",,WETT,
+LIN,Linde plc,"July 2, 1992",,AMT,
+AMGN,Amgen,"December 31, 1991",,MHC,
+AEE,Ameren,"September 19, 1991",,NCR,
+ADSK,Autodesk,"December 20, 1989",,RAM,
+K,Kellanova,"September 11, 1989",,,
+ORCL,Oracle Corporation,"August 3, 1989",,IDL,
+GL,Globe Life,"April 27, 1989",,CLN,
+ECL,Ecolab,"January 12, 1989",,LT,
+NKE,"Nike, Inc.","November 3, 1988",,KLU,
+C,Citigroup,"May 26, 1988",,IMSI,
+PNC,PNC Financial Services,"April 14, 1988",,FRC,
+HD,Home Depot (The),"March 3, 1988",,BRK,
+AVY,Avery Dennison,"December 24, 1987",,TRR,
+MMC,Marsh McLennan,"August 6, 1987",,BWA,
+SYY,Sysco,"December 18, 1986",,OVT,
+MDT,Medtronic,"October 23, 1986",,HWR,
+ITW,Illinois Tool Works,"February 13, 1986",,TXO,
+PH,Parker Hannifin,"November 7, 1985",,GF,
+DOV,Dover Corporation,"October 24, 1985",,BKI,
+TJX,TJX Companies,"September 26, 1985",,SGN,
+CNP,CenterPoint Energy,"July 25, 1985",,HNG,
+RVTY,Revvity,"May 9, 1985",,NAC,
+APD,Air Products,"April 11, 1985",,STF,
+NUE,Nucor,"April 18, 1985",,HNH,
+BALL,Ball Corporation,"October 4, 1984",,SCV,
+HAS,Hasbro,"September 13, 1984",,MB,
+HES,Hess Corporation,"May 17, 1984",,MNC,
+PHM,PulteGroup,"April 12, 1984",,COE,
+LOW,Lowe's,"March 1, 1984",,TRA,
+T,AT&T,"December 1, 1983",,CTC,
+VZ,Verizon,"December 1, 1983",,ELG,
+BBWI,"Bath & Body Works, Inc.","September 15, 1983",,NSI,
+CAG,Conagra Brands,"September 1, 1983",,SVC,
+AAPL,Apple Inc.,"November 18, 1982",,DN,
+BF-B,Brown–Forman,"October 14, 1982",,HBL,
+SNA,Snap-on,"September 16, 1982",,AXO,
+SWK,Stanley Black & Decker,"September 16, 1982",,APC,
+WMT,Walmart,"August 19, 1982",,ID,
+GWW,W. W. Grainger,"May 14, 1981",,HOI,
+MAS,Masco,"June 18, 1981",,GK,
+ADP,Automatic Data Processing,"February 26, 1981",,UD,
+FDX,FedEx,"November 6, 1980",,CO,
+PCAR,Paccar,"October 2, 1980",,KOE,
+AIG,American International Group,"February 14, 1980",,CIT,
+WBA,Walgreens Boots Alliance,"October 11, 1979",,CYM,
+WY,Weyerhaeuser,"October 01, 1979",,,
+TXT,Textron,"October 5, 1978",,FFS,
+INTC,Intel,"December 9, 1976",,GSK,
+TGT,Target Corporation,"December 9, 1976",,MPH,
+AXP,American Express,"July 1, 1976",,NFG,
+BAC,Bank of America,"July 1, 1976",,RGI,
+CI,Cigna,"April 8, 1982",,CGN,
+DIS,Walt Disney Company (The),"July 1, 1976",,KSU,
+DUK,Duke Energy,"July 1, 1976",,AIN,
+NEE,NextEra Energy,"July 1, 1976",,CP,
+TAP,Molson Coors Beverage Company,"July 1, 1976",,HNG,
+WFC,Wells Fargo,"April 23, 1987",,IFC,
+IFF,International Flavors & Fragrances,"March 4, 1976",,CDP,
+JPM,JPMorgan Chase,"July 1, 1976",,FDP,
+WMB,Williams Companies,"February 6, 1975",,OLN,
+HPQ,HP Inc.,"October 17, 1974",,GRL,
+GPC,Genuine Parts Company,"November 15, 1973",,FMO,
+JNJ,Johnson & Johnson,"May 31, 1973",,FST,
+BAX,Baxter International,"September 14, 1972",,TG,
+BDX,Becton Dickinson,"September 14, 1972",,JJN,
+LLY,Lilly (Eli),"November 19, 1970",,PDC,
+MCD,McDonald's,"June 25, 1970",,EJN,
+NEM,Newmont,"June 30, 1969",,,
+CLX,Clorox,"March 31, 1969",,,
+CMI,Cummins,"May 31, 1973",,UV,
+EMR,Emerson Electric,"March 31, 1965",,,
+SHW,Sherwin-Williams,"June 30, 1964",,,
+ABT,Abbott Laboratories,"March 04, 1957",,,
+ADM,Archer Daniels Midland,"July 30, 1981",,SB,
+AEP,American Electric Power,"March 04, 1957",,,
+BA,Boeing,"March 04, 1957",,,
+BMY,Bristol Myers Squibb,"March 04, 1957",,,
+CAT,Caterpillar Inc.,"March 04, 1957",,,
+CL,Colgate-Palmolive,"March 04, 1957",,,
+CMS,CMS Energy,"April 30, 1999",,UCC,
+COP,ConocoPhillips,"March 04, 1957",,,
+CPB,Campbell Soup Company,"March 04, 1957",,,
+CSX,CSX Corporation,"November 6, 1980",,SCI,
+CVS,CVS Health,"March 04, 1957",,,
+CVX,Chevron Corporation,"March 04, 1957",,,
+DE,Deere & Company,"March 04, 1957",,,
+DTE,DTE Energy,"March 04, 1957",,,
+ED,Consolidated Edison,"March 04, 1957",,,
+EIX,Edison International,"March 04, 1957",,,
+ETN,Eaton Corporation,"March 04, 1957",,,
+ETR,Entergy,"March 04, 1957",,,
+EXC,Exelon,"March 04, 1957",,,
+F,Ford Motor Company,"March 04, 1957",,,
+GD,General Dynamics,"March 04, 1957",,,
+GE,GE Aerospace,"March 04, 1957",,,
+GIS,General Mills,"March 04, 1957",,,
+HAL,Halliburton,"March 04, 1957",,,
+HIG,Hartford (The),"December 19, 1995",,ZRN,
+HON,Honeywell,"March 04, 1957",,,
+HSY,Hershey Company (The),"March 04, 1957",,,
+IBM,IBM,"March 04, 1957",,,
+IP,International Paper,"March 04, 1957",,,
+KMB,Kimberly-Clark,"March 04, 1957",,,
+KO,Coca-Cola Company (The),"March 04, 1957",,,
+KR,Kroger,"March 04, 1957",,,
+LMT,Lockheed Martin,"July 19, 1984",,ACF,
+MMM,3M,"March 04, 1957",,,
+MO,Altria,"March 04, 1957",,,
+MRK,Merck & Co.,"March 04, 1957",,,
+MRO,Marathon Oil,"May 6, 1991",,X,
+MSI,Motorola Solutions,"March 04, 1957",,,
+NOC,Northrop Grumman,"June 13, 1985",,SUO,
+NSC,Norfolk Southern Railway,"June 3, 1982",,SR,
+OXY,Occidental Petroleum,"December 9, 1982",,CS,
+PEG,Public Service Enterprise Group,"March 04, 1957",,,
+PEP,PepsiCo,"March 04, 1957",,,
+PFE,Pfizer,"March 04, 1957",,,
+PG,Procter & Gamble,"March 04, 1957",,,
+PPG,PPG Industries,"March 04, 1957",,,
+RTX,RTX Corporation,"March 04, 1957",,,
+SLB,Schlumberger,"March 04, 1957",,,
+SO,Southern Company,"March 04, 1957",,,
+SPGI,S&P Global,"March 04, 1957",,,
+UNP,Union Pacific Corporation,"March 04, 1957",,,
+XEL,Xcel Energy,"March 04, 1957",,,
+XOM,ExxonMobil,"March 04, 1957",,,
+ETSY,Etsy,"September 18, 2020","September 23, 2024",HRB,Market capitalization change.
+BIO,Bio-Rad Laboratories,"June 19, 2020","September 23, 2024",JWN,Market capitalization change.
+AAL,American Airlines Group,"March 20, 2015","September 23, 2024",AGN,Market capitalization change.
+WRK,WestRock Co.,,"July 05, 2024",,Smurfit Kappa and WestRock combined under SW.
+RHI,Robert Half,"December 4, 2000","June 24, 2024",,Market capitalization change.
+CMA,Comerica,"November 30, 1995","June 24, 2024",SNC,Market capitalization change.
+ILMN,"Illumina, Inc.","November 18, 2015","June 24, 2024",SIAL,Market capitalization change.
+PXD,Pioneer Natural Resources,"September 23, 2008","May 8, 2024",,S&P 500 and S&P 100 constituent ExxonMobil acquired Pioneer Natural Resources.
+VFC,V.F. Corp,"May 3, 1979","April 2, 2024",GDC,Market capitalization change.
+XRAY,Dentsply Sirona Inc,"November 13, 2008","April 2, 2024",HPC,Market capitalization change.
+WHR,Whirlpool Corp,,"March 15, 2024",,Market capitalization change.
+ZION,Zion Bancorp,"June 22, 2001","March 15, 2024",AZA.A,Market capitalization change.
+SEDG,SolarEdge Technologies Inc,"December 17, 2021","December 15, 2023",HBI,Market capitalization change.
+ALK,Alaska Air Group Inc,"May 12, 2016","December 15, 2023",SNDK,Market capitalization change.
+SEE,Sealed Air Corp,"March 31, 1998","December 15, 2023",SK,Market capitalization change.
+OGN,Organon & Co,"June 2, 2021","October 17, 2023",,Market capitalization change.
+ATVI,Activision Blizzard Inc,"August 28, 2015","October 17, 2023",PLL,S&P 500 and S&P 100 constituent Microsoft acquired Activision Blizzard.
+DXC,DXC Technology Co,"April 3, 2017","October 2, 2023",SWN,Market capitalization change.
+LNC,Lincoln National Corp,"July 1, 1976","September 15, 2023",CVX,Market capitalization change.
+NWL,Newell Brands Inc,"April 27, 1989","September 15, 2023",PEL,Market capitalization change.
+AAP,Advance Auto Parts Inc,"July 8, 2015","August 24, 2023",FDO,S&P 500 and S&P 100 constituent Johnson & Johnson offered to exchange the shares of Kenvue held for shares of Johnson & Johnson in a split-off exchange offer.
+DISH,DISH Network Corp,"March 13, 2017","June 20, 2023",LLTC,Market capitalization change.
+FRC,First Republic Bank,"December 31, 2018","May 3, 2023",SCG,The Federal Deposit Insurance Corporation (FDIC) placed First Republic Bank into FDIC Receivership.
+LUMN,Lumen Technologies Inc,"March 24, 1999","March 17, 2023",RBD,Market capitalization change.
+SIVB,SVB Financial Group,"March 19, 2018","March 14, 2023",PDCO,"The FDIC placed SVB's main subsidiary, Silicon Valley Bank, into receivership."
+SBNY,Signature Bank,"December 17, 2021","March 14, 2023",LEG,The FDIC placed Signature Bank into FDIC Receivership.
+VNO,Vornado Realty Trust,"August 11, 2005","January 4, 2023",SDS,Market capitalization change.
+ABMD,Abiomed Inc,"May 30, 2018","December 21, 2022",WYND,S&P 500 constituent Johnson & Johnson acquired Abiomed.
+MBC,MasterBrand Inc,"December 16, 2022","December 20, 2022",,Market capitalization change.
+FBIN,Fortune Brands Innovations Inc,"June 23, 2016","December 20, 2022",RMG,Market capitalization change.
+TWTR,Twitter Inc,"June 6, 2018","October 31, 2022",MON,Elon Musk acquired Twitter.
+NLSN,Nielsen Holdings plc,"July 8, 2013","October 11, 2022",S,Elliot Management Corp acquired Nielsen Holdings.
+CTXS,Citrix Systems Inc,"November 30, 1999","September 30, 2022",PPW,Vista Equity Partners acquired Citrix Systems.
+DRE,Duke Realty Corp,"July 25, 2017","September 30, 2022",RIG,S&P 500 constituent Prologis Inc. acquired Duke Realty.
+PENN,PENN Entertainment Inc,"March 19, 2021","September 16, 2022",SLG,Market capitalization change.
+PVH,PVH Corp,"February 13, 2013","September 16, 2022",BIG,Market capitalization change.
+IPGP,IPG Photonics Corp,"March 6, 2018","June 17, 2022",SNI,Market capitalization change.
+UA,Under Armour Inc Class C,"April 14, 2016","June 17, 2022",,Market capitalization change.
+UA.A,Under Armour Inc Class A,"April 30, 2014","June 17, 2022",BEAM,Market capitalization change.
+CERN,Cerner Corp,"April 29, 2010","June 7, 2022",BJS,S&P 500 constituent Oracle Corp. acquired Cerner.
+DISCK,Discovery Communications Inc Class C (Warner Bros. Discovery Inc),"August 6, 2014","April 11, 2022",,Annual Re-ranking
+PBCT,People's United Financial Inc,"November 12, 2008","April 1, 2022",,S&P 500 constituent M&T Bank Corp. acquired People's United Financial.
+INFO,IHS Markit Ltd,"June 1, 2017","February 25, 2022",TGNA,S&P 500 constituent S&P Global Inc. acquired IHS Markit.
+XLNX,Xilinx Inc,"November 5, 1999","February 14, 2022",LHX,S&P 500 constituent Advanced Micro Devices acquired Xilinx.
+GPS,The Gap Inc,"August 21, 1986","February 2, 2022",SAA,S&P 500 and 100 constituent Exelon Corp. spun off Constellation Energy.
+WU,The Western Union Co,"September 29, 2006","December 17, 2021",ANDW,Market capitalization change.
+HBI,Hanesbrands Inc,"March 20, 2015","December 17, 2021",AVP,Market capitalization change.
+LEG,Leggett & Platt Inc,"October 15, 1999","December 17, 2021",CYM,Market capitalization change.
+KSU,Kansas City Southern,"May 23, 2013","December 13, 2021",DF,Canadian Pacific acquired Kansas City Southern.
+NOV,NOV Inc,"March 11, 2005","September 17, 2021",PWER,Market capitalization change.
+PRGO,Perrigo Company plc,"December 16, 2011","September 17, 2021",MWW,Market capitalization change.
+UNM,Unum Group,"March 10, 1994","September 17, 2021",NEU,Market capitalization change.
+MXIM,Maxim Integrated Products Inc,"November 30, 2018","August 27, 2021",AET,S&P 500 constituent Analog Devices acquired Maxim Integrated Products.
+ALXN,Alexion Pharmaceuticals Inc,"May 24, 2012","July 20, 2021",MMI,AstraZeneca acquired Alexion Pharmaceuticals.
+HFC,HollyFrontier Corp,"June 15, 2018","June 3, 2021",AYI,Market capitalization change.
+FLIR,FLIR Systems Inc,"December 31, 2008","May 13, 2021",NCC,S&P 500 constituent Teledyne Technologies acquired FLIR Systems.
+VAR,Varian Medical Systems Inc,"February 9, 2007","April 19, 2021",EOP,Siemens Healthineers acquired Varian Medical Systems.
+XRX,Xerox Holdings Corp,,"March 19, 2021",,Market capitalization change.
+FLS,Flowserve Corp,"October 1, 2008","March 19, 2021",,Market capitalization change.
+SLG,SL Green Realty Corp,"March 20, 2015","March 19, 2021",NBR,Market capitalization change.
+VNT,Vontier Corp,"October 8, 2020","March 19, 2021",,Market capitalization change.
+FTI,TechnipFMC plc,"June 4, 2009","February 11, 2021",COV,TechnipFMC was removed from the S&P 500 in anticipation of its announced spin-off of Technip Energies.
+CXO,Concho Resources Inc,"February 19, 2016","January 20, 2021",PCL,S&P 500/100 constituent ConocoPhillips acquired Concho Resources.
+TIF,Tiffany & Co,"June 20, 2000","January 6, 2021",SGI,LVMH Moet Hennessy-Louis Vuitton SE acquired Tiffany & Co.
+AIV,Apartment Investment and Management Co,"March 13, 2003","December 18, 2020",AMR,Apartment Investment and Management (Aimco) spun off Apartment Income REIT.
+NBL,Noble Energy Inc,"October 5, 2007","October 9, 2020",ASN,Chevron acquired Noble Energy.
+ETFC,E*TRADE Financial Corp,"March 31, 2004","October 6, 2020",FBF,Morgan Stanley acquired E*Trade.
+KSS,Kohl's Corp,"August 13, 1998","September 18, 2020",MST,Market capitalization change.
+COTY,Coty Inc,"September 30, 2016","September 18, 2020",DO,Market capitalization change.
+HRB,H&R Block Inc,"November 28, 1986","September 18, 2020",SA,Market capitalization change.
+JWN,Nordstrom Inc,"August 7, 1986","June 19, 2020",TFD,Market capitalization change.
+HOG,,"January 28, 2000","June 19, 2020",FLE,Market capitalization change.
+ADS,Alliance Data Systems Corp,"December 20, 2013","June 19, 2020",ANF,Market capitalization change.
+HP,Helmerich & Payne Inc,"February 26, 2010","May 21, 2020",IMS,Market capitalization change.
+AGN,Allergan plc,"April 9, 1999","May 11, 2020",ANV,Allergan acquired by AbbVie.
+CPRI,Capri Holdings Ltd,"November 12, 2013","May 11, 2020",NYX,Market capitalization change.
+M,Macy’s Inc,"November 7, 1995","April 6, 2020",ZE,Market capitalization change.
+RTN,Raytheon Co.,,"April 6, 2020",,United Technologies spun off Otis and Carrier and acquired Raytheon Company.
+XEC,Cimarex Energy Co,"June 20, 2014","March 2, 2020",IGT,"Gardner Denver acquired Ingersoll Rand's industrial businesses then changed its name to the ""new"" Ingersoll Rand Inc."
+WCG,WellCare Health Plans Inc,"September 14, 2018","January 27, 2020",XL,S&P 500 constituent Centene Corp. (NYSE: CNC) acquired Wellcare Health Plans.
+AMG,Affiliated Managers Group Inc,"June 30, 2014","December 20, 2019",FRX,Market capitalization change.
+TRIP,TripAdvisor Inc,"December 20, 2011","December 20, 2019",TLAB,Market capitalization change.
+MAC,The Macerich Co,"May 8, 2013","December 20, 2019",CVH,Market capitalization change.
+STI,SunTrust Banks Inc,"May 5, 1988","December 6, 2019",FIR,BB&T acquired SunTrust to form Truist Financial.
+VIAB,Viacom Inc.,"December 30, 2005","December 4, 2019",VC,CBS acquired Viacom to form ViacomCBS.
+CELG,Celgene Corp,"November 3, 2006","November 20, 2019",ASO,Bristol-Myers Squibb (NYSE:BMY) acquired Celgene.
+NKTR,Nektar Therapeutics,"March 19, 2018","October 2, 2019",CHK,Market capitalization change.
+JEF,Jefferies Financial Group Inc,"August 24, 2007","September 25, 2019",KSE,JEF spun off SPB.
+TSS,Total System Services Inc,"December 31, 2007","September 20, 2019",SNV,S&P 500 constituent Global Payments (NYSE: GPN) acquired TSS.
+FL,Foot Locker Inc.,"April 1, 2016","August 8, 2019",CAM,Market capitalization change.
+APC,Anadarko Petroleum Corp,"July 25, 1997","August 8, 2019",SFS,S&P 500 & 100 constituent Occidental Petroleum Corp. (NYSE:OXY) acquired Anadarko Petroleum.
+RHT,Red Hat Inc.,"July 24, 2009","July 12, 2019",CIT,S&P 500 & 100 constituent IBM acquired Red Hat.
+LLL,L3 Technologies Inc,"November 30, 2004","June 28, 2019",WLP,L3 purchased by Harris Corporation
+MAT,Mattel Inc.,"March 11, 1982","June 6, 2019",BEC,BMS changed to AMCR post merger with Amcor;
+DWDP,DuPont,"September 1, 2017","June 3, 2019",DOW,DWDP changed to DD after spinning off Corteva.
+FLR,Fluor Corp,"December 21, 2000","May 31, 2019",MEE,CTVA spun off from DWDP (which then changed symbol to DD)
+BHF,Brighthouse Financial Inc,"August 8, 2017","April 2, 2019",,DOW spun off from DWDP
+GT,The Goodyear Tire & Rubber Co,,"February 26, 2019",,WAB acquired GE transportation business
+NFX,Newfield Exploration Co,"December 17, 2010","February 14, 2019",NYT,ECA acquired NFX
+PCG,PG&E Corp,,"January 17, 2019",,PCG filed for bankruptcy
+SCG,SCANA Corp.,"December 31, 2008","December 31, 2018",MER,Dominion Energy acquired SCANA Corporation
+ESRX,Express Scripts Holding Co,"September 25, 2003","December 21, 2018",QTRN,S&P 500 constituent Cigna (NYSE: CI) acquired ESRX
+SRCL,Stericycle Inc.,"November 18, 2008","November 30, 2018",BUD,Market Capitalization change
+AET,Aetna Inc.,"July 1, 1976","November 30, 2018",IPL,CVS acquired Aetna
+COL,Rockwell Collins Inc,"June 29, 2001","November 30, 2018",LDG,UTX acquired COL
+EQT,EQT Corp,"December 18, 2008","November 12, 2018",RIG,EQT spun off ETRN
+CA,CA Inc,"July 9, 1987","November 5, 2018",AH,CA acquired by Broadcom.
+EVHC,Envision Healthcare Holdings Inc,"December 1, 2016","October 10, 2018",LM,EVHC acquired by KKR.
+ANDV,Andeavor,"September 26, 2007","September 28, 2018",MXIM,ANDV acquired by Marathon Petroleum.
+XL,XL Group Ltd,"August 31, 2001","September 14, 2018",WB,XL acquired by AXA.
+GGP,GGP Inc,"December 9, 2013","August 27, 2018",MOLX,GGP acquired by Brookfield Property Partners.
+DPS,Dr Pepper Snapple Group Inc,"October 3, 2008","June 29, 2018",WWY,DPS acquired by Keurig Green Mountain.
+TWX,Time Warner Inc.,"December 31, 1998","June 19, 2018",FL,AT&T acquired Time Warner.
+RRC,Range Resources Corp.,"December 20, 2007","June 15, 2018",TRCO,Market capitalization change.
+AYI,Acuity Brands Inc,"May 2, 2016","June 15, 2018",ADT,Market capitalization change.
+MON,Monsanto Co.,"August 13, 2002","June 6, 2018",PALM,Bayer acquired Monsanto.
+NAVI,Navient Corp,"May 1, 2014","June 4, 2018",SLM,Westar Energy (NYSE: WR) acquired Great Plains Energy (NYSE: GXP) and changed name to Evergy.
+WYND,Wyndham Destinations Inc,"July 31, 2006","May 30, 2018",CAR,Wyndham Worldwide spun off Wyndham Hotels & Resorts (NYSE:WH).
+CSRA,CSRA Inc,"November 30, 2015","April 3, 2018",CSC,S&P 500 constituent General Dynamics (NYSE: GD) acquired CSRA.
+SIG,Signet Jewelers Ltd,"July 28, 2015","March 19, 2018",DTV,Market capitalization change.
+PDCO,Patterson Companies,"October 10, 2005","March 19, 2018",DPH,Market capitalization change.
+CHK,Chesapeake Energy Corp,"March 2, 2006","March 19, 2018",DAN,Market capitalization change.
+SNI,Scripps Networks Interactive Inc,"June 30, 2008","March 6, 2018",SSP,Discovery Communications acquired SNI.
+BCR,C. R. Bard Inc,"June 12, 1975","December 28, 2017",FALB,Becton Dickinson acquired BCR.
+LVLT,Level 3 Comm's Inc,"November 4, 2014","October 12, 2017",JBL,CenturyLink acquired LVLT.
+SPLS,Staples Inc.,"October 6, 1998","September 18, 2017",GSX,Sycamore Partners acquired Staples.
+DOW,Dow Chemical Company,,"September 1, 2017",,The Dow Chemical Company renamed to DowDuPont Inc. and ticker changed from DOW to DWDP after acquiring DuPont.
+DD,DuPont Co,,"August 31, 2017",,The Dow Chemical Company acquired DuPont.
+WFM,Whole Foods Market Inc,"December 30, 2005","August 28, 2017",KRB,Amazon acquired Whole Foods Market.
+AN,AutoNation Inc.,"February 21, 2003","August 7, 2017",RATL,"BHF replaced AN,"
+MUR,Murphy Oil Corp,"August 12, 2005","July 25, 2017",NXTL,Market capitalization change.
+RIG,Transocean Ltd,"October 28, 2013","July 25, 2017",DELL,Market capitalization change.
+BBBY,Bed Bath & Beyond Inc,"September 30, 1999","July 25, 2017",BKB,Market capitalization change.
+MNK,Mallinckrodt plc,"August 18, 2014","July 25, 2017",RDC,Market capitalization change.
+RAI,Reynolds American Inc.,"September 3, 2002","July 25, 2017",,British American Tobacco (NYSE MKT:BTI) acquired Reynolds American.
+R,Ryder System Inc,"December 30, 1982","June 19, 2017",MIS,Market capitalization changes.
+YHOO,Yahoo! Inc,"December 7, 1999","June 19, 2017",LI,VZ acquired YHOO operations; remainder of YHOO converted to closed-end company known as Altaba.
+TDC,Teradata Corp.,"September 28, 2007","June 19, 2017",NCR,Market capitalization changes.
+MJN,Mead Johnson Nutrition Co,"December 18, 2009","June 19, 2017",MBI,Reckitt Benckiser acquired Mead Johnson Nutrition.
+TGNA,TEGNA Inc,"December 11, 1975","June 1, 2017",VEN,TGNA spins off Cars.com
+DNB,Dun & Bradstreet Corp,"December 1, 2008","April 4, 2017",KATE,IT acquiring CEB
+SWN,Southwestern Energy Co,"June 6, 2008","April 3, 2017",TT,"HPE spins off Everett, merged with CSC to form DXC"
+FSLR,First Solar Inc,"October 15, 2009","March 20, 2017",WYE,Market capitalization change.
+FTR,Frontier Comm's Corp,,"March 20, 2017",,Market capitalization change.
+URBN,Urban Outfitters Inc,"February 5, 2010","March 19, 2017",ACS,Market capitalization change.
+HAR,Harman Int'l Industries Inc,"January 31, 2006","March 15, 2017",SEBL,Samsung Electronics acquired Harman International Industries.
+LLTC,Linear Technology Corp.,"March 31, 2000","March 13, 2017",PNU,S&P 500 constituent Analog Devices (NASD:ADI) acquired Linear Technology.
+ENDP,Endo Int'l plc,"January 26, 2015","March 1, 2017",COV,REG acquires EQY
+PBI,Pitney Bowes Inc,,"February 28, 2017",,CBOE acquires BATS
+SE,Spectra Energy Corp.,"December 29, 2006","February 27, 2017",PAR,SE acquired by ENB
+STJ,St. Jude Medical Inc,"November 30, 1989","January 4, 2017",NOXLB,S&P 100 & 500 constituent Abbott Laboratories (NYSE:ABT) acquired St. Jude Medical.
+OI,,"December 31, 2008","December 1, 2016",WB,Market capitalization change.
+LM,Legg Mason Inc,"April 21, 2006","December 1, 2016",GDT,Market capitalization change.
+AA,Alcoa Inc,,"November 1, 2016",,Annual Re-ranking
+DO,Diamond Offshore Drilling Inc,"February 25, 2009","September 30, 2016",WFT,COTY replaces DO
+HOT,Starwood Hotels & Resorts Worldwide Inc,"November 16, 2000","September 22, 2016",ACKH,MAR acquires HOT
+EMC,EMC Corp.,"March 27, 1996","September 7, 2016",CYR,Dell acquires EMC
+TYC,Tyco International,,"September 6, 2016",,TYC acquires JCI (and retains JCI ticker).
+CPGX,Columbia Pipeline Group Inc.,"July 1, 2015","July 5, 2016",ATI,CPGX acquired by TRP
+TE,TECO Energy Inc,"October 9, 2001","June 30, 2016",GLBC,TE acquired by EMA
+GAS,AGL Resources Inc.,"August 3, 1989","June 30, 2016",WCI,GAS acquired by SO
+RMG,Cablevision Systems Corp.,"December 17, 2010","June 23, 2016",KG,Annual Re-ranking
+BXLT,Baxalta,"June 30, 2015","June 2, 2016",QEP,SHPG acquiring BXLT
+CCE,,"October 7, 1998","May 27, 2016",CCI,CCE merging with European bottlers
+ARG,Airgas Inc.,"September 8, 2009","May 20, 2016",CBE,ARG acquired by Air Liquide
+TWC,Time Warner Cable Inc.,"March 27, 2009","May 17, 2016",SITC,TWC acquired by CHTR
+SNDK,SanDisk Corp,"April 19, 2006","May 12, 2016",CHIR,SNDK acquired by WDC
+ADT,ADT Corp.,"September 28, 2012","May 2, 2016",LXK,ADT acquired by APO
+GME,GameStop Corp.,"December 13, 2007","April 22, 2016",DJ,Global Payments is acquiring Heartland Payment Systems
+THC,Tenet Healthcare Corp.,"February 8, 1979","April 15, 2016",GG,Ulta replaces Tenet
+CAM,Cameron International Corp,"January 28, 2008","April 1, 2016",CZR,Schlumberger acquired Cameron
+VAL,Valaris plc,"July 30, 2012","March 29, 2016",GR,Centene acquired Health Net.
+POM,Pepco Holdings Inc.,"November 8, 2007","March 29, 2016",HCR,Exelon acquired Pepco.
+GMCR,Keurig Green Mountain Inc,"March 21, 2014","March 4, 2016",WPX,JAB Holding Company acquired Keurig Green Mountain
+CNX,Consol Energy Inc.,"June 27, 2006","March 3, 2016",KRI,AWK replaces CNX
+PCL,Plum Creek Timber Company,"January 16, 2002","February 19, 2016",KM,PCL taken over by WY
+BRCM,Broadcom Corp.,"June 30, 2000","January 29, 2016",GTE,FRT replaces BRCM
+PCP,Precision Castparts Corp,"May 31, 2007","January 29, 2016",MEDI,CFG replaces PCP
+ACE,Chubb Corp.,,"January 15, 2016",,"EXR replaces ACE as ACE Ltd acquires Chubb and retains the CB ticker, giving up ACE"
+FOSL,Fossil Group,"April 3, 2012","January 4, 2016",MHS,WSH merges with TW (and renames to WLTW)
+ALTR,Altera Corp.,"April 17, 2000","December 28, 2015",ARC,ALTR taken over by INTC
+CMCSK,Comcast Class A Spec.,"September 18, 2015","December 11, 2015",,CMCSK shares no longer listed
+CSC,Computer Sciences Corp.,"May 14, 1981","November 30, 2015",CHI,CSC spins off CSRA
+SIAL,,"September 20, 1994","November 18, 2015",MCAWA,Sigma-Aldrich acquired by Merck KGaA (MKGAY)
+GNW,Genworth Financial Inc.,"December 1, 2005","November 17, 2015",CPN,GE spinning off Synchrony Financial
+HCBK,Hudson City Bancorp Inc,"February 14, 2007","November 2, 2015",APCC,HPQ spins off HPE
+JOY,Joy Global Inc.,"February 25, 2011","October 7, 2015",AYE,Market capitalization change.
+HSP,Hospira Inc.,"April 30, 2004","September 2, 2015",AM,Hospira taken over
+PLL,Pall Corp.,"December 31, 1987","August 28, 2015",JWC,Pall taken over
+DTV,DirecTV,"December 1, 2006","July 28, 2015",FSLB,DirecTV acquired by AT&T.
+NE,Noble Corp plc,"January 14, 2011","July 17, 2015",QLGC,PayPal Spun off by eBay
+FDO,Family Dollar Stores Inc,"August 3, 2001","July 8, 2015",ETS,Family Dollar acquired.
+ATI,Allegheny Technologies Inc.,"April 5, 1994","July 1, 2015",FJCC,Spin off of Columbia Pipeline.
+QEP,QEP Resources Inc,"June 30, 2010","June 30, 2015",STR,Baxalta spun off by Baxter.
+TEG,Integrys Energy Group,"February 21, 2007","June 30, 2015",PGL,Integrys taken over.
+LO,Lorillard Inc.,"June 10, 2008","June 11, 2015",AMBC,Lorillard gets acquired.
+WIN,Windstream Holdings Inc,"July 17, 2006","April 6, 2015",CTB,Market capitalization change.
+AGN,Allergan Inc.,"April 9, 1999","March 20, 2015",ANV,Allergan acquired by Actavis (and changed name to Allergan).
+DNR,Denbury Resources Inc.,"April 1, 2009","March 20, 2015",ROH,Market Capitalization Changes.
+NBR,Nabors Industries Ltd,"October 17, 2000","March 20, 2015",MKG,"Market Capitalization Changes.
+"
+AVP,Avon Products Inc,,"March 20, 2015",,"Market Capitalization Changes.
+"
+CFN,CareFusion Corp,"August 31, 2009","March 17, 2015",MTW,Carefusion acquired by Becton Dickinson
+PETM,PetSmart Inc,"October 4, 2012","March 11, 2015",SUN,PetSmart acquired by private equity consortium
+COV,Covidien Plc,"February 28, 2011","January 26, 2015",MFE,Covidien acquired by Medtronic
+SWY,Safeway Inc.,"November 12, 1998","January 26, 2015",C,Safeway acquired by private equity consortium
+BMS,Bemis Company Inc,"July 20, 1978","December 4, 2014",FBD,Market cap changes
+JBL,Jabil Inc,"January 29, 2001","November 4, 2014",CGP,Market cap changes
+GHC,Graham Holdings Co,"December 28, 2007","September 19, 2014",TIN,"Market cap changes
+"
+BTU,Peabody Energy Corp,"November 17, 2006","September 19, 2014",HCA,Market cap changes
+RDC,Rowan Companies plc,"January 10, 1985","August 18, 2014",SED,Market cap changes
+X,United States Steel Corp,"May 6, 1991","July 1, 2014",TKA,Market capitalization changes
+FRX,Forest Laboratories Inc,"November 21, 2000","June 30, 2014",SEG,Actavis acquires Forest Laboratories
+IGT,International Game Technology plc,"August 31, 2001","June 20, 2014",BVSN,Market capitalization changes
+LSI,LSI Corp,"December 13, 1995","May 7, 2014",SPP,Avago acquires LSI
+SLM,SLM Corp.,"June 30, 1998","May 1, 2014",BNL,Navient Spun off from SLM
+BEAM,Beam Suntory Inc,"July 1, 1976","April 30, 2014",NWP,Beam acquired by Suntory
+CLF,,"December 18, 2009","April 1, 2014",KBH,Market capitalization changes
+WPX,WPX Energy Inc,"December 30, 2011","March 21, 2014",CPWR,Market capitalization changes
+LIFE,Life Technologies Corp,"November 21, 2008","January 23, 2014",ABI,Life Technologies acquired by Thermo Fisher Scientific Inc
+VIAV,VIAVI Solutions Inc,"July 26, 2000","December 20, 2013",RAD,Market capitalization changes.
+TER,Teradyne Inc,"November 12, 1999","December 20, 2013",CSE,Market capitalization changes.
+ANF,Abercrombie & Fitch Co,"March 28, 2007","December 20, 2013",UVN,Market capitalization changes.
+MOLX,Molex Inc.,"November 30, 1999","December 9, 2013",MOB,MOLX acquired by Koch Industries.
+JCP,J.C. Penney Co Inc,,"November 29, 2013",,Allegion spun off by Ingersoll Rand.
+NYX,NYSE Euronext Inc,"October 24, 2007","November 12, 2013",HLT,ICE Exchange acquired NYSE Euronext.
+DELL,Dell Inc,"September 5, 1996","October 28, 2013",VAT,Founder Michael Dell and Silver Lake Partners acquired Dell.
+AMD,Advanced Micro Devices Inc,"June 21, 1984","September 20, 2013",GO,Market capitalization change.
+LDOS,Leidos Holdings Inc,"December 18, 2009","September 20, 2013",CVG,Market capitalization change.
+BMC,BMC Software Inc,"September 30, 1998","September 10, 2013",AHM,BMC taken private by consortium
+S,Sprint Corp,"July 27, 1989","July 8, 2013",NWA,Softbank consortium purchase results in public float below 50%
+APOL,Apollo Education Group,"May 14, 2002","June 28, 2013",WCOM,Apollo Group's market cap more representative of a mid-cap
+FHN,First Horizon National Corp,"May 3, 2002","June 21, 2013",CPQ,Zoetis spun off by Pfizer
+HNZ,H. J. Heinz Company,,"June 6, 2013",,HNZ acquired by consortium
+DF,Dean Foods Co,"March 31, 2006","May 23, 2013",MYG,DF too small after spinoff of White Wave Foods
+CVH,Coventry Corp,"August 29, 2005","May 8, 2013",MAY,Acquired by Aetna (AET)
+TMUS,,"June 29, 2009","April 30, 2013",,A majority of MetroPCS was acquired by T-Mobile
+BIG,Big Lots Inc.,"January 16, 1998","February 13, 2013",ECO,Market capitalization changes
+FHI,Federated Hermes Inc,"April 15, 2003","January 1, 2013",PHA,ABBV spun off from Abbott Labs (ABT)
+TIE,Titanium Metal Corp,"October 26, 2007","December 21, 2012",BOL,TIE acquired by Precision Cast Parts (PCP)
+RRD,RR Donnelley & Sons Co,"July 19, 1984","December 11, 2012",RCC,Market capitalization changes
+CBE,Cooper Industries plc,"November 22, 2011","November 30, 2012",JNS,Acquired by Eaton Corp. (ETN)
+SUN,Sunoco Inc,,"October 4, 2012",,Acquired by Energy Transfer Partners (ETP)
+ANR,Alpha Natural Resources Inc,"June 1, 2011","October 1, 2012",MEE,Kraft split into two companies
+ATGE,"DeVry, Inc.","June 8, 2009","September 28, 2012",,Tyco spin-off merged w/Pentair
+LXK,Lexmark International Inc,"August 12, 1999","September 28, 2012",RYC,Tyco spun off ADT
+SHLD,Sears Holdings Corp,"March 24, 2005","September 4, 2012",S,SHLD below public float threshold
+GR,Goodrich Corp.,,"July 30, 2012",,Goodrich acquired by United Technologies (UTX).
+PGN,Progress Energy Inc.,"August 24, 1989","June 29, 2012",MKC,Acquired by Duke Energy (DUK)
+HSH,Hillshire Brands Co,"September 10, 1981","June 28, 2012",SJO,Split up of Sara Lee
+NVLS,Novellus Systems Inc,"June 16, 2000","June 5, 2012",CHA,Acquired by Lam Research (LRCX)
+EP,El Paso Corp.,"October 25, 1999","May 24, 2012",SNT,Acquired by Kinder Morgan (KMI)
+MMI,Motorola Mobility,"January 3, 2011","May 24, 2012",MDP,Acquired by Google (GOOG)
+SVU,Supervalu Inc.,"January 31, 1985","April 30, 2012",CMK,ConocoPhillips spun off Phillips 66
+MHS,Medco Health Solution Inc,"August 19, 2003","April 3, 2012",MDR,Acquired by Express Scripts (ESRX)
+CEG,Constellation Energy Group Inc,,"March 13, 2012",,Acquired by Exelon Corp. (EXC)
+CPWR,Compuware Corp,"December 31, 1998","December 30, 2011",SAI,Market capitalization changes
+TLAB,Tellabs Inc.,"June 30, 1995","December 20, 2011",MAI,Expedia spun off TripAdvisor.
+AKS,AK Steel Holding Corp.,"June 30, 2008","December 16, 2011",CFC,Market capitalization changes
+MWW,Monster Worldwide Inc.,"June 1, 2001","December 16, 2011",CIT,"Market capitalization changes
+"
+SUNEQ,SunEdison Inc,"May 30, 2007","December 16, 2011",KMI,"Market capitalization changes
+"
+JNS,Janus Capital Group,"July 12, 2000","November 22, 2011",KSU,Annual Re-ranking
+ITT,ITT Inc,"December 19, 1995","October 31, 2011",MRN,Spun off from ITT Corp.
+CEPH,Cephalon Inc.,"November 14, 2008","October 14, 2011",,Acquired by Teva Pharmaceutical Industries (TEVA).
+NSM,National Semiconductor,"December 9, 1976","September 23, 2011",MST,Acquired by Texas Instruments (TXN).
+MI,Marshall & Ilsley Corp,"February 8, 2002","July 5, 2011",WLL,Marshall & Iisley is being bought by Bank of Montreal
+RSH,RadioShack Corp.,"March 1, 1973","June 30, 2011",ASR,Market capitalization adjustments.
+MEE,Massey Energy Co.,"June 20, 2008","June 1, 2011",OMX,Alpha Natural Resources acquired Massey Energy.
+NOVL,Novell Inc,"October 31, 1991","April 27, 2011",CTCO,Acquired by private equity firms.
+GENZ,Genzyme Corp.,"December 13, 2001","April 1, 2011",,Acquired by Sanofi Aventis (SNY)
+Q,Qwest Communications Int'l Inc,"July 5, 2000","March 31, 2011",USW,Acquired by CenturyLink
+MFE,McAfee Inc.,"December 22, 2008","February 28, 2011",BRL,Annual Re-ranking
+AYE,Allegheny Energy Inc.,"December 8, 2000","February 25, 2011",BS,Annual Re-ranking
+QLGC,QLogic Corp.,"December 11, 2000","January 14, 2011",PRD,Annual Re-ranking
+MDP,Meredith Corp.,,"January 3, 2011",,Annual Re-ranking
+KODK,Eastman Kodak Co.,,"December 17, 2010",,Market Cap changes.
+ODP,Office Depot Inc.,"June 23, 1999","December 17, 2010",ASC,"Market Cap changes.
+"
+NYT,New York Times Co,"November 23, 1984","December 17, 2010",SRT,"Market Cap changes.
+"
+KG,King Pharmaceuticals Inc.,"October 2, 2000","December 17, 2010",YNR,Acquired by Pfizer.
+PTV,Pactiv Corp,"November 4, 1999","November 16, 2010",TEN,Reynolds Group Holdings acquired Pactiv.
+SII,Smith Int'l Inc,"September 29, 2006","August 26, 2010",GDW,Acquired by Schlumberger (SLB)
+MIL,Millipore Corp,"July 14, 1988","July 14, 2010",MOH,Acquired by Merck KGaA (MKGAY)
+STR,Questar Corp.,"November 30, 2006","June 30, 2010",NFB,"Company split. QEP retained, but ticker changed."
+XTO,XTO Energy Inc.,"December 28, 2004","June 28, 2010",PSFT,Acquired by ExxonMobil
+BJS,BJ Services Co.,"May 14, 2002","April 29, 2010",U,Acquired by Baker Hughes
+BDK,Black & Decker Manufacturing,"January 15, 1976","March 12, 2010",OT,Annual Re-ranking
+IMS,IMS Health Holdings Inc,"November 1, 1996","February 26, 2010",YRCW,Taken private
+PBG,Pepsi Bottling Group Inc.,"May 11, 2001","February 26, 2010",SXCL,Annual Re-ranking
+BNI,Burlington Northern Santa Fe Corp,"March 5, 1970","February 12, 2010",NP,Annual Re-ranking
+ACS,Affiliated Computer Services,"April 1, 2004","February 5, 2010",TAP.B,Annual Re-ranking
+JAVA,Sun Microsystems,"August 19, 1992","January 27, 2010",WANG,Annual Re-ranking
+VAL,Valaris plc,"January 3, 2007","December 22, 2009",BLS,Annual Re-ranking
+MBI,MBIA Inc,"December 2, 1996","December 18, 2009",CNW,Market capitalization change.
+CVG,Convergys Corp.,"June 12, 2000","December 18, 2009",TMC.A,Annual Re-ranking
+KBH,KB Home,"March 8, 1989","December 18, 2009",SAI,Market capitalization change.
+DYN,Dynegy Inc.,"October 2, 2000","December 18, 2009",BFO,Market capitalization change.
+CIEN,Ciena Corp.,"August 29, 2001","December 18, 2009",AGC,Market capitalization change.
+SGP,,,"November 3, 2009",,Acquired by Merck & Co. (MRK)
+WYE,Wyeth Corp.,,"October 15, 2009",,Annual Re-ranking
+CBE,Cooper Industries plc,,"September 8, 2009",,Redomesticated to Ireland
+MTW,Manitowoc Inc,"November 15, 2007","August 31, 2009",TEK,Annual Re-ranking
+CTX,Centex Corp.,"March 31, 1977","August 18, 2009",TIS,Centex acquired by Pulte Homes.
+CIT,CIT Group Inc.,"October 26, 2004","July 24, 2009",AWE,Annual Re-ranking
+TT,Trane Technologies plc,"May 10, 2002","June 30, 2009",SAPE,Annual Re-ranking
+EQ,Embarq Corporation,"May 17, 2006","June 30, 2009",AMCC,Annual Re-ranking
+TEL,TE Connectivity Ltd,"June 29, 2007","June 25, 2009",PMCS,"Tyco Electronics left the index because it was reincorporating in Switzerland, making it ineligible for inclusion."
+COV,Covidien Plc,"June 29, 2007","June 4, 2009",SANM,"Covidien moved its place of incorporation to Ireland, making it ineligible for inclusion in the index."
+GM,General Motors Co,,"June 2, 2009",,Annual Re-ranking
+ROH,Rohm & Hass Co,"September 16, 1982","April 1, 2009",MAN,Annual Re-ranking
+SITC,SITE Centers Corp,"March 22, 2007","March 27, 2009",CMX,Annual Re-ranking
+NE,Noble Corp plc,"January 12, 2001","March 26, 2009",TWX,Annual Re-ranking
+JCI,Johnson Controls International plc,"July 27, 1989","March 16, 2009",SKB,Annual Re-ranking
+JNY,Jones Group,"December 14, 2001","March 3, 2009",HM,"Capitalization rebalance.
+"
+ACAS,American Capital Ltd,"July 6, 2007","March 3, 2009",DG,Capitalization rebalance.
+WFT,Weatherford Int'l plc,"July 21, 2005","February 25, 2009",TOY,Annual Re-ranking
+SOV,Sovereign Bancorp Inc,"June 30, 2004","January 29, 2009",UPC,Annual Re-ranking
+UST,UST Inc.,"April 9, 1987","January 5, 2009",BKO,Annual Re-ranking
+MER,Merrill Lynch & Co,"April 8, 1982","December 31, 2008",INA,Annual Re-ranking
+WB,Wachovia Corp.,"September 30, 1993","December 31, 2008",CUE,Annual Re-ranking
+NCC,National City Corp.,"September 26, 1994","December 31, 2008",ACY,Annual Re-ranking
+BRL,Barr Pharmaceuticals Inc.,"February 24, 2006","December 22, 2008",SFA,Annual Re-ranking
+RIG,Transocean Ltd,"December 30, 1999","December 18, 2008",HP,Annual Re-ranking
+AW,Allied Waste Industries Inc.,"July 30, 1999","December 4, 2008",NLC,Annual Re-ranking
+KATE,Kate Spade & Co,"October 25, 1984","December 1, 2008",AFN,Annual Re-ranking
+ABI,Applied Biosystems Inc.,"October 17, 1974","November 21, 2008",MAG,Annual Re-ranking
+BUD,,"July 1, 1976","November 18, 2008",FRO,Annual Re-ranking
+HPC,Hercules Inc.,,"November 13, 2008",,Annual Re-ranking
+ASH,Ashland Global Holdings Inc,"August 3, 1989","November 13, 2008",ASA,Annual Re-ranking
+GGP,GGP Inc,"June 29, 2007","November 12, 2008",MEL,Annual Re-ranking
+UIS,Unisys Corp.,,"November 10, 2008",,Annual Re-ranking
+TEX,Terex Corp.,"December 19, 2006","November 5, 2008",NAV,Annual Re-ranking
+MTG,MGIC Investment Corp,"July 18, 1996","October 30, 2008",USHC,Annual Re-ranking
+DDS,Dillard's Inc.,"October 2, 1986","October 21, 2008",XLO,Annual Re-ranking
+WWY,Wrigley Co.,,"October 3, 2008",,Annual Re-ranking
+WEN,Wendy's International,"March 4, 1982","September 29, 2008",GNO,Annual Re-ranking
+COOP,Mr. Cooper Group Inc,"July 1, 1997","September 29, 2008",GWF,Annual Re-ranking
+SAF,Safeco Corp.,"July 1, 1976","September 22, 2008",CMR,Annual Re-ranking
+LEHMQ,Lehman Brothers Holding,"January 9, 1998","September 16, 2008",BBI,Annual Re-ranking
+FNMA,Fannie Mae (FNMA),"August 11, 1988","September 10, 2008",FHP,Annual Re-ranking
+FMCC,Freddie Mac (FHLMC),"December 31, 1991","September 10, 2008",CVN,Annual Re-ranking
+EDS,Electronic Data Systems Corp,"August 10, 1998","August 26, 2008",WAI,Annual Re-ranking
+IAC,IAC/InterActiveCorp,"November 30, 2006","August 20, 2008",LU,Annual Re-ranking
+IHRT,iHeartMedia Inc,"August 29, 1997","July 30, 2008",TDM,Annual Re-ranking
+CB,Chubb Ltd,"January 29, 2002","July 17, 2008",MEA,Annual Re-ranking
+SSP,E. W. Scripps Co,"December 19, 2005","June 30, 2008",GP,Annual Re-ranking
+CFC,Countrywide Financial Corp.,"June 17, 1997","June 30, 2008",USH,Ak Steel replaced Countrywide Financial.
+OMX,OfficeMax Inc,"April 23, 1970","June 20, 2008",NUM,Market capitalization change.
+BC,Brunswick Corp.,"March 1, 1973","June 20, 2008",ACS,Market capitalization change.
+AMBC,Ambac Financial Group Inc.,"December 8, 2000","June 10, 2008",CCK,Market Value Decline
+TT,Trane Inc.,"May 10, 2002","June 6, 2008",SAPE,Annual Re-ranking
+BSC,Bear Stearns Co,"June 30, 1998","June 2, 2008",GNT,Annual Re-ranking
+CC,Circuit City Stores Inc.,"May 11, 1989","March 28, 2008",CHM,Annual Re-ranking
+CBH,Commerce Bancorp (New Jersey),"June 5, 2006","March 28, 2008",EC,Annual Re-ranking
+CZR,Harrah's Entertainment,"February 7, 1990","January 28, 2008",HIA,Annual Re-ranking
+SNV,Synovus Financial Corp.,"November 26, 1997","December 31, 2007",SB,Annual Re-ranking
+TIN,,"December 18, 1986","December 28, 2007",RDS,Annual Re-ranking
+TRCO,Tribune Media Co,"January 30, 1986","December 20, 2007",GLM,Taken private
+DJ,Dow Jones & Co. Inc.,"May 4, 1978","December 13, 2007",BF,Acquired by News Corporation
+AT,Alltel Corp,"December 20, 1994","November 16, 2007",HXN,Annual Re-ranking
+TEK,Tektronix Inc.,,"November 15, 2007",,Annual Re-ranking
+HCR,Manor Care Inc.,"September 27, 1998","November 8, 2007",MNR,Annual Re-ranking
+BOL,Bausch & Lomb Inc.,"May 8, 1986","October 26, 2007",AD,Annual Re-ranking
+AV,Avaya Inc.,"September 29, 2000","October 25, 2007",OC,Taken private
+HLT,Hilton Worldwide Holdings Inc.,"April 23, 1970","October 24, 2007",CW,Annual Re-ranking
+TXU,TXU Corp.,,"October 9, 2007",,Annual Re-ranking
+ASN,,"December 17, 2004","October 5, 2007",CR,Annual Re-ranking
+SLR,Solectron Corp.,"December 30, 1998","October 1, 2007",PZE,Solectron acquired by Flextronics.
+NCR,NCR Corp.,"January 3, 2000","September 28, 2007",,Teradata spun off by NCR Corporation.
+MXIM,Maxim Integrated Products Inc,"May 9, 2000","September 26, 2007",JOS,MXIM delisted from NASDAQ exchange.
+FDC,First Data Corp.,"September 26, 1994","September 24, 2007",MCK,FDC acquired by KKR.
+CBSS,Compass Bancshares Inc,"December 17, 2004","September 7, 2007",WOR,Annual Re-ranking
+KSE,KeySpan Corp,"August 18, 2000","August 24, 2007",NCE,Annual Re-ranking
+BMET,Biomet Inc.,"August 22, 1990","July 11, 2007",PHL,Annual Re-ranking
+DG,Dollar General Corp,"July 15, 1998","July 6, 2007",GFS.A,Annual Re-ranking
+MEL,Mellon Financial Corp,"July 1, 1976","June 29, 2007",SFR,Annual Re-ranking
+PMCS,,"August 2, 2001","June 29, 2007",OAT,Annual Re-ranking
+SANM,Sanmina Corp.,"June 20, 2000","June 29, 2007",WLA,Annual Re-ranking
+ADCT,ADC Telecommunications Inc,"July 30, 1999","June 29, 2007",BFI,"Discover Financial Services Debuts On New York Stock Exchange Under Ticker Symbol DFS
+"
+MEDI,MedImmune Inc.,"June 15, 2000","May 31, 2007",CSR,Annual Re-ranking
+KMI,Kinder Morgan Inc,"December 11, 2000","May 30, 2007",NGH,Annual Re-ranking
+RLGY,Realogy Holdings Corp,"July 31, 2006","April 9, 2007",GTW,Annual Re-ranking
+TSG,Sabre Holdings Corp,"March 15, 2000","March 30, 2007",SCI,Taken Private
+UVN,Univision Comm Inc,"February 6, 2001","March 28, 2007",UK,Annual Re-ranking
+CMX,Caremark Rx,"March 24, 2004","March 22, 2007",TUP,Annual Re-ranking
+PD,Phelps Dodge Corp,,"March 19, 2007",,Annual Re-ranking
+HMA,Health Management Associates Inc,"November 6, 2001","March 1, 2007",GPU,Annual Re-ranking
+PGL,Peoples Energy Corp,,"February 21, 2007",,Annual Re-ranking
+APCC,American Power Conversion Corp,"May 31, 2000","February 14, 2007",MIR,Annual Re-ranking
+EOP,Equity Office Properties Trust,"October 9, 2001","February 9, 2007",TX,Annual Re-ranking
+CMVT,Comverse Technology Inc,"October 26, 1999","February 1, 2007",AR,Annual Re-ranking
+SBL,Symbol Technologies Inc,"December 8, 2000","January 9, 2007",GRA,Acquired by Motorola
+BLS,BellSouth Corp.,"December 1, 1983","January 3, 2007",NES,Annual Re-ranking
+PAR,PAR Technology Corp,"April 2, 1997","December 29, 2006",PAC,Annual Re-ranking
+NAV,Navistar Int'l Corp,,"December 19, 2006",,Annual Re-ranking
+FSLB,Freescale Semiconductor Inc,"December 2, 2004","December 1, 2006",,Annual Re-ranking
+LU,Lucent Technology,"September 30, 1996","November 30, 2006",OM,Annual Re-ranking
+NFB,North Fork BanCorp,"July 16, 2002","November 30, 2006",IMNX,Annual Re-ranking
+HCA,HCA Holdings Inc,"August 31, 1993","November 17, 2006",GHC,Annual Re-ranking
+ACV,,"March 4, 1971","November 16, 2006",CID,Annual Re-ranking
+FSH,Fisher Scientific Int'l,"August 2, 2004","November 9, 2006",TNB,Annual Re-ranking
+LPX,,"October 17, 1974","November 9, 2006",VAR,Annual Re-ranking
+ASO,AmSouth Bancorp,"March 9, 1999","November 3, 2006",TCOMA,Annual Re-ranking
+ANDW,Andrew Corp.,"November 23, 1984","September 29, 2006",JWL,Annual Re-ranking
+GDW,Golden West Financial,"June 9, 1988","September 29, 2006",LKS,Annual Re-ranking
+KMG,,"October 4, 1984","August 10, 2006",SOC,Annual Re-ranking
+GTW,Gateway Inc.,"April 24, 1998","July 31, 2006",FG,Annual Re-ranking
+CAR,Avis Budget Group,"April 28, 1995","July 31, 2006",ESY,Annual Re-ranking
+CTB,Cooper Tire & Rubber Co.,"May 24, 1990","July 17, 2006",NRT,Annual Re-ranking
+KRI,,"December 11, 1975","June 27, 2006",GLR,Annual Re-ranking
+EC,Engelhard Corp.,"July 7, 1983","June 5, 2006",HD,Annual Re-ranking
+ABS,Albertson's Inc.,"November 23, 1984","June 1, 2006",RM,Albertsons acquired by SuperValu and CVS Corp.
+AMCC,Applied Micro Circuits Corp.,,"May 17, 2006",,Annual Re-ranking
+GDT,Guidant Corp,"December 18, 1996","April 21, 2006",BLY,Annual Re-ranking
+CHIR,Chiron Corp.,"November 22, 2000","April 19, 2006",FJ,Annual Re-ranking
+CIN,Cinergy Corp.,"October 24, 1994","March 31, 2006",PIN,Annual Re-ranking
+MYG,Maytag Corp.,,"March 31, 2006",,Annual Re-ranking
+BR,Burlington Resources,"November 22, 1993","March 31, 2006",PCI,Annual Re-ranking
+JP,,"July 1, 1976","March 31, 2006",CIN,Annual Re-ranking
+DAN,Dana Inc,,"March 2, 2006",,Annual Re-ranking
+SFA,,"February 26, 1981","February 24, 2006",MAK,Annual Re-ranking
+SEBL,Siebel Systems Inc.,"May 4, 2000","January 31, 2006",CBS,Annual Re-ranking
+RBK,Reebok Int'l Ltd,"January 8, 1987","January 31, 2006",ALS,Annual Re-ranking
+MERQ,Mercury Interactive Corp,"June 28, 2000","January 3, 2006",MZ,Annual Re-ranking
+KRB,MBNA Corp.,"April 22, 1992","December 30, 2005",SPC,Annual Re-ranking
+VC,Visteon Corp.,"June 28, 2000","December 30, 2005",IKN,Annual Re-ranking
+GP,,,"December 19, 2005",,Annual Re-ranking
+CPN,Calpine Corp.,"November 30, 2000","December 1, 2005",FPC,Annual Re-ranking
+T,AT&T Corp.,"December 1, 1983","November 18, 2005",CTC,AT&T Corp. acquired by SBC Communications
+DPH,Delphi Corp.,"May 27, 1999","October 10, 2005",FMY,Annual Re-ranking
+PVN,Providian Financial Corp,"July 1, 1976","September 30, 2005",CIV,Annual Re-ranking
+G,Gillette Co.,,"September 30, 2005",,Annual Re-ranking
+MAY,May Dept Stores,,"August 29, 2005",,Annual Re-ranking
+DAL,Delta Air Lines Inc,,"August 18, 2005",,Annual Re-ranking
+NXTL,Nextel Communications Inc,"March 31, 1998","August 12, 2005",JH,Annual Re-ranking
+SDS,Sungard Data Systems Inc,"July 19, 2002","August 11, 2005",N,Annual Re-ranking
+UCL,Unocal Co,,"August 10, 2005",,Annual Re-ranking
+TOY,"Toys ""R"" Us, Inc.","September 8, 1983","July 21, 2005",MDC,Annual Re-ranking
+GLK,Great Lakes Chemical Corp,"November 22, 1991","July 1, 2005",HBJ,Acquired by Crompton Corp.
+VRTS,Veritas Software Corp,"March 31, 2000","July 1, 2005",PBY,Annual Re-ranking
+S,Sears Roebuck & Co,"July 27, 1989","March 24, 2005",NWA,Annual Re-ranking
+PWER,,"October 20, 2000","March 11, 2005",UCM,Annual Re-ranking
+PSFT,People Soft Inc,"October 1, 1998","December 28, 2004",USS,Annual Re-ranking
+CR,Crane Co.,,"December 17, 2004",,Annual Re-ranking
+WOR,Worthington Industries Inc,"July 14, 1988","December 17, 2004",CLO,Annual Re-ranking
+DLX,Deluxe Corp.,"April 24, 1986","December 17, 2004",BRY,Annual Re-ranking
+WLP,Wellpoint Health Networks Inc,"June 8, 1999","November 30, 2004",HPH,Annual Re-ranking
+SOTR,SouthTrust Corp,"February 26, 1999","October 29, 2004",ORX,Annual Re-ranking
+AWE,AT&T Wireless,"July 6, 2001","October 26, 2004",PCH,Annual Re-ranking
+CF,Charter One Financial Inc,"June 16, 2000","August 31, 2004",,Annual Re-ranking
+TNB,Thomas & Betts Corp,"October 17, 1974","August 2, 2004",BEC,Annual Re-ranking
+UPC,Union Planters Corp.,,"June 30, 2004",,Annual Re-ranking
+ONE,Bank One Corp.,"April 28, 1988","June 30, 2004",AST,Annual Re-ranking
+AM,American Greetings Corp,"October 4, 1989","April 30, 2004",SQB,Annual Re-ranking
+JHF,John Hancock Financial Services Inc,"June 27, 2001","April 28, 2004",H,Annual Re-ranking
+PCS,Sprint PCS Group,"November 23, 1998","April 22, 2004",AS,Annual Re-ranking
+TAP.B,Travelers Property Casualty,"August 20, 2002","April 1, 2004",VTSS,Annual Re-ranking
+FBF,FleetBoston Financial Group Inc,"November 10, 1988","March 31, 2004",MLL,Annual Re-ranking
+TUP,Tupperware Brands Corp,"May 30, 1996","March 24, 2004",PMI,Annual Re-ranking
+CE,Concord EFS Inc.,"March 30, 2001","February 26, 2004",CEN,Annual Re-ranking
+BGEN,Biogen NV,"January 28, 2000","November 12, 2003",FWLT,Annual Re-ranking
+QTRN,Quintiles Transnational Corp,"November 15, 1999","September 25, 2003",KWP,Taken private
+MDR,McDermott Int'l Inc,"August 19, 1971","August 19, 2003",CUD,Annual Re-ranking
+PHA,Pharmacia Corp.,,"April 15, 2003",,Annual Re-ranking
+HI,Household International Inc,,"March 28, 2003",,Annual Re-ranking
+EHC,HealthSouth Corp.,"January 7, 1997","March 20, 2003",BOAT,Annual Re-ranking
+AMR,AMR Corp.,,"March 13, 2003",,Annual Re-ranking
+RATL,Rational Software Corp,"January 31, 2002","February 21, 2003",NMK,Annual Re-ranking
+TRW,TRW Inc.,,"December 11, 2002",,Annual Re-ranking
+CMCSK,Comcast Corp,"October 8, 1987","November 18, 2002",TFB,Annual Re-ranking
+COC.B,Conoco Inc.,"August 6, 1999","August 30, 2002",BMGCA,Annual Re-ranking
+VTSS,Vitesse Semiconductor Corp,"December 11, 2000","August 20, 2002",SMI,Annual Re-ranking
+PALM,Palm Inc.,"July 27, 2000","August 13, 2002",COMS,Annual Re-ranking
+CNO,CNO Financial Group,"January 14, 1997","July 24, 2002",AAL,Annual Re-ranking
+NT,Nortel Networks,"November 20, 1980","July 19, 2002",BWN,Annual Re-ranking
+N,Inco Ltd.,,"July 19, 2002",,Annual Re-ranking
+ABX,Barrick Gold Corp.,"November 12, 1993","July 19, 2002",AMX,Annual Re-ranking
+AL,Alcan Inc.,,"July 19, 2002",,Annual Re-ranking
+UN,Unilever N.V.,,"July 19, 2002",,Annual Re-ranking
+RD,Royal Dutch Petroleum,,"July 19, 2002",,Annual Re-ranking
+PDG,Placer Dome Inc.,"August 20, 1987","July 19, 2002",CRK,Annual Re-ranking
+IMNX,Immunex Corp.,"September 20, 2001","July 16, 2002",,Annual Re-ranking
+CNXT,Conexant Systems,"January 28, 2000","June 25, 2002",CNG,Annual Re-ranking
+U,US Airways Group,"December 18, 1986","May 14, 2002",CGG,Annual Re-ranking
+WCOM,WorldCom Inc,"March 29, 1996","May 14, 2002",CMB,Annual Re-ranking
+SAPE,Sapient Corp.,"May 4, 2000","May 10, 2002",RLM,Annual Re-ranking
+CPQ,Compaq Computer Corp,"February 25, 1988","May 3, 2002",STY,Annual Re-ranking
+WLL,Willamette Industries Inc,"August 17, 1995","February 8, 2002",BRNO,Annual Re-ranking
+NMK,Niagara Mohawk Holdings Inc.,,"January 31, 2002",,Annual Re-ranking
+MEA,Mead Corp.,,"January 29, 2002",,Annual Re-ranking
+KM,Kmart Corp,,"January 16, 2002",,Annual Re-ranking
+FMC,FMC Corp,,"December 31, 2001",,Annual Re-ranking
+HM,Homestake Mining Co,,"December 14, 2001",,Annual Re-ranking
+RAL,Ralston Purina Co.,,"December 12, 2001",,Annual Re-ranking
+NSI,National Service Industries Inc,"December 4, 1986","November 30, 2001",RYN,Annual Re-ranking
+ENRNQ,Enron Corp.,,"November 29, 2001",,Annual Re-ranking
+GPU,GPU Inc.,"February 8, 1995","November 6, 2001",PT,Annual Re-ranking
+GLBC,Global Crossing Ltd,"September 28, 1999","October 9, 2001",FRO,Annual Re-ranking
+TX,Texaco Inc.,,"October 9, 2001",,Annual Re-ranking
+TOS,Tosco Corp.,"September 17, 1999","September 17, 2001",MTL,Annual Re-ranking
+WB,Wachovia Corp,"September 30, 1993","August 31, 2001",CUE,Annual Re-ranking
+BVSN,BroadVision Inc.,"November 3, 2000","August 31, 2001",PWJ,Annual Re-ranking
+AGC,American General Insurance Co,"July 1, 1976","August 29, 2001",DPL,Annual Re-ranking
+OKE,ONEOK Inc,,"August 29, 2001",,Annual Re-ranking
+TKR,Timken Co.,,"August 6, 2001",,Annual Re-ranking
+ETS,Enterasys Networks Inc.,"May 19, 1995","August 3, 2001",CKL,Annual Re-ranking
+OAT,Quaker Oats Co,,"August 2, 2001",,Annual Re-ranking
+PCH,PotlatchDeltic Corp,"April 23, 1970","July 6, 2001",SQB,Annual Re-ranking
+LDG,Longs Drug Stores Inc,"November 21, 1985","June 29, 2001",REV,Annual Re-ranking
+H,Harcourt General Inc.,"September 10, 1981","June 27, 2001",KNY,Annual Re-ranking
+AZA.A,ALZA Corp.,"December 11, 1990","June 22, 2001",LCE,Annual Re-ranking
+CIT,CIT Group Inc.,"July 14, 2000","June 1, 2001",UPR,Annual Re-ranking
+SXCL,Steel Excel Inc,"September 30, 1999","May 11, 2001",FTL.A,Annual Re-ranking
+BGG,Briggs & Stratton Corp,,"April 2, 2001",,Annual Re-ranking
+CEN,Ceridian Corp.,,"March 30, 2001",,Annual Re-ranking
+OK,Old Kent Financial Corp,,"March 30, 2001",,Annual Re-ranking
+SUB,Summit Bancorp,"January 27, 1998","February 28, 2001",CBB,Annual Re-ranking
+UK,Union Carbide Corp Holding Co,,"February 6, 2001",,Annual Re-ranking
+CGP,Coastal Corp.,"May 23, 1985","January 29, 2001",ANR,Annual Re-ranking
+TWX,Time Warner Inc.,"December 31, 1998","January 12, 2001",FL,Annual Re-ranking
+MEE,Massey Energy Co.,"January 17, 1980","December 21, 2000",FO,Annual Re-ranking
+SMI,Springs Industries Inc.,,"December 11, 2000",,Annual Re-ranking
+RML,Russell Corp.,"November 23, 1984","December 11, 2000",BBL,Annual Re-ranking
+PRD,Polaroid Corp,,"December 11, 2000",,Annual Re-ranking
+NGH,Nabisco Group Holding Corp,"September 15, 1998","December 11, 2000",MCIC,Annual Re-ranking
+BS,Bethlehem Steel Corp,,"December 8, 2000",,"Market Cap changes.
+"
+VO,Seagram Co. Ltd.,,"December 8, 2000",,Annual Re-ranking
+GRA,W. R. Grace & Co,,"December 8, 2000",,"Market Cap changes.
+"
+OI,,"August 1, 1997","December 8, 2000",USBC,Market Cap changes.
+CCK,Crown Holdings Inc,,"December 8, 2000",,"Market Cap changes.
+"
+AFS.A,Associates First Capital Corp,"April 7, 1998","December 1, 2000",CHRS,Annual Re-ranking
+FPC,Florida Progress Corp,"June 21, 1999","November 30, 2000",MII,Annual Re-ranking
+FJ,Fort James Corp.,"May 8, 1986","November 22, 2000",ECK,Annual Re-ranking
+SEG,Seagate Technology,"August 15, 1996","November 21, 2000",CVA,Annual Re-ranking
+ACKH,Armstrong Holding Inc,,"November 16, 2000",,Annual Re-ranking
+PWJ,Paine Webber Group Inc,"June 3, 1999","November 3, 2000",BT,Annual Re-ranking
+CG,Columbia Energy Group,,"November 1, 2000",,Annual Re-ranking
+EFU,Eastern Enterprises,,"November 1, 2000",,Annual Re-ranking
+UCM,Unicom Corp Holding Co,,"October 20, 2000",,Annual Re-ranking
+MKG,Mallinckrodt Inc.,"February 6, 1975","October 17, 2000",AN,Annual Re-ranking
+DNB,Dun & Bradstreet Corp,"December 27, 1979","October 2, 2000",REE,Annual Re-ranking
+BFO,BestFoods,,"October 2, 2000",,Annual Re-ranking
+YNR,Young & Rubicam Inc,"January 5, 2000","October 2, 2000",NLV,Annual Re-ranking
+OC,Owens Corning,,"September 29, 2000",,Annual Re-ranking
+GAP,The Great Atlantic & Pacific Tea Co,,"August 29, 2000",,Annual Re-ranking
+NCE,New Century Energies Inc,,"August 18, 2000",,Annual Re-ranking
+COMS,3Com Corp.,"December 29, 1995","July 27, 2000",FFB,Annual Re-ranking
+RAD,Rite Aid Corp.,"December 11, 1975","July 26, 2000",CPX,Market Cap change.
+UPR,Union Pacific Resources Group Inc,"October 15, 1996","July 14, 2000",THY,Annual Re-ranking
+KSU,Kansas City Southern,"April 1, 1999","July 12, 2000",AMP,Annual Re-ranking
+USW,US West Inc.,"December 1, 1983","July 5, 2000",CNT,Annual Re-ranking
+GTE,GTE Corp.,,"June 30, 2000",,Annual Re-ranking
+MZ,Milacron Inc.,,"June 28, 2000",,Annual Re-ranking
+IKN,IKON Office Solutions Inc,"February 11, 1988","June 28, 2000",CVN,Annual Re-ranking
+SGI,Silicon Graphics Inc,"January 17, 1995","June 20, 2000",E,Annual Re-ranking
+WLA,Warner Lambert Pharmaceutical Co,,"June 20, 2000",,Annual Re-ranking
+CHA,Champion International Corp,"April 23, 1970","June 16, 2000",NTY,Annual Re-ranking
+UMG,MediaOne Group Inc.,"October 31, 1995","June 15, 2000",BSET,Annual Re-ranking
+CSR,Central & South West Corp,,"June 15, 2000",,Annual Re-ranking
+TMC.A,Times Mirror Co Share,,"June 12, 2000",,Tribune Co. acquired Times Mirror.
+SMS,Shared Medical Systems Corp,"October 25, 1984","June 7, 2000",EDS,Siemens AG acquired Shared Medical Systems.
+NC,NACCO Industries Inc,,"June 2, 2000",,Annual Re-ranking
+MIR,Mirage Resorts Inc,"August 6, 1997","May 31, 2000",NAE,Annual Re-ranking
+JOS,Jostens Inc.,"July 20, 1989","May 9, 2000",CNW,Annual Re-ranking
+RLM,Reynolds Metals Co,,"May 4, 2000",,Annual Re-ranking
+CBS,CBS Corp.,,"May 4, 2000",,Annual Re-ranking
+ARC,Atlantic Richfield Co,,"April 17, 2000",,Annual Re-ranking
+PNU,Pharmacia & Upjohn Inc.,"November 2, 1995","March 31, 2000",UPJ,Annual Re-ranking
+PBY,"Pep Boys: Manny, Moe & Jack","August 13, 1990","March 31, 2000",GRL,Annual Re-ranking
+SCI,Service Corp. Int'l,"December 18, 1986","March 15, 2000",CK,Annual Re-ranking
+FLE,Fleetwood Enterprises Inc,"May 9, 1974","January 28, 2000",BBK,Annual Re-ranking
+FWLT,Foster Wheeler AG,,"January 28, 2000",,Annual Re-ranking
+CNG,Consolidated Natural Gas Co,,"January 28, 2000",,Annual Re-ranking
+NLV,NextLevel Systems Inc,"March 29, 1996","January 5, 2000",I,Annual Re-ranking
+RNB,Republic New York Corp,"July 3, 1995","December 31, 1999",LOTS,Annual Re-ranking
+HP,Helmerich and Payne Inc,"February 11, 1988","December 30, 1999",WSN,Annual Re-ranking
+LI,Laidlaw Int'l Inc,"March 31, 1995","December 7, 1999",REN,Market capitalization change.
+MOB,Mobil Corp.,,"November 30, 1999",,Annual Re-ranking
+PPW,Pacificorp,"March 16, 1989","November 30, 1999",HCA,Annual Re-ranking
+KWP,King World Productions Inc.,"February 9, 1989","November 15, 1999",TGR,Annual Re-ranking
+CSE,Case Corp.,"January 19, 1996","November 12, 1999",BCO,Annual Re-ranking
+LHX,L3Harris Technologies Inc,"June 26, 1980","November 5, 1999",HJ,Annual Re-ranking
+TEN,Tenneco Inc.,"October 5, 1978","November 4, 1999",NGX,Annual Re-ranking
+AR,Asarco Inc.,,"October 26, 1999",,Annual Re-ranking
+SNT,Sonat Inc.,,"October 25, 1999",,Annual Re-ranking
+CYM,Cyprus Amax Minerals Co,"August 24, 1989","October 15, 1999",PRM,Annual Re-ranking
+DGN,Data General Corp.,"June 25, 1981","October 12, 1999",TF,Annual Re-ranking
+AIT,Ameritech Corp.,"December 1, 1983","October 11, 1999",BU,Annual Re-ranking
+PHB,Pioneer HI Bred International Inc,"October 13, 1993","October 1, 1999",JWP,Annual Re-ranking
+BKB,Bankboston Corp.,"July 1, 1976","September 30, 1999",ILN,Annual Re-ranking
+FTL.A,Fruit of The Loom Inc,"May 26, 1995","September 30, 1999",GOSHA,Annual Re-ranking
+FRO,Frontier Corp.,"December 31, 1996","September 28, 1999",RYAN,Annual Re-ranking
+MTL,Mercantile Bancorporation Inc,"February 20, 1998","September 17, 1999",ITT,Annual Re-ranking
+RYC,Raychem Corp.,"June 16, 1988","August 12, 1999",KOP,Annual Re-ranking
+BMGCA,Battle Mountain Gold Co,"July 19, 1996","August 6, 1999",CAL,Annual Re-ranking
+NLC,Nalco Chemical Co,"March 6, 1990","July 30, 1999",GNN,Annual Re-ranking
+BFI,Browning Ferris Industries Inc,"August 14, 1975","July 30, 1999",DMG,Annual Re-ranking
+TA,Transamerica Corp.,"March 1, 1979","July 21, 1999",FLIF,Annual Re-ranking
+PVT,Provident Companies Inc,"August 28, 1998","June 30, 1999",BAY,Annual Re-ranking
+ATI,Airtouch Communications Inc.,"April 5, 1994","June 29, 1999",FJCC,Annual Re-ranking
+ASND,Ascend Comm's Inc,"June 11, 1998","June 24, 1999",DEC,Annual Re-ranking
+ASC,American Stores Co.,,"June 23, 1999",,Annual Re-ranking
+MII,Morton International Inc.,"June 29, 1989","June 21, 1999",MTI,Annual Re-ranking
+HPH,Harnischfeger Industries,"September 21, 1989","June 8, 1999",JERR,Harnischfeger filed for bankruptcy.
+BT,Bankers Trust Corp.,"July 1, 1976","June 3, 1999",NCE,Annual Re-ranking
+MWI,Moore Wallace Inc.,"August 20, 1987","May 27, 1999",DM,Annual Re-ranking
+FMY,Fred Meyer Inc.,"July 9, 1998","May 27, 1999",ECH,Annual Re-ranking
+UCC,Union Camp Corp.,,"April 30, 1999",,Annual Re-ranking
+ANV,Aeroquip Vickers Inc,,"April 9, 1999",,Annual Re-ranking
+AMP,Amp Inc.,,"April 1, 1999",,Annual Re-ranking
+RBD,Rubbermaid Inc.,"May 8, 1986","March 24, 1999",WSW,Annual Re-ranking
+TCOMA,Tele Communications Inc,"August 1, 1985","March 9, 1999",COX,Annual Re-ranking
+ORX,Oryx Energy Co.,"October 27, 1988","February 26, 1999",RDMN,Annual Re-ranking
+HBOC,HBO & Co.,"October 22, 1997","January 12, 1999",LLX,Annual Re-ranking
+FL,Foot Locker Inc.,,"December 31, 1998",,Annual Re-ranking
+SAI,Sunamerica Inc.,"July 16, 1997","December 31, 1998",GIDL,Annual Re-ranking
+AN,Amoco Corp.,,"December 31, 1998",,Annual Re-ranking
+PZE,PennzEnergy Co.,"March 10, 1983","December 30, 1998",GAO,Annual Re-ranking
+GRN,General Re Corp.,"April 14, 1988","December 21, 1998",FIN,Berkshire Hathaway purchased General Re.
+AS,Armco Inc.,,"November 23, 1998",,Annual Re-ranking
+STO,Stone Container Corp.,"October 7, 1982","November 17, 1998",HLY,Annual Re-ranking
+C,Chrysler Corp.,"May 26, 1988","November 12, 1998",IMSI,Annual Re-ranking
+CCI,Citicorp Inc,"July 1, 1976","October 7, 1998",IDA,Annual Re-ranking
+GSX,General Signal Corp,,"October 6, 1998",,Annual Re-ranking
+USS,United States Surgical Corp,"July 2, 1992","October 1, 1998",GWO,Annual Re-ranking
+FCN,First Chicago NBD Corp,"April 23, 1987","October 1, 1998",TCB,Annual Re-ranking
+AHM,H. F. Ahmanson & Co.,"May 31, 1973","September 30, 1998",FFI,Annual Re-ranking
+DI,Dresser Industries Inc.,,"September 30, 1998",,Annual Re-ranking
+MNR,Manor Care Inc.,"June 12, 1986","September 27, 1998",RCA,Annual Re-ranking
+MCIC,MCI Communications Corp,"June 24, 1982","September 15, 1998",CPS,Annual Re-ranking
+BAY,Bay Networks Inc.,"February 9, 1996","August 28, 1998",CCB,Annual Re-ranking
+DIGI,DSC Communications Corp.,"August 16, 1984","August 27, 1998",ESM,Annual Re-ranking
+MST,Mercantile Stores Inc,"June 17, 1982","August 13, 1998",MF,Annual Re-ranking
+WAI,Western Atlas Inc.,"March 17, 1994","August 10, 1998",LIT,Annual Re-ranking
+WMX,Waste Management Inc.,"August 13, 1981","July 16, 1998",CRF,Annual Re-ranking
+GFS.A,Giant Food Inc.,"August 6, 1987","July 15, 1998",AMO,Annual Re-ranking
+ECH,Echlin Inc.,"November 15, 1973","July 9, 1998",ESB,Annual Re-ranking
+BNL,Beneficial Corp.,,"June 30, 1998",,Annual Re-ranking
+RYI,Ryerson Holding Corp,,"June 30, 1998",,Annual Re-ranking
+GNT,Green Tree Financial Corp,"March 12, 1996","June 30, 1998",FBO,Annual Re-ranking
+PET,Pacific Enterprises,,"June 29, 1998",,Annual Re-ranking
+DEC,Digital Equipment Corp,"October 16, 1975","June 11, 1998",GTY,Annual Re-ranking
+CFL,Corestates Financial Corp.,"December 28, 1990","April 28, 1998",MCA,Annual Re-ranking
+FG,USF&G Corp,"July 1, 1976","April 24, 1998",CMS,Annual Re-ranking
+CHRS,Charming Shoppes Inc.,"February 12, 1987","April 7, 1998",CBM,Annual Re-ranking
+SK,Safety Kleen Corp,"October 8, 1987","March 31, 1998",SGL,Annual Re-ranking
+JH,John H. Harland Co.,"October 25, 1989","March 31, 1998",AMI,Annual Re-ranking
+ITT,ITT Corporation,"December 19, 1995","February 20, 1998",MRN,Annual Re-ranking
+PAS,Pepsiamericas Inc.,,"January 29, 1998",,Annual Re-ranking
+CBB,Caliber System Inc,"July 1, 1976","January 27, 1998",CGM,Annual Re-ranking
+ECO,Echo Bay Mines Ltd,"March 2, 1990","January 16, 1998",LINB,Annual Re-ranking
+BBI,Barnett Banks Inc.,"October 4, 1984","January 9, 1998",CBK,Annual Re-ranking
+FLM,Fleming Companies,"December 10, 1987","December 23, 1997",,Annual Re-ranking
+HFS,HFS Inc.,"August 15, 1996","December 17, 1997",MGI,Annual Re-ranking
+BEV,Beverly Enterprises Inc.,"June 5, 1986","December 3, 1997",MEI,Annual Re-ranking
+SB,Salomon Inc.,"June 3, 1981","November 26, 1997",EC,Annual Re-ranking
+LLX,Louisiana Land & Exploration Co,,"October 22, 1997",,Annual Re-ranking
+SRR,Stride Rite Corp.,"December 15, 1989","October 6, 1997",CSP,Annual Re-ranking
+AMH,Amdahl Corp.,"October 23, 1986","September 12, 1997",FTR,Annual Re-ranking
+TDM,Tandem Computers Inc.,"March 1, 1984","August 29, 1997",HYST,Annual Re-ranking
+NYN,Nynex Corp.,"December 1, 1983","August 15, 1997",WPC,Annual Re-ranking
+NAE,NorAm Energy Corp.,"January 5, 1989","August 6, 1997",PSY,Annual Re-ranking
+TXU,TXU Gas Co.,,"August 5, 1997",,Annual Re-ranking
+USBC,United States Bancorp (Orig),"October 5, 1990","August 1, 1997",CBL,Annual Re-ranking
+MD,McDonnell Douglas Corp.,,"August 1, 1997",,Annual Re-ranking
+SFS,Santa Fe Snyder Corp.,"December 4, 1990","July 25, 1997",FBNI,Annual Re-ranking
+INGR,Intergraph Corp,"November 8, 1984","July 25, 1997",STK,Annual Re-ranking
+GIDL,Giddings & Lewis Inc.,"July 2, 1992","July 16, 1997",BNSSA,Annual Re-ranking
+GWF,Great Western Financial Corp,,"July 1, 1997",,Annual Re-ranking
+PEL,PanEnergy Corp.,,"June 18, 1997",,Annual Re-ranking
+USH,USLife Corp.,"November 11, 1982","June 17, 1997",NLT,Annual Re-ranking
+DWD,Dean Witter Discover & Co.,"July 12, 1993","May 30, 1997",IK,Annual Re-ranking
+CRR,Conrail Inc.,"July 9, 1987","May 23, 1997",LTC,Annual Re-ranking
+GLD,Santa Fe Pacific Gold Corp.,"September 30, 1994","May 5, 1997",GCO,Annual Re-ranking
+PAC,Pacific Telesis Group,"December 1, 1983","April 2, 1997",S,Annual Re-ranking
+AAL,Alexander & Alexander Services Inc,"October 6, 1988","January 14, 1997",GLD,Annual Re-ranking
+BOAT,Boatmens Bancshares Inc.,"February 12, 1991","January 7, 1997",BWY,Annual Re-ranking
+LUB,Luby's Inc,"May 16, 1985","December 31, 1996",PABT,Annual Re-ranking
+SHN,Shoney's Inc.,"January 31, 1985","December 31, 1996",DEN,Annual Re-ranking
+RYAN,Ryan's Restaurant,"September 14, 1989","December 31, 1996",CUL,Annual Re-ranking
+BLY,Bally Entertainment Corp.,"October 10, 1985","December 18, 1996",AMF,Annual Re-ranking
+CNW,,"December 29, 1983","December 2, 1996",SX,Annual Re-ranking
+YRCW,YRC Worldwide Inc.,"July 1, 1976","November 1, 1996",GHB,Annual Re-ranking
+THY,Transitional Hospitals Corp,"June 25, 1987","October 15, 1996",JOY,Annual Re-ranking
+OM,Outboard Marine Corp.,"March 1, 1973","September 30, 1996",FAC,Annual Re-ranking
+VAT,Varity Corp.,,"September 5, 1996",,Annual Re-ranking
+CVA,Covanta Holding Corp,"December 10, 1987","August 15, 1996",BCW,Annual Re-ranking
+MGI,MoneyGram Int'l Inc,"August 24, 1989","August 15, 1996",FLC,Annual Re-ranking
+CAL,Caleres Inc,,"July 19, 1996",,Annual Re-ranking
+USHC,United States Healthcare Inc,"April 15, 1994","July 18, 1996",GQ,Annual Re-ranking
+PMI,Premark Int'l Inc,"April 6, 1989","May 30, 1996",EAF,Annual Re-ranking
+LOR,Loral Corp.,"September 5, 1985","April 22, 1996",LVI,Annual Re-ranking
+CMB,Chase Manhattan Corp.,"July 1, 1976","March 29, 1996",AIC,Annual Re-ranking
+I,First Interstate Bancorporation,"July 1, 1976","March 29, 1996",M,Annual Re-ranking
+CYR,Cray Research Inc,"May 9, 1985","March 27, 1996",MGR,Annual Re-ranking
+FBO,Federal Paper Board Inc,,"March 12, 1996",,Annual Re-ranking
+HDLM,Handleman Co.,"March 1, 1973","March 7, 1996",STA,Annual Re-ranking
+CCB,Capital Cities/ABC Inc.,,"February 9, 1996",,Annual Re-ranking
+BCO,Brinks Co.,,"January 19, 1996",,Annual Re-ranking
+FFB,First Fidelity Bancorp,"June 9, 1988","December 29, 1995",COT,Annual Re-ranking
+MRN,Morrison Knudsen Corp.,"June 7, 1990","December 19, 1995",DNA,Annual Re-ranking
+ZRN,Zurn Industries Inc,"March 11, 1982","December 19, 1995",EVT,Annual Re-ranking
+SPP,Scott Paper Co.,,"December 13, 1995",,Annual Re-ranking
+SNC,Shawmut National Corp.,"June 1, 1989","November 30, 1995",UCT,Annual Re-ranking
+FNB,First Chicago Corp.,"July 1, 1976","November 30, 1995",ARR,Annual Re-ranking
+CBS,CBS Inc.,,"November 24, 1995",,Annual Re-ranking
+ZE,Zenith Electronics Corp,,"November 7, 1995",,Annual Re-ranking
+UPJ,Upjohn Co.,"April 24, 1980","November 2, 1995",WS,Annual Re-ranking
+BSET,Bassett Furniture Industries Inc,"April 8, 1982","October 31, 1995",KFM,Annual Re-ranking
+CEM,Chemfirst Inc,"February 6, 1975","October 20, 1995",GAF,Annual Re-ranking
+SFX,Santa FE Pac Corp,"December 29, 1983","September 21, 1995",SFF,Annual Re-ranking
+BRNO,Brunos Inc,"May 21, 1991","August 17, 1995",SQD,Annual Re-ranking
+SKY,Skyline Champion Corp,"May 9, 1974","July 28, 1995",NAB,Annual Re-ranking
+SPXC,SPX Corp.,"February 3, 1983","July 12, 1995",BX,Annual Re-ranking
+LOTS,Lotus Development Corp,"September 18, 1986","July 3, 1995",SY,Annual Re-ranking
+MAI,MA.com Inc,"November 20, 1980","June 30, 1995",PU,Annual Re-ranking
+GOSHA,OshKosh B'gosh Inc.,"January 23, 1986","May 26, 1995",CLU,Annual Re-ranking
+HMX,Hartmarx Corp,"May 3, 1979","May 26, 1995",WEAR,Annual Re-ranking
+CKL,Clark Equipment Co,,"May 19, 1995",,Annual Re-ranking
+CIC,Continental Corp,"July 1, 1976","May 9, 1995",CCN,Annual Re-ranking
+ESY,,"November 14, 1985","April 28, 1995",LST,Annual Re-ranking
+REN,Safety Kleen Corp,"November 21, 1985","March 31, 1995",AHS,Annual Re-ranking
+MXS,Maxus Energy Corp,"October 4, 1984","March 30, 1995",CCC,Annual Re-ranking
+ML,Martin Marietta Corp,,"March 15, 1995",,Annual Re-ranking
+NEC,National Education Corp,"March 2, 1989","February 23, 1995",CHU,Annual Re-ranking
+PT,Pet Inc,"April 1, 1991","February 8, 1995",DPT,Annual Re-ranking
+E,Transco Energy Co,"April 16, 1991","January 17, 1995",UH,Annual Re-ranking
+HXN,Hexion Specialty Chemicals,,"December 20, 1994",,Annual Re-ranking
+PIN,PSI Resources Inc,"July 1, 1976","October 24, 1994",AYE,Annual Re-ranking
+GCO,Genesco Inc,,"September 30, 1994",,Annual Re-ranking
+BV,Blockbuster Entertainment,"January 9, 1991","September 29, 1994",PN,Annual Re-ranking
+ACY,American Cyanamid Co,,"September 26, 1994",,Annual Re-ranking
+MCK,McKesson Corp.,"February 11, 1988","September 26, 1994",SMF,Annual Re-ranking
+AAV,Avatex Corp,,"September 26, 1994",,Annual Re-ranking
+MCAWA,McCaw Cellular Comm.,"June 30, 1993","September 20, 1994",WLB,Annual Re-ranking
+UAL,UAL Corp,,"July 12, 1994",,Annual Re-ranking
+GEB,Gerber Products Co,,"June 30, 1994",,Annual Re-ranking
+SYN,Syntex Corp,"September 26, 1985","June 6, 1994",R,Annual Re-ranking
+GQ,Grumman Corp,,"April 15, 1994",,Annual Re-ranking
+FJCC,Fedders Corp,,"April 5, 1994",,Annual Re-ranking
+LIT,Litton Industries Inc,"October 5, 1978","March 17, 1994",GDV,Annual Re-ranking
+NEU,Newmarket Corp,"February 26, 1987","March 10, 1994",CZ,Annual Re-ranking
+CNA,CNA Financial Corp,"July 1, 1976","March 1, 1994",NAL,Annual Re-ranking
+NL,NL Industries Inc,,"January 3, 1994",,Annual Re-ranking
+TIC,Travelers Corp,"July 1, 1976","December 30, 1993",SOO,Annual Re-ranking
+PCI,Paramount Communications Inc,"December 14, 1978","November 22, 1993",LY,Annual Re-ranking
+AMX,AMAX Inc.,,"November 12, 1993",,Annual Re-ranking
+PCLB,Price Co,"September 12, 1985","October 21, 1993",NB,Annual Re-ranking
+JWP,JWP Inc.,"September 19, 1990","October 13, 1993",PDQ,Annual Re-ranking
+MHS,Marriott Corp.,"June 25, 1970","October 11, 1993",GCR,Annual Re-ranking
+CUE,Quantum Chemical Corp,,"September 30, 1993",,Annual Re-ranking
+GHC,Galen Health Care Inc,"March 5, 1993","August 31, 1993",HUM,Annual Re-ranking
+IK,Interlake Corp,"January 20, 1972","July 12, 1993",WW,Annual Re-ranking
+WLB,Westmoreland Coal Co,"October 21, 1976","June 30, 1993",UC,Annual Re-ranking
+HUM,Humana Inc.,"February 8, 1979","March 5, 1993",SVM,Annual Re-ranking
+WETT,Wetterau Inc,"April 6, 1989","October 29, 1992",WPM,Annual Re-ranking
+WANG,Wang Laboratories Inc,"August 28, 1980","August 19, 1992",LGT,Annual Re-ranking
+BNSSA,BNS Holding Inc,,"July 2, 1992",,Annual Re-ranking
+AMT,,,"July 2, 1992",,Annual Re-ranking
+GWO,Genesis Worldwide Inc,,"July 2, 1992",,Annual Re-ranking
+SPC,Security Pacific Corp,"April 14, 1988","April 22, 1992",ROP,Annual Re-ranking
+USG,USG Corp,,"February 7, 1992",,Annual Re-ranking
+MHC,Manufacturers Hanover Corp,"July 1, 1976","December 31, 1991",GPU,Annual Re-ranking
+CVN,C&S/Sovran Corp,"September 3, 1990","December 31, 1991",SOV,Annual Re-ranking
+HBJ,Harcourt Brace Jovanovich,,"November 22, 1991",,Annual Re-ranking
+CTCO,Cross & Trecker Corp,"August 12, 1982","October 31, 1991",GID,Annual Re-ranking
+NCR,NCR Corp.,,"September 19, 1991",,Annual Re-ranking
+SQD,Square D Co,,"May 21, 1991",,Annual Re-ranking
+TKA,Tonka Corp,"March 6, 1975","May 6, 1991",MAT,Annual Re-ranking
+X,USX Corporation,,"May 6, 1991",,Annual Re-ranking
+UH,U.S. Home Corp,"June 20, 1974","April 16, 1991",URB,Annual Re-ranking
+DPT,Datapoint Corp,"June 25, 1981","April 1, 1991",RVB,Annual Re-ranking
+BWY,Broadway Stores Inc,"August 2, 1973","February 12, 1991",GI,Annual Re-ranking
+PN,Pan Am Corp,,"January 9, 1991",,Annual Re-ranking
+MCA,MCA Inc,,"December 28, 1990",,Annual Re-ranking
+LCE,Lone Star Industries Inc,,"December 11, 1990",,Annual Re-ranking
+FBNI,Furniture Brands International,,"December 4, 1990",,Annual Re-ranking
+CBL,Corroon & Black Corp,"December 22, 1988","October 5, 1990",PA,Annual Re-ranking
+PDQ,Prime Hospitality Corp,"July 17, 1986","September 19, 1990",MZ,Annual Re-ranking
+SOV,Sovran Financial Corp.,"December 8, 1988","September 3, 1990",KRA,Annual Re-ranking
+PHL,Philips Industries Inc,"December 31, 1987","August 22, 1990",GHB,Annual Re-ranking
+GRL,NextLevel Systems Inc,"October 21, 1982","August 13, 1990",IQ,Annual Re-ranking
+DNA,Genentech Inc,"July 24, 1986","June 7, 1990",LTV,Annual Re-ranking
+NRT,Norton Co,"May 12, 1988","May 24, 1990",STN,Annual Re-ranking
+GNN,Great Northern Nekoosa Corp,"February 7, 1985","March 6, 1990",SFN,Annual Re-ranking
+LINB,LIN Broadcasting Corp,"August 1, 1985","March 2, 1990",NWT,Annual Re-ranking
+HIA,Holiday Corp,"April 23, 1970","February 7, 1990",HAR,Annual Re-ranking
+RAM,Ramada Inc,"December 9, 1971","December 20, 1989",MHT,Annual Re-ranking
+CSP,Combustion Engineering Inc,,"December 15, 1989",,Annual Re-ranking
+NOXLB,Noxell,"August 9, 1984","November 30, 1989",FBG,Annual Re-ranking
+AMI,American Medical Holdings,"February 8, 1979","October 25, 1989",SIM,Annual Re-ranking
+SQB,Squibb Corp,"September 10, 1981","October 4, 1989",IBP,Annual Re-ranking
+JERR,Jerrico Inc,"May 7, 1987","September 21, 1989",REX,Annual Re-ranking
+CUL,Cullinet Software Inc,"May 3, 1984","September 14, 1989",TYM,Annual Re-ranking
+PRM,Prime Computer Inc.,"December 27, 1984","August 24, 1989",ARMK,Annual Re-ranking
+MKC,Marion Merrell Dow,"May 5, 1988","August 24, 1989",FDS,Annual Re-ranking
+FLC,R&B Falcon Corp,"January 20, 1972","August 24, 1989",CF,Annual Re-ranking
+ASA,ASA Gold & Precious Metals Ltd,,"August 3, 1989",,Annual Re-ranking
+IDL,Ideal Basic Industries Inc,"September 23, 1976","August 3, 1989",MQC,Annual Re-ranking
+WCI,Warner Communications Inc,"October 16, 1975","August 3, 1989",KYR,Annual Re-ranking
+NWA,Nortwest Airlines,"January 15, 1976","July 27, 1989",ACN,Annual Re-ranking
+SKB,Smithkline Beckman Corp,"February 8, 1979","July 27, 1989",DEL,Annual Re-ranking
+CNW,C&NW Corp,"December 29, 1983","July 20, 1989",SX,Annual Re-ranking
+MTI,Morton Thiokol Inc.,"March 5, 1987","June 29, 1989",KCC,Annual Re-ranking
+UCT,United Cable Television,"January 9, 1986","June 1, 1989",ABC,Annual Re-ranking
+CHM,Champion Spark Plug,,"May 11, 1989",,Annual Re-ranking
+PEL,Texas Eastern Corp,,"April 27, 1989",,Annual Re-ranking
+CLN,Coleman Co,"October 7, 1982","April 27, 1989",AGM,Annual Re-ranking
+EAF,Emery Air Freight Corp,"July 1, 1976","April 6, 1989",TW,Annual Re-ranking
+WPM,,"May 11, 1978","April 6, 1989",PPI,Annual Re-ranking
+HCA,Hospital Corp of America,"February 8, 1979","March 16, 1989",HNS,Annual Re-ranking
+SAI,Sunamerica Inc.,"April 23, 1970","March 8, 1989",TXT,Annual Re-ranking
+CHU,Church's Fried Chicken Inc,"November 17, 1977","March 2, 1989",PIZ,Annual Re-ranking
+RJR,RJR Nabisco Inc,,"February 9, 1989",,Annual Re-ranking
+TGR,Tiger International,"December 11, 1980","February 9, 1989",FN,Annual Re-ranking
+LT,Lorimar Telepictures,"April 3, 1986","January 12, 1989",MGM,Annual Re-ranking
+PSY,Pillsbury Co,"May 19, 1977","January 5, 1989",PDI,Annual Re-ranking
+PA,Primerica Corp,,"December 22, 1988",,Annual Re-ranking
+KRA,Kraft Inc,,"December 8, 1988",,Annual Re-ranking
+MLL,MacMillan Inc,,"November 10, 1988",,Annual Re-ranking
+KLU,Kaisertech Ltd,,"November 3, 1988",,Annual Re-ranking
+RDMN,Redman Industries Inc,"May 9, 1974","October 27, 1988",SCM,Annual Re-ranking
+GLD,Gould Inc,,"October 6, 1988",,Annual Re-ranking
+FHP,Fort Howard Corp,"September 26, 1985","August 11, 1988",SRL,Annual Re-ranking
+CLO,Coleco Industries,"August 19, 1982","July 14, 1988",PRX,Annual Re-ranking
+MOH,Mohasco Corp,,"July 14, 1988",,Annual Re-ranking
+KOP,Koppers Holdings Inc,"July 2, 1987","June 16, 1988",SRD,Annual Re-ranking
+COT,Coltec Industries Inc,"October 24, 1985","June 9, 1988",PBD,Annual Re-ranking
+LKS,Lucky Stores Inc,"January 15, 1976","June 9, 1988",LJ,Annual Re-ranking
+IMSI,IMS International Inc,"September 10, 1987","May 26, 1988",BUR,Annual Re-ranking
+STN,J. P. Stevens & Co,,"May 12, 1988",,Annual Re-ranking
+FIR,Firestone Tire & Rubber Co,,"May 5, 1988",,Annual Re-ranking
+FDS,Federated Department Stores,,"May 5, 1988",,Annual Re-ranking
+AST,American Standard,,"April 28, 1988",,Annual Re-ranking
+FIN,Financial Corp Of America,"August 11, 1983","April 14, 1988",FCF,Annual Re-ranking
+ROP,Roper Technologies Inc,,"April 14, 1988",,Annual Re-ranking
+FRC,First Republic Bank,"April 23, 1987","April 14, 1988",FPA,Annual Re-ranking
+BRK,Brockway Inc,"March 26, 1987","March 3, 1988",OI,Annual Re-ranking
+STY,Sterling Drug Inc,,"February 25, 1988",,Annual Re-ranking
+CVN,Computervision Corp,"March 1, 1984","February 11, 1988",DOC,Annual Re-ranking
+SMF,Singer Co.,,"February 11, 1988",,Annual Re-ranking
+WSN,Western Company of North America,"December 10, 1981","February 11, 1988",SAF,Annual Re-ranking
+GHB,Heileman (G.) Brewing Inc,"June 17, 1982","December 31, 1987",SLZ,Annual Re-ranking
+JWC,Jim Walter Corp,,"December 31, 1987",,Annual Re-ranking
+TRR,Tracor Inc,"December 12, 1985","December 24, 1987",MSA,Annual Re-ranking
+BCW,Becor Western Inc,,"December 10, 1987",,Annual Re-ranking
+TFB,Taft Broadcasting Co,,"October 8, 1987",,Annual Re-ranking
+SGL,Supermarkets General Corp,"October 9, 1986","October 8, 1987",DG,Annual Re-ranking
+BUR,Burlington Industries Inc,,"September 10, 1987",,Annual Re-ranking
+DM,Dome Mines Ltd,,"August 20, 1987",,Annual Re-ranking
+CRK,Campbell Red Lake Mines Ltd,,"August 20, 1987",,Annual Re-ranking
+AMO,American Motors Corp,,"August 6, 1987",,Annual Re-ranking
+BWA,BorgWarner Inc,,"August 6, 1987",,Annual Re-ranking
+LTC,Leaseway Transportation Corp,"September 9, 1982","July 9, 1987",MLN,Annual Re-ranking
+AH,Allis Chalmers Corp,"June 30, 1977","July 9, 1987",MAE,Annual Re-ranking
+SRD,Standard Oil Co Ohio,"October 15, 1981","July 2, 1987",CLL,Annual Re-ranking
+JOY,Joy Manufacturing Co,,"June 25, 1987",,Annual Re-ranking
+REX,Rexnord Inc,,"May 7, 1987",,Annual Re-ranking
+IFC,Interfirst Corp,"July 1, 1976","April 23, 1987",AEE,Annual Re-ranking
+FPA,First Pennsylvania Corp,"July 1, 1976","April 23, 1987",EAS,Annual Re-ranking
+TCB,Texas Commerce Bancshares Inc,"October 25, 1984","April 23, 1987",JOL,Annual Re-ranking
+BKO,Baker International Corp,,"April 9, 1987",,Annual Re-ranking
+HT,Hughes Tool Co,"May 31, 1973","April 9, 1987",UFL,Annual Re-ranking
+OI,,,"March 26, 1987",,Annual Re-ranking
+KCC,Kaiser Cement Corp,"December 10, 1981","March 5, 1987",GPT,Annual Re-ranking
+CZ,Celanese Corp,,"February 26, 1987",,Annual Re-ranking
+CBM,Chesebrough Ponds Inc,,"February 12, 1987",,Annual Re-ranking
+ALS,Allied Stores Corp,,"January 8, 1987",,Annual Re-ranking
+CGG,Chicago Pneumatic Tool Co,,"December 18, 1986",,Annual Re-ranking
+CK,Collins & Aikman Corp,"July 1, 1982","December 18, 1986",RVS,Annual Re-ranking
+OVT,Overnite Transportation Co,"June 3, 1982","December 18, 1986",NFK,Annual Re-ranking
+RDS,"Revco, D. S. Inc","December 11, 1975","December 18, 1986",LMT,Annual Re-ranking
+RYN,Ryan Homes Inc,"April 12, 1984","December 4, 1986",EVY,Annual Re-ranking
+SA,Safeway Stores Inc,,"November 28, 1986",,Annual Re-ranking
+FTR,Fruehauf Corp,,"October 23, 1986",,Annual Re-ranking
+HWR,Hiram Walker Resources,"April 10, 1980","October 23, 1986",HIR,Annual Re-ranking
+DG,Associated Dry Goods Corp,,"October 9, 1986",,Annual Re-ranking
+XLO,,,"October 2, 1986",,Annual Re-ranking
+SY,Sperry Corp,,"September 18, 1986",,Annual Re-ranking
+SAA,Sanders Associates Inc,"December 12, 1985","August 21, 1986",SCI,Annual Re-ranking
+TFD,Thrifty Corp,"May 8, 1986","August 7, 1986",ZB,Annual Re-ranking
+LTV,LTV Corp,"July 19, 1984","July 24, 1986",RS,Annual Re-ranking
+MZ,Macy (R. H.) & Co,,"July 17, 1986",,Annual Re-ranking
+RCA,RCA Corp,,"June 12, 1986",,Annual Re-ranking
+MEI,MEI Diversified Inc,"March 1, 1984","June 5, 1986",GET,Annual Re-ranking
+AD,Amsted Industries Inc,,"May 8, 1986",,Annual Re-ranking
+WSW,White Consolidated Indust. Inc,"January 14, 1982","May 8, 1986",SMB,Annual Re-ranking
+ZB,Crown Zellerbach Corp,,"May 8, 1986",,Annual Re-ranking
+NG,National Gypsum Co,,"May 8, 1986",,Annual Re-ranking
+ECK,Eckerd Corp,"December 11, 1975","May 8, 1986",GUX,Annual Re-ranking
+BRY,Beatrice Company,,"April 24, 1986",,Annual Re-ranking
+MGM,MGM/UA Entertainment Co,"June 17, 1980","April 3, 1986",GRH,Annual Re-ranking
+TXO,Texas Oil & Gas Corp,"May 14, 1981","February 13, 1986",OMC,Annual Re-ranking
+GLM,Global Marine Inc,"April 23, 1970","January 30, 1986",AEX,Annual Re-ranking
+CLU,Cluett Peabody & Co Inc,,"January 23, 1986",,Annual Re-ranking
+ABC,American Broadcasting Cos Inc,,"January 9, 1986",,Annual Re-ranking
+SCI,Storer Communications Inc,"June 28, 1984","December 12, 1985",MET,Annual Re-ranking
+MSA,Mesa Petroleum Co,"April 13, 1978","December 12, 1985",BAW,Annual Re-ranking
+REV,Revlon Inc,,"November 21, 1985",,Annual Re-ranking
+AHS,American Hospital Supply Corp,"September 14, 1972","November 21, 1985",FT,Annual Re-ranking
+LST,Lowenstein M. Corp,,"November 14, 1985",,Annual Re-ranking
+GF,General Foods Corp,,"November 7, 1985",,Annual Re-ranking
+PBD,Peabody International Corp,"August 14, 1975","October 24, 1985",HW,Annual Re-ranking
+BKI,Beker Industries Corp,"February 6, 1975","October 24, 1985",CTN,Annual Re-ranking
+AMF,AMF Inc,,"October 10, 1985",,Annual Re-ranking
+SRL,Searle G. D. & Co,,"September 26, 1985",,Annual Re-ranking
+R,Uniroyal Inc,"December 30, 1982","September 26, 1985",MIS,Annual Re-ranking
+SGN,Signal Companies Inc,"July 26, 1979","September 26, 1985",FCI,Annual Re-ranking
+NB,Nabisco Brands Inc,"July 6, 1981","September 12, 1985",NAB,Annual Re-ranking
+LVI,Levi Strauss & Co,"May 3, 1979","September 5, 1985",WRC,Annual Re-ranking
+NWT,Northwest Industries Inc,"November 24, 1978","August 1, 1985",IN,Annual Re-ranking
+COX,Cox Communications Inc,,"August 1, 1985",,Annual Re-ranking
+HNG,Houston Natural Gas Corp,"October 20, 1983","July 25, 1985",TXG,Annual Re-ranking
+SUO,Shell Oil Co,,"June 13, 1985",,Annual Re-ranking
+ANR,American Natural Resource Co,,"May 23, 1985",,Annual Re-ranking
+PABT,Pabst Brewing Co,"July 1, 1976","May 16, 1985",CRD,Annual Re-ranking
+MGR,McGraw Edison Co,,"May 9, 1985",,Annual Re-ranking
+NAC,National Can Corp,,"May 9, 1985",,Annual Re-ranking
+HNH,Handy & Harman Ltd,,"April 18, 1985",,Annual Re-ranking
+STF,Stauffer Chemical Co,"July 26, 1979","April 11, 1985",CRR,Annual Re-ranking
+SFN,SFN Companies Inc,,"February 7, 1985",,Annual Re-ranking
+DEN,Dennys Inc,"September 14, 1972","January 31, 1985",PAS,Annual Re-ranking
+CMK,Carnation Company,"May 19, 1977","January 31, 1985",PET,Annual Re-ranking
+SED,SEDCO Inc,"April 23, 1970","January 10, 1985",UNC,Annual Re-ranking
+ARMK,Aramark Corp,,"December 27, 1984",,Annual Re-ranking
+RM,Rolm Corp,"December 18, 1980","November 23, 1984",BEL,Annual Re-ranking
+BBL,Blue Bell Inc,"January 15, 1976","November 23, 1984",GAC,Annual Re-ranking
+SRT,St. Regis Corp,,"November 23, 1984",,Annual Re-ranking
+JWL,Jewel Companies Inc,,"November 23, 1984",,Annual Re-ranking
+STK,Storage Technology Corp,"October 29, 1981","November 8, 1984",TG,Annual Re-ranking
+JOL,Jonathan Logan Inc,,"October 25, 1984",,Annual Re-ranking
+AFN,Amerifin Corp,,"October 25, 1984",,Annual Re-ranking
+EDS,Electronic Data Systems Corp,"June 25, 1981","October 25, 1984",KN,Annual Re-ranking
+SOC,Superior Oil Co,,"October 4, 1984",,Annual Re-ranking
+SCV,SCA Services Inc,"February 3, 1983","October 4, 1984",WFI,Annual Re-ranking
+CBK,Continental Bank Corp,"July 1, 1976","October 4, 1984",DQU,Annual Re-ranking
+CCC,Continental Group Inc,,"October 4, 1984",,Annual Re-ranking
+MB,Milton Bradley Co,"September 21, 1972","September 13, 1984",LLC,Annual Re-ranking
+ESM,Esmark Inc,"August 19, 1971","August 16, 1984",GH,Annual Re-ranking
+FBG,Faberge Inc,,"August 9, 1984",,Annual Re-ranking
+ACF,ACF Industries Inc,,"July 19, 1984",,Annual Re-ranking
+RCC,Royal Crown Cos Inc,,"July 19, 1984",,Annual Re-ranking
+RS,Republic Steel Corp,,"July 19, 1984",,Annual Re-ranking
+MET,Metromedia Inc,,"June 28, 1984",,Annual Re-ranking
+GO,Gulf Corp,,"June 21, 1984",,Annual Re-ranking
+MNC,Masonite Corp,,"May 17, 1984",,Annual Re-ranking
+TYM,Tymshare Inc,"April 2, 1981","May 3, 1984",HOB,Annual Re-ranking
+COE,Cone Mills Corp,,"April 12, 1984",,Annual Re-ranking
+EVY,Evans Products Co,"April 23, 1970","April 12, 1984",COT,Annual Re-ranking
+TRA,Trane Company,,"March 1, 1984",,Annual Re-ranking
+HYST,Hyster Company,"October 2, 1980","March 1, 1984",WH,Annual Re-ranking
+DOC,Doctor Pepper Co,,"March 1, 1984",,Annual Re-ranking
+GET,Getty Oil Co,,"March 1, 1984",,Annual Re-ranking
+ASR,AMSTAR Corp,"March 2, 1978","February 16, 1984",GWU,Annual Re-ranking
+SFF,Santa Fe Industries Inc.,,"December 29, 1983",,Annual Re-ranking
+SX,Southern Pacific Co,,"December 29, 1983",,Annual Re-ranking
+BU,Brooklyn Union Gas Co,,"December 1, 1983",,Annual Re-ranking
+ELG,El Paso Co,,"December 1, 1983",,Annual Re-ranking
+NES,New England Electric Systems,,"December 1, 1983",,Annual Re-ranking
+WPC,Wisconsin Electric Power,,"December 1, 1983",,Annual Re-ranking
+S,Sprint Corp,"September 28, 1972","December 1, 1983",RDG,Annual Re-ranking
+CTC,Continental Telecom Inc,"September 28, 1972","December 1, 1983",RI,Annual Re-ranking
+CNT,Centel Corp,"September 28, 1972","December 1, 1983",CHG,Annual Re-ranking
+TXG,Texas Gas Resources Corp,,"October 20, 1983",,Annual Re-ranking
+NSI,Norton Simon Inc,,"September 15, 1983",,Annual Re-ranking
+MDC,Maryland Cup Corp,,"September 8, 1983",,Annual Re-ranking
+SVC,,,"September 1, 1983",,Annual Re-ranking
+FCF,First Charter Financial,,"August 11, 1983",,Annual Re-ranking
+HD,Hudson Bay Mining & Sme.,,"July 7, 1983",,Annual Re-ranking
+VEL,Virginia Electric & Power Co,,"May 20, 1983",,Annual Re-ranking
+GAO,General American Oil Co,,"March 10, 1983",,Annual Re-ranking
+WFI,Wheelabrator Frye Inc,"August 14, 1975","February 3, 1983",MS,Annual Re-ranking
+BX,Bendix Corp,,"February 3, 1983",,Annual Re-ranking
+MIS,Missouri Pacific Corp,"November 1, 1978","December 30, 1982",MOP,Annual Re-ranking
+CS,Cities Service Co,,"December 9, 1982",,Annual Re-ranking
+DN,Diamond International Corp,,"November 18, 1982",,Annual Re-ranking
+NLT,NLT Corp,"July 1, 1976","November 11, 1982",EQT,Annual Re-ranking
+IQ,Questor Corp,"March 1, 1973","October 21, 1982",ITC,Annual Re-ranking
+HBL,Heublein Inc,"March 19, 1970","October 14, 1982",ABW,Annual Re-ranking
+HLY,Holly Sugar Corp,,"October 7, 1982",,Annual Re-ranking
+AGM,Amalgamated Sugar Co,,"October 7, 1982",,Annual Re-ranking
+AXO,Akzona Inc,,"September 16, 1982",,Annual Re-ranking
+APC,Alpha Portland Inds Inc,,"September 16, 1982",,Annual Re-ranking
+MAN,Manville Corp,,"September 16, 1982",,Annual Re-ranking
+MLN,McLean Trucking Co,"July 1, 1976","September 9, 1982",LG,Annual Re-ranking
+ID,Ideal Toy Corp,"September 21, 1972","August 19, 1982",DFC,Annual Re-ranking
+PRX,Purex Industries Inc,,"August 19, 1982",,Annual Re-ranking
+GID,Giddings & Lewis Inc,,"August 12, 1982",,Annual Re-ranking
+RVS,Reeves Brothers Inc,,"July 1, 1982",,Annual Re-ranking
+CPS,Columbia Pictures Industries,,"June 24, 1982",,Annual Re-ranking
+MF,Marshall Field & Co,,"June 17, 1982",,Annual Re-ranking
+SLZ,Schlitz Jos Brewing Co,,"June 17, 1982",,Annual Re-ranking
+SR,Southern Railway Co,,"June 3, 1982",,Annual Re-ranking
+NFK,Norfolk & Western Railway Co,,"June 3, 1982",,Annual Re-ranking
+INA,INA Corp,"July 1, 1976","April 8, 1982",JEF,Annual Re-ranking
+KFM,Kroehler Manufacturing,,"April 8, 1982",,Annual Re-ranking
+CGN,Connecticut General Corp,"July 1, 1976","April 8, 1982",HES,Annual Re-ranking
+BEC,Beckman Instruments Inc,"March 3, 1977","March 11, 1982",HWC,Annual Re-ranking
+EVT,Envirotech Corp,"August 14, 1975","March 11, 1982",FMIF,Annual Re-ranking
+GNO,Ginos Inc,"July 15, 1971","March 4, 1982",KTY,Annual Re-ranking
+SMB,Sunbeam Corp,,"January 14, 1982",,Annual Re-ranking
+SAF,Santa Fe International Corp,"July 1, 1976","December 10, 1981",CMR,Annual Re-ranking
+GPT,General Portland Inc,,"December 10, 1981",,Annual Re-ranking
+TG,Texasgulf Inc,"April 11, 1974","October 29, 1981",ADL,Annual Re-ranking
+CLL,Conoco Inc,,"October 15, 1981",,Annual Re-ranking
+SJO,St. Joe Minerals Corp,,"September 10, 1981",,Annual Re-ranking
+IBP,IBP Inc,,"September 10, 1981",,Annual Re-ranking
+KNY,Coca Cola Bottling Co of NY,,"September 10, 1981",,Annual Re-ranking
+CRF,Copeland Corp,,"August 13, 1981",,Annual Re-ranking
+SB,Standard Brands Inc,"June 3, 1981","July 30, 1981",EC,Annual Re-ranking
+NAB,Nabisco Inc,"November 3, 1977","July 6, 1981",LPT,Annual Re-ranking
+RVB,Revere Copper & Brass Inc,,"June 25, 1981",,Annual Re-ranking
+KN,Kennecott Corp,,"June 25, 1981",,Annual Re-ranking
+TF,Twentieth Century Fox Film Corp,,"June 25, 1981",,Annual Re-ranking
+GK,GK Technologies Inc,,"June 18, 1981",,Annual Re-ranking
+EC,Engelhard Corp.,,"June 3, 1981",,Annual Re-ranking
+CHI,Crouse Hinds Co,"March 18, 1976","May 14, 1981",ITE,Annual Re-ranking
+HOI,Houston Oil & Minerals Corp,"April 13, 1978","May 14, 1981",LSO,Annual Re-ranking
+OMC,Oscar Mayer & Co Inc,"January 14, 1971","May 14, 1981",AM,Annual Re-ranking
+HOB,Hobart Corp,"May 6, 1976","April 2, 1981",USM,Annual Re-ranking
+MAK,Macke Company,,"February 26, 1981",,Annual Re-ranking
+UD,Unidynamics Corp,,"February 26, 1981",,Annual Re-ranking
+BEL,Belden Corp,,"December 18, 1980",,Annual Re-ranking
+FN,St. Louis–San Francisco Railway,,"December 11, 1980",,Annual Re-ranking
+PU,Pullman Inc,,"November 20, 1980",,Annual Re-ranking
+BWN,Brown Company,,"November 20, 1980",,Annual Re-ranking
+CO,Chessie System Inc,,"November 6, 1980",,Annual Re-ranking
+SCI,Seaboard Coast Line Industries,,"November 6, 1980",,Annual Re-ranking
+KOE,Koehring Company,,"October 2, 1980",,Annual Re-ranking
+WH,White Motor Corp,,"October 2, 1980",,Annual Re-ranking
+LGT,Liggett Group Inc,,"August 28, 1980",,Annual Re-ranking
+HJ,Howard Johnson Co,"June 25, 1970","June 26, 1980",BYK,Annual Re-ranking
+GRH,MGM Grand Hotels Inc,,"June 17, 1980",,Annual Re-ranking
+WS,Warner & Swasey Co,,"April 24, 1980",,Annual Re-ranking
+HIR,Walker Hiram Gooderham & Worts,,"April 10, 1980",,Annual Re-ranking
+CIT,CIT Financial Corp,,"February 14, 1980",,Annual Re-ranking
+FO,Flintkote Co,,"January 17, 1980",,Annual Re-ranking
+REE,Reliance Electric Co,"January 11, 1979","December 27, 1979",CH,Annual Re-ranking
+CYM,Cyprus Mines Corp,"January 20, 1977","October 11, 1979",A,Annual Re-ranking
+CRR,Carrier Corp,,"July 26, 1979",,Annual Re-ranking
+FCI,Fairchild Camera & Instrument Corp,"December 9, 1976","July 26, 1979",SIH,Annual Re-ranking
+WRC,Warnaco Inc,"May 9, 1974","May 3, 1979",KBR,Annual Re-ranking
+WEAR,PremiumWear Inc,,"May 3, 1979",,Annual Re-ranking
+GDC,,,"May 3, 1979",,Annual Re-ranking
+FLIF,Franklin Life Insurance Corp,,"March 1, 1979",,Annual Re-ranking
+HNS,Hanes Corp,,"February 8, 1979",,Annual Re-ranking
+GG,Green Giant Co,,"February 8, 1979",,Annual Re-ranking
+SVM,Servomation Corp,,"February 8, 1979",,Annual Re-ranking
+SIM,Simmons Company,,"February 8, 1979",,Annual Re-ranking
+DEL,Del Monte Corp,,"February 8, 1979",,Annual Re-ranking
+CH,Cutler Hammer Inc,,"January 11, 1979",,Annual Re-ranking
+LY,Lykes Corp,,"December 14, 1978",,Annual Re-ranking
+IN,Inland Container Corp,"July 1, 1976","November 24, 1978",SRY,Annual Re-ranking
+MOP,Missouri Pacific Railroad Co,"August 24, 1978","November 1, 1978",IC,Annual Re-ranking
+AAF,American Air Filter Inc,,"October 26, 1978",,Annual Re-ranking
+GDV,GDV Inc,"April 23, 1970","October 5, 1978",MCL,Annual Re-ranking
+FFS,Food Fair Inc,,"October 5, 1978",,Annual Re-ranking
+NGX,Northgate Minerals Corp,"June 24, 1971","October 5, 1978",LN,Annual Re-ranking
+IC,Inspiration Consolidated Copper,,"August 24, 1978",,Annual Re-ranking
+FBD,Fibreboard Corp,,"July 20, 1978",,Annual Re-ranking
+PPI,Peter Paul Inc,,"May 11, 1978",,Annual Re-ranking
+BF,Budd Company,,"May 4, 1978",,Annual Re-ranking
+LSO,Leesona Corp,,"April 13, 1978",,Annual Re-ranking
+BAW,Babcock & Wilcox Co,,"April 13, 1978",,Annual Re-ranking
+GWU,Great Western United Corp,,"March 2, 1978",,Annual Re-ranking
+PIZ,Pizza Hut Inc,"March 4, 1976","November 17, 1977",SCO,Annual Re-ranking
+LPT,Lehigh Portland Cement Co,,"November 3, 1977",,Annual Re-ranking
+MAE,Monroe Auto Equipment,"November 15, 1973","June 30, 1977",KW,Annual Re-ranking
+PET,Pet Inc,,"May 19, 1977",,Annual Re-ranking
+PDI,Penn Dixie Industries Inc,,"May 19, 1977",,Annual Re-ranking
+TIS,Tishman Realty & Construction Inc,"April 23, 1970","March 31, 1977",LTV,Annual Re-ranking
+HWC,Hoerner Waldorf Corp,"October 29, 1970","March 3, 1977",SPK,Annual Re-ranking
+A,Anaconda Co,,"January 20, 1977",,Annual Re-ranking
+MPH,Murphy G. C. & Co,,"December 9, 1976",,Annual Re-ranking
+SIH,Sonesta International Hotels Corp,"April 23, 1970","December 9, 1976",ADM,Annual Re-ranking
+MST,Mercantile Stores Inc,,"December 9, 1976",,Annual Re-ranking
+GSK,Gamble Skogmo Inc,,"December 9, 1976",,Annual Re-ranking
+UC,Utah International Inc,"October 17, 1974","October 21, 1976",LIT,Annual Re-ranking
+MQC,Marquette Company,,"September 23, 1976",,Annual Re-ranking
+FRO,Frontier Corp.,,"July 1, 1976",,Annual Re-ranking
+HNG,Houston Natural Gas Corp,"September 28, 1972","July 1, 1976",FLA,Annual Re-ranking
+ICA,Imperial Corp of America,,"July 1, 1976",,Annual Re-ranking
+M,Marcor Inc,,"July 1, 1976",,Annual Re-ranking
+AEE,Ameren Corp.,,"July 1, 1976",,Annual Re-ranking
+JEF,Jefferies Financial Group Inc,,"July 1, 1976",,Annual Re-ranking
+TW,Trans World Corp,,"July 1, 1976",,Annual Re-ranking
+AIN,Addressograph Multigraph Corp,,"July 1, 1976",,Annual Re-ranking
+HES,Hess Corp,,"July 1, 1976",,Annual Re-ranking
+LG,Laclede Gas Co,,"July 1, 1976",,Annual Re-ranking
+KSU,Kansas City Southern,,"July 1, 1976",,Annual Re-ranking
+CP,Canadian Pacific Ltd,,"July 1, 1976",,Annual Re-ranking
+AYE,Allegheny Energy Inc.,,"July 1, 1976",,Annual Re-ranking
+CMR,Chase Manhattan Mort. & Realty Trust,"May 31, 1973","July 1, 1976",RDT,Annual Re-ranking
+MML,Massmutual Mortgage & Realty Invest.,"May 31, 1973","July 1, 1976",GSI,Annual Re-ranking
+GHB,Heileman (G.) Brewing Inc,"June 21, 1973","July 1, 1976",RG,Annual Re-ranking
+NWP,Northwest Energy Co,"September 12, 1974","July 1, 1976",MIS,Annual Re-ranking
+CGM,Connecticut Gen. Mort. & Realty Inves.,"May 31, 1973","July 1, 1976",WD,Annual Re-ranking
+CRD,CrediThrift Financial Inc,"March 19, 1970","July 1, 1976",BGT,Annual Re-ranking
+SFR,Schaefer F. & M. Corp,"March 19, 1970","July 1, 1976",PUL,Annual Re-ranking
+NFG,National Fuel Gas Co,"September 28, 1972","July 1, 1976",PC,Annual Re-ranking
+RGI,Rio Grande Industrials Inc,"December 17, 1970","July 1, 1976",DGR,Annual Re-ranking
+DQU,Duquesne LT Co,,"July 1, 1976",,Annual Re-ranking
+SRY,Stanray Corp,,"July 1, 1976",,Annual Re-ranking
+EQT,EQT Corp,,"July 1, 1976",,Annual Re-ranking
+EAS,Energy East Corp,,"July 1, 1976",,Annual Re-ranking
+ARR,Aristar Inc,,"July 1, 1976",,Annual Re-ranking
+CIV,Conectiv Inc,,"July 1, 1976",,Annual Re-ranking
+ILN,Illinova Corp,,"July 1, 1976",,Annual Re-ranking
+CMS,CMS Energy Corp,"March 04, 1957","July 1, 1976",,Annual Re-ranking
+CVX,Cleveland Electric Illuminating Co,"March 04, 1957","July 1, 1976",,Annual Re-ranking
+CIN,Cinergy Corp.,,"July 1, 1976",,Annual Re-ranking
+DPL,Dayton Power & Light Co,,"July 1, 1976",,Annual Re-ranking
+NCE,New Century Energies Inc,,"July 1, 1976",,Annual Re-ranking
+GPU,GPU Inc.,,"July 1, 1976",,Annual Re-ranking
+FDP,Florida Power Corp,,"July 1, 1976",,Annual Re-ranking
+NAL,National Airlines Inc,"August 13, 1970","July 1, 1976",JI,Annual Re-ranking
+SOO,Soo Line Railroad Co,"March 5, 1970","July 1, 1976",GN,Annual Re-ranking
+IDA,Idacorp Inc,,"July 1, 1976",,Annual Re-ranking
+IPL,IPALCO Enterprises Inc,,"July 1, 1976",,Annual Re-ranking
+CCN,Chris Craft Industries Inc,"March 1, 1973","July 1, 1976",HC,Annual Re-ranking
+WGL,WGL Holdings Inc,,"July 1, 1976",,Annual Re-ranking
+AIC,American Investment Co,,"July 1, 1976",,Annual Re-ranking
+EAL,Eastern Air Lines Inc,,"July 1, 1976",,Annual Re-ranking
+USM,USM Corp,,"May 6, 1976",,Annual Re-ranking
+ITE,ITE Imperial Corp,,"March 18, 1976",,Annual Re-ranking
+SCO,Scovill Manufacturing Co,,"March 4, 1976",,Annual Re-ranking
+CDP,Cerro Corp,,"March 4, 1976",,Annual Re-ranking
+GAC,GAC Corp,,"January 15, 1976",,Annual Re-ranking
+OT,Otis Elevator Co,,"January 15, 1976",,Annual Re-ranking
+ACN,American Chain & Cable Inc,,"January 15, 1976",,Annual Re-ranking
+LJ,"Libby, McNeill & Libby",,"January 15, 1976",,Annual Re-ranking
+GUX,Grand Union Co,,"December 11, 1975",,Annual Re-ranking
+LMT,Lockheed Martin Corp.,"March 04, 1957","December 11, 1975",,Annual Re-ranking
+CPX,Copper Range Co,,"December 11, 1975",,Annual Re-ranking
+VEN,Vendo Company,,"December 11, 1975",,Annual Re-ranking
+GLR,Grolier Inc,,"December 11, 1975",,Annual Re-ranking
+KYR,Kayser Roth Corp,,"October 16, 1975",,Annual Re-ranking
+GTY,Grant W. T. Co,,"October 16, 1975",,Annual Re-ranking
+FMIF,FMI Financial Corp,"May 31, 1973","August 14, 1975",MKC,Annual Re-ranking
+HW,Howmet Corp,,"August 14, 1975",,Annual Re-ranking
+MS,McCrory Corp,,"August 14, 1975",,Annual Re-ranking
+DMG,Diversified Mortgage Investments,"May 31, 1973","August 14, 1975",ABA,Annual Re-ranking
+FALB,Falstaff Brewing Corp,,"June 12, 1975",,Annual Re-ranking
+MAT,Mattel Inc.,"September 21, 1972","March 6, 1975",DML,Annual Re-ranking
+CTN,Chemetron Corp,,"February 6, 1975",,Annual Re-ranking
+AN,Airco Inc,,"February 6, 1975",,Annual Re-ranking
+OLN,Olin Corp,,"February 6, 1975",,Annual Re-ranking
+GAF,GAF Materials Corp,,"February 6, 1975",,Annual Re-ranking
+VAR,Varian Medical Systems Inc,,"October 17, 1974",,Annual Re-ranking
+MAG,Magnavox Company,,"October 17, 1974",,Annual Re-ranking
+GRL,NextLevel Systems Inc,,"October 17, 1974",,Annual Re-ranking
+BEC,Beckman Instruments Inc,,"October 17, 1974",,Annual Re-ranking
+LIT,Litton Industries Inc,,"October 17, 1974",,Annual Re-ranking
+MIS,Missouri Pacific Corp,,"September 12, 1974",,Annual Re-ranking
+URB,Uris Buildings Corp,"April 23, 1970","June 20, 1974",CSY,Annual Re-ranking
+NAB,Nabisco Inc,,"May 9, 1974",,Annual Re-ranking
+KBR,Keebler Co,,"May 9, 1974",,Annual Re-ranking
+SCM,SCM Corp,,"May 9, 1974",,Annual Re-ranking
+BBK,Bobbie Brooks Inc,,"May 9, 1974",,Annual Re-ranking
+ADL,Admiral Corp,,"April 11, 1974",,Annual Re-ranking
+KW,Kelsey Hayes Co,,"November 15, 1973",,Annual Re-ranking
+ESB,ESB Inc,,"November 15, 1973",,Annual Re-ranking
+FMO,Federal Mogul Corp,,"November 15, 1973",,Annual Re-ranking
+GI,Gimbel Brothers Inc,,"August 2, 1973",,Annual Re-ranking
+RG,Rheingold Corp,,"June 21, 1973",,Annual Re-ranking
+FFI,Financial Federation Inc,,"May 31, 1973",,Annual Re-ranking
+FST,First National Stores Inc,,"May 31, 1973",,Annual Re-ranking
+UV,UV Industries Inc,,"May 31, 1973",,Annual Re-ranking
+ABA,American Bakeries Co,,"May 31, 1973",,Annual Re-ranking
+MKC,Marion Merrell Dow,,"May 31, 1973",,Annual Re-ranking
+WD,Ward Foods Inc,,"May 31, 1973",,Annual Re-ranking
+RDT,Reed Tool Co,,"May 31, 1973",,Annual Re-ranking
+GSI,General Steel Industries Inc,,"May 31, 1973",,Annual Re-ranking
+UFL,United Financial Corp of California,,"May 31, 1973",,Annual Re-ranking
+ASR,AMSTAR Corp,,"March 1, 1973",,Annual Re-ranking
+ACS,American Crystal Sugar Co,,"March 1, 1973",,Annual Re-ranking
+ITC,Ingredient Technology Corp,,"March 1, 1973",,Annual Re-ranking
+FAC,Max Factor & Co,,"March 1, 1973",,Annual Re-ranking
+HC,Helene Curtis Industries Inc,,"March 1, 1973",,Annual Re-ranking
+STA,Staley Continental Inc,,"March 1, 1973",,Annual Re-ranking
+RI,"Chicago, Rock Island & Pacific Railr.",,"September 28, 1972",,Annual Re-ranking
+PC,Penn Central Co,,"September 28, 1972",,Annual Re-ranking
+RDG,Reading Company,,"September 28, 1972",,Annual Re-ranking
+FLA,Florida East Coast Railway Co,"June 24, 1971","September 28, 1972",ZA,Annual Re-ranking
+CHG,Chicago Milwaukee Corp,"February 22, 1972","September 28, 1972",ST,Annual Re-ranking
+DFC,Dial Financial Corp,,"September 21, 1972",,Annual Re-ranking
+LLC,Liberty Lane Corp,,"September 21, 1972",,Annual Re-ranking
+DML,Dan River Inc,,"September 21, 1972",,Annual Re-ranking
+JJN,Newberry J. J. Co,,"September 14, 1972",,Annual Re-ranking
+FT,Freeport Minerals Co,,"September 14, 1972",,Annual Re-ranking
+TG,Texasgulf Inc,,"September 14, 1972",,Annual Re-ranking
+PAS,Pasco Inc,,"September 14, 1972",,Annual Re-ranking
+ST,"Chicago, Milwaukee, St. Paul & Pac. Railr.",,"February 22, 1972",,Annual Re-ranking
+WW,Walworth Company,,"January 20, 1972",,Annual Re-ranking
+CF,CF & I Steel Corp,,"January 20, 1972",,Annual Re-ranking
+MHT,Manhattan Industries Inc,,"December 9, 1971",,Annual Re-ranking
+CUD,Cudahy Company,,"August 19, 1971",,Annual Re-ranking
+GH,General Host Corp,,"August 19, 1971",,Annual Re-ranking
+KTY,Kentucky Fried Chicken Corp,"June 25, 1970","July 15, 1971",ACR,Annual Re-ranking
+ZA,American Zinc Co,,"June 24, 1971",,Annual Re-ranking
+LN,Louisville & Nashville Railroad Co,,"June 24, 1971",,Annual Re-ranking
+CID,Coronet Industries Inc,,"March 4, 1971",,Annual Re-ranking
+AM,Armour & Co,,"January 14, 1971",,Annual Re-ranking
+DGR,Denver & Rio Grande Western Railr.,,"December 17, 1970",,Annual Re-ranking
+PDC,Parke Davis & Co,,"November 19, 1970",,Annual Re-ranking
+SPK,Standard Packaging Corp,,"October 29, 1970",,Annual Re-ranking
+JI,Case J. I. Co,,"August 13, 1970",,Annual Re-ranking
+ACR,American Credit Corp,,"June 25, 1970",,Annual Re-ranking
+EJN,Endicott Johnson Corp,,"June 25, 1970",,Annual Re-ranking
+GCR,General Cigar Inc,,"June 25, 1970",,Annual Re-ranking
+BYK,Bayuk Cigars Inc,,"June 25, 1970",,Annual Re-ranking
+AEX,American Export Industries Inc,,"April 23, 1970",,Annual Re-ranking
+SQB,Squibb Corp,,"April 23, 1970",,Annual Re-ranking
+HAR,Harvey Aluminium Inc,,"April 23, 1970",,Annual Re-ranking
+NUM,National Union Electric Corp,,"April 23, 1970",,Annual Re-ranking
+UNC,UNC Inc,,"April 23, 1970",,Annual Re-ranking
+ADM,,"March 04, 1957","April 23, 1970",,Annual Re-ranking
+COT,Coltec Industries Inc,,"April 23, 1970",,Annual Re-ranking
+NTY,National Tea Co,,"April 23, 1970",,Annual Re-ranking
+CW,Curtiss Wright Corp,,"April 23, 1970",,Annual Re-ranking
+LTV,LTV Steel Co Inc,,"April 23, 1970",,Annual Re-ranking
+MCL,Moore & McCormack Co,,"April 23, 1970",,Annual Re-ranking
+TXT,Textron Inc.,,"April 23, 1970",,Annual Re-ranking
+CSY,Central Soya Inc,,"April 23, 1970",,Annual Re-ranking
+PUL,Publicker Industries Inc,,"March 19, 1970",,Annual Re-ranking
+BGT,Budget Industries Inc,,"March 19, 1970",,Annual Re-ranking
+ABW,Associated Brewing Co,,"March 19, 1970",,Annual Re-ranking
+NP,Northern Pacific Railway Co,,"March 5, 1970",,Annual Re-ranking
+GN,Great Northern Railway Co,,"March 5, 1970",,Annual Re-ranking
