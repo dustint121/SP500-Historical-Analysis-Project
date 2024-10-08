@@ -11,6 +11,10 @@
 
 
 
+    # original_sp_stocks = ['ABT', 'ADM', 'AEP', 'BA', 'BMY', 'CAT', 'CL', 'CMS', 'COP', 'CPB', 'CSX', 'CVS', 'CVX', 
+    #                     'DE', 'DTE', 'ED', 'EIX', 'ETN', 'ETR', 'EXC', 'F', 'GD', 'GE', 'GIS', 'HAL', 'HIG', 'HON', 
+    #                     'HSY', 'IBM', 'IP', 'KMB', 'KO', 'KR', 'LMT', 'MMM', 'MO', 'MRK', 'MRO', 'MSI', 'NOC', 'NSC', 
+    #                     'OXY', 'PEG', 'PEP', 'PFE', 'PG', 'PPG', 'RTX', 'SLB', 'SO', 'SPGI', 'UNP', 'XEL', 'XOM']
 
 
 

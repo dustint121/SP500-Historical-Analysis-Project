@@ -6,27 +6,25 @@ import pandas as pd
 load_dotenv()
 apikey = os.environ.get("apikey")
 
-def get_sp_500_github_dataset():
-    #this csv comes from this 3rd party project: https://github.com/fja05680/sp500/tree/master
-    URL = "https://raw.githubusercontent.com/fja05680/sp500/refs/heads/master/S%26P%20500%20Historical%20Components%20%26%20Changes(08-17-2024).csv"
-    df = pd.read_csv(URL)
-    list_tickers = df["tickers"]
-    for index in range(len(list_tickers)):
-        list_tickers[index] = list_tickers[index].split(",")
-    df["tickers"] = list_tickers
-    df.to_pickle("github_datset.pkl")
+sp_500_stocks_1996 = pd.read_pickle("github_dataset.pkl")["date"]
 
 
-df = pd.read_pickle("github_dataset.pkl")
-print(len(df))
-# print(df["tickers"][0])
-# print(df.head(1))
+print(len(sp_500_stocks_1996))
 
-# print(df["date"][len(df) - 2000: len(df) - 1])
-print(df["date"][len(df) - 1800])
-# print(len(df))
-for ticker in df["tickers"][len(df) - 1800]:
-    val = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
-    if val == []:
-        print("Is not found: " + ticker)
 
+#need sectors for these stocks
+# ['FLIR', 'VAR', 'CXO', 'TIF', 'NBL', 'ETFC', 'AGN', 'RTN', 'WCG', 'STI', 'VIAB', 'CELG', 'TSS', 'APC', 'RHT']
+
+
+
+print(sp_500_stocks_1996[1142])
+print(sp_500_stocks_1996[1143])
+
+tickers = pd.read_pickle("github_dataset.pkl")["tickers"]
+
+tickers_1 = tickers[1142]
+tickers_2 = tickers[1143]
+
+for ticker in tickers_1:
+    if ticker not in tickers_2:
+        print(ticker)

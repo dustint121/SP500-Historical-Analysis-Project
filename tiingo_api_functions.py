@@ -43,7 +43,7 @@ for ticker in tickers:
         print("Less than 2 years of data: " + ticker + "\tindex:" + str(count + 2))
         ticker_data_with_less_than_2_years.append({str(count + 2): ticker})
 
-    file_path = "raw_tiingo_files/" + ticker + ".json"
+    file_path = "raw_tiingo_stock_price_files/" + ticker + ".json"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)

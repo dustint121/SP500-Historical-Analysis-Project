@@ -540,13 +540,13 @@ PENN,PENN Entertainment Inc,"March 19, 2021","September 16, 2022",SLG,Market cap
 PVH,PVH Corp,"February 13, 2013","September 16, 2022",BIG,Market capitalization change.
 IPGP,IPG Photonics Corp,"March 6, 2018","June 17, 2022",SNI,Market capitalization change.
 UA,Under Armour Inc Class C,"April 14, 2016","June 17, 2022",,Market capitalization change.
-UA.A,Under Armour Inc Class A,"April 30, 2014","June 17, 2022",BEAM,Market capitalization change.
+UAA,Under Armour Inc Class A,"April 30, 2014","June 17, 2022",BEAM,Market capitalization change.
 CERN,Cerner Corp,"April 29, 2010","June 7, 2022",BJS,S&P 500 constituent Oracle Corp. acquired Cerner.
 DISCK,Discovery Communications Inc Class C (Warner Bros. Discovery Inc),"August 6, 2014","April 11, 2022",,Annual Re-ranking
 PBCT,People's United Financial Inc,"November 12, 2008","April 1, 2022",,S&P 500 constituent M&T Bank Corp. acquired People's United Financial.
 INFO,IHS Markit Ltd,"June 1, 2017","February 25, 2022",TGNA,S&P 500 constituent S&P Global Inc. acquired IHS Markit.
 XLNX,Xilinx Inc,"November 5, 1999","February 14, 2022",LHX,S&P 500 constituent Advanced Micro Devices acquired Xilinx.
-GPS,The Gap Inc,"August 21, 1986","February 2, 2022",SAA,S&P 500 and 100 constituent Exelon Corp. spun off Constellation Energy.
+GAP,The Gap Inc,"August 21, 1986","February 2, 2022",SAA,S&P 500 and 100 constituent Exelon Corp. spun off Constellation Energy.
 WU,The Western Union Co,"September 29, 2006","December 17, 2021",ANDW,Market capitalization change.
 HBI,Hanesbrands Inc,"March 20, 2015","December 17, 2021",AVP,Market capitalization change.
 LEG,Leggett & Platt Inc,"October 15, 1999","December 17, 2021",CYM,Market capitalization change.
@@ -556,7 +556,7 @@ PRGO,Perrigo Company plc,"December 16, 2011","September 17, 2021",MWW,Market cap
 UNM,Unum Group,"March 10, 1994","September 17, 2021",NEU,Market capitalization change.
 MXIM,Maxim Integrated Products Inc,"November 30, 2018","August 27, 2021",AET,S&P 500 constituent Analog Devices acquired Maxim Integrated Products.
 ALXN,Alexion Pharmaceuticals Inc,"May 24, 2012","July 20, 2021",MMI,AstraZeneca acquired Alexion Pharmaceuticals.
-HFC,HollyFrontier Corp,"June 15, 2018","June 3, 2021",AYI,Market capitalization change.
+DINO,HollyFrontier Corp,"June 15, 2018","June 3, 2021",AYI,Market capitalization change.
 FLIR,FLIR Systems Inc,"December 31, 2008","May 13, 2021",NCC,S&P 500 constituent Teledyne Technologies acquired FLIR Systems.
 VAR,Varian Medical Systems Inc,"February 9, 2007","April 19, 2021",EOP,Siemens Healthineers acquired Varian Medical Systems.
 XRX,Xerox Holdings Corp,"January 2, 1996","March 19, 2021",,Market capitalization change.
@@ -574,7 +574,7 @@ COTY,Coty Inc,"September 30, 2016","September 18, 2020",DO,Market capitalization
 HRB,H&R Block Inc,"November 28, 1986","September 18, 2020",SA,Market capitalization change.
 JWN,Nordstrom Inc,"August 7, 1986","June 19, 2020",TFD,Market capitalization change.
 HOG,Harley-Davidson Inc.,"January 28, 2000","June 19, 2020",FLE,Market capitalization change.
-ADS,Alliance Data Systems Corp,"December 20, 2013","June 19, 2020",ANF,Market capitalization change.
+BFH,"Bread Financial Holdings, Inc.","December 20, 2013","June 19, 2020",ANF,Market capitalization change.
 HP,Helmerich & Payne Inc,"February 26, 2010","May 21, 2020",IMS,Market capitalization change.
 AGN,Allergan plc,"April 9, 1999","May 11, 2020",ANV,Allergan acquired by AbbVie.
 CPRI,Capri Holdings Ltd,"November 12, 2013","May 11, 2020",NYX,Market capitalization change.
@@ -596,7 +596,7 @@ APC,Anadarko Petroleum Corp,"July 25, 1997","August 8, 2019",SFS,S&P 500 & 100 c
 RHT,Red Hat Inc.,"July 24, 2009","July 12, 2019",CIT,S&P 500 & 100 constituent IBM acquired Red Hat.
 LLL,L3 Technologies Inc,"November 30, 2004","June 28, 2019",WLP,L3 purchased by Harris Corporation
 MAT,Mattel Inc.,"March 11, 1982","June 6, 2019",BEC,BMS changed to AMCR post merger with Amcor;
-DWDP,DuPont,"September 1, 2017","June 3, 2019",DOW,DWDP changed to DD after spinning off Corteva.
+DD,DuPont,"September 1, 2017","June 3, 2019",DOW,DWDP changed to DD after spinning off Corteva.
 FLR,Fluor Corp,"December 21, 2000","May 31, 2019",MEE,CTVA spun off from DWDP (which then changed symbol to DD)
 BHF,Brighthouse Financial Inc,"August 8, 2017","April 2, 2019",,DOW spun off from DWDP
 GT,The Goodyear Tire & Rubber Co,"March 4, 1957","February 26, 2019",,WAB acquired GE transportation business

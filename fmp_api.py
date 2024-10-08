@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import fmpsdk
 import pandas as pd
 import requests
-# Actual API key is stored in a .env file.  Not good to store API key directly in script.
+# Actual keys is stored in a .env file.  Not good to store API key directly in script.
 load_dotenv()
 apikey = os.environ.get("apikey")
 tiingo_token = os.environ.get("tiingo_token")
@@ -21,14 +21,6 @@ def get_sp_500_github_dataset():
 
 def get_raw_sp_500_data_from_fmp():
     current_sp_list = fmpsdk.sp500_constituent(apikey=apikey)
-    # current_sp_df = pd.DataFrame(current_sp_list)
-    # tickers_in_current_sp = current_sp_df["symbol"].to_list()
-
-    # original_sp_stocks = ['ABT', 'ADM', 'AEP', 'BA', 'BMY', 'CAT', 'CL', 'CMS', 'COP', 'CPB', 'CSX', 'CVS', 'CVX', 
-    #                     'DE', 'DTE', 'ED', 'EIX', 'ETN', 'ETR', 'EXC', 'F', 'GD', 'GE', 'GIS', 'HAL', 'HIG', 'HON', 
-    #                     'HSY', 'IBM', 'IP', 'KMB', 'KO', 'KR', 'LMT', 'MMM', 'MO', 'MRK', 'MRO', 'MSI', 'NOC', 'NSC', 
-    #                     'OXY', 'PEG', 'PEP', 'PFE', 'PG', 'PPG', 'RTX', 'SLB', 'SO', 'SPGI', 'UNP', 'XEL', 'XOM']
-
     current_sp_df = pd.DataFrame(columns=["Ticker", "Name", "Added_Date", "Removed_Date", "Replaces", "Removal_Reason"])
 
     for stock in current_sp_list:
@@ -39,7 +31,6 @@ def get_raw_sp_500_data_from_fmp():
     current_ticker_list = current_sp_df["Ticker"].to_list()
 
     #work in reverse to find the "added_date" of the current S&P stocks and "removed_date"
-
     date_list = ["October 1, 2024"]
     count = 0
     historical_list = fmpsdk.historical_sp500_constituent(apikey=apikey)
@@ -52,7 +43,6 @@ def get_raw_sp_500_data_from_fmp():
         reason = stock["reason"]
         if date not in date_list:
             date_list.append(date)
-
 
         if removed_ticker == "":
             removed_ticker = None
@@ -79,11 +69,19 @@ def get_cleaned_sp_500_csv():
     df = pd.read_csv("raw_sp_500_dataset_from_fmp.csv")
     sp_500_dict = df.to_dict()
 
+    sp_500_dict["Ticker"][541] = "UAA"  #UA.A -> UAA
+    sp_500_dict["Ticker"][547] = "GAP" #updated ticker symbol
+    sp_500_dict["Ticker"][557] = "DINO" #updated ticker symbol
     sp_500_dict["Name"][574] = "Harley-Davidson Inc."
+    sp_500_dict["Ticker"][575] = "BFH" #new name and symbol
+    sp_500_dict["Name"][575] = "Bread Financial Holdings, Inc." #new name and symbol
     sp_500_dict["Name"][579] = "Macy's, Inc."
+    sp_500_dict["Ticker"][597] = "DD" #updated ticker symbol
     sp_500_dict["Name"][654] = "O-I Glass, Inc."
+    sp_500_dict["Ticker"][664] = "CVC" #updated ticker symbol
     sp_500_dict["Ticker"][666] = "CCEP" #updated ticker symbol
     sp_500_dict["Name"][666] = "Coca-Cola Europacific Partners PLC"
+    sp_500_dict["Ticker"][677] = "CEIX" #updated ticker symbol
     sp_500_dict["Ticker"][681] = "CB" #changed ticker symbol from ACE -> CB
     sp_500_dict["Name"][686] = "Sigma-Aldrich Corporation"
     sp_500_dict["Name"][719] = "Cleveland-Cliffs Inc."
@@ -156,20 +154,45 @@ def get_cleaned_sp_500_csv():
         # {1046 : OC} : #not found in github
     #ENRNQ
 
+    pd.DataFrame(sp_500_dict).to_csv("cleaned_sp_500_dataset.csv", index=False)
+
+
+
+
+# get_cleaned_sp_500_csv()
 
 df = pd.read_csv("cleaned_sp_500_dataset.csv")
 sp_500_dict = df.to_dict()
 tickers = list(sp_500_dict["Ticker"].values())
 company_names = list(sp_500_dict["Name"].values())
 
-for i, ticker in enumerate(tickers[:505]):
+no_fmp_data_list = []
+no_tiingo_data_list = []
+
+for i, ticker in enumerate(tickers[:700]):
     if i < 400:
         continue
     print(i)
 
-    companny_data = {}
+    if ticker in ["LLL"]: #no data found whatsoever
+        continue
+    if ticker in ["CA"]: #no data found whatsoever {611: CA}
+        continue
+    if 600<i<650 and ticker == "DOW": #new company
+        continue
+    if ticker in ["HAR"]:
+        continue
+    if ticker in ["SE"]:
+        continue
+    if ticker == "EMC":
+        continue
+
+    company_profile = {}
+    company_profile["ticker"] = ticker
     have_data_from_fmp = False
     company_name = company_names[i]
+
+    #only tested up to 600th stock in csv
     fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
     if (len(fmp_bio_list) > 0):
         fmp_data = fmp_bio_list[0]
@@ -177,17 +200,57 @@ for i, ticker in enumerate(tickers[:505]):
         is_valid_exchange = fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"]
         company_name = company_name.replace('. ', ' ').replace('.', ' ') #do not remove commas, just "."
         is_right_company = company_name.lower()[:5] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
-        ticker_exception_list = ["WAB", "CBOE", "BXP", "LH", "BK", "GE", "IBM"]
+        ticker_exception_list = ["WAB", "CBOE", "BXP", "LH", "BK", "GE", "IBM"
+                                 ,"ZION", "INFO", "DINO"]
         #name changes : WAB, CBOE, BXP, GE
-        #SJM, DHI has grammer issues
+        #SJM, DHI has unique grammer issues
         #BK, IBM shorthand name used
         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
-            sector = fmp_data["sector"]
-        else:
-            print("Invalid FMP data for ticker symbol: " + ticker)
-    else:
-        print("No FMP data retrieved for: " + ticker)
+            have_data_from_fmp = True
+            company_profile["company_name"] = fmp_data["companyName"]
+            company_profile["sector"] = fmp_data["sector"]
+            company_profile["is_delisted"] = fmp_data["isActivelyTrading"]
+            company_profile["description"] = fmp_data["description"]
 
+        else: #need to research these company's "sectors" and get name from tiingo; new company using this ticker
+            if ticker not in ["STI"]:
+                print("Invalid FMP data for ticker symbol: " + ticker)
+            no_fmp_data_list.append(ticker)
+    else:
+        #need to research these company's "sectors" and get name from tiingo
+        if ticker not in ["FLIR","VAR","CXO","TIF","NBL","ETFC","AGN","RTN","WCG","VIAB","CELG","TSS","APC","RHT"
+                          ,"SCG"]:             
+            print("No FMP data retrieved for: " + ticker)
+        no_fmp_data_list.append(ticker)
+
+
+    #some delisted stocks have modified tickers in tiingo
+    if ticker == "WRK":
+        ticker = "WRK-W"
+    if ticker == "FRC":
+        ticker = "FRCB" #moved to OTC market
+    if ticker == "SIVB":
+        ticker = "SIVBQ" #moved to OTC market
+    if ticker == "STI":
+        ticker = "STI-WS-B"
+    if ticker == "INFO":
+        ticker = "MRKT"
+    if ticker == "WYND":
+        ticker = "WYN"
+    if ticker == "BBBY":
+        ticker = "BBBYQ"
+    if ticker == "MNK":
+        ticker = "MNKKQ"
+    if ticker == "ENDP":
+        ticker = "ENDPQ"
+    if ticker == "ALTR":
+        ticker = "ALTR1"
+    if ticker == "PLL":
+        ticker = "PLL1"
+    if ticker == "DTV":
+        ticker = "DTV1"
+    if ticker == "WIN":
+        ticker = "WINMQ"
 
     headers = {'Content-Type': 'application/json'}
     tiingo_URL = "https://api.tiingo.com/tiingo/daily/" + ticker + "?token=" + tiingo_token
@@ -196,21 +259,41 @@ for i, ticker in enumerate(tickers[:505]):
     if tiingo_data != {'detail': 'Not found.'}:
         # name = tiingo_data["name"]
         is_valid_exchange = tiingo_data["exchangeCode"] in ["NASDAQ", "NYSE"]
-        company_name = company_name.lower().replace(',', '').replace('. ', ' ').replace('.', ' ') #remove ',' and '.'
+        if is_valid_exchange == False and ticker in ["SBNY"]:   #later delisted from NYSE or NASDAQ
+            is_valid_exchange = True
+        company_name = company_name.lower().replace(',', '').replace('. ', ' ').replace('.', ' ').replace("'",'`')
         is_right_company = company_name[:5] in tiingo_data["name"].lower().replace('. ', ' ').replace('.', ' ')
         # description = tiingo_data["description"]
-        ticker_exception_list = ["DAY","WAB","CPAY","CBOE","ORLY","BXP","EL","LH","MTB","YUM","BK","LOW","GE","IBM","SLB"]
+        ticker_exception_list = ["DAY","WAB","CPAY","CBOE","ORLY","BXP","EL","LH","MTB","YUM","BK","GE","IBM","SLB"
+                                 ,"VFC","ZION","WU","DINO","ETFC","MAC","SIVBQ","GAP","FRCB","MRKT"
+                                 ,"GT","GGP","DPS","TE","ADT","GMCR","ATI"]
+        #need to test LOW
         #CBOE; moved to different exchange later
         #BXP,GE name changes
         #MTB spelling issue wiht '&'
         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
             start_date = tiingo_data["startDate"]
             end_date = tiingo_data["endDate"]
+            if have_data_from_fmp == False:
+                company_profile["company_name"] = tiingo_data["name"]
+                # company_profile["sector"] = fmp_data["sector"] #need to get sector from dict variable to be made
+                company_profile["is_delisted"] = "delisted" in tiingo_data["description"][:15].lower()
+                company_profile["description"] = tiingo_data["description"].replace("DELISTED - ", '')
         else:
-            print("Invalid Tiingo data for ticker symbol: " + ticker)
+            if ticker not in []:
+                print("Invalid Tiingo data for ticker symbol: " + ticker)
+            no_tiingo_data_list.append(ticker)
 
     else:
         print("No Tiingo data retrieved for: " + ticker)
+        no_tiingo_data_list.append(ticker)
+
+    #DPS company data is not found on meta for tiingo or on FMP
+
+
+print("No fmp data from: " + str(no_fmp_data_list))
+print("No tiingo data from: " + str(no_tiingo_data_list))
+
 
 
 
