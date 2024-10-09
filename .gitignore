@@ -1,4 +1,6 @@
+/__pycache__
 /.venv
 .env
-/raw_tiingo_stock_price_files
+/company_market_cap_data
+/company_profiles
 /historical_stock_price

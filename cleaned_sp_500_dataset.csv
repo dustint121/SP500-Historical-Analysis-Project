@@ -663,7 +663,7 @@ TYC,Tyco International,"January 2, 1996","September 6, 2016",,TYC acquires JCI (
 CPGX,Columbia Pipeline Group Inc.,"July 1, 2015","July 5, 2016",ATI,CPGX acquired by TRP
 TE,TECO Energy Inc,"October 9, 2001","June 30, 2016",GLBC,TE acquired by EMA
 GAS,AGL Resources Inc.,"August 3, 1989","June 30, 2016",WCI,GAS acquired by SO
-RMG,Cablevision Systems Corp.,"December 17, 2010","June 23, 2016",KG,Annual Re-ranking
+CVC,Cablevision Systems Corp.,"December 17, 2010","June 23, 2016",KG,Annual Re-ranking
 BXLT,Baxalta,"June 30, 2015","June 2, 2016",QEP,SHPG acquiring BXLT
 CCEP,Coca-Cola Europacific Partners PLC,"October 7, 1998","May 27, 2016",CCI,CCE merging with European bottlers
 ARG,Airgas Inc.,"September 8, 2009","May 20, 2016",CBE,ARG acquired by Air Liquide
@@ -676,7 +676,7 @@ CAM,Cameron International Corp,"January 28, 2008","April 1, 2016",CZR,Schlumberg
 VAL,Valaris plc,"July 30, 2012","March 29, 2016",GR,Centene acquired Health Net.
 POM,Pepco Holdings Inc.,"November 8, 2007","March 29, 2016",HCR,Exelon acquired Pepco.
 GMCR,Keurig Green Mountain Inc,"March 21, 2014","March 4, 2016",WPX,JAB Holding Company acquired Keurig Green Mountain
-CNX,Consol Energy Inc.,"June 27, 2006","March 3, 2016",KRI,AWK replaces CNX
+CEIX,Consol Energy Inc.,"June 27, 2006","March 3, 2016",KRI,AWK replaces CNX
 PCL,Plum Creek Timber Company,"January 16, 2002","February 19, 2016",KM,PCL taken over by WY
 BRCM,Broadcom Corp.,"June 30, 2000","January 29, 2016",GTE,FRT replaces BRCM
 PCP,Precision Castparts Corp,"May 31, 2007","January 29, 2016",MEDI,CFG replaces PCP
@@ -927,7 +927,7 @@ CHIR,Chiron Corp.,"November 22, 2000","April 19, 2006",FJ,Annual Re-ranking
 CIN,Cinergy Corp.,"October 24, 1994","March 31, 2006",PIN,Annual Re-ranking
 MYG,Maytag Corp.,"January 2, 1996","March 31, 2006",,Annual Re-ranking
 BR,Burlington Resources,"November 22, 1993","March 31, 2006",PCI,Annual Re-ranking
-JP,,"July 1, 1976","March 31, 2006",CIN,Annual Re-ranking
+JP,Jefferson Pilot Corporation,"July 1, 1976","March 31, 2006",CIN,Annual Re-ranking
 DAN,Dana Inc,"January 2, 1996","March 2, 2006",,Annual Re-ranking
 SFA,"Scientific Atlanta, Inc.","February 26, 1981","February 24, 2006",MAK,Annual Re-ranking
 SEBL,Siebel Systems Inc.,"May 4, 2000","January 31, 2006",CBS,Annual Re-ranking
@@ -1193,7 +1193,7 @@ LUB,Luby's Inc,"May 16, 1985","December 31, 1996",PABT,Annual Re-ranking
 SHN,Shoney's Inc.,"January 31, 1985","December 31, 1996",DEN,Annual Re-ranking
 RYAN,Ryan's Restaurant,"September 14, 1989","December 31, 1996",CUL,Annual Re-ranking
 BLY,Bally Entertainment Corp.,"October 10, 1985","December 18, 1996",AMF,Annual Re-ranking
-CNW,,"December 29, 1983","December 2, 1996",SX,Annual Re-ranking
+CNW,Conway Inc,"December 29, 1983","December 2, 1996",SX,Annual Re-ranking
 YRCW,YRC Worldwide Inc.,"July 1, 1976","November 1, 1996",GHB,Annual Re-ranking
 THY,Transitional Hospitals Corp,"June 25, 1987","October 15, 1996",JOY,Annual Re-ranking
 OM,Outboard Marine Corp.,"March 1, 1973","September 30, 1996",FAC,Annual Re-ranking

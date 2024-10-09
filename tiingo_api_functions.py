@@ -22,8 +22,7 @@ ticker_data_with_less_than_2_years = []
 for ticker in tickers:
     count += 1
     # print("On index: " + str(count+2))
-    headers = {
-    'Content-Type': 'application/json'}
+    headers = {'Content-Type': 'application/json'}
     URL = "https://api.tiingo.com/tiingo/daily/" + ticker + "/prices?startDate=1950-01-02&token=" + tiingo_token
     requestResponse = requests.get(URL, headers=headers)
     data = requestResponse.json()
