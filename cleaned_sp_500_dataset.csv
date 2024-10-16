@@ -103,7 +103,7 @@ ROL,"Rollins, Inc.","September 28, 2018",,ANDV,
 ANET,Arista Networks,"August 27, 2018",,GGP,
 CPRT,Copart,"June 29, 2018",,DPS,
 CPAY,Corpay,"June 19, 2018",,TWX,
-BR,Broadridge Financial Solutions,"January 2, 1996",,RRC,
+BR,Broadridge Financial Solutions,"June 15, 2018",,RRC,
 EVRG,Evergy,"June 4, 2018",,NAVI,
 MSCI,MSCI,"April 3, 2018",,CSRA,
 TTWO,Take-Two Interactive,"March 19, 2018",,SIG,
@@ -676,14 +676,14 @@ CAM,Cameron International Corp,"January 28, 2008","April 1, 2016",CZR,Schlumberg
 VAL,Valaris plc,"July 30, 2012","March 29, 2016",GR,Centene acquired Health Net.
 POM,Pepco Holdings Inc.,"November 8, 2007","March 29, 2016",HCR,Exelon acquired Pepco.
 GMCR,Keurig Green Mountain Inc,"March 21, 2014","March 4, 2016",WPX,JAB Holding Company acquired Keurig Green Mountain
-CEIX,Consol Energy Inc.,"June 27, 2006","March 3, 2016",KRI,AWK replaces CNX
+CNX,Consol Energy Inc.,"June 27, 2006","March 3, 2016",KRI,AWK replaces CNX
 PCL,Plum Creek Timber Company,"January 16, 2002","February 19, 2016",KM,PCL taken over by WY
 BRCM,Broadcom Corp.,"June 30, 2000","January 29, 2016",GTE,FRT replaces BRCM
 PCP,Precision Castparts Corp,"May 31, 2007","January 29, 2016",MEDI,CFG replaces PCP
 CB,Chubb Corp.,"July 1, 1976","January 15, 2016",,"EXR replaces ACE as ACE Ltd acquires Chubb and retains the CB ticker, giving up ACE"
 FOSL,Fossil Group,"April 3, 2012","January 4, 2016",MHS,WSH merges with TW (and renames to WLTW)
 ALTR,Altera Corp.,"April 17, 2000","December 28, 2015",ARC,ALTR taken over by INTC
-CMCSK,Comcast Class A Spec.,"September 18, 2015","December 11, 2015",,CMCSK shares no longer listed
+CMCSA,Comcast Class A Spec.,"September 18, 2015","December 11, 2015",,CMCSK shares no longer listed
 CSC,Computer Sciences Corp.,"May 14, 1981","November 30, 2015",CHI,CSC spins off CSRA
 SIAL,Sigma-Aldrich Corporation,"September 20, 1994","November 18, 2015",MCAWA,Sigma-Aldrich acquired by Merck KGaA (MKGAY)
 GNW,Genworth Financial Inc.,"December 1, 2005","November 17, 2015",CPN,GE spinning off Synchrony Financial
@@ -978,7 +978,7 @@ EHC,HealthSouth Corp.,"January 7, 1997","March 20, 2003",BOAT,Annual Re-ranking
 AMR,AMR Corp.,"January 2, 1996","March 13, 2003",,Annual Re-ranking
 RATL,Rational Software Corp,"January 31, 2002","February 21, 2003",NMK,Annual Re-ranking
 TRW,TRW Inc.,"January 2, 1996","December 11, 2002",,Annual Re-ranking
-CMCSK,Comcast Corp,"October 8, 1987","November 18, 2002",TFB,Annual Re-ranking
+CMCSA,Comcast Corp,"October 8, 1987","November 18, 2002",TFB,Annual Re-ranking
 COC.B,Conoco Inc.,"August 6, 1999","August 30, 2002",BMGCA,Annual Re-ranking
 VTSS,Vitesse Semiconductor Corp,"December 11, 2000","August 20, 2002",SMI,Annual Re-ranking
 PALM,Palm Inc.,"July 27, 2000","August 13, 2002",COMS,Annual Re-ranking
@@ -1055,7 +1055,7 @@ MKG,Mallinckrodt Inc.,"February 6, 1975","October 17, 2000",AN,Annual Re-ranking
 DNB,Dun & Bradstreet Corp,"December 27, 1979","October 2, 2000",REE,Annual Re-ranking
 BFO,BestFoods,"January 2, 1996","October 2, 2000",,Annual Re-ranking
 YNR,Young & Rubicam Inc,"January 5, 2000","October 2, 2000",NLV,Annual Re-ranking
-OC,Owens Corning,,"September 29, 2000",,Annual Re-ranking
+OC,Owens Corning,"January 2, 1996","September 29, 2000",,Annual Re-ranking
 GAP,The Great Atlantic & Pacific Tea Co,"January 2, 1996","August 29, 2000",,Annual Re-ranking
 NCE,New Century Energies Inc,"November 3, 1998","August 18, 2000",,Annual Re-ranking
 COMS,3Com Corp.,"December 29, 1995","July 27, 2000",FFB,Annual Re-ranking
