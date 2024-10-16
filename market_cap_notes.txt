@@ -1,0 +1,57 @@
+    #can't find TYC historical data" 660
+    #can't find BRCM data either    
+    #"DO" uses DOFSQ data from OTC market; double check may be needed
+    #for ADT corp - 670, use data from macrotrends.com
+    #for CSC, 685; can't find any data
+    #for NE, 693; using NEBLQ;try companiesmarketcap.com
+    #for ATI, 695; add investing.com data to front;try companiesmarketcap.com
+
+
+
+
+    
+    #for BTU, 711; using BTUUQ;try companiesmarketcap.com
+    #no data found for 714, FRX
+    #limited data for 716, LSI; 2009-2014; need back to 1996
+    #limited data for 718, BEAM; 2011-2014; need back to 1996
+    #can't find data for 721, LIFE
+    #725, MOLX, limited data
+    #726, JCP, limited data from markets.financialcontent.com;try companiesmarketcap.com
+    #727, NYX, limited data
+    #728, DELL, have full data in pdf format
+    #731, BMC, limited data;try companiesmarketcap.com
+    #732, S, limited data;try companiesmarketcap.com
+    #733, APOL, can't find relevant data
+    #735, HNZ, can't find more data
+    #737, CVH can't find more data
+    #744, SUN; limited data
+    #749, GR; can't find data; check with investing.com later
+    #750, PGN; can't find data
+    #752; NVLS, can't find more data
+    #753; EP; double-check later
+    #754; data has formatting problems and can't be downloaded normally; https://www.investing.com/equities/motorola-mobility-holdings 
+    #756, MHS; can't find more data; check with investing.com later
+    #757, CEG; found csv from Exelon who nows owns the company; https://investors.exeloncorp.com/stock-information/historical-share-information
+    #758, CPWR; limited data
+    #759, TLAB; limited data
+    #762, SUNEQ; limited data
+    #765, CEPH; can't find data; 
+    #766, NSM;try companiesmarketcap.com
+    #767, MI; can't find data
+    #769, MEE; can't find data
+    #770, NOVL; can't find data
+    #771, GENZ; can't find data
+    #772, Q;try companiesmarketcap.com
+    #774; AYE; can't find more data
+    #776; double check with companiesmarketcap.com
+    #777; KODK; can't find more data before renaming
+    #780; KG; can't find more data
+    #781; PTV; can't find data
+    #782; SII, can't find data
+    #786; BJS, can't find more data
+    #787; BDK, can't find data
+    #788; IMS, can't find relevant data before 2nd relisting
+    #790; BNI, can't find data
+    #791; ACS, can't find relevant data
+    #792; JAVA;try companiesmarketcap.com
+    #799; SGP;try companiesmarketcap.com
