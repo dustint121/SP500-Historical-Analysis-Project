@@ -475,7 +475,7 @@ def get_fmp_market_cap_data(original_ticker, index):
 
 
 #get market cap data from tiingo
-def get_tiingo_market_cap_data(ticker):
+def get_tiingo_market_cap_data(ticker, added_date):
     headers = {'Content-Type': 'application/json'}
     tiingo_URL = "https://api.tiingo.com/tiingo/fundamentals/" + ticker +"/daily?token=" + tiingo_token
     requestResponse = requests.get(tiingo_URL, headers=headers)
@@ -491,12 +491,16 @@ def get_tiingo_market_cap_data(ticker):
 
     if len(tiingo_market_cap_data) == 0:
         print("Empty tiingomarket cap data for: " + ticker)
-    else: #double check that stock price data and market cap data are same size; else fix; test "CNW" stock
+    else: 
+        #if market cap data already has enough data, return it early
+        if datetime.strptime(tiingo_market_cap_data[0]["date"],"%Y-%m-%d") <= added_date:
+            return tiingo_market_cap_data
+        
         tiingo_URL = ("https://api.tiingo.com/tiingo/daily/" + ticker + 
                     "/prices?startDate=1950-01-02&token=" + tiingo_token)
         requestResponse = requests.get(tiingo_URL, headers=headers)
         tiingo_stock_price_data = requestResponse.json()
-
+        #double check that stock price data and market cap data are same size; else fix; test "CNW" stock
         missing_data_amount = len(tiingo_stock_price_data) - len(tiingo_market_cap_data)
         if (len(tiingo_stock_price_data) > len(tiingo_market_cap_data)):
             # print("Incomplete market cap data for tiingo. Fixing now: " + ticker)
@@ -556,7 +560,7 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
 
     #get market cap data from tiingo
     if get_tiingo_company_regular_data(ticker,company_name,{}):
-        tiingo_market_cap_data = get_tiingo_market_cap_data(ticker)
+        tiingo_market_cap_data = get_tiingo_market_cap_data(ticker, added_date)
     
 
     #get fmp market cap data if tiingo data is empty or starts after "Added Date"
