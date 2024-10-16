@@ -441,73 +441,8 @@ def get_fmp_metadata(ticker, company_name, company_profile):
         print("No FMP data retrieved for: " + ticker)
         return False
 
-
-def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date):
-    if original_ticker in ["INFO", "STI", "LLL"]: #500s
-        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-        return
-
-    elif 600<=index<700 and original_ticker in ["CA","XL","MON","DOW","DNB","FTR","HAR","LLTC","SE","DO","HOT","EMC",
-                                              "TYC","TE","CVC","ADT","BRCM","PCP","ALTR","PLL","NE","ATI"]: #600s
-        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-        return
-
-
-    elif 700<=index<800 and original_ticker in ["BTU","FRX","LSI","BEAM","VIAV","MOLX","JCP","NYX","DELL","BMC","S","CBE"
-                                                ,"SUN","LXK","EP","MMI","CEG","CPWR","TLAB","MWW","SUNEQ","NSM","MI"
-                                                ,"Q","QLGC","MDP","STR","JAVA","DYN","SGP"
-                                                ]:
-        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-        return
-           
-
-#NOTE: check 742, RRD, for market cap tiingo calcutions
-
-
-    headers = {'Content-Type': 'application/json'}
-    tiingo_URL = "https://api.tiingo.com/tiingo/fundamentals/" + ticker +"/daily?token=" + tiingo_token
-    requestResponse = requests.get(tiingo_URL, headers=headers)
-    tiingo_market_cap_data = requestResponse.json()
-    tiingo_market_cap_data = [{"date":data["date"].split("T")[0],"marketCap":data["marketCap"]} 
-                              for data in tiingo_market_cap_data]
-    
-
-    #get rid of possible market cap data with null market cap values at start
-    for i, data in enumerate(tiingo_market_cap_data):
-        if data["marketCap"] != None:
-            tiingo_market_cap_data = tiingo_market_cap_data[i:]
-            break
-
-
-    if len(tiingo_market_cap_data) == 0:
-        print("Empty tiingomarket cap data for: " + ticker)
-    else: #double check that stock price data and market cap data are same size; else fix; test "CNW" stock
-        tiingo_URL = ("https://api.tiingo.com/tiingo/daily/" + ticker + 
-                    "/prices?startDate=1950-01-02&token=" + tiingo_token)
-        requestResponse = requests.get(tiingo_URL, headers=headers)
-        tiingo_stock_price_data = requestResponse.json()
-        if (len(tiingo_stock_price_data) > len(tiingo_market_cap_data)):
-            print("Incomplete markey cap data for tiingo. Fixing now: " + ticker)
-
-            first_date_in_market_cap_data = datetime.strptime(tiingo_market_cap_data[0]["date"], "%Y-%m-%d")
-            new_market_cap_data = []
-            last_stock_market_cap_ratio = None
-            for daily_stock_price_data in tiingo_stock_price_data:
-                current_date = datetime.strptime(daily_stock_price_data["date"].split("T")[0], "%Y-%m-%d")
-                if current_date >= first_date_in_market_cap_data:
-                    last_stock_market_cap_ratio = tiingo_market_cap_data[0]["marketCap"] / daily_stock_price_data["close"]
-                    if current_date != first_date_in_market_cap_data:
-                        print("Same date match not found")
-                    break
-                new_market_cap_data.append(daily_stock_price_data)
-            new_market_cap_data = [{"date": data["date"].split("T")[0]
-                                    ,"marketCap": round(data["close"]*last_stock_market_cap_ratio, 2)} 
-                              for data in new_market_cap_data]
-            tiingo_market_cap_data = new_market_cap_data + tiingo_market_cap_data
-
-            if tiingo_stock_price_data[-1]["date"].split("T")[0] != tiingo_market_cap_data[-1]["date"]:
-                print("Tiingo data error: Ending Dates aren't the same: " + ticker)
-    #get market cap data from fmp
+#get market cap data from fmp
+def get_fmp_market_cap_data(original_ticker, index):
     start_year = 2020
     end_year = 2024
     if index >  550:
@@ -535,6 +470,91 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
         end_year -= 5
     fmp_market_cap_data = [{"date":data["date"],"marketCap":data["marketCap"]} for data in fmp_market_cap_data]
     fmp_market_cap_data.reverse() #reverse the list to go from earliest to latest date like tiingo data
+    return fmp_market_cap_data
+
+
+
+#get market cap data from tiingo
+def get_tiingo_market_cap_data(ticker):
+    headers = {'Content-Type': 'application/json'}
+    tiingo_URL = "https://api.tiingo.com/tiingo/fundamentals/" + ticker +"/daily?token=" + tiingo_token
+    requestResponse = requests.get(tiingo_URL, headers=headers)
+    tiingo_market_cap_data = requestResponse.json()
+    tiingo_market_cap_data = [{"date":data["date"].split("T")[0],"marketCap":data["marketCap"]} 
+                              for data in tiingo_market_cap_data]
+    
+    #get rid of possible market cap data with null market cap values at start
+    for i, data in enumerate(tiingo_market_cap_data):
+        if data["marketCap"] != None:
+            tiingo_market_cap_data = tiingo_market_cap_data[i:]
+            break
+
+    if len(tiingo_market_cap_data) == 0:
+        print("Empty tiingomarket cap data for: " + ticker)
+    else: #double check that stock price data and market cap data are same size; else fix; test "CNW" stock
+        tiingo_URL = ("https://api.tiingo.com/tiingo/daily/" + ticker + 
+                    "/prices?startDate=1950-01-02&token=" + tiingo_token)
+        requestResponse = requests.get(tiingo_URL, headers=headers)
+        tiingo_stock_price_data = requestResponse.json()
+
+        missing_data_amount = len(tiingo_stock_price_data) - len(tiingo_market_cap_data)
+        if (len(tiingo_stock_price_data) > len(tiingo_market_cap_data)):
+            # print("Incomplete market cap data for tiingo. Fixing now: " + ticker)
+            if missing_data_amount > 1000:
+                print(">=5 years of stock price data to add to tingo market cap: " + ticker)
+            first_date_in_market_cap_data = datetime.strptime(tiingo_market_cap_data[0]["date"], "%Y-%m-%d")
+            new_market_cap_data = []
+            last_stock_market_cap_ratio = None
+            for daily_stock_price_data in tiingo_stock_price_data:
+                current_date = datetime.strptime(daily_stock_price_data["date"].split("T")[0], "%Y-%m-%d")
+                if current_date >= first_date_in_market_cap_data:
+                    last_stock_market_cap_ratio = tiingo_market_cap_data[0]["marketCap"] / daily_stock_price_data["close"]
+                    if current_date != first_date_in_market_cap_data:
+                        print("Same date match not found")
+                    break
+                new_market_cap_data.append(daily_stock_price_data)
+            new_market_cap_data = [{"date": data["date"].split("T")[0]
+                                    ,"marketCap": round(data["close"]*last_stock_market_cap_ratio, 2)} 
+                              for data in new_market_cap_data]
+            tiingo_market_cap_data = new_market_cap_data + tiingo_market_cap_data
+
+            if tiingo_stock_price_data[-1]["date"].split("T")[0] != tiingo_market_cap_data[-1]["date"]:
+                print("Tiingo data error: Ending Dates aren't the same: " + ticker)
+
+    return tiingo_market_cap_data
+
+
+
+def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date, company_name):
+    if original_ticker in ["INFO", "STI", "LLL"]: #500s
+        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
+        return
+
+    elif 600<=index<700 and original_ticker in ["CA","XL","MON","DOW","DNB","FTR","HAR","LLTC","SE","DO","HOT","EMC",
+                                              "TYC","TE","CVC","ADT","BRCM","PCP","ALTR","PLL","NE","ATI"]: #600s
+        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
+        return
+
+
+    elif 700<=index<800 and original_ticker in ["BTU","FRX","LSI","BEAM","VIAV","MOLX","JCP","NYX","DELL","BMC","S","CBE"
+                                                ,"SUN","LXK","EP","MMI","CEG","CPWR","TLAB","MWW","SUNEQ","NSM","MI"
+                                                ,"Q","QLGC","MDP","STR","JAVA","DYN","SGP"
+                                                ]:
+        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
+        return
+           
+
+#NOTE: check 742, RRD, for market cap tiingo calcutions
+
+    #get market cap data from tiingo
+    tiingo_market_cap_data = []
+    if get_tiingo_company_regular_data(ticker,company_name,{}):
+        tiingo_market_cap_data = get_tiingo_market_cap_data(ticker)
+    #get market cap data from fmp
+    fmp_market_cap_data = []
+    if get_fmp_metadata(original_ticker,company_name,{}):
+        fmp_market_cap_data = get_fmp_market_cap_data(original_ticker,index)
+
 
     tiingo_has_more_data = len(fmp_market_cap_data) <= len(tiingo_market_cap_data)
     if tiingo_has_more_data == False:
@@ -550,14 +570,12 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
 
     #get only needed data in list
     market_cap_data = [data for data in market_cap_data
-                        if added_date<= datetime.strptime(data["date"], "%Y-%m-%d") <= removal_date
-                    ]
+                        if added_date<= datetime.strptime(data["date"], "%Y-%m-%d") <= removal_date]
     
-    if len(market_cap_data) != 0:
+    if len(market_cap_data) > 0:
         #format: 2006-01-31
         first_date_in_data = datetime.strptime(market_cap_data[0]["date"].split("T")[0], "%Y-%m-%d")
         last_date_in_data = datetime.strptime(market_cap_data[-1]["date"].split("T")[0], "%Y-%m-%d")
-
         start_of_1996 = datetime.strptime("January 1, 1996", "%B %d, %Y")
         if added_date < first_date_in_data and start_of_1996 < first_date_in_data:
             days_between = 0
@@ -576,10 +594,6 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
             print("No market cap data found: " + ticker)
         else:
             print("Less than 2 years of market cap data: " + ticker)
-
-
-
-
 
     file_path = "company_market_cap_data/" + str(index) + "_" + original_ticker + ".json"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -601,9 +615,9 @@ removal_dates = list(sp_500_dict["Removed_Date"].values())
 no_fmp_data_list = []
 no_tiingo_data_list = []
 
-for i, ticker in enumerate(tickers[:800]):
-    if i < 750:
-        continue
+for i, ticker in enumerate(tickers[:500]):
+    # if i < 800:
+    #     continue
     # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
     #     continue
     print(i)
@@ -685,7 +699,7 @@ for i, ticker in enumerate(tickers[:800]):
 
     #will get market cap data and place into file
     get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
-    get_market_cap_data(ticker, original_ticker, i, added_date, removal_date)
+    get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
 
 
 
