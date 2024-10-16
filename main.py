@@ -546,15 +546,23 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
 
 #NOTE: check 742, RRD, for market cap tiingo calcutions
 
-    #get market cap data from tiingo
+    #format: January 21, 2012
+    added_date = datetime.strptime(added_date, "%B %d, %Y") 
+    removal_date = (datetime.strptime(removal_date, "%B %d, %Y") if removal_date != None 
+                    else datetime.strptime("September 30, 2024", "%B %d, %Y"))
+
     tiingo_market_cap_data = []
+    fmp_market_cap_data = []
+
+    #get market cap data from tiingo
     if get_tiingo_company_regular_data(ticker,company_name,{}):
         tiingo_market_cap_data = get_tiingo_market_cap_data(ticker)
-    #get market cap data from fmp
-    fmp_market_cap_data = []
-    if get_fmp_metadata(original_ticker,company_name,{}):
-        fmp_market_cap_data = get_fmp_market_cap_data(original_ticker,index)
+    
 
+    #get fmp market cap data if tiingo data is empty or starts after "Added Date"
+    if len(tiingo_market_cap_data) == 0 or (datetime.strptime(tiingo_market_cap_data[0]["date"],"%Y-%m-%d") > added_date):
+        if get_fmp_metadata(original_ticker,company_name,{}):
+            fmp_market_cap_data = get_fmp_market_cap_data(original_ticker,index)
 
     tiingo_has_more_data = len(fmp_market_cap_data) <= len(tiingo_market_cap_data)
     if tiingo_has_more_data == False:
@@ -562,20 +570,14 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
 
     market_cap_data = tiingo_market_cap_data if tiingo_has_more_data else fmp_market_cap_data
 
-
-    #format: January 21, 2012
-    added_date = datetime.strptime(added_date, "%B %d, %Y") 
-    removal_date = (datetime.strptime(removal_date, "%B %d, %Y") if removal_date != None 
-                    else datetime.strptime("September 30, 2024", "%B %d, %Y"))
-
     #get only needed data in list
     market_cap_data = [data for data in market_cap_data
                         if added_date<= datetime.strptime(data["date"], "%Y-%m-%d") <= removal_date]
     
     if len(market_cap_data) > 0:
         #format: 2006-01-31
-        first_date_in_data = datetime.strptime(market_cap_data[0]["date"].split("T")[0], "%Y-%m-%d")
-        last_date_in_data = datetime.strptime(market_cap_data[-1]["date"].split("T")[0], "%Y-%m-%d")
+        first_date_in_data = datetime.strptime(market_cap_data[0]["date"], "%Y-%m-%d")
+        last_date_in_data = datetime.strptime(market_cap_data[-1]["date"], "%Y-%m-%d")
         start_of_1996 = datetime.strptime("January 1, 1996", "%B %d, %Y")
         if added_date < first_date_in_data and start_of_1996 < first_date_in_data:
             days_between = 0
@@ -584,10 +586,9 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
             else:
                 days_between = (first_date_in_data - start_of_1996).days
             print("Missing days of earlier data for market cap: " + str(days_between))
-        if removal_date != None and last_date_in_data < removal_date:
+        if last_date_in_data < removal_date:
             days_between = (removal_date - last_date_in_data).days
             print("Missing days of later data for market cap: " + str(days_between))
-
 
     if len(market_cap_data) < 500:
         if len(market_cap_data) == 0:
