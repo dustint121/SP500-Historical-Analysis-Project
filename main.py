@@ -325,6 +325,56 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         company_profile["sector"] = "Utilities"
         company_profile["industry"] = "Utilities - Regulated Electric"
         company_profile["tiingo_meta_data_index"] = 5235
+    elif original_ticker == "HPC": #828
+        company_profile["company_name"] = "Hercules Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Basic Materials"
+        company_profile["industry"] = "Specialty Chemicals"
+        company_profile["tiingo_meta_data_index"] = 8121
+    elif original_ticker == "EDS": #842
+        company_profile["company_name"] = "Electronic Data Systems"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Information Technology Services"
+    elif original_ticker == "TEK": #861
+        company_profile["company_name"] = "Tektronix Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Semiconductor Equipment & Materials"
+        company_profile["tiingo_meta_data_index"] = 16520
+    elif original_ticker == "ADCT": #879
+        company_profile["company_name"] = "ADC Telecommunications Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Communication Equipment"
+        company_profile["tiingo_meta_data_index"] = 310
+    elif original_ticker == "MEDI": #880
+        company_profile["company_name"] = "MedImmune Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Healthcare"
+        company_profile["industry"] = "Biotechnology"
+        company_profile["tiingo_meta_data_index"] = 10720
+    elif original_ticker == "CMX": #885
+        company_profile["company_name"] = "Caremark Rx Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Defensive"
+        company_profile["industry"] = "Pharmaceutical Retailers"
+        company_profile["tiingo_meta_data_index"] = 3779
+    elif original_ticker == "LU": #897
+        company_profile["company_name"] = "Lucent Technologies Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Communication Equipment"
+        company_profile["tiingo_meta_data_index"] = 10302 
+
+
     elif original_ticker == "PVN": #931
         company_profile["company_name"] = "Providian Financial Corporation"
         company_profile["is_delisted"] = True
@@ -348,28 +398,47 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
 
 
 def get_tiingo_company_regular_data(ticker, company_name, company_profile):     
+    if company_name == None: return None
+
     headers = {'Content-Type': 'application/json'}
     tiingo_URL = "https://api.tiingo.com/tiingo/daily/" + ticker + "?token=" + tiingo_token
     tiingo_data= requests.get(tiingo_URL, headers=headers).json()
     if tiingo_data != {'detail': 'Not found.'}:
         is_valid_exchange = tiingo_data["exchangeCode"] in ["NASDAQ", "NYSE"]
+        description = (tiingo_data["description"].replace(',', '').replace('. ', ' ').replace('.', ' ').lower() 
+                        if tiingo_data["description"] != None else "")
+
         if is_valid_exchange == False and ticker in ["SBNY"]:   #later delisted from NYSE or NASDAQ
             is_valid_exchange = True
-        company_name = company_name.lower().replace(',', '').replace('. ', ' ').replace('.', ' ').replace("'",'`')
-        is_right_company = company_name[:5] in tiingo_data["name"].lower().replace('. ', ' ').replace('.', ' ')
-        ticker_exception_list = ["DAY","WAB","CPAY","CBOE","ORLY","BXP","EL","LH","MTB","YUM","BK","GE","IBM","SLB"]
+            
+        company_name = (company_name.lower().replace(',', '').replace('. ', ' ').replace('.', ' ').replace("'",'`')
+                        .replace('(',"").replace(')',"").strip())
+
+        is_right_company = all([val in ["inc","corp","corporation","company","companies","the","-","&",
+                                        "int`l","plc","ltd","llc"] 
+                                or val in tiingo_data["name"].lower() or val in description.split()[:20]
+                                for val in company_name.split()])
+
+        ticker_exception_list = ["CPAY","CBOE","ORLY","DOC","BXP","EL","LH","BF-B","GE","NSC","SLB"]
         #500s
-        ticker_exception_list += ["VFC","ZION","WU","DINO","ETFC","MAC","SIVBQ","GAP","FRCB","MRKT"]
+        ticker_exception_list += ["XOM","FRCB","SIVBQ","DISCK","MRKT","DINO","AGN"]
         #600s
-        ticker_exception_list += ["GT","GGP","DPS","BBBYQ","MNKKQ","TE","ADT","GMCR","CNX","ALTR1","PLL1","DTV1","ATI"] 
+        ticker_exception_list += ["GGP","LVLT","DD","BBBYQ","MNKKQ","FTR","ENDPQ","TE","VAL","CNX","ALTR1"
+                                  ,"CMCSA","PLL1","DTV1"]
         #700s
-        ticker_exception_list += ["WINMQ","LIFE2","DFODQ","BIGGQ","RRD","ATGE","SHLDQ","MMI1","SUNEQ","NSM1","Q1","ODP",
-                                  "PTV","MIL1","XTO","BDK"] 
+        ticker_exception_list += ["LIFE2","DELL1","FHN","DFODQ","BIGGQ","RRD","SUN1","ATGE","SHLDQ","MMI1","SUNEQ","NSM1"
+                                  ,"Q1","PTV","MIL1","XTO","BDK","SGP","WINMQ"]
+        #800s
+        ticker_exception_list += ["WYE","CTX1","EQ1","ROH","SOV","UST1","AW","ABI1","ASH","WWY","WEN","SAF2","FNMA","FMCC"
+                                  ,"IAC","OMX1","CCTYQ","CBH1","CZR","DJ","AT1","BOL","AV1","TXU","ASN","SLR","CBSS","KSE"
+                                  ,"BMET","MEL","PD1","PGL","APCC","EOP","SBL","BLS","NFB"]
 
         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
             company_profile["company_name"] = tiingo_data["name"].title()
             company_profile["is_delisted"] = "delisted" in tiingo_data["description"][:15].lower()
             company_profile["description"] = tiingo_data["description"].replace("DELISTED - ", '')
+            if company_profile["description"] == tiingo_data["name"]:
+                company_profile["description"] = None
             return True
         else:
             if ticker not in []:
@@ -402,7 +471,7 @@ def get_tiingo_company_metadata(ticker, company_profile, meta_data_list):
         if ticker.lower() == meta_data["ticker"]:
             company_profile["sector"] = meta_data["sector"]
             company_profile["industry"] = meta_data["industry"]
-            company_profile["tiingo_meta_data_index"] = starting_index + i
+            company_profile["source"] = {"tingo": starting_index + i}
             match_found = True
             return True
     if match_found == False:
@@ -411,13 +480,12 @@ def get_tiingo_company_metadata(ticker, company_profile, meta_data_list):
 
 
 def get_fmp_metadata(ticker, company_name, company_profile):
-    #only tested up to 600th stock in csv
     fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
     if (len(fmp_bio_list) > 0):
         fmp_data = fmp_bio_list[0]
         is_valid_exchange = fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"]
         company_name = company_name.replace('. ', ' ').replace('.', ' ') #do not remove commas, just "."
-        is_right_company = company_name.lower()[:5] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
+        is_right_company = company_name.lower()[:8] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
         ticker_exception_list = []
         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
             have_data_from_fmp = True
@@ -426,6 +494,7 @@ def get_fmp_metadata(ticker, company_name, company_profile):
             company_profile["industry"] = fmp_data["industry"]
             company_profile["is_delisted"] = not fmp_data["isActivelyTrading"]
             company_profile["description"] = fmp_data["description"]
+            company_profile["source"] = "fmp"
 
             if fmp_data["sector"] in [None, ""]:
                 print("Issue with fmp metadata: " + ticker)
@@ -435,9 +504,7 @@ def get_fmp_metadata(ticker, company_name, company_profile):
             print("Invalid FMP data for ticker symbol: " + ticker)
             return False
 
-    else:
-        # if ticker not in ["FLIR","VAR","CXO","TIF","NBL","ETFC","AGN","RTN","WCG","VIAB","CELG","TSS","APC","RHT"
-        #                   ,"SCG"]:             
+    else:        
         print("No FMP data retrieved for: " + ticker)
         return False
 
@@ -492,10 +559,13 @@ def get_tiingo_market_cap_data(ticker, added_date):
     if len(tiingo_market_cap_data) == 0:
         print("Empty tiingomarket cap data for: " + ticker)
     else: 
-        #if market cap data already has enough data, return it early
-        if datetime.strptime(tiingo_market_cap_data[0]["date"],"%Y-%m-%d") <= added_date:
+        #if market cap data already has enough data, return it early; else, look into stock price data
+        first_date_in_market_cap_data = datetime.strptime(tiingo_market_cap_data[0]["date"], "%Y-%m-%d")
+        if (first_date_in_market_cap_data <= added_date 
+            or first_date_in_market_cap_data <= datetime.strptime("1996-01-02", "%Y-%m-%d")):
             return tiingo_market_cap_data
-        
+
+        print("Looking at tiingo stock price data.")
         tiingo_URL = ("https://api.tiingo.com/tiingo/daily/" + ticker + 
                     "/prices?startDate=1950-01-02&token=" + tiingo_token)
         requestResponse = requests.get(tiingo_URL, headers=headers)
@@ -504,8 +574,11 @@ def get_tiingo_market_cap_data(ticker, added_date):
         missing_data_amount = len(tiingo_stock_price_data) - len(tiingo_market_cap_data)
         if (len(tiingo_stock_price_data) > len(tiingo_market_cap_data)):
             # print("Incomplete market cap data for tiingo. Fixing now: " + ticker)
-            if missing_data_amount > 1000:
-                print(">=5 years of stock price data to add to tingo market cap: " + ticker)
+            # if missing_data_amount > 1000:
+            #     print(">=5 years of stock price data to add to tingo market cap: " + ticker)
+            if (first_date_in_market_cap_data - added_date).days > 365:
+                print("Missing days of data in initial tiingo market cap data: " + 
+                    str((first_date_in_market_cap_data - added_date).days))
             first_date_in_market_cap_data = datetime.strptime(tiingo_market_cap_data[0]["date"], "%Y-%m-%d")
             new_market_cap_data = []
             last_stock_market_cap_ratio = None
@@ -533,22 +606,76 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
     if original_ticker in ["INFO", "STI", "LLL"]: #500s
         print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
         return
-
     elif 600<=index<700 and original_ticker in ["CA","XL","MON","DOW","DNB","FTR","HAR","LLTC","SE","DO","HOT","EMC",
-                                              "TYC","TE","CVC","ADT","BRCM","PCP","ALTR","PLL","NE","ATI"]: #600s
+                                              "TYC","TE","CVC","ADT","BRCM","PCP","ALTR","PLL","NE"]: #600s
         print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
         return
-
-
     elif 700<=index<800 and original_ticker in ["BTU","FRX","LSI","BEAM","VIAV","MOLX","JCP","NYX","DELL","BMC","S","CBE"
                                                 ,"SUN","LXK","EP","MMI","CEG","CPWR","TLAB","MWW","SUNEQ","NSM","MI"
                                                 ,"Q","QLGC","MDP","STR","JAVA","DYN","SGP"
                                                 ]:
         print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
         return
-           
+    elif 800<=index<900 and original_ticker in ["WYE","CBE","EQ","GM","ROH","NE","UST","AW","ABI","BUD","HPC","WWY"
+                                                ,"COOP","LEHMQ","EDS","BSC","CC","CBH","CZR","DJ","TEK","TXU","NCR"
+                                                ,"FDC","CBSS","KSE","BMET"]:
+        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
+        return
+    
+    #800, WYE; https://companiesmarketcap.com/wyeth/marketcap/; https://www.eoddata.com/StockQuote/NYSE/WYE.htm
+    #801, CBE; extremely limited data; less than a year; https://www.eoddata.com/stockquote/NYSE/CBE.htm 
+    #803, CTX; no data found
+    #804, CIT; can't find data before 2009 bankrupty and restructuring; https://www.eoddata.com/stockquote/NYSE/CIT.htm 
+    #806, EQ; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/EQ.htm?e=NYSE&s=EQ&e=NYSE&s=EQ 
+    #809, GM; can't find data for free before 2009 bankrupty; https://www.eoddata.com/stockquote/NYSE/GM.htm 
+    #810, ROH; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/ROH.htm 
+    #812, NE; https://companiesmarketcap.com/noble-corp/marketcap/ ; https://www.eoddata.com/StockQuote/NYSE/ROH.htm 
+    #817, SOV; can't find more data; https://www.eoddata.com/stockquote/NYSE/SOV.htm
+    #818, UST; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/UST.htm
+    #819, MER; can't find more data;  https://www.eoddata.com/stockquote/NYSE/MER.htm 
+    #820, WB; no data found; https://www.eoddata.com/stockquote/NYSE/WB.htm 
+    #821, NCC; no data found; https://www.eoddata.com/stockquote/NYSE/NCC.htm
+    #822, BRL; can't find more data
+    #824, AW; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/AW.htm 
+    #826, ABI; can't find data for free; https://www.eoddata.com/stockquote/NYSE/ABI.htm 
+    #827, BUD; can't find data for free; https://www.eoddata.com/stockquote/NYSE/BUD.htm ; https://companiesmarketcap.com/anheuser-busch-inbev/marketcap/
+    #828, HPC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/HPC.htm
+    #835, WWY; can't find data for free; https://www.eoddata.com/stockquote/NYSE/WWY.htm
+    #837, COOP; can't find relevant data for free; https://www.eoddata.com/stockquote/NASDAQ/COOP.htm 
+    #838, SAF; can't find data
+    #839, LEHMQ; https://www.eoddata.com/stockquote/NYSE/LEH.htm ; https://companiesmarketcap.com/lehman-brothers/marketcap/
+    #840, FNMA; no missing data, but should double check; 6 years of data to add to market cap; https://companiesmarketcap.com/fannie-mae/marketcap/ 
+    #841, FMCC; no missing data, but should double check; 12 years to add to market cap; https://companiesmarketcap.com/freddie-mac/stock-price-history/
+    #842, EDS; can't find data for free; https://www.eoddata.com/stockquote/NYSE/EDS.htm
+    #843, IAC; no missing data, but should double check; https://companiesmarketcap.com/iac/marketcap/
+    #844, IHRT; can't find relevant data; not found on GITHUB SP 500
+    #847, CFC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/CFC.htm
+    #848, OMX; can't find data for free; https://www.eoddata.com/stockquote/NYSE/OMX.htm ; https://www.investing.com/equities/office-max
+    #850, AMBC; can't find data
+    #852, BSC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/BSC.htm ; https://companiesmarketcap.com/bear-stearns/marketcap/
+    #853, CC; can't find data; check NYSE EODDATA.com but it is under a diffferent company name
+    #854, CBH; can't find data; check NYSE EODDATA.com but it is under a different company name
+    #855, CZR; can't find data; check NYSE EODDATA.com; was on NYSE(2004-2010) before moving to NASDAQ(2014-Present)
+    #857, TIN; can't find data for free; https://www.eoddata.com/stockquote/NYSE/TIN.htm
+    #858, TRCO; can't find relevant data
+    #859, DJ; can't find data for free; https://www.eoddata.com/stockquote/NYSE/DJ.htm ; kibot
+    #860, AT; can't find data
+    #861, TEK; can't find data for free; https://www.eoddata.com/stockquote/NYSE/TEK.htm 
+    #862, HCR; can't find data
+    #863, BOL; can't find data for free; https://www.eoddata.com/stockquote/NYSE/BOL.htm 
+    #864, AV; can't find data
+    #865, HLT; can't find data for free; https://www.eoddata.com/stockquote/NYSE/HLT.htm 
+    #866, TXU; can't find data for free; https://www.eoddata.com/stockquote/NYSE/TXU.htm 
+    #867, ASN; can't find data for free; https://www.eoddata.com/stockquote/NYSE/ASN.htm; kibot
+    #868, SLR; can't find data for free; https://www.eoddata.com/stockquote/NYSE/SLR.htm 
+    #869, NCR; can't find data for free; https://www.eoddata.com/stockquote/NYSE/NCR.htm; https://companiesmarketcap.com/ncr-corporation/marketcap/
+    #871, FDC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/FDC.htm; https://companiesmarketcap.com/first-data-corporation/marketcap/
+    #872, CBSS; can't find data for free; https://www.eoddata.com/stockquote/NASDAQ/CBSS.htm;
+    #873, KSE; can't find data for free; https://www.eoddata.com/stockquote/NYSE/KSE.htm 
+    #874, BMET; can't find data for free; https://www.eoddata.com/stockquote/NASDAQ/BMET.htm
 
-#NOTE: check 742, RRD, for market cap tiingo calcutions
+    #875; DG; can't find relevant data for free; https://www.eoddata.com/stockquote/NYSE/DG.htm
+
 
     #format: January 21, 2012
     added_date = datetime.strptime(added_date, "%B %d, %Y") 
@@ -597,8 +724,8 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
     if len(market_cap_data) < 500:
         if len(market_cap_data) == 0:
             print("No market cap data found: " + ticker)
-        else:
-            print("Less than 2 years of market cap data: " + ticker)
+        # else:
+        #     print("Less than 2 years of market cap data: " + ticker)
 
     file_path = "company_market_cap_data/" + str(index) + "_" + original_ticker + ".json"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -620,9 +747,9 @@ removal_dates = list(sp_500_dict["Removed_Date"].values())
 no_fmp_data_list = []
 no_tiingo_data_list = []
 
-for i, ticker in enumerate(tickers[:500]):
-    # if i < 800:
-    #     continue
+for i, ticker in enumerate(tickers[:800]):
+    if i < 600:
+        continue
     # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
     #     continue
     print(i)
@@ -682,10 +809,14 @@ for i, ticker in enumerate(tickers[:500]):
     if 700<=i<800:
         if ticker == "LIFE":
             ticker = "LIFE2"
+        if ticker == "DELL":
+            ticker = "DELL1"
         if ticker == "BIG":
             ticker = "BIGGQ"
         if ticker == "DF":
             ticker = "DFODQ"
+        if ticker == "SUN":
+            ticker = "SUN1"
         if ticker == "ANR":
             ticker = "ANRZQ"
         if ticker == "SHLD":
@@ -698,13 +829,43 @@ for i, ticker in enumerate(tickers[:500]):
             ticker = "Q1"
         if ticker == "MIL":
             ticker = "MIL1"
-
     #800-900
+    if 800<=i<900:
+        if ticker == "CTX":
+            ticker = "CTX1"
+        if ticker == "EQ":
+            ticker = "EQ1"
+        if ticker == "WFT":
+            ticker = "WFTIQ"
+        if ticker == "UST":
+            ticker = "UST1"
+        if ticker == "WB":
+            ticker = "WB2"
+        if ticker == "ABI":
+            ticker = "ABI1"
+        if ticker == "SAF":
+            ticker = "SAF2"
+        if ticker == "OMX":
+            ticker = "OMX1"
+        if ticker == "BSC":
+            ticker = "BSC1"
+        if ticker == "CC":
+            ticker = "CCTYQ"
+        if ticker == "CBH":
+            ticker = "CBH1"
+        if ticker == "AT":
+            ticker = "AT1"
+        if ticker == "AV":
+            ticker = "AV1"
+        if ticker == "PD":
+            ticker = "PD1"
+        if ticker == "FSLB":
+            ticker = "FSL-B"
     #900-1000
 
     #will get market cap data and place into file
     get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
-    get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
+    # get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
 
 
 

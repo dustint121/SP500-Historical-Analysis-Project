@@ -4,7 +4,7 @@ import fmpsdk
 import pandas as pd
 import requests
 import json
-import fmp_api
+import main
 
 load_dotenv()
 apikey = os.environ.get("apikey")
@@ -59,54 +59,6 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 # with open("tiingo_meta_data.json", 'w') as file:
 #     json.dump(meta_data_list, file, indent=4)
-
-
-
-    # #only tested up to 600th stock in csv
-    # fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
-    # if (len(fmp_bio_list) > 0):
-    #     fmp_data = fmp_bio_list[0]
-    #     # print(fmp_data)
-    #     is_valid_exchange = fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"]
-    #     company_name = company_name.replace('. ', ' ').replace('.', ' ') #do not remove commas, just "."
-    #     is_right_company = company_name.lower()[:5] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
-    #     ticker_exception_list = ["WAB", "CBOE", "BXP", "LH", "BK", "GE", "IBM"
-    #                              ,"ZION", "INFO", "DINO"]
-    #     #name changes : WAB, CBOE, BXP, GE
-    #     #SJM, DHI has unique grammer issues
-    #     #BK, IBM shorthand name used
-    #     if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
-    #         have_data_from_fmp = True
-    #         company_profile["company_name"] = fmp_data["companyName"]
-    #         company_profile["sector"] = fmp_data["sector"]
-    #         company_profile["is_delisted"] = fmp_data["isActivelyTrading"]
-    #         company_profile["description"] = fmp_data["description"]
-
-    #     else: #need to research these company's "sectors" and get name from tiingo; new company using this ticker
-    #         if ticker not in ["STI"]:
-    #             print("Invalid FMP data for ticker symbol: " + ticker)
-    #         no_fmp_data_list.append(ticker)
-    # else:
-    #     #need to research these company's "sectors" and get name from tiingo
-    #     if ticker not in ["FLIR","VAR","CXO","TIF","NBL","ETFC","AGN","RTN","WCG","VIAB","CELG","TSS","APC","RHT"
-    #                       ,"SCG"]:             
-    #         print("No FMP data retrieved for: " + ticker)
-    #     no_fmp_data_list.append(ticker)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #     headers = {'Content-Type': 'application/json'}
@@ -164,8 +116,8 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 
 
-# a = fmp_api.get_market_cap_data("CNW", "CNW", 1182)
-a = fmp_api.get_market_cap_data("AAPL", "AAPL", 0)
-print(len(a))
-print(a[0])
-print(a[-1])
+# a = main.get_market_cap_data("CNW", "CNW", 1182)
+# a = main.get_market_cap_data("AAPL", "AAPL", 0)
+# print(len(a))
+# print(a[0])
+# print(a[-1])
