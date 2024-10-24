@@ -121,3 +121,8 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 # print(len(a))
 # print(a[0])
 # print(a[-1])
+
+
+
+
+# https://corporate.comcast.com/news-information/news-feed/comcast-and-mediaone-announce-60-billion-merger

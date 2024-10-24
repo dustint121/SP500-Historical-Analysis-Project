@@ -101,6 +101,7 @@ def get_cleaned_sp_500_csv():
     sp_500_dict["Ticker"][977] = "GOLD"  #ticker symbol is from Canada, not U.S. "ABX" -> "GOLD"
     sp_500_dict["Ticker"][980] = "SHEL" #Royal Dutch Petroleum; changed ticker symbol from 'RD' to 'SHEL' #github as 'RDS'
     sp_500_dict["Name"][1029] = "O-I Glass, Inc."
+    sp_500_dict["Ticker"][1093] = "MBWM" #changed ticker symbol from "MTL" -> "MBWM"
     sp_500_dict["Name"][1182] = "Conway Inc" #CNW
     sp_500_dict["Name"][1259] = "American Tower Corporation"
     sp_500_dict["Name"][1364] = "O-I Glass, Inc."
@@ -426,7 +427,40 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         company_profile["industry"] = "Personal Services"
         company_profile["source"] = {"tiingo": 12029}
 
-
+    #1007, OAT
+    #1010, H
+    elif original_ticker == "FPC": #1032
+        company_profile["company_name"] = "Florida Progress Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Utilities"
+        company_profile["industry"] = "Utilities - Regulated Electric"
+        company_profile["source"] = {"tiingo": 6594}
+    #1047, COMS
+    #1051, USW; need to specifiy index as well; being used by another 1060, UMG
+    #1074, NLV
+    #1077, LI  transportation
+    elif original_ticker == "TEN": #1083
+        company_profile["company_name"] = "Tenneco Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Cyclical"
+        company_profile["industry"] = "Auto Parts"
+        company_profile["source"] = {"tiingo": 16536}
+    elif original_ticker == "AR": #1084
+        company_profile["company_name"] = "Asarco Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Basic Materials"
+        company_profile["industry"] = "Other Industrial Metals & Mining"
+        company_profile["source"] = {"tiingo": 1192}
+    elif original_ticker == "SNT": #1085
+        company_profile["company_name"] = "Sonat Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Energy"
+        company_profile["industry"] = "Oil & Gas Midstream"
+        company_profile["source"] = {"tiingo": 15643}        
     else:
         got_tingo_data = get_tiingo_company_regular_data(tiingo_ticker, company_name, company_profile)
         got_tingo_metadata = (get_tiingo_company_metadata(tiingo_ticker, company_profile, meta_data_list) 
@@ -483,6 +517,11 @@ def get_tiingo_company_regular_data(ticker, company_name, company_profile):
                                   ,"NXTL","TOY","GLK","VRTS1","WLP1","SOTR","AWE","ONE1","AM1","FBF","CE1","BIIB","QTRN"
                                   ,"PHA","EHC","RATL","INCLF","AL1","SHEL","PDG","IMNX","CNXT1","WLL1","MEA1","KM","HM"
                                   ,"RAL","ENRNQ","GPU","TX1"]
+        #1000s
+        ticker_exception_list += ["TOS","WB2","AGC1","ETS","CEN1","OK","SUB1","UK1","CGP","SMI1","PRD","VO1","FJ","ACKH"
+                                  ,"PWJ","CG1","EFU1","UCM","MKG","YNR","NCE","RADCQ","GTE1","MZIAQ","WLA","CHA1","USW",
+                                  "CSR1","TMC-A","SMS","MIR1","JOS","CBS1","ARC1","PNU","PBY1","FLTWQ","CNG","RNB","PPW",
+                                  "CSE1","CYM","DGN","AIT1","PHB1","MBWM","RYC","NLC1","BFI","TA2","PVT1"]
 
         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
             company_profile["company_name"] = tiingo_data["name"].title()
@@ -753,8 +792,8 @@ removal_dates = list(sp_500_dict["Removed_Date"].values())
 no_fmp_data_list = []
 no_tiingo_data_list = []
 
-for i, ticker in enumerate(tickers[:1000]):
-    if i < 900:
+for i, ticker in enumerate(tickers[:1100]):
+    if i < 1000:
         continue
     # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
     #     continue
@@ -857,7 +896,43 @@ for i, ticker in enumerate(tickers[:1000]):
         if ticker == "NMK":     ticker = "NMK1"
         if ticker == "MEA":     ticker = "MEA1"
         if ticker == "TX":      ticker = "TX1"
-
+    #1000-1100
+    if 1000<=i<1100:
+        if ticker == "WB":      ticker = "WB2" #also in 800s
+        if ticker == "AGC":     ticker = "AGC1"
+        if ticker == "AZA.A":   ticker = "AZA-A"
+        if ticker == "CEN":     ticker = "CEN1"
+        if ticker == "SUB":     ticker = "SUB1"
+        if ticker == "UK":      ticker = "UK1"
+        if ticker == "SMI":     ticker = "SMI1"
+        if ticker == "VO":      ticker = "VO1"
+        if ticker == "AFS.A":   ticker = "AFS-A"
+        if ticker == "SEG":     ticker = "STX" #relisted in NASDAQ from NYSE
+        if ticker == "CG":      ticker = "CG1"
+        if ticker == "EFU":     ticker = "EFU1"
+        if ticker == "BFO":     ticker = "BFO1"
+        if ticker == "GAP":     ticker = "GAPTQ"
+        if ticker == "RAD":     ticker = "RADCQ" #unneccessary, but for testing; has fmp data as well
+        if ticker == "GTE":     ticker = "GTE1"
+        if ticker == "MZ":      ticker = "MZIAQ"
+        if ticker == "CHA":     ticker = "CHA1"
+        if ticker == "UMG":     ticker = "USW" #incorrect or older symbol? using usw for something else 1051
+        if ticker == "CSR":     ticker = "CSR1"
+        if ticker == "TMC.A":   ticker = "TMC-A" 
+        if ticker == "MIR":     ticker = "MIR1"
+        if ticker == "RLM":     ticker = "RLM1"
+        if ticker == "CBS":     ticker = "CBS1"
+        if ticker == "ARC":     ticker = "ARC1"
+        if ticker == "PBY":     ticker = "PBY1"
+        if ticker == "FLE":     ticker = "FLTWQ"
+        if ticker == "CSE":     ticker = "CSE1"
+        if ticker == "AIT":     ticker = "AIT1"
+        if ticker == "PHB":     ticker = "PHB1"
+        if ticker == "FTL.A":   ticker = "FTL-A" 
+        if ticker == "FRO":     ticker = "FRO1"
+        if ticker == "NLC":     ticker = "NLC1"
+        if ticker == "TA":      ticker = "TA2"
+        if ticker == "PVT":     ticker = "PVT1"
     #will get market cap data and place into file
     get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
     # get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
@@ -865,5 +940,9 @@ for i, ticker in enumerate(tickers[:1000]):
 
 
 
-
+#NOTE: check 1048, RAD for market cap data; fmp has more data available and should be used if functioning correctly
+    #for 1996-12-02, tiingo has $3.3 billion, while fmp has $5 billion
+    #for 2001-06-28, tiingo has 3.5 billion, fmp has $4.2 billion, marketcap.com has $4.4 billion
+    #for 2023-11-06, tiingo has $14.1 million, fmp has $13.7 million, marketcap.com has $36.8 million
+#NOTE: check 1093, MTL/MBWM should use fmp data
 #double check 977, GOLD for market cap calculation later
