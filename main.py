@@ -106,7 +106,8 @@ def get_cleaned_sp_500_csv():
     sp_500_dict["Name"][1259] = "American Tower Corporation"
     sp_500_dict["Name"][1364] = "O-I Glass, Inc."
     sp_500_dict["Name"][1717] = "Archer-Daniels-Midland Company"
-    #no name for {921 : JP}
+
+
     sp_500_stocks_1996 = pd.read_pickle("github_dataset.pkl")["tickers"][0]
     for i in range(1200):
         ticker = sp_500_dict["Ticker"][i]
@@ -426,9 +427,18 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         company_profile["sector"] = "Consumer Cyclical"
         company_profile["industry"] = "Personal Services"
         company_profile["source"] = {"tiingo": 12029}
-
-    #1007, OAT
-    #1010, H
+    elif original_ticker == "OAT": #1007
+        company_profile["company_name"] = "Quaker Oats Co"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Defensive"
+        company_profile["industry"] = "Packaged Foods"
+    elif original_ticker == "H": #1010
+        company_profile["company_name"] = "Harcourt General Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Cyclical"
+        company_profile["industry"] = "Publishing"    
     elif original_ticker == "FPC": #1032
         company_profile["company_name"] = "Florida Progress Corp"
         company_profile["is_delisted"] = True
@@ -436,10 +446,31 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         company_profile["sector"] = "Utilities"
         company_profile["industry"] = "Utilities - Regulated Electric"
         company_profile["source"] = {"tiingo": 6594}
-    #1047, COMS
-    #1051, USW; need to specifiy index as well; being used by another 1060, UMG
-    #1074, NLV
-    #1077, LI  transportation
+    elif original_ticker == "COMS": #1047
+        company_profile["company_name"] = "3Com Corp."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Communication Equipment"  
+        company_profile["source"] = {"tiingo": 3954}
+    elif original_ticker == "USW" and index == 1051: #1051, USW; need to specifiy index as well; being used by 1060, UMG
+        company_profile["company_name"] = "US West Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Communication Services"
+        company_profile["industry"] = "Telecommunications Services"  
+    elif original_ticker == "NLV": #1074
+        company_profile["company_name"] = "NextLevel Systems Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Communication Equipment" 
+    elif original_ticker == "LI": #1077
+        company_profile["company_name"] = "Laidlaw International, Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Industrials"
+        company_profile["industry"] = "General Transportation" 
     elif original_ticker == "TEN": #1083
         company_profile["company_name"] = "Tenneco Inc."
         company_profile["is_delisted"] = True
@@ -461,6 +492,142 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         company_profile["sector"] = "Energy"
         company_profile["industry"] = "Oil & Gas Midstream"
         company_profile["source"] = {"tiingo": 15643}        
+    elif original_ticker == "BT": #1105
+        company_profile["company_name"] = "Bankers Trust Corp."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Banks - Regional"
+        company_profile["source"] = {"tiingo": 2603}   
+    elif original_ticker == "AN": #1117
+        company_profile["company_name"] = "Amoco Corp."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Energy"
+        company_profile["industry"] = "Oil & Gas Refining & Marketing"
+        company_profile["source"] = {"tiingo": 1328}  
+    elif original_ticker == "GRN": #1119
+        company_profile["company_name"] = "General Reinsurance Corporation"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Reinsurance industry"    
+    elif original_ticker == "AS": #1120
+        company_profile["company_name"] = "Armco Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Basic Materials"
+        company_profile["industry"] = "Steel"
+        company_profile["source"] = {"tiingo": 1328}   
+    elif original_ticker == "STO": #1121; succeeding company is SSCCQ
+        company_profile["company_name"] = "Stone Container Corp."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Basic Materials"
+        company_profile["industry"] = "Paper & Paper Products"
+    elif original_ticker == "C" and index == 1122: #1122; use index, ticker being used by Citigroup now
+        company_profile["company_name"] = "Chrysler Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Cyclical"
+        company_profile["industry"] = "Auto Manufacturers"
+        company_profile["source"] = {"tiingo": 2766}   
+    elif original_ticker == "MCIC": #1130
+        company_profile["company_name"] = "MCI Communications Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Communication Services"
+        company_profile["industry"] = "Telecommunications Services"  
+    elif original_ticker == "MST": #1133
+        company_profile["company_name"] = "Mercantile Stores Inc"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Cyclical"
+        company_profile["industry"] = "Department Stores"  
+    elif original_ticker == "WAI": #1134
+        company_profile["company_name"] = "Western Atlas Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Energy"
+        company_profile["industry"] = "Oil & Gas Equipment & Services"
+        company_profile["source"] = {"tiingo": 18191}
+    elif original_ticker == "BNL": #1138
+        company_profile["company_name"] = "Beneficial Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Credit Services"
+        company_profile["source"] = {"tiingo": 2350}     
+    elif original_ticker == "GNT": #1140
+        company_profile["company_name"] = "Green Tree Financial Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Mortgage Finance"
+    elif original_ticker == "PET": #1141
+        company_profile["company_name"] = "Pacific Enterprises"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Utilities"
+        company_profile["industry"] = "Utilities - Regulated Gas"
+        company_profile["source"] = {"tiingo": 13057}      
+    elif original_ticker == "DEC": #1142
+        company_profile["company_name"] = "Digital Equipment Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Technology"
+        company_profile["industry"] = "Information Technology Services"
+    elif original_ticker == "CFL": #1143
+        company_profile["company_name"] = "Corestates Financial Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Banks - Regional"
+        company_profile["source"] = {"tiingo": 3287}   
+    elif original_ticker == "FG": #1144
+        company_profile["company_name"] = "USF&G Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Insurance - Life"
+    elif original_ticker == "CBB": #1150
+        company_profile["company_name"] = "Caliber System Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Industrials"
+        company_profile["industry"] = "Integrated Freight & Logistics"
+    elif original_ticker == "BBI": #1152
+        company_profile["company_name"] = "Barnett Banks Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Banks - Regional"   
+    elif original_ticker == "HFS": #1154
+        company_profile["company_name"] = "HFS Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Real Estate"
+        company_profile["industry"] = "Real Estate Services"   
+    elif original_ticker == "SB": #1156
+        company_profile["company_name"] = "Salomon Brothers, Inc."
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Financial Services"
+        company_profile["industry"] = "Asset Management"
+    elif original_ticker == "LLX": #1157
+        company_profile["company_name"] = "Louisiana Land & Exploration Co"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Energy"
+        company_profile["industry"] = "Oil & Gas E&P"
+    elif original_ticker == "SRR": #1158
+        company_profile["company_name"] = "Stride Rite Corp"
+        company_profile["is_delisted"] = True
+        company_profile["description"] = None
+        company_profile["sector"] = "Consumer Cyclical"
+        company_profile["industry"] = "Footwear & Accessories"
+        company_profile["source"] = {"tiingo": 15888}    
+
     else:
         got_tingo_data = get_tiingo_company_regular_data(tiingo_ticker, company_name, company_profile)
         got_tingo_metadata = (get_tiingo_company_metadata(tiingo_ticker, company_profile, meta_data_list) 
@@ -522,6 +689,9 @@ def get_tiingo_company_regular_data(ticker, company_name, company_profile):
                                   ,"PWJ","CG1","EFU1","UCM","MKG","YNR","NCE","RADCQ","GTE1","MZIAQ","WLA","CHA1","USW",
                                   "CSR1","TMC-A","SMS","MIR1","JOS","CBS1","ARC1","PNU","PBY1","FLTWQ","CNG","RNB","PPW",
                                   "CSE1","CYM","DGN","AIT1","PHB1","MBWM","RYC","NLC1","BFI","TA2","PVT1"]
+        #1100s
+        ticker_exception_list += ["ATI1","ASND1","MWI","FMY1","AMP1","TCOMA","HBOC","SAI","PZE1","CCI1","GSX1","USS","FCN1"
+                                  ,"AHM1","DI1","MNR1","BAY1","DIGI2","WMX","SK1","JH","BEV","SFS1","INGR1"]
 
         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
             company_profile["company_name"] = tiingo_data["name"].title()
@@ -554,6 +724,7 @@ def get_tiingo_company_metadata(ticker, company_profile, meta_data_list):
         company_profile["source"] = {"tiingo": None}
         return True
     if ticker == "MYG": ticker = "MYG1"
+    if ticker == "MII": ticker = "MII1"
 
 
     first_letter = ticker[0]
@@ -792,8 +963,8 @@ removal_dates = list(sp_500_dict["Removed_Date"].values())
 no_fmp_data_list = []
 no_tiingo_data_list = []
 
-for i, ticker in enumerate(tickers[:1100]):
-    if i < 1000:
+for i, ticker in enumerate(tickers[:1157]):
+    if i < 500:
         continue
     # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
     #     continue
@@ -933,6 +1104,33 @@ for i, ticker in enumerate(tickers[:1100]):
         if ticker == "NLC":     ticker = "NLC1"
         if ticker == "TA":      ticker = "TA2"
         if ticker == "PVT":     ticker = "PVT1"
+    #1100-1200
+    if 1100<=i<1200: 
+        if ticker == "ATI":     ticker = "ATI1"
+        if ticker == "ASND":    ticker = "ASND1"
+        if ticker == "ASC":     ticker = "ASC1"
+        if ticker == "HPH":     ticker = "HRZIQ"
+        if ticker == "FMY":     ticker = "FMY1"
+        if ticker == "UCC":     ticker = "UCC1"
+        if ticker == "ANV":     ticker = "ANV1"
+        if ticker == "AMP":     ticker = "AMP1"
+        if ticker == "PZE":     ticker = "PZE1"
+        if ticker == "CCI":     ticker = "CCI1"
+        if ticker == "GSX":     ticker = "GSX1"
+        if ticker == "FCN":     ticker = "FCN1"
+        if ticker == "AHM":     ticker = "AHM1"
+        if ticker == "DI":      ticker = "DI1"
+        if ticker == "MNR":     ticker = "MNR1"
+        if ticker == "BAY":     ticker = "BAY1"
+        if ticker == "DIGI":    ticker = "DIGI2"
+        if ticker == "GFS.A":   ticker = "GFS-A"
+        if ticker == "ECH":     ticker = "ECH1"
+        if ticker == "CHRS":    ticker = "CHRS1"
+        if ticker == "SK":      ticker = "SK1"
+        if ticker == "FLM":     ticker = "FLMIQ"
+        if ticker == "SFS":     ticker = "SFS1"
+        if ticker == "INGR":    ticker = "INGR1"
+
     #will get market cap data and place into file
     get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
     # get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
