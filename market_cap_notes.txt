@@ -1,112 +1,316 @@
-    #660, TYC; no free data; kibot; https://eoddata.com/stockquote/NYSE/TYC.htm 
-    #679; BRCM; https://www.eoddata.com/stockquote/NASDAQ/BRCM.htm; https://www.macrotrends.net/stocks/delisted/BRCM//stock-price-history 
-    #"DO" uses DOFSQ data from OTC market; double check may be needed; https://www.eoddata.com/stockquote/NYSE/DO.htm
-    #for ADT corp - 670, use data from macrotrends.com; https://www.eoddata.com/stockquote/NYSE/ADT.htm 
-    #for CSC, 685; no free data; https://eoddata.com/stockquote/NYSE/CSC.htm
-    #for NE, 693; using NEBLQ;try companiesmarketcap.com; https://eoddata.com/stockquote/NYSE/NE.htm
-    #for ATI, 695; can't find more data
-
-
     
-    #for BTU, 711; using BTUUQ;try companiesmarketcap.com; https://eoddata.com/stockquote/NYSE/BTU.htm 
-    #714, FRX; no data found
-    #limited data for 716, LSI; 2009-2014; need back to 1996; https://www.eoddata.com/stockquote/NASDAQ/LSI.htm
-    #718, BEAM;limited data 2011-2014; need back to 1996; https://www.eoddata.com/stockquote/NYSE/BEAM.htm
-    #721, LIFE, can't find data 
-    #725, MOLX, limited data; https://www.eoddata.com/stockquote/NASDAQ/MOLX.htm 
-    #726, JCP, limited data from markets.financialcontent.com;try companiesmarketcap.com; https://eoddata.com/stockquote/NYSE/JCP.htm
-    #727, NYX, limited data; https://eoddata.com/stockquote/NYSE/NYX.htm
-    #728, DELL, have full data in pdf format
-    #731, BMC, limited data;try companiesmarketcap.com; https://www.eoddata.com/stockquote/NASDAQ/BMC.htm 
-    #732, S, limited data;try companiesmarketcap.com
-    #733, APOL, can't find relevant data; https://www.eoddata.com/stockquote/NASDAQ/APOL.htm 
-    #735, HNZ, can't find more data; https://www.eoddata.com/stockquote/NYSE/HNZ.htm 
-    #737, CVH can't find more data; https://www.eoddata.com/stockquote/NYSE/CVH.htm
-    #744, SUN; limited data; https://eoddata.com/stockquote/NYSE/SUN.htm 
-    #749, GR; can't find data; https://www.eoddata.com/stockquote/NYSE/GR.htm
+    #NOTE: marketcap numbers are at the time of specified "Removed Date"
+        #may not match number cited in source if additional calculations are needed
+    
+    #what year has the most stocks added/removed in sp 500?
+    # percentage of tech sector companies on nasdaq vs nyse
+
+    #545, INFO; kibot;          marketcap = $43.35 billion
+    #586, STI; kibot (STI.A);   marketcap = $30.75 billion
+    #595, LLL; investing.com;   marketcap = $19.5 billion
+
+
+    #609, CA; investing.com; marketcap = $18.6 billion (marketcap.com) 
+    #612, XL; kibot; marketcap = $14.9 billion 
+    #618, MON; kibot; marketcap = $56.46 billion (marketcap.com)
+    #620, WYND; kibot (WYN); marketcap = $6.11 billion
+    #629, DOW; can't find data
+    #643, DNB; can't find data
+    #646, FTR; kibot; marketcap = $9 billion
+    #648, HAR; kibot; marketcap = $7.8 billion
+    #649, LLTC; kibot; marketcap = $15.65 billion
+    #652, SE; can't find data
+    #656, AA; kibot; marketcap = $4 billion
+    #657, DO; kibot; marketcap = $1.83 billion
+    #658, HOT; kibot; marketcap = $13.07 billion
+    #659, EMC; investing.com; marketcap = $56.85 billion
+    #660, TYC; kibot; marketcap = $9.9 billion
+    #662, TE; kibot; marketcap = $2.15 billion
+    #664, CVC; kibot; marketcap = $1.64 billion
+    #670, ADT; can't find data
+    #679, BRCM; kibot; marketcap = $36.97 billion
+    #680, PCP; kibot; marketcap = $32.33 billion
+    #683, ALTR, kibot; marketcap = $16.34 billion
+    #685, CSC; can't find more data; https://eoddata.com/stockquote/NYSE/CSC.htm
+    #691, PLL; investing.com; marketcap = $13.58 billion
+    #693, NE; investing.com; marketcap = $2.55 billion (marketcap.com)
+    #695, ATI; can't find more data
+
+    #for ADT corp - 670, use data from macrotrends.com; https://www.eoddata.com/stockquote/NYSE/ADT.htm 
+
+
+    #711, BTU; no data found; https://eoddata.com/stockquote/NYSE/BTU.htm; try companiesmarketcap.com;  
+    #714, FRX; kibot; marketcap = $19.3 billion
+    #716, LSI; investing.com; limited data; marketcap = $6.3 billion
+    #718, BEAM; investing.com; marketcap = $13.84 billion; https://www.eoddata.com/stockquote/NYSE/BEAM.htm
+    #721, LIFE; can't find data 
+    #725, MOLX; kibot; marketcap = $6.93 billion
+    #726, JCP; kibot; marketcap = $2.85 billion (marketcap.com)
+    #727, NYX; kibot; marketcap = $11.13 billion
+    #728, DELL; have full data in pdf format; marketcap = $24.9 billion
+    #731, BMC; kibot; marketcap = $6.58 billion
+    #732, S; investing.com has limited data;try companiesmarketcap.com
+    #733, APOL; kibot; marketcap = $2 billion (macrotrends.com)
+    #735, HNZ; kibot; marketcap = $23.41 billion
+    #737, CVH; kibot; marketcap = $6.77 billion
+    #743, CBE; kibot; marketcap = $12.05 billion (also in 801)
+    #744, SUN; investing.com; limited data; marketcap = $4.9 billion; https://eoddata.com/stockquote/NYSE/SUN.htm 
+    #747, LXK; kibot; marketcap = $1.5 billion (macrotrends.com)
+    #749, GR; kibot; marketcap = $16.5 billion
     #750, PGN; can't find data
-    #752; NVLS, can't find more data
-    #753; EP; double-check later; https://www.eoddata.com/stockquote/NYSE/EP.htm 
-    #754; data has formatting problems and can't be downloaded normally; https://www.investing.com/equities/motorola-mobility-holdings 
-    #756, MHS; can't find more data; https://www.eoddata.com/stockquote/NYSE/MHS.htm 
-    #757, CEG; found csv from Exelon who nows owns the company; https://investors.exeloncorp.com/stock-information/historical-share-information
-    #758, CPWR; limited data; https://www.eoddata.com/stockquote/NASDAQ/CPWR.htm 
-    #759, TLAB; limited data; https://www.eoddata.com/stockquote/NASDAQ/TLAB.htm
-    #762, SUNEQ; limited data; 
-    #765, CEPH; can't find data; https://www.eoddata.com/stockquote/NASDAQ/CEPH.htm; 
-    #766, NSM;try companiesmarketcap.com; 
-    #767, MI; can't find data; https://www.eoddata.com/stockquote/NYSE/MI.htm 
-    #769, MEE; can't find data; https://www.eoddata.com/stockquote/NYSE/MEE.htm 
-    #770, NOVL; can't find data; https://www.eoddata.com/stockquote/NASDAQ/NOVL.htm
-    #771, GENZ; can't find data; https://www.eoddata.com/stockquote/NASDAQ/GENZ.htm
-    #772, Q;try companiesmarketcap.com
-    #774; AYE; can't find more data; https://www.eoddata.com/stockquote/NYSE/AYE.htm 
-    #776; MDP; double check with companiesmarketcap.com; https://www.eoddata.com/stockquote/NYSE/MDP.htm
-    #777; KODK; can't find more data before renaming
-    #780; KG; can't find more data; https://www.eoddata.com/stockquote/NYSE/KG.htm 
-    #781; PTV; can't find data; https://www.eoddata.com/stockquote/NYSE/PTV.htm 
-    #782; SII, can't find data
-    #786; BJS, can't find more data; https://www.eoddata.com/stockquote/NYSE/BJS.htm
-    #787; BDK, can't find data; https://www.eoddata.com/stockquote/NYSE/BDK.htm 
-    #788; IMS, can't find relevant data before 2nd relisting; https://www.eoddata.com/stockquote/NYSE/IMS.htm 
-    #790; BNI, can't find data; https://www.eoddata.com/stockquote/NYSE/BNI.htm 
-    #791; ACS, can't find relevant data; https://www.eoddata.com/stockquote/NYSE/ACS.htm 
-    #792; JAVA;try companiesmarketcap.com; https://www.eoddata.com/stockquote/NASDAQ/JAVA.htm
-    #799; SGP;try companiesmarketcap.com; https://www.eoddata.com/stockquote/NYSE/SGP.htm 
+    #752, NVLS, kibot; marketcap = $2.9 billion
+    #753, EP; eoddata; marketcap = $21 billion; https://www.eoddata.com/stockquote/NYSE/EP.htm 
+    #754, MMI; can't find data; can't be downloaded normally: https://www.investing.com/equities/motorola-mobility-holdings 
+    #756, MHS; kibot; marketcap = $27.2 billion
+    #757, CEG; kibot; marketcap = $7.5 billion  ;found csv from Exelon who nows owns the company; https://investors.exeloncorp.com/stock-information/historical-share-information
+    #758, CPWR; kibot; limited data; marketcap = $1.72 billion ;https://www.eoddata.com/stockquote/NASDAQ/CPWR.htm
+    #759, TLAB; kibot; marketcap = $1.01 billion
+    #761, MWW; kibot; marketcap = $0.69 billion
+    #762, SUNEQ; kibot; marketcap = $1.18 billion
+    #765, CEPH; kibot; marketcap = $6.35 billion (eoddata.com)
+    #766, NSM; try companiesmarketcap.com; 
+    #767, MI; eoddata; marketcap = $4.2 billion (eoddata.com); https://www.eoddata.com/stockquote/NYSE/MI.htm 
+    #769, MEE; kibot; marketcap = $6.66 billion (eoddata.com)
+    #770, NOVL; kibot; marketcap = $2.15 billion (eoddata.com)
+    #771, GENZ; kibot; marketcap = $19.92 billion (eoddata.com)
+    #772, Q;  companiesmarketcap.com; https://companiesmarketcap.com/qwest-communications-international/marketcap/
+    #774, AYE; kibot; marketcap = $4.25 billion
+    #775, QLGC; kibot; marketcap = $1.53 billion
+    #776, MDP; kibot; marketcap = $1.55 billion (companiesmarketcap.com) 
+    #777, KODK; can't find data before renaming
+    #780, KG; kibot; marketcap = $3.55 billion (eoddata.com)
+    #781, PTV; kibot; marketcap = $4.47 billion (eoddata.com)
+    #782, SII; can't find data
+    #784, STR; investing.com; marketcap = $2.57 billion
+    #786, BJS, kibot; marketcap = $5.5 billion 
+    #787, BDK, kibot; marketcap = $4.57 billion (eoddata.com)
+    #788, IMS; can't find data
+    #790, BNI, kibot; marketcap = $34 billion (wiki)
+    #791, ACS, kibot; marketcap = $5.83 billion (eoddata.com)
+    #792, JAVA; kibot; marketcap = $7.15 billion (companiesmarketcap.com) ; try companiesmarketcap.com
+
+    #797, DYN; to research/double check; marketcap = $1.17 billion (finchat.io)
+
+    #799; SGP; kibot; marketcap = $46 billion (companiesmarketcap.com) ;try companiesmarketcap.com
+    #800, WYE; companiesmarketcap.com;  https://companiesmarketcap.com/wyeth/marketcap/; marketcap = $67.27 billion
+    #801, CBE; kibot; marketcap = $4.91 billion (eoddata.com)
+    #803, CTX; kibot; marketcap = $1.31 billion 
+    #804, CIT; kibot; marketcap = $0.294 billion (https://www.annualreports.com/HostedData/AnnualReportArchive/c/NYSE_CIT_2009.pdf page_5) 
+    #806, EQ; eoddata; marketcap = $6.01 billion https://www.eoddata.com/stockquote/NYSE/eq.htm
+
+    #809, GM; kibot; check later on annualreports; marketcap = $1.05 billion (566,000,000 shares)(https://www.annualreports.com/HostedData/AnnualReportArchive/g/NYSE_GM_2007.pdf)
+
+    #810, ROH; kibot; need to make two api calls(before and after 2000) marketcap = $15.41 billion (eoddata.com)
+    #812, NE; kibot; marketcap = $6.3 billion; https://companiesmarketcap.com/noble-corp/marketcap/ 
+    #817, SOV; kibot; marketcap = $1.65 billion (tiingo data) 
+    #818, UST; kibot; marketcap = $9.1 billion (https://www.reuters.com/article/business/altria-completes-ust-acquisition-idUSTRE505436/)
+
+    #819, MER; kibot(before and after 2007);  https://www.eoddata.com/stockquote/NYSE/MER.htm; https://money.stackexchange.com/questions/28490/merrill-lynch-historical-stock-prices-where-to-find 
+
+    #820, WB; kibot; marketcap = $15 billion; https://archive.nytimes.com/dealbook.nytimes.com/2008/10/03/wells-fargo-to-merge-with-wachovia/
+    #821, NCC; kibot(before and after 2007); marketcap = $3.75 billion; (https://web.archive.org/web/20081026050907/http://www.post-gazette.com/pg/08298/922560-100.stm)
+    #822, BRL; kibot; marketcap = $7.38 billion (https://www.nytimes.com/2008/07/19/business/19teva.html) ($7.16 billion tiingo)
+    #824, AW; kibot; marketcap = $4.21 billion (https://www.reuters.com/article/world/republic-to-buy-allied-in-6-billion-waste-deal-idUSN23459259/)
+    #826, ABI; kibot; marketcap = $6.7 billion (double check; new stock after removal date; 6-month jump);  (https://www.genomeweb.com/archive/invitrogen-acquire-applied-biosystems-67b)
+    #827, BUD; kibot; marketcap = $50.95 billion https://www.bevnet.com/news/2008/11-19-2008-ab_inbev_complete_acquisition.asp 
+    #828, HPC; kibot; marketcap = $2.16 billion; (https://www.reuters.com/article/business/ashland-to-acquire-hercules-for-26-billion-idUSN11341005/)
+    #835, WWY; kibot; marketcap = $27.12 billion (https://www.nytimes.com/2008/04/28/business/28gum-web.html)
+
+    #837, COOP; eoddata.com; https://www.eoddata.com/stockquote/NASDAQ/COOP.htm 
+
+    #838, SAF; kibot; marketcap = $62 billion (https://www.insurancejournal.com/news/national/2008/04/23/89365.htm)
+    #839, LEHMQ; companiesmarketcap.com ;https://companiesmarketcap.com/lehman-brothers/marketcap/
 
 
-
-
-    #800, WYE; https://companiesmarketcap.com/wyeth/marketcap/; https://www.eoddata.com/StockQuote/NYSE/WYE.htm
-    #801, CBE; extremely limited data; less than a year; https://www.eoddata.com/stockquote/NYSE/CBE.htm 
-    #803, CTX; no data found
-    #804, CIT; can't find data before 2009 bankrupty and restructuring; https://www.eoddata.com/stockquote/NYSE/CIT.htm 
-    #806, EQ; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/EQ.htm?e=NYSE&s=EQ&e=NYSE&s=EQ 
-    #809, GM; can't find data for free before 2009 bankrupty; https://www.eoddata.com/stockquote/NYSE/GM.htm 
-    #810, ROH; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/ROH.htm 
-    #812, NE; https://companiesmarketcap.com/noble-corp/marketcap/ ; https://www.eoddata.com/StockQuote/NYSE/ROH.htm 
-    #817, SOV; can't find more data; https://www.eoddata.com/stockquote/NYSE/SOV.htm
-    #818, UST; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/UST.htm
-    #819, MER; can't find more data;  https://www.eoddata.com/stockquote/NYSE/MER.htm 
-    #820, WB; no data found; https://www.eoddata.com/stockquote/NYSE/WB.htm 
-    #821, NCC; no data found; https://www.eoddata.com/stockquote/NYSE/NCC.htm
-    #822, BRL; can't find more data
-    #824, AW; can't find data for free; https://www.eoddata.com/StockQuote/NYSE/AW.htm 
-    #826, ABI; can't find data for free; https://www.eoddata.com/stockquote/NYSE/ABI.htm 
-    #827, BUD; can't find data for free; https://www.eoddata.com/stockquote/NYSE/BUD.htm ; https://companiesmarketcap.com/anheuser-busch-inbev/marketcap/
-    #828, HPC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/HPC.htm
-    #835, WWY; can't find data for free; https://www.eoddata.com/stockquote/NYSE/WWY.htm
-    #837, COOP; can't find relevant data for free; https://www.eoddata.com/stockquote/NASDAQ/COOP.htm 
-    #838, SAF; can't find data
-    #839, LEHMQ; https://www.eoddata.com/stockquote/NYSE/LEH.htm ; https://companiesmarketcap.com/lehman-brothers/marketcap/
-    #840, FNMA; no missing data, but should double check; 6 years of data to add to market cap; https://companiesmarketcap.com/fannie-mae/marketcap/ 
-    #841, FMCC; no missing data, but should double check; 12 years to add to market cap; https://companiesmarketcap.com/freddie-mac/stock-price-history/
+    #840, FNMA; kibot; no missing data in tiingo, but should double check; 6 years of data to add to marketcap; https://companiesmarketcap.com/fannie-mae/marketcap/ 
+    #841, FMCC; kibot; no missing data in tiingo, but should double check; 12 years to add to marketcap; https://companiesmarketcap.com/freddie-mac/stock-price-history/
     #842, EDS; can't find data for free; https://www.eoddata.com/stockquote/NYSE/EDS.htm
     #843, IAC; no missing data, but should double check; https://companiesmarketcap.com/iac/marketcap/
-    #844, IHRT; can't find relevant data; not found on GITHUB SP 500
-    #847, CFC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/CFC.htm
-    #848, OMX; can't find data for free; https://www.eoddata.com/stockquote/NYSE/OMX.htm ; https://www.investing.com/equities/office-max
-    #850, AMBC; can't find data
-    #852, BSC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/BSC.htm ; https://companiesmarketcap.com/bear-stearns/marketcap/
-    #853, CC; can't find data; check NYSE EODDATA.com but it is under a diffferent company name
-    #854, CBH; can't find data; check NYSE EODDATA.com but it is under a different company name
-    #855, CZR; can't find data; check NYSE EODDATA.com; was on NYSE(2004-2010) before moving to NASDAQ(2014-Present)
-    #857, TIN; can't find data for free; https://www.eoddata.com/stockquote/NYSE/TIN.htm
-    #858, TRCO; can't find relevant data
-    #859, DJ; can't find data for free; https://www.eoddata.com/stockquote/NYSE/DJ.htm ; kibot
-    #860, AT; can't find data
-    #861, TEK; can't find data for free; https://www.eoddata.com/stockquote/NYSE/TEK.htm 
-    #862, HCR; can't find data
-    #863, BOL; can't find data for free; https://www.eoddata.com/stockquote/NYSE/BOL.htm 
-    #864, AV; can't find data
-    #865, HLT; can't find data for free; https://www.eoddata.com/stockquote/NYSE/HLT.htm 
-    #866, TXU; can't find data for free; https://www.eoddata.com/stockquote/NYSE/TXU.htm 
-    #867, ASN; can't find data for free; https://www.eoddata.com/stockquote/NYSE/ASN.htm; kibot
-    #868, SLR; can't find data for free; https://www.eoddata.com/stockquote/NYSE/SLR.htm 
-    #869, NCR; can't find data for free; https://www.eoddata.com/stockquote/NYSE/NCR.htm; https://companiesmarketcap.com/ncr-corporation/marketcap/
-    #871, FDC; can't find data for free; https://www.eoddata.com/stockquote/NYSE/FDC.htm; https://companiesmarketcap.com/first-data-corporation/marketcap/
-    #872, CBSS; can't find data for free; https://www.eoddata.com/stockquote/NASDAQ/CBSS.htm;
-    #873, KSE; can't find data for free; https://www.eoddata.com/stockquote/NYSE/KSE.htm 
-    #874, BMET; can't find data for free; https://www.eoddata.com/stockquote/NASDAQ/BMET.htm
 
-    #875; DG; can't find relevant data for free; https://www.eoddata.com/stockquote/NYSE/DG.htm
+
+    #844, IHRT; can't find data; also not found on github SP 500
+    #847, CFC; kibot; marketcap = $2.5 billion (https://www.reuters.com/article/business/bank-of-america-completes-countrywide-buy-idUSN01486703/)
+    #848, OMX; kibot; marketcap = $1.22 billion (eoddata.com)
+    #850, AMBC; can't find data
+    #852, BSC; companiesmarketcap.com; https://companiesmarketcap.com/bear-stearns/marketcap/
+    #853, CC; kibot; marketcap = $0.69 billion (https://www.gurufocus.com/news/14863/robert-rodriguez-buys-circuit-city-stores-inc-adds-to-charming-shoppes-inc-sells-national-oilwell-varco-inc)
+    #854, CBH; kibot; marketcap = $7.03 billion (https://www.reuters.com/article/markets/td-bank-to-buy-commerce-bancorp-in-85-bln-deal-idUSN02373501/)
+    #855, CZR; kibot (use ticker, HET); marketcap = $17.4 billion (https://investor.caesars.com/static-files/cf25df1a-ed70-4b2a-b79f-668f28ae9d2b page_2)
+    #857, TIN; kibot; marketcap = $1.82 billion (https://www.prnewswire.com/news-releases/international-paper-completes-acquisition-of-temple-inland-139211549.html)
+    #858, TRCO; can't find data
+    #859, DJ; kibot; marketcap = $5.16 billion (https://www.wsj.com/articles/SB119755500310926517#mod=2_1299.htm_1)
+    #860, AT; can't find data
+    #861, TEK; kibot; marketcap = $2.75 billion (wiki)
+    #862, HCR; kibot; marketcap = $6.3 billion (https://www.sec.gov/Archives/edgar/data/878736/000095015707001450/ex99-1.htm)
+    #863, BOL; kibot; marketcap = $3.67 billion (https://www.fiercebiotech.com/biotech/press-release-warburg-pincus-ventures-completes-acquisition-of-bausch-lomb-for-4-5-billion)
+    #864, AV; kibot; marketcap = $8.3 billion (https://www.sec.gov/Archives/edgar/data/1116521/000119312507232187/dex991.htm)
+   
+    #865, HLT; eoddata.com(inaccurate); marketcap = $18.5 billion (https://www.nytimes.com/2007/07/04/business/04deal.html); https://www.eoddata.com/stockquote/NYSE/HLT.htm 
+    #866, TXU; eoddata.com(seems okay); marketcap = $31.8 billion (https://www.reuters.com/article/markets/txu-agrees-to-be-acquired-for-318-billion-idUSN26267870/); https://www.eoddata.com/stockquote/NYSE/TXU.htm 
+    
+    #867, ASN; kibot; marketcap = $13.6 billion (https://www.multifamilybiz.com/news/149/investment_group_buys_archstonesmith_trust)
+    #868, SLR; kibot; marketcap = $3.6 billion (https://www.reuters.com/article/business/media-telecom/flextronics-to-buy-solectron-for-36-billion-idUSN04445158/)
+    #869, NCR; companiesmarketcap.com; https://companiesmarketcap.com/ncr-corporation/marketcap/
+    #871, FDC; companiesmarketcap.com; https://companiesmarketcap.com/first-data-corporation/marketcap/
+    #872, CBSS; kibot; marketcap = $8.16 billion (https://www.nytimes.com/2007/02/16/business/worldbusiness/16iht-bank.4622364.html)
+    #873, KSE; kibot; marketcap = $7.3 billion (https://www.sec.gov/Archives/edgar/data/1004315/000007129706000008/feb27-6k.htm)
+    #874, BMET; kibot; marketcap = $11.3 billion (https://www.sec.gov/Archives/edgar/data/351346/000119312507156544/dex991.htm)
+    #875, DG; kibot; marketcap = $6.92 billion (https://media.kkr.com/news-details/?news_id=b26b148f-1e9c-413b-8ca7-daa74208fcc7&type=1&download=1)
+    #876, MEL; eoddata.com; marketcap = $16.5 billion (https://www.bostonfed.org/publications/bank-notes/xxxvi/january-2007.aspx) https://www.eoddata.com/stockquote/NYSE/MEL.htm 
+    #877, PMCS; kibot; marketcap = $1.96 billion (https://www.prnewswire.com/news-releases/microsemi-corporation-enters-definitive-agreement-to-acquire-pmc-sierra-inc-300183830.html)
+    #879, ADCT; eoddata.com; NASDAQ, not nyse https://www.eoddata.com/stockquote/NASDAQ/adct.htm 
+    #880, MEDI; kibot; marketcap = $1.39 billion (https://www.sec.gov/Archives/edgar/data/873591/000110465907045758/a07-15665_1sc14d9a.htm)
+    #881, KMI; can't find data
+    #882, RLGY; can't find data
+    #883, TSG; eoddata.com; https://www.eoddata.com/stockquote/NYSE/tsg.htm 
+    #884, UVN; eoddata.com; https://www.eoddata.com/stockquote/NYSE/uvn.htm 
+    #885, CMX; eoddata.com; https://www.eoddata.com/stockquote/NYSE/cmx.htm 
+    #886, PD; can't find data
+    #887, HMA; kibot; marketcap = $2.79 billion (https://www.businesswire.com/news/home/20130730005773/en/Community-Health-Systems-to-Acquire-Health-Management-Associates)
+    #888, PGL; eoddata.com; https://www.eoddata.com/stockquote/NYSE/pgl.htm
+    #889, APCC; eoddata.com; https://www.eoddata.com/stockquote/NASDAQ/APCC.htm 
+    #890, EOP; eoddata.com; https://www.eoddata.com/stockquote/NYSE/eop.htm 
+    #891, CMVT; kibot; marketcap = $4 billion (https://www.loeb.com/en/newsevents/news/2013/02/loeb--loeb-represents-special-committee-in-verin__)
+    #892, SBL; eoddata.com; https://www.eoddata.com/stockquote/NYSE/sbl.htm 
+    #893, BLS; companiesmarketcap.com; https://companiesmarketcap.com/bellsouth/marketcap/
+    #894, PAR; companiesmarketcap.com; https://companiesmarketcap.com/par-technology/marketcap/ 
+    #895, NAV; companiesmarketcap.com or kibot; marketcap = $2.3 billion https://companiesmarketcap.com/navistar/marketcap/ 
+    #896, FSLB; can't find data
+    #897, LU; companiesmarketcap.com; https://companiesmarketcap.com/lucent-technologies/marketcap/
+    #898, NFB; eoddata.com; https://www.eoddata.com/StockQuote/NYSE/nfb.htm 
+    #899, HCA; can't find data
+
+
+
+
+    #900, ACV; marketcap = $1.3 billion (https://finchat.io/)
+    #901, FSH; eoddata.com; https://www.eoddata.com/stockquote/NYSE/fsh.htm 
+    #903, ASO; kibot; marketcap = $10 billion (https://www.nbcnews.com/id/wbna12969331)
+    #904, ANDW; kibot; marketcap = $2.4 billion (https://www.commscope.com/press-releases/2007/commscope-to-acquire-andrew-for-$2.6-billion)
+    #905, GDW; eoddata.com; https://www.eoddata.com/stockquote/NYSE/gdw.htm 
+    #907, GTW; companiesmarketcap.com; https://companiesmarketcap.com/gateway-inc/marketcap/ 
+    #910, KRI; eoddata.com; https://www.eoddata.com/stockquote/NYSE/kri.htm
+    #911, EC; eoddata.com; has 2004-2006 data; dates and price data seems correct; ticker now being used by another company;  https://www.eoddata.com/stockquote/NYSE/ec.htm
+    #912, ADS; eoddata.com; https://www.eoddata.com/stockquote/NYSE/abs.htm
+    #914, GDT; eoddata.com; https://www.eoddata.com/stockquote/NYSE/gdt.htm
+    #915, CHIR; eoddata.com; https://www.eoddata.com/stockquote/NASDAQ/chir.htm
+    #916, CIN; eoddata.com; https://www.eoddata.com/stockquote/NYSE/cin.htm
+    #917, MYG; eoddata.com; https://www.eoddata.com/stockquote/NYSE/myg.htm 
+    #918, BR; can't find data
+    #919, JP; can't find data
+    #920, DAN; can't find data; also not in github sp 500
+    #921, SFA; kibot; marketcap = $7 billion (https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2006/m02/cisco-systems-completes-acquisition-of-scientific-atlanta.html)
+    #922, SEBL; eoddata.com; https://www.eoddata.com/stockquote/NASDAQ/sebl.htm 
+    #923, RBK; can't find data;  https://www.eoddata.com/stockquote/NYSE/rbk.htm 
+    #924, MERQ; can't find data; https://www.eoddata.com/stockquote/NASDAQ/merq.htm 
+    #925, KRB; can't find data; https://www.eoddata.com/stockquote/NYSE/krb.htm
+    #926, VC; check kibot; marketcap = $0.8 billion (https://www.annualreports.com/HostedData/AnnualReportArchive/v/NYSE_VC_2005.pdf) (https://www.autoserviceworld.com/visteon-gets-boot-from-s-p-500/)
+    #927, GP; can't find data; can't find data with quick search on 2004-01-01; https://www.eoddata.com/stockquote/NYSE/gp.htm 
+    #928, CPN; can't find data
+    #929, T; have data, but double check with: https://companiesmarketcap.com/att/marketcap/
+    #930, DPH; can't find data; can't find data with quick search on 2004-01-01; https://www.eoddata.com/stockquote/NYSE/dph.htm 
+    #931, PVN; can't find data; can't find data with quick search on 2004-01-01; https://www.eoddata.com/stockquote/NYSE/pvn.htm
+    #932, G; can't find data
+    #933, MAY; can't find data
+    #934, DAL; can't find data
+    #935, NXTL; companiesmarketcap.com; https://companiesmarketcap.com/nextel-communications/marketcap/
+    #936, SDS; can't find data; can't find data with quick search on 2004-01-01; https://www.eoddata.com/stockquote/NYSE/sds.htm 
+    #937, UCL; kibot; marketcap = $16.39 billion (https://www.nytimes.com/2005/04/04/business/chevrontexaco-to-buy-unocal-in-deal-valued-at-168-billion.html)
+    #938, TOY; can't find data; https://www.eoddata.com/stockquote/NYSE/toy.htm 
+    #939, GLK; can't find data; https://www.eoddata.com/stockquote/NYSE/glk.htm 
+    #940, VRTS; companiesmarketcap.com or kibot; https://companiesmarketcap.com/veritas-technologies/marketcap/
+    #941, S; can't find data;  https://www.forbes.com/sites/adamhartung/2016/05/15/innovation-why-bezos-succeeded-while-lampert-failed-at-sears/
+    #942, PWER; eoddata.com; https://www.eoddata.com/stockquote/NASDAQ/PWER.htm 
+    #943, PSFT; eoddata.com; https://www.eoddata.com/stockquote/NASDAQ/PSFT.htm 
+    #947, WLP; can't find data
+    #948, SOTR; can't find data; https://www.eoddata.com/stockquote/NASDAQ/SOTR.htm
+    #949, AWE; can't find data; https://www.eoddata.com/StockQuote/NYSE/AWE.htm 
+    #950, CF; can't find data
+    #951, TNB; kibot; marketcap = $1.39 billion (https://new.abb.com/news/detail/13857/abb-to-acquire-thomas-betts-for-39-billion-to-become-major-player-in-north-american-low-voltage-products-market)
+    #952, UPC; can't find data; https://www.eoddata.com/StockQuote/NYSE/UPC.htm 
+    #953, ONE, can't find data
+    #954, AM; can't find data
+    #955, JHF; can't find data; https://www.eoddata.com/StockQuote/NYSE/jhf.htm 
+    #956, PCS; can't find data
+    #957, TAP.A; can't find data
+    #958, FBF; can't find data; https://www.eoddata.com/StockQuote/NYSE/fbf.htm
+    #960, CE; can't find data
+    #962, QTRN; can't find data; https://www.eoddata.com/stockquote/NASDAQ/qtrn.htm 
+    #963, MDR; need to double check; have tiingo data, but is all stock price calculation; tiingo and kibot data are differnt
+    #964, PHA; companiesmarketcap.com; https://companiesmarketcap.com/pharmacia/marketcap/
+    #965, HI; can't find data
+    #966, EHC; companiesmarketcap.com or kibot; https://companiesmarketcap.com/healthsouth/marketcap/ 
+    #967, AMR; kibot; marketcap = $0.23 billion (https://images.forbes.com/lists/2006/18/001765106.html) https://www.nypl.org/sites/default/files/amr.pdf
+    #968, RATL; can't find data; https://www.eoddata.com/stockquote/NASDAQ/ratl.htm 
+    #969, TRW; can't find data
+    #971, COC.B; can't find data
+    #973, PALM; kibot; marketcap = $0.15 billion (https://www.nytimes.com/2010/04/29/technology/29palm.html);  https://www.eoddata.com/stockquote/NASDAQ/PALM.htm 
+    #974, CNO; can't find data; https://www.eoddata.com/StockQuote/NYSE/cno.htm
+    #975, NT; companiesmarketcap.com; https://companiesmarketcap.com/nortel-networks/marketcap/ 
+    #976, INCLF; can't find data
+    #977, GOLD; companiesmarketcap.com; https://companiesmarketcap.com/barrick-gold/marketcap/; tiingo stock price calc is not accurate
+    #978, AL; can't find data
+
+    #979, UL; check; stock price data between tiingo and kibot are different; kibot data looks weird
+
+    #981, PDG; can't find data; https://www.eoddata.com/StockQuote/NYSE/pdg.htm
+    #982, IMNX; can't find data
+    #983, CNXT; kibot; marketcap = $0.33 billion (https://www.businesswire.com/news/home/20110224006638/en/Golden-Gate-Capital-Signs-Acquisition-Agreement-with-Conexant-Systems-Inc.)
+    #984, U; can't find data
+    #985, WCOM; companiesmarketcap.com; https://companiesmarketcap.com/worldcom/marketcap/ 
+    #987, CPG; companiesmarketcap.com; https://companiesmarketcap.com/compaq-computer/marketcap/
+    #988, WLL; can't find data
+    #989, NMK; can't find data; kibot has NMK.B and NMK.C 
+    #990, MEA; can't find data
+    #991, KM; can't find data
+    #993, HM; can't find data
+    #994, RAL; can't find data
+    #995, NSI; can't find data; https://www.eoddata.com/StockQuote/NYSE/nsi.htm; ticker currently in NASDAQ after 2023
+    #996, ENRNQ; companiesmarketcap.com; https://companiesmarketcap.com/enron/marketcap/
+    #997, GPU, can't find data
+    #998, GLBC; companiesmarketcap.com; https://companiesmarketcap.com/global-crossing/marketcap/
+    #999, TX; can't find data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#can't find additional needed data except for the following for 1000-1100
+
+    #double check 1001 later
+    #1001, WB; no data found; https://www.eoddata.com/stockquote/NYSE/WB.htm; also on 820
+
+    #1008, PCH; already have data from fmp, but conflicting with https://companiesmarketcap.com/potlatchdeltic/marketcap/
+    #1013, SXCL; kibot; marketcap = $1.25 billion 
+    #1021, MEE; kibot; marketcap = $0.88 billion ; earlier in 769
+    #1024, PRD; buggy data from tiingo
+    #1027, VO; companiesmarketcap.com; https://companiesmarketcap.com/seagram/marketcap/ 
+
+    #1041, DNB; double check kibot;
+    #1047, COMS; double check kibot;
+
+    #1054, IKN; kibot; marketcap = $0.41 billion
+    #1056, WLA; companiesmarketcap.com; https://companiesmarketcap.com/warner-lambert/marketcap/
+    #1058, UMG; companiesmarketcap.com; https://companiesmarketcap.com/mediaone-group/marketcap/ 
+    #1068, PNU; companiesmarketcap.com; https://companiesmarketcap.com/pharmacia-upjohn/marketcap/
+    #1071, FLE; kibot; $0.0009 billion (eoddata.com) ? 
+    #1083, TEN; companiesmarketcap.com; need stock price data; https://companiesmarketcap.com/tenneco/stock-price-history/
+    #1093, MBWM; has a few more months of data; companiesmarketcap.com; https://companiesmarketcap.com/mercantile-bank/marketcap/
+
+
+#can't find additional needed data except for the following for >1100
+
+    #1122, C; companiesmarketcap.com; https://companiesmarketcap.com/chrysler-corporation/marketcap/
+    #1149, PAS; kibot;  marketcap = $0.59 billion (eoddata.com)
