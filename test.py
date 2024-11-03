@@ -57,7 +57,7 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 # requestResponse = requests.get(URL, headers=headers)
 # meta_data_list = requestResponse.json()
 
-# with open("tiingo_meta_data.json", 'w') as file:
+# with open("misc/tiingo_meta_data.json", 'w') as file:
 #     json.dump(meta_data_list, file, indent=4)
 
 
@@ -126,3 +126,49 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 
 # https://corporate.comcast.com/news-information/news-feed/comcast-and-mediaone-announce-60-billion-merger
+
+
+
+
+
+
+
+# df = pd.read_csv("cleaned_sp_500_dataset.csv")
+# sp_500_dict = df.to_dict()
+# tickers = list(sp_500_dict["Ticker"].values())
+# company_names = list(sp_500_dict["Name"].values())
+# added_dates = list(sp_500_dict["Added_Date"].values())
+# removal_dates = list(sp_500_dict["Removed_Date"].values())
+
+
+# print(added_dates[:10])
+
+
+
+
+directory = 'company_profiles'
+sectors = {}
+industries = {}
+
+for filename in os.listdir(directory):
+    if filename.endswith('.json'):
+        with open(os.path.join(directory, filename), 'r') as file:
+            data = json.load(file)
+            sector = data["sector"]
+            industry = data["industry"]
+            exchange = data["exchange"]
+            if sectors.get(sector) != None : sectors[sector] += 1
+            else: sectors[sector] = 1
+
+            if industries.get(industry) != None : industries[industry] += 1
+            else: industries[industry] = 1
+
+sectors = dict(sorted(sectors.items(), key=lambda item: item[1], reverse=True))
+industries = dict(sorted(industries.items(), key=lambda item: item[1], reverse=True))
+
+print(sectors)
+print("\n")
+print(industries)
+
+print("\n")
+print(len(sectors), len(industries))

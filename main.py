@@ -5,6 +5,9 @@ import pandas as pd
 import requests
 import json
 from datetime import datetime
+from company_profile_func import *
+from market_cap_funct import * 
+
 # Actual keys is stored in a .env file.  Not good to store API key directly in script.
 load_dotenv()
 apikey = os.environ.get("fmp_apikey")
@@ -716,238 +719,6 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         json.dump(company_profile, file, indent=4)
 
 
-def get_tiingo_company_regular_data(ticker, company_name, company_profile):     
-    if company_name == None: return None
-
-    headers = {'Content-Type': 'application/json'}
-    tiingo_URL = "https://api.tiingo.com/tiingo/daily/" + ticker + "?token=" + tiingo_token
-    tiingo_data= requests.get(tiingo_URL, headers=headers).json()
-    if tiingo_data != {'detail': 'Not found.'}:
-        is_valid_exchange = tiingo_data["exchangeCode"] in ["NASDAQ", "NYSE"]
-        description = (tiingo_data["description"].replace(',', '').replace('. ', ' ').replace('.', ' ').lower() 
-                        if tiingo_data["description"] != None else "")
-
-        if is_valid_exchange == False and ticker in ["SBNY"]:   #later delisted from NYSE or NASDAQ
-            is_valid_exchange = True
-            
-        company_name = (company_name.lower().replace(',', '').replace('. ', ' ').replace('.', ' ').replace("'",'`')
-                        .replace('(',"").replace(')',"").strip())
-        
-        is_right_company = False
-        if tiingo_data["name"] != None:
-            is_right_company = all([val in ["inc","co","corp","corporation","company","companies","the","-","&",
-                                            "int`l","plc","ltd","llc"] 
-                                    or val in tiingo_data["name"].lower() or val in description.split()[:20]
-                                    for val in company_name.split()])
-
-        ticker_exception_list = ["CPAY","CBOE","ORLY","DOC","BXP","EL","LH","BF-B","GE","NSC","SLB"]
-        #500s
-        ticker_exception_list += ["XOM","FRCB","SIVBQ","DISCK","MRKT","DINO","AGN"]
-        #600s
-        ticker_exception_list += ["GGP","LVLT","DD","BBBYQ","MNKKQ","FTR","ENDPQ","TE","VAL","CNX","ALTR1"
-                                  ,"CMCSA","PLL1","DTV1"]
-        #700s
-        ticker_exception_list += ["LIFE2","DELL1","FHN","DFODQ","BIGGQ","RRD","SUN1","ATGE","SHLDQ","MMI1","SUNEQ","NSM1"
-                                  ,"Q1","PTV","MIL1","XTO","BDK","SGP","WINMQ"]
-        #800s
-        ticker_exception_list += ["WYE","CTX1","EQ1","ROH","SOV","UST1","AW","ABI1","BUD1","ASH","WWY","WEN","SAF2","FNMA","FMCC"
-                                  ,"IAC","OMX1","CCTYQ","CBH1","CZR","DJ","AT1","BOL","AV1","TXU","ASN","SLR","CBSS","KSE"
-                                  ,"BMET","MEL","PD1","PGL","APCC","EOP","SBL","BLS","NFB"]
-        #900s
-        ticker_exception_list += ["FSH","GTW","CTB","EC1","ABS","CHIR1","CIN","MYG","BR1","RBK","KRB","DPHIQ","G1","MAY"
-                                  ,"NXTL","TOY","GLK","VRTS1","S1","WLP1","SOTR","AWE","ONE1","AM1","FBF","CE1","BIIB","QTRN"
-                                  ,"PHA","EHC","RATL","INCLF","AL1","SHEL","PDG","IMNX","CNXT1","WLL1","MEA1","KM","HM"
-                                  ,"RAL","ENRNQ","GPU","TX1"]
-        #1000s
-        ticker_exception_list += ["TOS","WB2","AGC1","ETS","CEN1","OK","SUB1","UK1","CGP","SMI1","PRD","VO1","FJ","ACKH"
-                                  ,"PWJ","CG1","EFU1","UCM","MKG","YNR","NCE","RADCQ","GTE1","MZIAQ","WLA","CHA1","USW",
-                                  "CSR1","TMC-A","SMS","MIR1","JOS","CBS1","ARC1","PNU","PBY1","FLTWQ","CNG","RNB","PPW",
-                                  "CSE1","CYM","DGN","AIT1","PHB1","MBWM","RYC","NLC1","BFI","TA2","PVT1"]
-        #1100s
-        ticker_exception_list += ["ATI1","ASND1","MWI","FMY1","AMP1","TCOMA","HBOC","SAI","PZE1","CCI1","GSX1","USS","FCN1"
-                                  ,"AHM1","DI1","MNR1","BAY1","DIGI2","WMX","SK1","JH","BEV","SFS1","INGR1"]
-
-        if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
-            company_profile["company_name"] = tiingo_data["name"].title()
-            company_profile["is_delisted"] = "delisted" in tiingo_data["description"][:15].lower()
-            company_profile["description"] = tiingo_data["description"].replace("DELISTED - ", '')
-            company_profile["exchange"] = tiingo_data["exchangeCode"] if tiingo_data["exchangeCode"] in ["NYSE", "NASDAQ"] else None
-            if company_profile["description"] == tiingo_data["name"]:
-                company_profile["description"] = None
-            return True
-        else:
-            if ticker not in []:
-                print("Invalid Tiingo data for ticker symbol: " + ticker)
-                return False
-    else:
-        print("No Tiingo data retrieved for: " + ticker)
-        return False
-
-    #DPS company data is not found on meta for tiingo or on FMP
-
-
-def get_tiingo_company_metadata(ticker, company_profile, meta_data_list):
-    tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F': 6052, 'G': 6866, 
-                            'H': 7687, 'I': 8349, 'J': 9170, 'K': 9383, 'L': 9730, 'M': 10382, 'N': 11485, 
-                            'O': 12269, 'P': 12752, 'Q': 13899, 'R': 14030, 'S': 14729, 'T': 16316, 'U': 17321, 
-                            'V': 17665, 'W': 18158, 'X': 18638, 'Y': 18773, 'Z': 18851}
-    
-    #weird edge cases
-    if ticker == "MDR":
-        company_profile["sector"] = "Energy"
-        company_profile["industry"] = "Oil & Gas Equipment & Services"
-        company_profile["source"] = "tiingo"
-        return True
-    if ticker == "MYG": ticker = "MYG1"
-    if ticker == "MII": ticker = "MII1"
-
-
-    first_letter = ticker[0]
-    starting_index = tiingo_meta_data_index[first_letter]
-    stopping_index = None
-    if first_letter == 'Z':
-        stopping_index = -1
-    else:
-        next_letter = list(tiingo_meta_data_index.keys())[list(tiingo_meta_data_index.keys()).index(first_letter) + 1]
-        stopping_index = tiingo_meta_data_index[next_letter]
-    meta_data_list = meta_data_list[starting_index:stopping_index]
-    match_found = False
-    for i, meta_data in enumerate(meta_data_list):
-        if ticker.lower() == meta_data["ticker"]:
-            company_profile["sector"] = meta_data["sector"]
-            company_profile["industry"] = meta_data["industry"]
-            company_profile["source"] = "tiingo"
-            match_found = True
-            return True
-    if match_found == False:
-        print("No tiingo meta data found for: " + ticker)
-        return False
-
-
-def get_fmp_metadata(ticker, company_name, company_profile):
-    fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
-    if (len(fmp_bio_list) > 0):
-        fmp_data = fmp_bio_list[0]
-        is_valid_exchange = fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"]
-        company_name = company_name.replace('. ', ' ').replace('.', ' ') #do not remove commas, just "."
-        is_right_company = False
-        if fmp_data["companyName"] != None:
-            is_right_company = company_name.lower()[:8] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
-        ticker_exception_list = []
-        if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
-            company_profile["company_name"] = fmp_data["companyName"]
-            company_profile["sector"] = fmp_data["sector"]
-            company_profile["industry"] = fmp_data["industry"]
-            company_profile["is_delisted"] = not fmp_data["isActivelyTrading"]
-            company_profile["description"] = fmp_data["description"]
-            company_profile["source"] = "fmp"
-            company_profile["exchange"] = fmp_data["exchangeShortName"] if fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"] else None
-
-
-            if fmp_data["sector"] in [None, ""]:
-                print("Issue with fmp metadata: " + ticker)
-                return False
-            return True
-        else: 
-            print("Invalid FMP data for ticker symbol: " + ticker)
-            return False
-
-    else:        
-        print("No FMP data retrieved for: " + ticker)
-        return False
-
-#get market cap data from fmp
-def get_fmp_market_cap_data(original_ticker, index):
-    start_year = 2020
-    end_year = 2024
-    if index >  550:
-        start_year = 2016
-        end_year = 2020
-    if index > 680:
-        start_year = 2012
-        end_year = 2016
-    if index > 750:
-        years_to_subtract = ((index - 550) // 100) * 4
-        start_year = 2020 - years_to_subtract
-        end_year = 2024 - years_to_subtract
-    if index > 1200:
-        start_year = 1922
-        end_year = 1996       
-    fmp_market_cap_data = []
-    while True:
-        fmp_url = f"https://financialmodelingprep.com/api/v3/historical-market-capitalization/{original_ticker}?from={start_year}-01-01&to={end_year}-12-31&apikey={apikey}"
-        response = requests.get(fmp_url)
-        result = response.json()
-        if len(result) == 0:
-            break
-        fmp_market_cap_data += result
-        start_year -= 5
-        end_year -= 5
-    fmp_market_cap_data = [{"date":data["date"],"marketCap":data["marketCap"]} for data in fmp_market_cap_data]
-    fmp_market_cap_data.reverse() #reverse the list to go from earliest to latest date like tiingo data
-    return fmp_market_cap_data
-
-
-
-#get market cap data from tiingo
-def get_tiingo_market_cap_data(ticker, added_date):
-    headers = {'Content-Type': 'application/json'}
-    tiingo_URL = "https://api.tiingo.com/tiingo/fundamentals/" + ticker +"/daily?token=" + tiingo_token
-    requestResponse = requests.get(tiingo_URL, headers=headers)
-    tiingo_market_cap_data = requestResponse.json()
-    tiingo_market_cap_data = [{"date":data["date"].split("T")[0],"marketCap":data["marketCap"]} 
-                              for data in tiingo_market_cap_data]
-    
-    #get rid of possible market cap data with null market cap values at start
-    for i, data in enumerate(tiingo_market_cap_data):
-        if data["marketCap"] != None:
-            tiingo_market_cap_data = tiingo_market_cap_data[i:]
-            break
-
-    if len(tiingo_market_cap_data) == 0:
-        print("Empty tiingomarket cap data for: " + ticker)
-    else: 
-        #if market cap data already has enough data, return it early; else, look into stock price data
-        first_date_in_market_cap_data = datetime.strptime(tiingo_market_cap_data[0]["date"], "%Y-%m-%d")
-        if (first_date_in_market_cap_data <= added_date 
-            or first_date_in_market_cap_data <= datetime.strptime("1996-01-02", "%Y-%m-%d")):
-            return tiingo_market_cap_data
-
-        # print("Looking at tiingo stock price data: " + ticker)
-        tiingo_URL = ("https://api.tiingo.com/tiingo/daily/" + ticker + 
-                    "/prices?startDate=1950-01-02&token=" + tiingo_token)
-        requestResponse = requests.get(tiingo_URL, headers=headers)
-        tiingo_stock_price_data = requestResponse.json()
-        #double check that stock price data and market cap data are same size; else fix; test "CNW" stock
-        missing_data_amount = len(tiingo_stock_price_data) - len(tiingo_market_cap_data)
-        if (len(tiingo_stock_price_data) > len(tiingo_market_cap_data)):
-            # date_needed = max(added_date,  datetime.strptime("1996-01-02", "%Y-%m-%d"))
-            # first_date_in_market_cap_data = datetime.strptime(tiingo_market_cap_data[0]["date"], "%Y-%m-%d")
-            # missing_days_needed = (first_date_in_market_cap_data - date_needed).days
-            # if missing_days_needed > 365:
-                # print(str(first_date_in_market_cap_data) + " - " + str(date_needed))
-                # print("Missing days of initial data in tiingo: " + str(missing_days_needed))
-            new_market_cap_data = []
-            last_stock_market_cap_ratio = None
-            for daily_stock_price_data in tiingo_stock_price_data:
-                current_date = datetime.strptime(daily_stock_price_data["date"].split("T")[0], "%Y-%m-%d")
-                if current_date >= first_date_in_market_cap_data:
-                    last_stock_market_cap_ratio = tiingo_market_cap_data[0]["marketCap"] / daily_stock_price_data["close"]
-                    if current_date != first_date_in_market_cap_data:
-                        print("Same date match not found")
-                    break
-                new_market_cap_data.append(daily_stock_price_data)
-            new_market_cap_data = [{"date": data["date"].split("T")[0]
-                                    ,"marketCap": round(data["close"]*last_stock_market_cap_ratio, 2)} 
-                              for data in new_market_cap_data]
-            tiingo_market_cap_data = new_market_cap_data + tiingo_market_cap_data
-
-            if tiingo_stock_price_data[-1]["date"].split("T")[0] != tiingo_market_cap_data[-1]["date"]:
-                print("Tiingo data error: Ending Dates aren't the same: " + ticker)
-
-    return tiingo_market_cap_data
-
-
 
 def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date, company_name):
     if original_ticker in ["INFO", "STI", "LLL"]: #500s
@@ -1029,199 +800,199 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
 
 
 
+if __name__ == "__main__":
+    # get_cleaned_sp_500_csv()
 
-# get_cleaned_sp_500_csv()
+    df = pd.read_csv("cleaned_sp_500_dataset.csv")
+    sp_500_dict = df.to_dict()
+    tickers = list(sp_500_dict["Ticker"].values())
+    company_names = list(sp_500_dict["Name"].values())
+    added_dates = list(sp_500_dict["Added_Date"].values())
+    removal_dates = list(sp_500_dict["Removed_Date"].values())
 
-df = pd.read_csv("cleaned_sp_500_dataset.csv")
-sp_500_dict = df.to_dict()
-tickers = list(sp_500_dict["Ticker"].values())
-company_names = list(sp_500_dict["Name"].values())
-added_dates = list(sp_500_dict["Added_Date"].values())
-removal_dates = list(sp_500_dict["Removed_Date"].values())
+    no_fmp_data_list = []
+    no_tiingo_data_list = []
 
-no_fmp_data_list = []
-no_tiingo_data_list = []
+    for i, ticker in enumerate(tickers[:500]):
+        # if i < 300:
+        #     continue
 
-for i, ticker in enumerate(tickers[:1100]):
-    if i < 1000:
-        continue
+        # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
+        #     continue
+        print(i)
 
-    # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
-    #     continue
-    print(i)
+        original_ticker = ticker
+        added_date = added_dates[i]
+        removal_date = removal_dates[i]
+        if removal_date != removal_date: #for nan values
+            removal_date = None
 
-    original_ticker = ticker
-    added_date = added_dates[i]
-    removal_date = removal_dates[i]
-    if removal_date != removal_date: #for nan values
-        removal_date = None
+        company_profile = {}
+        company_profile["ticker"] = ticker
+        have_data_from_fmp = False
+        company_name = company_names[i]
 
-    company_profile = {}
-    company_profile["ticker"] = ticker
-    have_data_from_fmp = False
-    company_name = company_names[i]
-
-    meta_data_list = None
-    with open("tiingo_meta_data.json", 'r') as file:
-        meta_data_list = json.load(file)
-
-
-    #some delisted or moved stocks have modified tickers for tiingo
-    #500-600
-    if 500<=i<600:
-        if ticker == "WRK":     ticker = "WRK-W"
-        if ticker == "FRC":     ticker = "FRCB" 
-        if ticker == "SIVB":    ticker = "SIVBQ" 
-        if ticker == "STI":     ticker = "STI-WS-B"
-        if ticker == "INFO":    ticker = "MRKT"
-    #600-700    
-    if 600<=i<700:
-        if ticker == "XL":      ticker = "XLGLF"
-        if ticker == "WYND":    ticker = "WYN"
-        if ticker == "BBBY":    ticker = "BBBYQ"
-        if ticker == "MNK":     ticker = "MNKKQ"
-        if ticker == "ENDP":    ticker = "ENDPQ"
-        if ticker == "SE":      ticker = "SE1"
-        if ticker == "ALTR":    ticker = "ALTR1"
-        if ticker == "PLL":     ticker = "PLL1"
-        if ticker == "DTV":     ticker = "DTV1"
-        if ticker == "WIN":     ticker = "WINMQ"
-    #700-800
-    if 700<=i<800:
-        if ticker == "LIFE":    ticker = "LIFE2"
-        if ticker == "DELL":    ticker = "DELL1"
-        if ticker == "BIG":     ticker = "BIGGQ"
-        if ticker == "DF":      ticker = "DFODQ"
-        if ticker == "SUN":     ticker = "SUN1"
-        if ticker == "ANR":     ticker = "ANRZQ"
-        if ticker == "SHLD":    ticker = "SHLDQ"
-        if ticker == "MMI":     ticker = "MMI1"
-        if ticker == "NSM":     ticker = "NSM1"
-        if ticker == "Q":       ticker = "Q1"
-        if ticker == "MIL":     ticker = "MIL1"
-    #800-900
-    if 800<=i<900:
-        if ticker == "CTX":     ticker = "CTX1"
-        if ticker == "EQ":      ticker = "EQ1"
-        if ticker == "WFT":     ticker = "WFTIQ"
-        if ticker == "UST":     ticker = "UST1"
-        if ticker == "WB":      ticker = "WB2"
-        if ticker == "ABI":     ticker = "ABI1"
-        if ticker == "BUD":     ticker = "BUD1"
-        if ticker == "SAF":     ticker = "SAF2"
-        if ticker == "OMX":     ticker = "OMX1"
-        if ticker == "BSC":     ticker = "BSC1"
-        if ticker == "CC":      ticker = "CCTYQ"
-        if ticker == "CBH":     ticker = "CBH1"
-        if ticker == "AT":      ticker = "AT1"
-        if ticker == "AV":      ticker = "AV1"
-        if ticker == "PD":      ticker = "PD1"
-        if ticker == "FSLB":    ticker = "FSL-B"
-    #900-1000
-    if 900<=i<1000:
-        if ticker == "ACV":     ticker = "ACV1"
-        if ticker == "ASO":     ticker = "ASO1"
-        if ticker == "EC":      ticker = "EC1"
-        if ticker == "CHIR":    ticker = "CHIR1"
-        if ticker == "BR":      ticker = "BR1"
-        if ticker == "JP":      ticker = "JP1"
-        if ticker == "DPH":     ticker = "DPHIQ"
-        if ticker == "G":       ticker = "G1"
-        if ticker == "SDS":     ticker = "SDS1"
-        if ticker == "VRTS":    ticker = "VRTS1"
-        if ticker == "S":       ticker = "S1"
-        if ticker == "WLP":     ticker = "WLP1"
-        if ticker == "CF":      ticker = "CF1"
-        if ticker == "ONE":     ticker = "ONE1"
-        if ticker == "AM":      ticker = "AM1"
-        if ticker == "TAP.B":   ticker = "TAP-B"
-        if ticker == "TUP":     ticker = "TUPBQ"
-        if ticker == "CE":      ticker = "CE1"
-        if ticker == "BGEN":    ticker = "BIIB"  #merger in 2003;reentered SP500 directly after
-        if ticker == "HI":      ticker = "HI1"
-        if ticker == "AMR":     ticker = "AAMRQ"
-        if ticker == "COC.B":   ticker = "COC-B"
-        if ticker == "NT":      ticker = "NRTLQ"
-        if ticker == "AL":      ticker = "AL1"
-        if ticker == "CNXT":    ticker = "CNXT1"
-        if ticker == "U":       ticker = "UAIRQ"
-        if ticker == "WCOM":    ticker = "WCOEQ"
-        if ticker == "WLL":     ticker = "WLL1"
-        if ticker == "NMK":     ticker = "NMK1"
-        if ticker == "MEA":     ticker = "MEA1"
-        if ticker == "TX":      ticker = "TX1"
-    #1000-1100
-    if 1000<=i<1100:
-        if ticker == "WB":      ticker = "WB2" #also in 800s
-        if ticker == "AGC":     ticker = "AGC1"
-        if ticker == "AZA.A":   ticker = "AZA-A"
-        if ticker == "CEN":     ticker = "CEN1"
-        if ticker == "SUB":     ticker = "SUB1"
-        if ticker == "UK":      ticker = "UK1"
-        if ticker == "SMI":     ticker = "SMI1"
-        if ticker == "VO":      ticker = "VO1"
-        if ticker == "AFS.A":   ticker = "AFS-A"
-        if ticker == "SEG":     ticker = "STX" #relisted in NASDAQ from NYSE
-        if ticker == "CG":      ticker = "CG1"
-        if ticker == "EFU":     ticker = "EFU1"
-        if ticker == "BFO":     ticker = "BFO1"
-        if ticker == "GAP":     ticker = "GAPTQ"
-        if ticker == "RAD":     ticker = "RADCQ" #unneccessary, but for testing; has fmp data as well
-        if ticker == "GTE":     ticker = "GTE1"
-        if ticker == "MZ":      ticker = "MZIAQ"
-        if ticker == "CHA":     ticker = "CHA1"
-        if ticker == "UMG":     ticker = "USW" #incorrect or older symbol? using usw for something else 1051
-        if ticker == "CSR":     ticker = "CSR1"
-        if ticker == "TMC.A":   ticker = "TMC-A" 
-        if ticker == "MIR":     ticker = "MIR1"
-        if ticker == "RLM":     ticker = "RLM1"
-        if ticker == "CBS":     ticker = "CBS1"
-        if ticker == "ARC":     ticker = "ARC1"
-        if ticker == "PBY":     ticker = "PBY1"
-        if ticker == "FLE":     ticker = "FLTWQ"
-        if ticker == "CSE":     ticker = "CSE1"
-        if ticker == "AIT":     ticker = "AIT1"
-        if ticker == "PHB":     ticker = "PHB1"
-        if ticker == "FTL.A":   ticker = "FTL-A" 
-        if ticker == "FRO":     ticker = "FRO1"
-        if ticker == "NLC":     ticker = "NLC1"
-        if ticker == "TA":      ticker = "TA2"
-        if ticker == "PVT":     ticker = "PVT1"
-    #1100-1200
-    if 1100<=i<1200: 
-        if ticker == "ATI":     ticker = "ATI1"
-        if ticker == "ASND":    ticker = "ASND1"
-        if ticker == "ASC":     ticker = "ASC1"
-        if ticker == "HPH":     ticker = "HRZIQ"
-        if ticker == "FMY":     ticker = "FMY1"
-        if ticker == "UCC":     ticker = "UCC1"
-        if ticker == "ANV":     ticker = "ANV1"
-        if ticker == "AMP":     ticker = "AMP1"
-        if ticker == "PZE":     ticker = "PZE1"
-        if ticker == "CCI":     ticker = "CCI1"
-        if ticker == "GSX":     ticker = "GSX1"
-        if ticker == "FCN":     ticker = "FCN1"
-        if ticker == "AHM":     ticker = "AHM1"
-        if ticker == "DI":      ticker = "DI1"
-        if ticker == "MNR":     ticker = "MNR1"
-        if ticker == "BAY":     ticker = "BAY1"
-        if ticker == "DIGI":    ticker = "DIGI2"
-        if ticker == "GFS.A":   ticker = "GFS-A"
-        if ticker == "ECH":     ticker = "ECH1"
-        if ticker == "CHRS":    ticker = "CHRS1"
-        if ticker == "SK":      ticker = "SK1"
-        if ticker == "FLM":     ticker = "FLMIQ"
-
-    #will get market cap data and place into file
-    get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
-    # get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
+        meta_data_list = None
+        with open("misc/tiingo_meta_data.json", 'r') as file:
+            meta_data_list = json.load(file)
 
 
+        #some delisted or moved stocks have modified tickers for tiingo
+        #500-600
+        if 500<=i<600:
+            if ticker == "WRK":     ticker = "WRK-W"
+            if ticker == "FRC":     ticker = "FRCB" 
+            if ticker == "SIVB":    ticker = "SIVBQ" 
+            if ticker == "STI":     ticker = "STI-WS-B"
+            if ticker == "INFO":    ticker = "MRKT"
+        #600-700    
+        if 600<=i<700:
+            if ticker == "XL":      ticker = "XLGLF"
+            if ticker == "WYND":    ticker = "WYN"
+            if ticker == "BBBY":    ticker = "BBBYQ"
+            if ticker == "MNK":     ticker = "MNKKQ"
+            if ticker == "ENDP":    ticker = "ENDPQ"
+            if ticker == "SE":      ticker = "SE1"
+            if ticker == "ALTR":    ticker = "ALTR1"
+            if ticker == "PLL":     ticker = "PLL1"
+            if ticker == "DTV":     ticker = "DTV1"
+            if ticker == "WIN":     ticker = "WINMQ"
+        #700-800
+        if 700<=i<800:
+            if ticker == "LIFE":    ticker = "LIFE2"
+            if ticker == "DELL":    ticker = "DELL1"
+            if ticker == "BIG":     ticker = "BIGGQ"
+            if ticker == "DF":      ticker = "DFODQ"
+            if ticker == "SUN":     ticker = "SUN1"
+            if ticker == "ANR":     ticker = "ANRZQ"
+            if ticker == "SHLD":    ticker = "SHLDQ"
+            if ticker == "MMI":     ticker = "MMI1"
+            if ticker == "NSM":     ticker = "NSM1"
+            if ticker == "Q":       ticker = "Q1"
+            if ticker == "MIL":     ticker = "MIL1"
+        #800-900
+        if 800<=i<900:
+            if ticker == "CTX":     ticker = "CTX1"
+            if ticker == "EQ":      ticker = "EQ1"
+            if ticker == "WFT":     ticker = "WFTIQ"
+            if ticker == "UST":     ticker = "UST1"
+            if ticker == "WB":      ticker = "WB2"
+            if ticker == "ABI":     ticker = "ABI1"
+            if ticker == "BUD":     ticker = "BUD1"
+            if ticker == "SAF":     ticker = "SAF2"
+            if ticker == "OMX":     ticker = "OMX1"
+            if ticker == "BSC":     ticker = "BSC1"
+            if ticker == "CC":      ticker = "CCTYQ"
+            if ticker == "CBH":     ticker = "CBH1"
+            if ticker == "AT":      ticker = "AT1"
+            if ticker == "AV":      ticker = "AV1"
+            if ticker == "PD":      ticker = "PD1"
+            if ticker == "FSLB":    ticker = "FSL-B"
+        #900-1000
+        if 900<=i<1000:
+            if ticker == "ACV":     ticker = "ACV1"
+            if ticker == "ASO":     ticker = "ASO1"
+            if ticker == "EC":      ticker = "EC1"
+            if ticker == "CHIR":    ticker = "CHIR1"
+            if ticker == "BR":      ticker = "BR1"
+            if ticker == "JP":      ticker = "JP1"
+            if ticker == "DPH":     ticker = "DPHIQ"
+            if ticker == "G":       ticker = "G1"
+            if ticker == "SDS":     ticker = "SDS1"
+            if ticker == "VRTS":    ticker = "VRTS1"
+            if ticker == "S":       ticker = "S1"
+            if ticker == "WLP":     ticker = "WLP1"
+            if ticker == "CF":      ticker = "CF1"
+            if ticker == "ONE":     ticker = "ONE1"
+            if ticker == "AM":      ticker = "AM1"
+            if ticker == "TAP.B":   ticker = "TAP-B"
+            if ticker == "TUP":     ticker = "TUPBQ"
+            if ticker == "CE":      ticker = "CE1"
+            if ticker == "BGEN":    ticker = "BIIB"  #merger in 2003;reentered SP500 directly after
+            if ticker == "HI":      ticker = "HI1"
+            if ticker == "AMR":     ticker = "AAMRQ"
+            if ticker == "COC.B":   ticker = "COC-B"
+            if ticker == "NT":      ticker = "NRTLQ"
+            if ticker == "AL":      ticker = "AL1"
+            if ticker == "CNXT":    ticker = "CNXT1"
+            if ticker == "U":       ticker = "UAIRQ"
+            if ticker == "WCOM":    ticker = "WCOEQ"
+            if ticker == "WLL":     ticker = "WLL1"
+            if ticker == "NMK":     ticker = "NMK1"
+            if ticker == "MEA":     ticker = "MEA1"
+            if ticker == "TX":      ticker = "TX1"
+        #1000-1100
+        if 1000<=i<1100:
+            if ticker == "WB":      ticker = "WB2" #also in 800s
+            if ticker == "AGC":     ticker = "AGC1"
+            if ticker == "AZA.A":   ticker = "AZA-A"
+            if ticker == "CEN":     ticker = "CEN1"
+            if ticker == "SUB":     ticker = "SUB1"
+            if ticker == "UK":      ticker = "UK1"
+            if ticker == "SMI":     ticker = "SMI1"
+            if ticker == "VO":      ticker = "VO1"
+            if ticker == "AFS.A":   ticker = "AFS-A"
+            if ticker == "SEG":     ticker = "STX" #relisted in NASDAQ from NYSE
+            if ticker == "CG":      ticker = "CG1"
+            if ticker == "EFU":     ticker = "EFU1"
+            if ticker == "BFO":     ticker = "BFO1"
+            if ticker == "GAP":     ticker = "GAPTQ"
+            if ticker == "RAD":     ticker = "RADCQ" #unneccessary, but for testing; has fmp data as well
+            if ticker == "GTE":     ticker = "GTE1"
+            if ticker == "MZ":      ticker = "MZIAQ"
+            if ticker == "CHA":     ticker = "CHA1"
+            if ticker == "UMG":     ticker = "USW" #incorrect or older symbol? using usw for something else 1051
+            if ticker == "CSR":     ticker = "CSR1"
+            if ticker == "TMC.A":   ticker = "TMC-A" 
+            if ticker == "MIR":     ticker = "MIR1"
+            if ticker == "RLM":     ticker = "RLM1"
+            if ticker == "CBS":     ticker = "CBS1"
+            if ticker == "ARC":     ticker = "ARC1"
+            if ticker == "PBY":     ticker = "PBY1"
+            if ticker == "FLE":     ticker = "FLTWQ"
+            if ticker == "CSE":     ticker = "CSE1"
+            if ticker == "AIT":     ticker = "AIT1"
+            if ticker == "PHB":     ticker = "PHB1"
+            if ticker == "FTL.A":   ticker = "FTL-A" 
+            if ticker == "FRO":     ticker = "FRO1"
+            if ticker == "NLC":     ticker = "NLC1"
+            if ticker == "TA":      ticker = "TA2"
+            if ticker == "PVT":     ticker = "PVT1"
+        #1100-1200
+        if 1100<=i<1200: 
+            if ticker == "ATI":     ticker = "ATI1"
+            if ticker == "ASND":    ticker = "ASND1"
+            if ticker == "ASC":     ticker = "ASC1"
+            if ticker == "HPH":     ticker = "HRZIQ"
+            if ticker == "FMY":     ticker = "FMY1"
+            if ticker == "UCC":     ticker = "UCC1"
+            if ticker == "ANV":     ticker = "ANV1"
+            if ticker == "AMP":     ticker = "AMP1"
+            if ticker == "PZE":     ticker = "PZE1"
+            if ticker == "CCI":     ticker = "CCI1"
+            if ticker == "GSX":     ticker = "GSX1"
+            if ticker == "FCN":     ticker = "FCN1"
+            if ticker == "AHM":     ticker = "AHM1"
+            if ticker == "DI":      ticker = "DI1"
+            if ticker == "MNR":     ticker = "MNR1"
+            if ticker == "BAY":     ticker = "BAY1"
+            if ticker == "DIGI":    ticker = "DIGI2"
+            if ticker == "GFS.A":   ticker = "GFS-A"
+            if ticker == "ECH":     ticker = "ECH1"
+            if ticker == "CHRS":    ticker = "CHRS1"
+            if ticker == "SK":      ticker = "SK1"
+            if ticker == "FLM":     ticker = "FLMIQ"
+
+        #will get market cap data and place into file
+        get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
+        # get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
 
 
-#NOTE: check 1048, RAD for market cap data; fmp has more data available and should be used if functioning correctly
-    #for 1996-12-02, tiingo has $3.3 billion, while fmp has $5 billion
-    #for 2001-06-28, tiingo has 3.5 billion, fmp has $4.2 billion, marketcap.com has $4.4 billion
-    #for 2023-11-06, tiingo has $14.1 million, fmp has $13.7 million, marketcap.com has $36.8 million
-#NOTE: check 1093, MTL/MBWM should use fmp data
-#double check 977, GOLD for market cap calculation later
+
+
+    #NOTE: check 1048, RAD for market cap data; fmp has more data available and should be used if functioning correctly
+        #for 1996-12-02, tiingo has $3.3 billion, while fmp has $5 billion
+        #for 2001-06-28, tiingo has 3.5 billion, fmp has $4.2 billion, marketcap.com has $4.4 billion
+        #for 2023-11-06, tiingo has $14.1 million, fmp has $13.7 million, marketcap.com has $36.8 million
+    #NOTE: check 1093, MTL/MBWM should use fmp data
+    #double check 977, GOLD for market cap calculation later

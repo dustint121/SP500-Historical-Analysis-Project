@@ -99,7 +99,6 @@
     #806, EQ; eoddata; marketcap = $6.01 billion https://www.eoddata.com/stockquote/NYSE/eq.htm
 
     #809, GM; kibot; check later on annualreports; marketcap = $1.05 billion (566,000,000 shares)(https://www.annualreports.com/HostedData/AnnualReportArchive/g/NYSE_GM_2007.pdf)
-
     #810, ROH; kibot; need to make two api calls(before and after 2000) marketcap = $15.41 billion (eoddata.com)
     #812, NE; kibot; marketcap = $6.3 billion; https://companiesmarketcap.com/noble-corp/marketcap/ 
     #817, SOV; kibot; marketcap = $1.65 billion (tiingo data) 
