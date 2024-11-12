@@ -143,18 +143,17 @@ def kibot_market_cap():
 
 #determine what image type to process(downloaded or screenshotted) by dimension(downloaded images are 4000x1600)
 
-#for CEN, 1017, 13 days needed
+#for CEN, 1017, 13 days of relevant data; needed
     [2.48, 2.26, 2.11, 2.04, 2.19, 2.22, 2.18, 1.89, 1.82, 2.01, 1.97, 1.95, 2.05]
 
-
-#for ITT
+#for ITT, 1148
     [3.69, 3.71, 3.68, 3.62, 3.66, 3.37, 3.62, 3.59, 3.66, 3.66, 3.67, 3.69, 3.62, 3.67, 3.68, 3.56, 3.55, 3.67, 3.74, 3.67
      ,3.81, 3.73, 3.74, 3.79, 3.78, 3.86, 3.92, 3.86, 3.81, 3.78, 3.83, 3.83, 3.83, 3.91]
 
-
-
-
-
-
-#for BBI
+#for BBI, 1152
     [13.92, 14.18, 14.07, 14.07, 13.96, 13.43]
+
+
+#store min and max of y-axis
+    #will make code to double-check/adjust for screenshotted data
+# finchat_marketcap_dict = {545:(15,60), }
