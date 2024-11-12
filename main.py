@@ -2,11 +2,15 @@ import os
 from dotenv import load_dotenv
 import fmpsdk
 import pandas as pd
-import requests
 import json
 from datetime import datetime
 from company_profile_func import *
 from market_cap_funct import * 
+import pandas_market_calendars as mcal
+#NOTE : change code for market cap to get datas starting and ending from last valid trading days
+    #use import pandas_market_calendars as mcal
+
+
 
 # Actual keys is stored in a .env file.  Not good to store API key directly in script.
 load_dotenv()
@@ -679,7 +683,7 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         got_tingo_metadata = (get_tiingo_company_metadata(tiingo_ticker, company_profile, meta_data_list) 
                             if got_tingo_data == True else False)
         if got_tingo_metadata == False:
-            get_fmp_metadata(original_ticker, company_name, company_profile)
+            get_fmp_metadata(original_ticker, company_name, company_profile, index)
 
 
     exchange_dict = {129:"NASDAQ",527:"NASDAQ"}
@@ -721,9 +725,14 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
 
 
 def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date, company_name):
-    if original_ticker in ["INFO", "STI", "LLL"]: #500s
-        print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-        return
+    marketcap_metadata = {"index":index,"ticker":ticker} #used to store where we get our data source
+    market_cap_data = []
+    if False:
+        x = 1
+    # if original_ticker in ["INFO", "STI", "LLL"]: #500s
+    #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
+    #     return
+
     # if 600<=index<700 and original_ticker in ["CA","XL","MON","DOW","DNB","FTR","HAR","LLTC","SE","DO","HOT","EMC",
     #                                           "TYC","TE","CVC","ADT","BRCM","PCP","ALTR","PLL","NE"]: #600s
     #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
@@ -740,63 +749,103 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
     #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
     #     return
     
+    else:
+        #format: January 21, 2012
+        added_date = datetime.strptime(added_date, "%B %d, %Y") 
+        removal_date = (datetime.strptime(removal_date, "%B %d, %Y") if removal_date != None 
+                        else datetime.strptime("September 30, 2024", "%B %d, %Y"))
+        min_date_needed = max(added_date,  datetime.strptime("1998-01-02", "%Y-%m-%d"))
+        tiingo_market_cap_data = []
+        fmp_market_cap_data = []
 
-    #format: January 21, 2012
-    added_date = datetime.strptime(added_date, "%B %d, %Y") 
-    removal_date = (datetime.strptime(removal_date, "%B %d, %Y") if removal_date != None 
-                    else datetime.strptime("September 30, 2024", "%B %d, %Y"))
+        #get market cap data from tiingo
+        if get_tiingo_company_regular_data(ticker,company_name,{}):
+            tiingo_market_cap_data = get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata)
+            #filter tiingo market cap data to filter out NULLs and unneeded dates
+            tiingo_market_cap_data = [val for val in tiingo_market_cap_data 
+                                    if val["market_cap"] != None and
+                                    min_date_needed <= datetime.strptime(val["date"], "%Y-%m-%d") <= removal_date]
+        #get fmp market cap data if tiingo data is empty or starts after "Added Date"
+        if len(tiingo_market_cap_data) == 0 or marketcap_metadata.get("num_trading_days_to_calculate") not in [None,0]:
+            if get_fmp_metadata(original_ticker,company_name,{},index):
+                fmp_market_cap_data = get_fmp_market_cap_data(original_ticker,index)
+                #filter fmp market cap data to filter out NULLs and unneeded dates
+                fmp_market_cap_data = [val for val in fmp_market_cap_data
+                                        if val["market_cap"] != None and
+                                        min_date_needed <= datetime.strptime(val["date"], "%Y-%m-%d") <= removal_date]
+                
+        tiingo_has_more_data = len(fmp_market_cap_data) <= len(tiingo_market_cap_data)
+        num_days = len(fmp_market_cap_data) - len(tiingo_market_cap_data)
 
-    tiingo_market_cap_data = []
-    fmp_market_cap_data = []
 
-    #get market cap data from tiingo
-    if get_tiingo_company_regular_data(ticker,company_name,{}):
-        tiingo_market_cap_data = get_tiingo_market_cap_data(ticker, added_date)
+        if marketcap_metadata.get("num_trading_days_to_calculate"):
+            tiingo_has_more_data = (len(fmp_market_cap_data) < (len(tiingo_market_cap_data) - marketcap_metadata["num_trading_days_to_calculate"])
+                                        or len(fmp_market_cap_data) == 0)
+            num_days = len(fmp_market_cap_data) - (len(tiingo_market_cap_data) - marketcap_metadata["num_trading_days_to_calculate"])
+
+        if tiingo_has_more_data == False:
+            print("Using fmp market data; more by: " + str(num_days))
+            marketcap_metadata["source"] = "fmp"
+            if marketcap_metadata.get("first_day_given"): del marketcap_metadata["first_day_given"]
+            if marketcap_metadata.get("first_day_needed"): del marketcap_metadata["first_day_needed"]
+            if marketcap_metadata.get("num_trading_days_to_calculate"): del marketcap_metadata["num_trading_days_to_calculate"]
+        else:
+            marketcap_metadata["source"] = "tiingo"
+        #decide whether to use fmp or tiingo data
+        market_cap_data = tiingo_market_cap_data if tiingo_has_more_data else fmp_market_cap_data
     
-
-    #get fmp market cap data if tiingo data is empty or starts after "Added Date"
-    if len(tiingo_market_cap_data) == 0 or (datetime.strptime(tiingo_market_cap_data[0]["date"],"%Y-%m-%d") > added_date):
-        if get_fmp_metadata(original_ticker,company_name,{}):
-            fmp_market_cap_data = get_fmp_market_cap_data(original_ticker,index)
-
-    tiingo_has_more_data = len(fmp_market_cap_data) <= len(tiingo_market_cap_data)
-    if tiingo_has_more_data == False:
-        print("Using fmp market data")
-
-    market_cap_data = tiingo_market_cap_data if tiingo_has_more_data else fmp_market_cap_data
-
-    #get only needed data in list
-    market_cap_data = [data for data in market_cap_data
-                        if added_date<= datetime.strptime(data["date"], "%Y-%m-%d") <= removal_date]
     
     if len(market_cap_data) > 0:
+        marketcap_metadata["first_day_have_vs_needed"] = market_cap_data[0]["date"] + " : " + str(added_date.__str__()[:10])
+        marketcap_metadata["last_day_have_vs_needed"] = market_cap_data[-1]["date"] + " : " + str(removal_date.__str__()[:10])
+        nyse = mcal.get_calendar('NYSE')
         #format: 2006-01-31
         first_date_in_data = datetime.strptime(market_cap_data[0]["date"], "%Y-%m-%d")
         last_date_in_data = datetime.strptime(market_cap_data[-1]["date"], "%Y-%m-%d")
-        start_of_1996 = datetime.strptime("January 1, 1996", "%B %d, %Y")
-        if added_date < first_date_in_data and start_of_1996 < first_date_in_data:
-            days_between = 0
-            if added_date > start_of_1996:
-                days_between = (first_date_in_data - added_date).days
-            else:
-                days_between = (first_date_in_data - start_of_1996).days
-            print("Missing days of earlier data for market cap: " + str(days_between))
+        start_of_1998 = datetime.strptime("January 2, 1998", "%B %d, %Y")
+
+        #get only needed data in list
+        min_date_needed = max(added_date,  start_of_1998)
+        market_cap_data = [data for data in market_cap_data
+                            if min_date_needed<= datetime.strptime(data["date"], "%Y-%m-%d") <= removal_date]
+
+        if min_date_needed < first_date_in_data:
+            trading_days = nyse.valid_days(start_date=min_date_needed, end_date=first_date_in_data)
+            if str(min_date_needed.date()) == str(trading_days[0].date()): #exclude first day if same 
+                trading_days = trading_days[1:]
+            days_between = len(trading_days)
+            if len(trading_days) > 0:
+                print(str(min_date_needed) + " - " + str(first_date_in_data))
+                print("Missing days of earlier data for market cap: " + str(days_between))   
+                marketcap_metadata["first_day_have_vs_needed"] = (market_cap_data[0]["date"] + 
+                                                " : " + str(trading_days[-1].date()))
+                marketcap_metadata["missing_num_days_before"] = days_between
         if last_date_in_data < removal_date:
-            days_between = (removal_date - last_date_in_data).days
-            print("Missing days of later data for market cap: " + str(days_between))
+            trading_days = nyse.valid_days(start_date=last_date_in_data, end_date=removal_date)
+            if str(last_date_in_data.date()) == str(trading_days[0].date()): #exclude first day if same 
+                trading_days = trading_days[1:]
+            days_between = len(trading_days)
+            if days_between > 0:
+                print(str(last_date_in_data) + " - " + str(removal_date))
+                print("Missing days of later data for market cap: " + str(days_between))
+                marketcap_metadata["missing_num_days_after"] = days_between
+    else:
+        marketcap_metadata["is_empty"] = True
+        print("No market cap data found: " + ticker)
 
-    if len(market_cap_data) < 500:
-        if len(market_cap_data) == 0:
-            print("No market cap data found: " + ticker)
-        # else:
-        #     print("Less than 2 years of market cap data: " + ticker)
+    marketcap_metadata["num_of_days_data"] = len(market_cap_data)
 
+
+    #store market cap data
     file_path = "company_market_cap_data/" + str(index) + "_" + original_ticker + ".json"
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, 'w') as file:
         json.dump(market_cap_data, file, indent=4)
-
-    #return data_source later(tiingo,fmp,kibot,etc.)
+    #store origin of market cap data
+    file_path = "market_cap_metadata/" + str(index) + "_" + original_ticker + ".json"
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, 'w') as file:
+        json.dump(marketcap_metadata, file, indent=4)
 
 
 
@@ -813,10 +862,11 @@ if __name__ == "__main__":
     no_fmp_data_list = []
     no_tiingo_data_list = []
 
-    for i, ticker in enumerate(tickers[:500]):
-        # if i < 300:
+    for i, ticker in enumerate(tickers[:1100]):
+        if i < 1000:
+            continue
+        # if i not in [840,841]:
         #     continue
-
         # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
         #     continue
         print(i)
@@ -984,8 +1034,8 @@ if __name__ == "__main__":
             if ticker == "FLM":     ticker = "FLMIQ"
 
         #will get market cap data and place into file
-        get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
-        # get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
+        # get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
+        get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
 
 
 

@@ -5,6 +5,12 @@ import pandas as pd
 import requests
 import json
 import main
+import re
+from bs4 import BeautifulSoup
+from datetime import datetime, timezone
+import pandas_market_calendars as mcal
+
+
 
 load_dotenv()
 apikey = os.environ.get("apikey")
@@ -52,80 +58,33 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
                             'S': 14729, 'T': 16316, 'U': 17321, 'V': 17665, 'W': 18158, 'X': 18638, 'Y': 18773, 'Z': 18851}
 
 
-# headers = {'Content-Type': 'application/json'}
-# URL = "https://api.tiingo.com/tiingo/fundamentals/meta?token=" + tiingo_token
-# requestResponse = requests.get(URL, headers=headers)
-# meta_data_list = requestResponse.json()
 
-# with open("misc/tiingo_meta_data.json", 'w') as file:
-#     json.dump(meta_data_list, file, indent=4)
+# directory = 'company_profiles'
+# sectors = {}
+# industries = {}
 
+# for filename in os.listdir(directory):
+#     if filename.endswith('.json'):
+#         with open(os.path.join(directory, filename), 'r') as file:
+#             data = json.load(file)
+#             sector = data["sector"]
+#             industry = data["industry"]
+#             exchange = data["exchange"]
+#             if sectors.get(sector) != None : sectors[sector] += 1
+#             else: sectors[sector] = 1
 
-#     headers = {'Content-Type': 'application/json'}
-#     tiingo_URL = "https://api.tiingo.com/tiingo/daily/" + ticker + "?token=" + tiingo_token
-#     tiingo_data= requests.get(tiingo_URL, headers=headers).json()
-#     # print(tiingo_data)
-#     if tiingo_data != {'detail': 'Not found.'}:
-#         is_valid_exchange = tiingo_data["exchangeCode"] in ["NASDAQ", "NYSE"]
-#         if is_valid_exchange == False and ticker in ["SBNY"]:   #later delisted from NYSE or NASDAQ
-#             is_valid_exchange = True
-#         company_name = company_name.lower().replace(',', '').replace('. ', ' ').replace('.', ' ').replace("'",'`')
-#         is_right_company = company_name[:5] in tiingo_data["name"].lower().replace('. ', ' ').replace('.', ' ')
-#         ticker_exception_list = ["DAY","WAB","CPAY","CBOE","ORLY","BXP","EL","LH","MTB","YUM","BK","GE","IBM","SLB"
-#                                  ,"VFC","ZION","WU","DINO","ETFC","MAC","SIVBQ","GAP","FRCB","MRKT"
-#                                  ,"GT","GGP","DPS","TE","ADT","GMCR","ATI"]
-#         #need to test LOW
-#         #CBOE; moved to different exchange later
-#         #BXP,GE name changes
-#         #MTB spelling issue wiht '&'
-#         if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
-#             start_date = tiingo_data["startDate"]
-#             end_date = tiingo_data["endDate"]
-#             if start_date == None:
-#                 print("Start date is unlisted for: " + original_ticker)
-#             # if have_data_from_fmp == False:
-#             company_profile["company_name"] = tiingo_data["name"]
-#             company_profile["is_delisted"] = "delisted" in tiingo_data["description"][:15].lower()
-#             company_profile["description"] = tiingo_data["description"].replace("DELISTED - ", '')
-#             # print(company_profile)
-#             tiingo_meta_data_index = add_company_meta_data(ticker, company_profile, meta_data_list)
-#             company_profile["tiingo_meta_data_index"] = tiingo_meta_data_index
+#             if industries.get(industry) != None : industries[industry] += 1
+#             else: industries[industry] = 1
 
-#             file_path = "tiingo_company_data_files/" + str(i) + "_" + original_ticker + ".json"
-#             os.makedirs(os.path.dirname(file_path), exist_ok=True)
-#             with open(file_path, 'w') as file:
-#                 json.dump(company_profile, file, indent=4)
+# sectors = dict(sorted(sectors.items(), key=lambda item: item[1], reverse=True))
+# industries = dict(sorted(industries.items(), key=lambda item: item[1], reverse=True))
 
+# print(sectors)
+# print("\n")
+# print(industries)
 
-#             # print(company_profile)
-#         else:
-#             if ticker not in []:
-#                 print("Invalid Tiingo data for ticker symbol: " + ticker)
-#             no_tiingo_data_list.append(ticker)
-
-#     else:
-#         print("No Tiingo data retrieved for: " + ticker)
-#         no_tiingo_data_list.append(ticker)
-
-#     #DPS company data is not found on meta for tiingo or on FMP
-
-
-# print("No fmp data from: " + str(no_fmp_data_list))
-# print("No tiingo data from: " + str(no_tiingo_data_list))
-
-
-
-
-# a = main.get_market_cap_data("CNW", "CNW", 1182)
-# a = main.get_market_cap_data("AAPL", "AAPL", 0)
-# print(len(a))
-# print(a[0])
-# print(a[-1])
-
-
-
-
-# https://corporate.comcast.com/news-information/news-feed/comcast-and-mediaone-announce-60-billion-merger
+# print("\n")
+# print(len(sectors), len(industries))
 
 
 
@@ -133,42 +92,73 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 
 
-# df = pd.read_csv("cleaned_sp_500_dataset.csv")
-# sp_500_dict = df.to_dict()
-# tickers = list(sp_500_dict["Ticker"].values())
-# company_names = list(sp_500_dict["Name"].values())
-# added_dates = list(sp_500_dict["Added_Date"].values())
-# removal_dates = list(sp_500_dict["Removed_Date"].values())
-
-
-# print(added_dates[:10])
 
 
 
 
-directory = 'company_profiles'
-sectors = {}
-industries = {}
 
-for filename in os.listdir(directory):
-    if filename.endswith('.json'):
-        with open(os.path.join(directory, filename), 'r') as file:
-            data = json.load(file)
-            sector = data["sector"]
-            industry = data["industry"]
-            exchange = data["exchange"]
-            if sectors.get(sector) != None : sectors[sector] += 1
-            else: sectors[sector] = 1
 
-            if industries.get(industry) != None : industries[industry] += 1
-            else: industries[industry] = 1
 
-sectors = dict(sorted(sectors.items(), key=lambda item: item[1], reverse=True))
-industries = dict(sorted(industries.items(), key=lambda item: item[1], reverse=True))
 
-print(sectors)
-print("\n")
-print(industries)
 
-print("\n")
-print(len(sectors), len(industries))
+
+# page_url = "https://companiesmarketcap.com/monsanto/marketcap/"
+# response = requests.get(page_url)
+# soup = BeautifulSoup(response.content, 'html.parser')
+# # print(soup.prettify())
+# data = soup.find("script",{"type": "text/javascript"}).string
+# # type="text/javascript"
+
+# # Use regex to find the data variable
+# pattern = re.compile(r"data\s*=\s*(\[\{.*?\}\]);")
+# match = pattern.search(data)
+# if match:
+#     data = match.group(1)
+#     data = json.loads(data)
+#     for i, point in enumerate(data):
+#         unix_time, market_cap_in_millions = point["d"], point["m"]
+#         market_cap_in_millions = point["m"]
+#         del data[i]['m']
+#         data[i]["marketcap"] = market_cap_in_millions * 1000000
+#     print(data[:5], data[-5:])
+# else:
+#     print("Data not found")
+
+
+# unix_time = int(datetime.strptime("2018-06-06" + " 00:00:00", "%Y-%m-%d %H:%M:%S").timestamp())
+# print(unix_time)
+
+# unix_time = 1528243200  # This is for illustration purposes
+# # Convert Unix time to datetime object
+# dt = datetime.fromtimestamp(unix_time, tz=timezone.utc)
+# # Extract day, month, and year
+# day = dt.day
+# month = dt.month
+# year = dt.year
+# print(f"Month: {month}, Day: {day}, Year: {year}")
+# print(dt.hour, dt.minute, dt.second)
+
+
+
+
+
+
+
+
+
+nyse = mcal.get_calendar('NYSE')
+
+date1 = datetime.strptime("2017-03-19", "%Y-%m-%d")
+date2 = datetime.strptime("2017-03-20", "%Y-%m-%d")
+
+print(nyse.valid_days(start_date=date1, end_date=date2))
+
+a = nyse.valid_days(start_date=date1, end_date=date2)
+
+# print(date1.__str__()[:10])
+
+print(nyse.valid_days(start_date=date1, end_date=date2)[0].date().__str__())
+
+print(a)
+a = a[1:]
+print(a)

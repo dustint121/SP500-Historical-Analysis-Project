@@ -29,11 +29,11 @@ def get_tiingo_company_regular_data(ticker, company_name, company_profile):
         is_right_company = False
         if tiingo_data["name"] != None:
             is_right_company = all([val in ["inc","co","corp","corporation","company","companies","the","-","&",
-                                            "int`l","plc","ltd","llc"] 
+                                            "int`l","plc","ltd","llc",'(the)'] 
                                     or val in tiingo_data["name"].lower() or val in description.split()[:20]
                                     for val in company_name.split()])
 
-        ticker_exception_list = ["CPAY","CBOE","ORLY","DOC","BXP","EL","LH","BF-B","GE","NSC","SLB"]
+        ticker_exception_list = ["DPZ","CPAY","CBOE","CB","ORLY","DOC","BXP","EL","LH","BF-B","GE","NSC","SLB"]
         #500s
         ticker_exception_list += ["XOM","FRCB","SIVBQ","DISCK","MRKT","DINO","AGN"]
         #600s
@@ -69,7 +69,7 @@ def get_tiingo_company_regular_data(ticker, company_name, company_profile):
                 company_profile["description"] = None
             return True
         else:
-            if ticker not in []:
+            if ticker not in ["BK","BF-B","LLY","GE","IBM"]:
                 print("Invalid Tiingo data for ticker symbol: " + ticker)
                 return False
     else:
@@ -117,7 +117,7 @@ def get_tiingo_company_metadata(ticker, company_profile, meta_data_list):
         return False
 
 
-def get_fmp_metadata(ticker, company_name, company_profile):
+def get_fmp_metadata(ticker, company_name, company_profile, index):
     fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
     if (len(fmp_bio_list) > 0):
         fmp_data = fmp_bio_list[0]
@@ -125,9 +125,21 @@ def get_fmp_metadata(ticker, company_name, company_profile):
         company_name = company_name.replace('. ', ' ').replace('.', ' ') #do not remove commas, just "."
         is_right_company = False
         if fmp_data["companyName"] != None:
-            is_right_company = company_name.lower()[:8] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
-        ticker_exception_list = []
-        if ticker in ticker_exception_list or (is_valid_exchange and is_right_company):
+            is_right_company = all([val in ["inc","co","corp","corporation","company","companies","the","-","&",
+                                            "int`l","plc","ltd","llc",'(the)'] 
+                                    or val in fmp_data["companyName"].lower()
+                                    for val in company_name.lower().split()])
+            if is_right_company == False: 
+                is_right_company = company_name.lower()[:8] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
+
+        has_exception = False
+        if has_exception == False: has_exception = index<500 and ticker in ["BK","BF-B","LLY","GE","IMB"] #<500; unneeded
+        if has_exception == False: has_exception = 500<=index<600 and ticker in ["XOM"] #500s; unneeded
+        #nothing in 600s
+        if has_exception == False: has_exception = 800<=index<900 and ticker in ["FNMA", "FMCC", "IAC"] #800s
+        if has_exception == False: has_exception = 900<=index<1000 and ticker in ["SHEL"] #900s
+        #nothing in 1000s, 1100s
+        if has_exception or (is_valid_exchange and is_right_company):
             company_profile["company_name"] = fmp_data["companyName"]
             company_profile["sector"] = fmp_data["sector"]
             company_profile["industry"] = fmp_data["industry"]
