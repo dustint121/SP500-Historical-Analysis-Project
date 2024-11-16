@@ -146,36 +146,53 @@ def get_kibot_market_cap_data():
 
 
 def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_metadata):
+    #modify start date as needed; get later of current start date and start of 1998
+    start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
+    if start_date_check == "1998-01-02": start_date = "January 2, 1998"
+
+    #edge cases
+    if index in [1015, 1148, 1152]:
+        #for CEN, 1015, 13 days of relevant data; needed
+        market_caps = None
+        if index == 1015:
+            start_date = "March 14, 2001"
+            market_caps = [2.48, 2.26, 2.11, 2.04, 2.19, 2.22, 2.18, 1.89, 1.82, 2.01, 1.97, 1.95, 2.05]
+        #for ITT, 1148
+        if index == 1148:
+            market_caps = [3.69, 3.71, 3.68, 3.62, 3.66, 3.37, 3.62, 3.59, 3.66, 3.66, 3.67, 3.69, 3.62, 3.67, 3.68, 3.56, 3.55, 3.67, 3.74, 3.67
+            ,3.81, 3.73, 3.74, 3.79, 3.78, 3.86, 3.92, 3.86, 3.81, 3.78, 3.83, 3.83, 3.83, 3.91]
+        #for BBI, 1152
+        if index == 1152:
+            market_caps = [13.92, 14.18, 14.07, 14.07, 13.96, 13.43]
+        nyse = mcal.get_calendar('NYSE') # Create a calendar for the New York Stock Exchange
+        market_open_days = nyse.valid_days(start_date=start_date, end_date=end_date) # Get the market open days within the specified range
+        market_cap_data = []
+        for i, date in enumerate(market_open_days):
+            month, day, year = date.month, date.day, date.year
+            if day < 10: day = "0" + str(day)
+            if month < 10: month = "0" + str(month)
+            date = str(year) + "-" + str(month) + "-" + str(day)
+            market_cap_data.append({"date":date, "market_cap":round(market_caps[i] * (10 ** 9), 2)})
+        marketcap_metadata["image_type"] = "screenshot"
+        marketcap_metadata["source"] = "finchat.io"
+        return market_cap_data
+
     image_file = "finchat_market_cap_images/" + str(index) + "_" + ticker + ".png"
     image = cv2.imread(image_file)
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     length, height = gray_image.shape[1], gray_image.shape[0]
     min_market_cap, max_market_cap =  get_finchat_market_cap_range(index)
 
-
-    #modify start date as needed; get later of current start date and start of 1998
-    start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
-    if start_date_check == "1998-01-02": start_date = "January 2, 1998"
-
-
-    #NOTE : GET EXCEPTIONS FOR START_DATE/END_DATE LISTED IN MARKET CAP NOTES
-    #edge cases
-    if index in [1017, 1148, 1152]:
-        #for CEN, 1017, 13 days of relevant data; needed
-            [2.48, 2.26, 2.11, 2.04, 2.19, 2.22, 2.18, 1.89, 1.82, 2.01, 1.97, 1.95, 2.05]
-        #for ITT, 1148
-            [3.69, 3.71, 3.68, 3.62, 3.66, 3.37, 3.62, 3.59, 3.66, 3.66, 3.67, 3.69, 3.62, 3.67, 3.68, 3.56, 3.55, 3.67, 3.74, 3.67
-            ,3.81, 3.73, 3.74, 3.79, 3.78, 3.86, 3.92, 3.86, 3.81, 3.78, 3.83, 3.83, 3.83, 3.91]
-        #for BBI, 1152
-            [13.92, 14.18, 14.07, 14.07, 13.96, 13.43]
     
     reference_list = [] #will be a list representing the image scaled to the proper x-range(date) and y-range(market-caps)
     #process the image data to get pixel data scaled properly(x-coord scales to unix time and y-coord scales to market_caps)
     if (length == 4000 and height == 1600) or index in [784]:
+        marketcap_metadata["image_type"] = "download"
         gray_image = gray_image[130:-209, 20:-50] #basic cropping of image
         length, height = gray_image.shape[1], gray_image.shape[0] #get new dimensions
         reference_list = process_finchat_image_download(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap)
     else:
+        marketcap_metadata["image_type"] = "screenshot"
         reference_list = process_finchat_image_screenshot(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap)
 
 
@@ -210,7 +227,7 @@ def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_m
                 ratio = (stock_price_list[1][1] - stock_price_list[0][1]) / (stock_price_list[1][0] - stock_price_list[0][0])
                 market_cap = (unix_time - stock_price_list[0][0]) * ratio + stock_price_list[0][1]
                 market_cap = round(market_cap * 1000000000, 2)
-                market_cap_data.append({"date":date, "marketCap":market_cap})
+                market_cap_data.append({"date":date, "market_cap":market_cap})
                 break
             else:
                 stock_price_list.pop(0)
@@ -272,7 +289,7 @@ def process_finchat_image_download(gray_image, length, height, start_date, end_d
                 print("Line ended too early?")
                 return []
             break
-    print("Downloaded finchat pixel x-range: (" + str(x_start) + "," + str(x_end) + ")")
+
     #get pixel coordinates(x,y) of the stock line
     pixel_coordinates = []
     for i in range(x_start,x_end):
@@ -354,7 +371,7 @@ def process_finchat_image_screenshot(gray_image, length, height, start_date, end
         num_tickers = 0
         last_ticker_y_coord = None
         ticker_y_locations = []
-        for y in range(top_boundary, lower_boundary + 1):
+        for y in range(top_boundary, lower_boundary + 5):
             #ticker width can be up to 5(assumed); ignore the succeeding y-coords after finding a ticker
             if last_ticker_y_coord != None and y - last_ticker_y_coord < 5: continue
             ticker_check = all([gray_image[y][x] == 255 for x in range(left_boundary - 16, left_boundary)])
@@ -387,16 +404,11 @@ def process_finchat_image_screenshot(gray_image, length, height, start_date, end
                 break
 
     reference_list = []
-    # print(start_date)
-    # test = datetime.strptime(start_date + " 16:00:00", "%B %d, %Y %H:%M:%S")
-    # print(test)
-    # print(test.timestamp())
-    # print(int(test))
+
     unix_added_date = int(datetime.strptime(start_date + " 16:00:00", "%B %d, %Y %H:%M:%S").timestamp())
     unix_removed_date = int(datetime.strptime(end_date + " 16:00:00", "%B %d, %Y %H:%M:%S").timestamp())
     x_slope = (unix_removed_date - unix_added_date) / length #new axis
     y_slope = (max_market_cap - min_market_cap) / height
-
     for i in range(len(pixel_coordinates)):
         temp_x_coord = pixel_coordinates[i][0]
         x_coord = x_slope * temp_x_coord + unix_added_date
@@ -407,6 +419,7 @@ def process_finchat_image_screenshot(gray_image, length, height, start_date, end
 
 
 #return the min, max of the marketcap range in the finchat image 
+    #checked multiple times; all default listed caps below are correct; no further changes should be needed
 def get_finchat_market_cap_range(index):
     #store min and max of y-axis
     #will make code to double-check/adjust for screenshotted data
