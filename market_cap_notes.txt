@@ -53,7 +53,7 @@
     #726, JCP; companiesmarketcap.com; kibot; marketcap = $2.85 billion (marketcap.com); https://companiesmarketcap.com/jcpenney/marketcap/
     #727, NYX; finchat.io; kibot; marketcap = $11.13 billion (finchat.io)
 
-    #728, DELL; have full data in pdf format; marketcap = $24.9 billion
+    #728, DELL; have full data in pdf(https://i.dell.com/sites/csdocuments/Corporate_secure_Documents/en/dell-closing-costs.pdf); marketcap = $24.9 billion; 
 
     #731, BMC; finchat.io;
     #732, S; companiesmarketcap.com; https://companiesmarketcap.com/sprint-corporation/marketcap/

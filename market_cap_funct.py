@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from company_profile_func import *
 from datetime import datetime
 import pandas_market_calendars as mcal
+import cv2 
 
 
 load_dotenv()
@@ -115,8 +116,8 @@ def get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata):
 
 
 
-
-def kibot_market_cap():
+#about 25 uses
+def get_kibot_market_cap_data():
     authenciation_request = requests.get("http://api.kibot.com/?action=login&user=" + username + "&password=" + password)
     print(authenciation_request.text)
     headers = ["Date", "Open", "High", "Low", "Close", "Volume"]
@@ -141,113 +142,324 @@ def kibot_market_cap():
 
 
 
-#determine what image type to process(downloaded or screenshotted) by dimension(downloaded images are 4000x1600)
-
-#for CEN, 1017, 13 days of relevant data; needed
-    [2.48, 2.26, 2.11, 2.04, 2.19, 2.22, 2.18, 1.89, 1.82, 2.01, 1.97, 1.95, 2.05]
-
-#for ITT, 1148
-    [3.69, 3.71, 3.68, 3.62, 3.66, 3.37, 3.62, 3.59, 3.66, 3.66, 3.67, 3.69, 3.62, 3.67, 3.68, 3.56, 3.55, 3.67, 3.74, 3.67
-     ,3.81, 3.73, 3.74, 3.79, 3.78, 3.86, 3.92, 3.86, 3.81, 3.78, 3.83, 3.83, 3.83, 3.91]
-
-#for BBI, 1152
-    [13.92, 14.18, 14.07, 14.07, 13.96, 13.43]
 
 
-#store min and max of y-axis
+
+def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_metadata):
+    image_file = "finchat_market_cap_images/" + str(index) + "_" + ticker + ".png"
+    image = cv2.imread(image_file)
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    length, height = gray_image.shape[1], gray_image.shape[0]
+    min_market_cap, max_market_cap =  get_finchat_market_cap_range(index)
+
+
+    #modify start date as needed; get later of current start date and start of 1998
+    start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
+    if start_date_check == "1998-01-02": start_date = "January 2, 1998"
+
+
+    #NOTE : GET EXCEPTIONS FOR START_DATE/END_DATE LISTED IN MARKET CAP NOTES
+    #edge cases
+    if index in [1017, 1148, 1152]:
+        #for CEN, 1017, 13 days of relevant data; needed
+            [2.48, 2.26, 2.11, 2.04, 2.19, 2.22, 2.18, 1.89, 1.82, 2.01, 1.97, 1.95, 2.05]
+        #for ITT, 1148
+            [3.69, 3.71, 3.68, 3.62, 3.66, 3.37, 3.62, 3.59, 3.66, 3.66, 3.67, 3.69, 3.62, 3.67, 3.68, 3.56, 3.55, 3.67, 3.74, 3.67
+            ,3.81, 3.73, 3.74, 3.79, 3.78, 3.86, 3.92, 3.86, 3.81, 3.78, 3.83, 3.83, 3.83, 3.91]
+        #for BBI, 1152
+            [13.92, 14.18, 14.07, 14.07, 13.96, 13.43]
+    
+    reference_list = [] #will be a list representing the image scaled to the proper x-range(date) and y-range(market-caps)
+    #process the image data to get pixel data scaled properly(x-coord scales to unix time and y-coord scales to market_caps)
+    if (length == 4000 and height == 1600) or index in [784]:
+        gray_image = gray_image[130:-209, 20:-50] #basic cropping of image
+        length, height = gray_image.shape[1], gray_image.shape[0] #get new dimensions
+        reference_list = process_finchat_image_download(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap)
+    else:
+        reference_list = process_finchat_image_screenshot(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap)
+
+
+#NOTE: might currently not working for downloaded images
+    #seems to be for "Line ened too early": definitely not working for 1000
+
+    nyse = mcal.get_calendar('NYSE') # Create a calendar for the New York Stock Exchange
+    market_open_days = nyse.valid_days(start_date=start_date, end_date=end_date) # Get the market open days within the specified range
+
+    market_cap_data = []
+    stock_price_list = reference_list.copy()
+    for day in market_open_days:
+        month, day, year = day.month, day.day, day.year
+        if day < 10: day = "0" + str(day)
+        if month < 10: month = "0" + str(month)
+        date = str(year) + "-" + str(month) + "-" + str(day)
+        unix_time = int(datetime.strptime(date + " 16:00:00", "%Y-%m-%d %H:%M:%S").timestamp())
+
+        market_cap = None
+        while(True):
+            if len(stock_price_list) == 0:
+                break
+            if len(stock_price_list) == 1: #occurs after last point of list
+                if abs(unix_time - stock_price_list[0][0]) <= (86400 * 7): #at most a week of time difference
+                    market_cap = round(stock_price_list[0][1] * 1000000000, 2)
+                    market_cap_data.append({"date":date, "marketCap":market_cap})
+                    break
+                else:
+                    print("Last date is more than a day apart: " + date)
+
+            if stock_price_list[0][0] <= unix_time <= stock_price_list[1][0]:
+                ratio = (stock_price_list[1][1] - stock_price_list[0][1]) / (stock_price_list[1][0] - stock_price_list[0][0])
+                market_cap = (unix_time - stock_price_list[0][0]) * ratio + stock_price_list[0][1]
+                market_cap = round(market_cap * 1000000000, 2)
+                market_cap_data.append({"date":date, "marketCap":market_cap})
+                break
+            else:
+                stock_price_list.pop(0)
+
+
+    marketcap_metadata["source"] = "finchat.io"
+    return market_cap_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+def process_finchat_image_download(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap):
+    color_frequency = {} #gets the count of each color's pixel count in the image
+    color_occurences = {} #records the first occurence of a color at each 'x' coordinate {x_0:{color1:y_0, color2:y_1}, x_1...}
+    for x in range(length):
+        if color_occurences.get(x) is None: color_occurences[x] = {}
+        for y in range(height):
+            color_value = gray_image[y, x]
+            if color_frequency.get(color_value) is None: color_frequency[color_value] = 0
+            else: color_frequency[color_value] += 1
+
+            if color_occurences[x].get(color_value) is None: color_occurences[x][color_value] = y
+
+    #chart should have only 3 major values: black(blackground), grid color(), line color; 
+        # will remove the first two from dictionary; afterward, the line color should have the largest # of occurences
+    last_y = height - 1
+    #will look at first part of the bottom y-length; should only be the black background and the grid lines
+        #Note: this assumes that the stock line will never touch the bottom
+    # for x in range(50):
+    #     color = gray_image[last_y, x]
+    #     if color not in [0,45]: #these are the possible background colors
+    #         if color_frequency.get(0) != None: del color_frequency[0]
+    #         if color_frequency.get(45) != None: del color_frequency[45]
+    #         del color_frequency[color]
+    #         break
+    # if color_frequency.get(0) is not None: print("Error; Black is not removed")
+    # color_frequency = dict(sorted(color_frequency.items(), key=lambda item: item[1], reverse=True))
+    # line_color = int(list(color_frequency.keys())[0]) #the color for the stock line
+    line_color = 105
+    # print("Line color: " + str(line_color))
+    # print(color_frequency.get(105))
+    x_start, x_end = None, None #get the range: start and ending x-coord locations of the stock line 
+    for x_coord in color_occurences:
+        if line_color in color_occurences[x_coord] and x_start == None:
+            x_start = x_coord
+        #after finding start of line, find end of line
+        if x_start != None and line_color not in color_occurences[x_coord]:
+            x_end = x_coord - 1
+            if length - x_end >= 100: #check if line detection ends too early
+                print("Line ended too early?")
+                return []
+            break
+    print("Downloaded finchat pixel x-range: (" + str(x_start) + "," + str(x_end) + ")")
+    #get pixel coordinates(x,y) of the stock line
+    pixel_coordinates = []
+    for i in range(x_start,x_end):
+        x_coord = i - x_start
+        if color_occurences[i].get(line_color) is None:
+            print("error at: " + str(i))
+            break
+        y_coord = height - color_occurences[i].get(line_color) #need to reverse coordinates
+        pixel_coordinates.append([x_coord,y_coord]) 
+   
+    #scale the pixel_coordinates properly to dates(x-asix) and the marketcap range(y-axis)
+    reference_list = []
+    added_date = start_date
+    removed_date = end_date
+    unix_added_date = int(datetime.strptime(added_date + " 16:00:00", "%B %d, %Y %H:%M:%S").timestamp())
+    unix_removed_date = int(datetime.strptime(removed_date + " 16:00:00", "%B %d, %Y %H:%M:%S").timestamp())
+    x_slope = (unix_removed_date - unix_added_date) / (x_end - x_start) #new axis
+    y_slope = (max_market_cap - min_market_cap) / height
+    for i in range(len(pixel_coordinates)):
+        temp_x_coord = pixel_coordinates[i][0]
+        x_coord = x_slope * temp_x_coord + unix_added_date
+        temp_y_coord = pixel_coordinates[i][1]
+        y_coord = (y_slope * temp_y_coord) + min_market_cap
+        reference_list.append([x_coord,y_coord])
+
+    return reference_list
+
+
+
+def process_finchat_image_screenshot(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap):
+    #get boundaries for graph, excluding pixels containing the x-axis and y-axis
+    lower_boundary, left_boundary, right_boundary, top_boundary = None, None, None, None
+
+    white_frequency = {} #gets the count of each color's pixel count in the image
+    white_occurences = {} #records the first occurence of a color at each 'x' coordinate {x_0:{color1:y_0, color2:y_1}, x_1...}
+    for y in range(round(height*0.6),height):
+        for x in range(length):
+            color_value = gray_image[y, x]
+            if color_value == 255:
+                if white_frequency.get(y) is None:
+                    white_frequency[y] = 0
+                    white_occurences[y] = [x]
+                else:
+                    white_frequency[y] += 1
+                    white_occurences[y].append(x)
+        if white_frequency.get(y) is not None and white_frequency[y]/length > 0.75: #found the y-axis here; is >=75% white pixels
+            break
+
+    y_values = list(white_occurences.keys())
+    #the last y_value should be the top layer/y-value of the x-axis
+    #the second-to-last y_value shoud have values of the x-axis where the axis intersect
+        #also the lower_boundary, excluding the x-axis
+    lower_boundary = y_values[-2] #the pixels above the x-axis; y-value
+    left_boundary = white_occurences[y_values[-2]][-1] + 1 #the pixels after the y-axis; x-value
+    for y in range(lower_boundary, -1, -1):
+        color = gray_image[y][left_boundary - 1]
+        if color != 255:
+            top_boundary = y + 1
+            break
+    for x in reversed(white_occurences[lower_boundary + 1]): #look at pixels on line directly above x-axis in reverse
+        color = gray_image[lower_boundary][x]
+        if color != 45:
+            right_boundary = x
+            break
+    
+    #perform basic checks for boundary locations
+    if (left_boundary < (0.1*length)) == False: print("Possible issue with left boundary: " + str(left_boundary))
+    if (right_boundary > (0.9*length)) == False: print("Possible issue with right boundary: " + str(right_boundary))
+    if (200<top_boundary<400) == False: print("Possible issue with upper boundary: " + str(top_boundary))
+    if (600<lower_boundary<900) == False: print("Possible issue with lower boundary: " + str(lower_boundary))
+
+
+    #double check y-axis for right market caps based on ticker locations
+    top = all([gray_image[top_boundary][x] == 255 for x in range(left_boundary - 16, left_boundary)])
+    bottom = all([gray_image[lower_boundary+1][x] == 255 for x in range(left_boundary - 16, left_boundary)])
+    #if tickers are not on top and/or bottom, adjustments are needed
+    if (top and bottom) == False:
+    #get first two tickers from top to determine ticker interval length; tickers should be at least length 15
+        num_tickers = 0
+        last_ticker_y_coord = None
+        ticker_y_locations = []
+        for y in range(top_boundary, lower_boundary + 1):
+            #ticker width can be up to 5(assumed); ignore the succeeding y-coords after finding a ticker
+            if last_ticker_y_coord != None and y - last_ticker_y_coord < 5: continue
+            ticker_check = all([gray_image[y][x] == 255 for x in range(left_boundary - 16, left_boundary)])
+            if ticker_check:
+                num_tickers += 1
+                last_ticker_y_coord = y
+                ticker_y_locations.append(y)
+        ticker_distances = [ticker_y_locations[i+1] - ticker_y_locations[i] for i in range(len(ticker_y_locations) - 1)]
+        average_ticker_interval = sum(ticker_distances) / len(ticker_distances) #tickers can have varying pixel distances of 1-5
+        market_cap_ratio = (max_market_cap - min_market_cap) / len(ticker_distances) #market cap amount per ticker interval
+        if top == False: #adjust upper market cap
+            x = abs(top_boundary - ticker_y_locations[0]) / average_ticker_interval #distance reletive to a full ticker interval  
+            max_market_cap = max_market_cap + (x * market_cap_ratio)
+        if bottom == False: #adjust lower market cap
+            x = abs(lower_boundary - ticker_y_locations[-1]) / average_ticker_interval #distance reletive to a full ticker interval  
+            min_market_cap = min_market_cap - (x * market_cap_ratio)
+    print("Market caps: " + str((min_market_cap, max_market_cap)))
+
+
+    #with calculated boundaries, crop the image and do final processing to get reference list
+    cropped_image = gray_image[top_boundary:lower_boundary, left_boundary:right_boundary]
+    length = cropped_image.shape[1]
+    height = cropped_image.shape[0]
+
+    pixel_coordinates = []
+    for x in range(length):
+        for y in range(height):
+            if cropped_image[y,x] in [170, 132]: #is the value of green and red after being gray-scaled respectively
+                pixel_coordinates.append([x,height - y]) #need to reverse y-value since it is read top-down
+                break
+
+    reference_list = []
+    # print(start_date)
+    # test = datetime.strptime(start_date + " 16:00:00", "%B %d, %Y %H:%M:%S")
+    # print(test)
+    # print(test.timestamp())
+    # print(int(test))
+    unix_added_date = int(datetime.strptime(start_date + " 16:00:00", "%B %d, %Y %H:%M:%S").timestamp())
+    unix_removed_date = int(datetime.strptime(end_date + " 16:00:00", "%B %d, %Y %H:%M:%S").timestamp())
+    x_slope = (unix_removed_date - unix_added_date) / length #new axis
+    y_slope = (max_market_cap - min_market_cap) / height
+
+    for i in range(len(pixel_coordinates)):
+        temp_x_coord = pixel_coordinates[i][0]
+        x_coord = x_slope * temp_x_coord + unix_added_date
+        temp_y_coord = pixel_coordinates[i][1]
+        y_coord = (y_slope * temp_y_coord) + min_market_cap
+        reference_list.append([x_coord,y_coord])
+    return reference_list
+
+
+#return the min, max of the marketcap range in the finchat image 
+def get_finchat_market_cap_range(index):
+    #store min and max of y-axis
     #will make code to double-check/adjust for screenshotted data
-finchat_download_dict = {545:(15,60), 670:(3,12), 680:(0,45)}
-finchat_screenshot_dict = {586:(0,40), 595:(5,20), 609:(0,40), 612:(0,15), 649:(5,25), 652:(10,30), 659:(0, 250), 660:(0,140) 
-                           ,662:(2,7), 679:(0, 70), 691:(2,14), 695:(0,70)}
+    finchat_download_dict = {545:(15,60), 670:(3,12), 680:(0,45)}
+    finchat_screenshot_dict = {586:(0,40), 595:(5,20), 609:(0,40), 612:(0,15), 649:(5,25), 652:(10,30), 659:(0, 250), 660:(0,140) 
+                            ,662:(2,7), 679:(0, 70), 691:(2,14), 695:(0,70)}
+    #700s, fixed 767 image
+    finchat_download_dict.update({721:(1,14), 727:(2,26), 737:(0,11), 743:(7,14), 754:(5,13), 762:(0,24), 765:(3.75,6.5)
+                                ,767:(0,14), 769:(0,8), 771:(2,24), 782:(2,18), 784:(3,14)})
+    finchat_screenshot_dict.update({714:(0,35), 716:(0,30), 718:(2,16), 731:(5,20), 733:(0,20), 744:(2,14), 747:(0,20), 749:(0,15)
+                                    ,750:(5,20), 752:(0,10), 753:(0,40), 756:(10,35), 757:(5,20), 758:(0,15), 759:(0,35)
+                                    ,761:(0,8), 770:(0,15), 774:(0,12), 775:(2,12), 776:(0.5,3), 780:(2,12), 781:(1,5)
+                                    ,786:(2,16), 787:(2,8), 790:(10,40), 791:(3,9), 797:(0,15)})
+    #800s
+    finchat_download_dict.update({806:(3,11), 861:(0,4.5), 867:(6,15), 868:(0,35), 883:(1,8)})
+    finchat_screenshot_dict.update({801:(2,12), 803:(0,10), 810:(4,16), 817:(2,14), 818:(2,12), 819:(20,100), 820:(0,120)
+                                    ,821:(5,30), 822:(4,8), 824:(1,7), 826:(0,40), 827:(20,55), 828:(1,5), 835:(10,20), 838:(2,9)
+                                    ,842:(5,40), 847:(5,30), 848:(1,4.5), 850:(0,10), 859:(2,6), 860:(10,30), 862:(1,5), 863:(1,5)
+                                    ,864:(0,8), 866:(0,40), 872:(5,11), 873:(4,8), 874:(2,14), 876:(10,25), 877:(0,7), 879:(0,40)
+                                    ,880:(5,20), 881:(4,16), 884:(4,14), 885:(15,30), 886:(0,30), 887:(4,7), 888:(1,2), 889:(2,10)
+                                    ,890:(10,22), 891:(0,20), 892:(2,8), 895:(1,4), 898:(4,16)})
+    #900s
+    finchat_download_dict.update({901:(3,12), 903:(3,11), 904:(0.25,3.75), 905:(2,26), 910:(3,6.5), 911:(1.5,5), 914:(6,30)
+                                ,915:(1,13), 916:(2,10), 917:(0,7), 918:(0,40), 919:(5,8.5), 922:(0,55), 923:(0,4), 925:(8,40)
+                                ,927:(1,14), 931:(0,20), 932:(20,75), 933:(4,17), 937:(5,19), 939:(0.75,3.5), 941:(4,26)
+                                ,943:(2,16), 947:(2,22), 948:(2,16), 949:(5,55), 950:(3,11), 952:(3,7.5), 953:(20,80), 955:(7,15)
+                                ,956:(0,30), 958:(15,55), 960:(2,20), 962:(0.75,4), 968:(0.5,5), 969:(3,9), 973:(0,40), 982:(8,18)
+                                ,989:(1.9,3.1), 990:(2,5), 993:(0.75,3.25), 994:(4,13), 995:(0.5,2.75), 997:(2.5,6.5), 999:(22,42)})
+    finchat_screenshot_dict.update({900:(1,5), 912:(10,25), 921:(0,15), 924:(2,14), 930:(0,14), 936:(4,12), 938:(2,10), 942:(0,8)
+                                    ,951:(0.5,4), 954:(0.5,4), 963:(0,2.5), 965:(10,35), 971:(12,20), 983:(0,14), 988:(2,7)})
+    #1000s, fixed 1078
+    finchat_download_dict.update({1000:(3,9), 1007:(5,14), 1011:(2,14), 1016:(2.5,6.5), 1017:(3,10), 1019:(4,22), 1022:(0.3,1.2)
+                                ,1023:(0.3,1.3), 1025:(6,15), 1032:(3.8,5.6), 1033:(3,12), 1034:(2,20), 1036:(4,13), 1037:(3.5,6)
+                                ,1038:(0.7,1.8), 1039:(6,10.5), 1040:(1.2,3.4), 1042:(10,21), 1043:(2.6,4.6), 1044:(0.7,1.7)
+                                ,1046:(2.5,5.75), 1049:(1,7), 1052:(40,80), 1057:(2,8), 1060:(2.5,6.5), 1063:(1.75,5.25)
+                                ,1064:(0.55,1.05), 1065:(2.25,5.25), 1066:(10,55), 1067:(16,34), 1073:(3.75,6.75), 1075:(3.5,8.5)
+                                ,1078:(45,90), 1080:(1.4,3.2), 1081:(1,5.5), 1084:(0.4,1.3), 1085:(2.5,5.25), 1086:(0.7,2)
+                                ,1087:(0.3,1.3), 1088:(40,90), 1089:(4,11), 1090:(7,18), 1091:(0,2.75), 1092:(3,11), 1094:(1.5,4)
+                                ,1095:(0.2,1.8), 1097:(4,8), 1098:(5.5,10)})
+    finchat_screenshot_dict.update({1001:(20,70), 1003:(10,25), 1006:(2,10), 1009:(0.6,1.8), 1010:(2.5,5), 1013:(1,7), 1014:(0.6,1.8)
+                                    ,1018:(4,10), 1021:(1.5,5), 1045:(0.6,1.6), 1047:(5,40), 1050:(4,12), 1054:(1,5), 1059:(3,7)
+                                    ,1061:(1,2.5), 1069:(0.5,2), 1079:(5,9), 1082:(1.5,5), 1083:(2,9), 1093:(0.015,0.05)})
+    #1100s, fixed 1100, 1146
+    finchat_download_dict.update({1100:(15,70), 1103:(2.5,5.5), 1105:(4,14), 1106:(0.7,1.6), 1107:(5,11), 1108:(2,6.5), 1109:(0.4,2.2)
+                                ,1110:(5,13), 1111:(3,6), 1113:(1,3), 1114:(8,17), 1117:(36,60), 1119:(14,21), 1120:(0.25,0.8)
+                                ,1125:(1.8,4), 1126:(17,29), 1127:(4,10), 1128:(4,10), 1129:(1.4,2.7), 1130:(28,52), 1131:(4.5,8.5)
+                                ,1133:(2.1,3), 1136:(1.9,2.7), 1137:(2.1,3.4), 1138:(3,9), 1140:(2,6.5), 1142:(4.5,9.5)
+                                ,1146:(1.52,1.72), 1147:(0.43,0.7)})
+    finchat_screenshot_dict.update({1101:(40,120), 1102:(5,12), 1118:(1.5,3.5), 1121:(1,3), 1123:(40,90), 1132:(2,4.5), 1134:(3,5.5)
+                                    ,1135:(7,14), 1139:(0.8,1.6), 1141:(2.8,3.8), 1143:(14,22), 1144:(2.2,3.2), 1145:(0.4,0.6)
+                                    ,1150:(1.8,2.3)})
 
-
-#700s, fixed 767 image
-finchat_download_dict.update({721:(1,14), 727:(2,26), 737:(0,11), 743:(7,14), 754:(5,13), 762:(0,24), 765:(3.75,6.5)
-                              ,767:(0,14), 769:(0,8), 771:(2,24), 782:(2,18), 784:(3,14)})
-
-finchat_screenshot_dict.update({714:(0,35), 716:(0,30), 718:(2,16), 731:(5,20), 733:(0,20), 744:(2,14), 747:(0,20), 749:(0,15)
-                                ,750:(5,20), 752:(0,10), 753:(0,40), 756:(10,35), 757:(5,20), 758:(0,15), 759:(0,35)
-                                ,761:(0,8), 770:(0,15), 774:(0,12), 775:(2,12), 776:(0.5,3), 780:(2,12), 781:(1,5)
-                                ,786:(2,16), 787:(2,8), 790:(10,40), 791:(3,9), 797:(0,15)})
-
-
-#800s
-finchat_download_dict.update({806:(3,11), 861:(0,4.5), 867:(6,15), 868:(0,35), 883:(1,8)})
-
-finchat_screenshot_dict.update({801:(2,12), 803:(0,10), 810:(4,16), 817:(2,14), 818:(2,12), 819:(20,100), 820:(0,120)
-                                ,821:(5,30), 822:(4,8), 824:(1,7), 826:(0,40), 827:(20,55), 828:(1,5), 835:(10,20), 838:(2,9)
-                                ,842:(5,40), 847:(5,30), 848:(1,4.5), 850:(0,10), 859:(2,6), 860:(10,30), 862:(1,5), 863:(1,5)
-                                ,864:(0,8), 866:(0,40), 872:(5,11), 873:(4,8), 874:(2,14), 876:(10,25), 877:(0,7), 879:(0,40)
-                                ,880:(5,20), 881:(4,16), 884:(4,14), 885:(15,30), 886:(0,30), 887:(4,7), 888:(1,2), 889:(2,10)
-                                ,890:(10,22), 891:(0,20), 892:(2,8), 895:(1,4), 898:(4,16)})
-
-
-
-#900s
-finchat_download_dict.update({901:(3,12), 903:(3,11), 904:(0.25,3.75), 905:(2,26), 910:(3,6.5), 911:(1.5,5), 914:(6,30)
-                              ,915:(1,13), 916:(2,10), 917:(0,7), 918:(0,40), 919:(5,8.5), 922:(0,55), 923:(0,4), 925:(8,40)
-                              ,927:(1,14), 931:(0,20), 932:(20,75), 933:(4,17), 937:(5,19), 939:(0.75,3.5), 941:(4,26)
-                              ,943:(2,16), 947:(2,22), 948:(2,16), 949:(5,55), 950:(3,11), 952:(3,7.5), 953:(20,80), 955:(7,15)
-                              ,956:(0,30), 958:(15,55), 960:(2,20), 962:(0.75,4), 968:(0.5,5), 969:(3,9), 973:(0,40), 982:(8,18)
-                              ,989:(1.9,3.1), 990:(2,5), 993:(0.75,3.25), 994:(4,13), 995:(0.5,2.75), 997:(2.5,6.5), 999:(22,42)})
-
-finchat_screenshot_dict.update({900:(1,5), 912:(10,25), 921:(0,15), 924:(2,14), 930:(0,14), 936:(4,12), 938:(2,10), 942:(0,8)
-                                ,951:(0.5,4), 954:(0.5,4), 963:(0,2.5), 965:(10,35), 970:(12,20), 983:(0,14), 988:(2,7)})
-
-
-
-
-
-
-
-
-
-
-#1000s, fixed 1078
-finchat_download_dict.update({1000:(3,9), 1007:(5,14), 1011:(2,14), 1016:(2.5,6.5), 1017:(3,10), 1019:(4,22), 1022:(0.3,1.2)
-                              ,1023:(0.3,1.3), 1025:(6,15), 1032:(3.8,5.6), 1033:(3,12), 1034:(2,20), 1036:(4,13), 1037:(3.5,6)
-                              ,1038:(0.7,1.8), 1039:(6,10.5), 1040:(1.2,3.4), 1042:(10,21), 1043:(2.6,4.6), 1044:(0.7,1.7)
-                              ,1046:(2.5,5.75), 1049:(1,7), 1052:(40,80), 1057:(2,8), 1060:(2.5,6.5), 1063:(1.75,5.25)
-                              ,1064:(0.55,1.05), 1065:(2.25,5.25), 1066:(10,55), 1067:(16,34), 1073:(3.75,6.75), 1075:(3.5,8.5)
-                              ,1078:(45,90), 1080:(1.4,3.2), 1081:(1,5.5), 1084:(0.4,1.3), 1085:(2.5,5.25), 1086:(0.7,2)
-                              ,1087:(0.3,1.3), 1088:(40,90), 1089:(4,11), 1090:(7,18), 1091:(0,2.75), 1092:(3,11), 1094:(1.5,4)
-                              ,1095:(0.2,1.8), 1097:(4,8), 1098:(5.5,10)})
-
-finchat_screenshot_dict.update({1001:(20,70), 1003:(10,25), 1006:(2,10), 1009:(0.6,1.8), 1010:(2.5,5), 1013:(1,7), 1014:(0.6,1.8)
-                                ,1018:(4,10), 1021:(1.5,5), 1045:(0.6,1.6), 1047:(5,40), 1050:(4,12), 1054:(1,5), 1059:(3,7)
-                                ,1061:(1,2.5), 1069:(0.5,2), 1079:(5,9), 1082:(1.5,5), 1083:(2,9), 1093:(0.015,0.05)})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#1100s, fixed 1100, 1146
-finchat_download_dict.update({1100:(15,70), 1103:(2.5,5.5), 1105:(4,14), 1106:(0.7,1.6), 1107:(5,11), 1108:(2,6.5), 1109:(0.4,2.2)
-                              ,1110:(5,13), 1111:(3,6), 1113:(1,3), 1114:(8,17), 1117:(36,60), 1119:(14,21), 1120:(0.25,0.8)
-                              ,1125:(1.8,4), 1126:(17,29), 1127:(4,10), 1128:(4,10), 1129:(1.4,2.7), 1130:(28,52), 1131:(4.5,8.5)
-                              ,1133:(2.1,3), 1136:(1.9,2.7), 1137:(2.1,3.4), 1138:(3,9), 1140:(2,6.5), 1142:(4.5,9.5)
-                              ,1146:(1.52,1.72), 1147:(0.43,0.7)})
-
-finchat_screenshot_dict.update({1101:(40,120), 1102:(5,12), 1118:(1.5,3.5), 1121:(1,3), 1123:(40,90), 1132:(2,4.5), 1134:(3,5.5)
-                                ,1135:(7,14), 1139:(0.8,1.6), 1141:(2.8,3.8), 1143:(14,22), 1144:(2.2,3.2), 1145:(0.4,0.6)
-                                ,1150:(1.8,2.3)})
-
+    market_cap_range = finchat_download_dict.get(index)
+    if market_cap_range == None: market_cap_range = finchat_screenshot_dict.get(index)
+    if market_cap_range == None: print("Error: Market cap range not found for finchat image: " + str(index)) 
+    return market_cap_range
