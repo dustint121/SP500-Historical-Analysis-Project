@@ -728,33 +728,27 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
     marketcap_metadata = {"index":index,"ticker":ticker} #used to store where we get our data source
     market_cap_data = []
 
+    first_day_needed = datetime.strptime(added_date, "%B %d, %Y").__str__()[:10]
+    last_day_needed = (datetime.strptime("September 30, 2024", "%B %d, %Y").__str__()[:10] if removal_date != None
+                       else datetime.strptime(removal_date, "%B %d, %Y").__str__()[:10])
     finchat_download_list = [545, 670, 680, 721, 727, 737, 743, 754, 762, 765, 767, 769, 771, 782, 784, 806, 861, 867, 868, 883, 901, 903, 904, 905, 910, 911, 914, 915, 916, 917, 918, 919, 922, 923, 925, 927, 931, 932, 933, 937, 939, 941, 943, 947, 948, 949, 950, 952, 953, 955, 956, 958, 960, 962, 968, 969, 973, 982, 989, 990, 993, 994, 995, 997, 999, 1000, 1007, 1011, 1016, 1017, 1019, 1022, 1023, 1025, 1032, 1033, 1034, 1036, 1037, 1038, 1039, 1040, 1042, 1043, 1044, 1046, 1049, 1052, 1057, 1060, 1063, 1064, 1065, 1066, 1067, 1073, 1075, 1078, 1080, 1081, 1084, 1085, 1086, 1087, 1088, 1089, 1090, 1091, 1092, 1094, 1095, 1097, 1098, 1100, 1103, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1113, 1114, 1117, 1119, 1120, 1125, 1126, 1127, 1128, 1129, 1130, 1131, 1133, 1136, 1137, 1138, 1140, 1142, 1146, 1147]
     finchat_screenshot_list = [586, 595, 609, 612, 649, 652, 659, 660, 662, 679, 691, 695, 714, 716, 718, 731, 733, 744, 747, 749, 750, 752, 753, 756, 757, 758, 759, 761, 770, 774, 775, 776, 780, 781, 786, 787, 790, 791, 797, 801, 803, 810, 817, 818, 819, 820, 821, 822, 824, 826, 827, 828, 835, 838, 842, 847, 848, 850, 859, 860, 862, 863, 864, 866, 872, 873, 874, 876, 877, 879, 880, 881, 884, 885, 886, 887, 888, 889, 890, 891, 892, 895, 898, 900, 912, 921, 924, 930, 936, 938, 942, 951, 954, 963, 965, 971, 983, 988, 1001, 1003, 1006, 1009, 1010, 1013, 1014, 1018, 1021, 1045, 1047, 1050, 1054, 1059, 1061, 1069, 1079, 1082, 1083, 1093, 1101, 1102, 1118, 1121, 1123, 1132, 1134, 1135, 1139, 1141, 1143, 1144, 1145, 1150]
 
+    companiesmarketcap_list = [366, 618, 693, 726, 732, 766, 772, 792, 799, 800, 812, 839, 852, 869, 871, 893, 894, 897, 907, 929, 935, 940, 964, 966, 975, 985, 987, 996, 998, 1027, 1056, 1058, 1068, 1122]
+
+    kibot_list = [620, 646, 648, 656, 657, 658, 664, 683, 711, 725, 735, 743, 788, 804, 809, 853, 854, 855, 857, 926, 967, 1041, 1071, 1149]
+
+    #finchat.io
     if index in ([1015, 1148, 1152] + finchat_download_list + finchat_screenshot_list):
         market_cap_data = get_finchat_market_cap_data(index, original_ticker, added_date, removal_date, marketcap_metadata)
-
-
-    # if original_ticker in ["INFO", "STI", "LLL"]: #500s
-    #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-    #     return
-
-    # if 600<=index<700 and original_ticker in ["CA","XL","MON","DOW","DNB","FTR","HAR","LLTC","SE","DO","HOT","EMC",
-    #                                           "TYC","TE","CVC","ADT","BRCM","PCP","ALTR","PLL","NE"]: #600s
-    #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-    #     return
-    # elif 700<=index<800 and original_ticker in ["BTU","FRX","LSI","BEAM","VIAV","MOLX","JCP","NYX","DELL","BMC","S","CBE"
-    #                                             ,"SUN","LXK","EP","MMI","CEG","CPWR","TLAB","MWW","SUNEQ","NSM","MI"
-    #                                             ,"Q","QLGC","MDP","STR","JAVA","DYN","SGP"
-    #                                             ]:
-    #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-    #     return
-    # elif 800<=index<900 and original_ticker in ["WYE","CBE","EQ","GM","ROH","NE","UST","AW","ABI","BUD","HPC","WWY"
-    #                                             ,"COOP","LEHMQ","EDS","BSC","CC","CBH","CZR","DJ","TEK","TXU","NCR"
-    #                                             ,"FDC","CBSS","KSE","BMET"]:
-    #     print("Will need to make function to get market cap data from csv. Skip for now: " + original_ticker)
-    #     return
-    
+    #companiesmarketcap.com
+    elif index in companiesmarketcap_list:
+        if index == 366: removal_date = "September 30, 2024"
+        market_cap_data = get_companiesmarketcap_market_cap_data(index, added_date, removal_date, marketcap_metadata)
+    #kibot.com
+    elif index in kibot_list:
+        market_cap_data = get_kibot_market_cap_data(index,original_ticker,added_date,removal_date, marketcap_metadata)
+    #tiingo and fmp
     else:
         #format: January 21, 2012
         added_date = datetime.strptime(added_date, "%B %d, %Y") 
@@ -802,8 +796,8 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
     
     
     if len(market_cap_data) > 0:
-        marketcap_metadata["first_day_have_vs_needed"] = market_cap_data[0]["date"] + " : " + str(added_date.__str__()[:10])
-        marketcap_metadata["last_day_have_vs_needed"] = market_cap_data[-1]["date"] + " : " + str(removal_date.__str__()[:10])
+        marketcap_metadata["first_day_have_vs_needed"] = market_cap_data[0]["date"] + " : " + first_day_needed
+        marketcap_metadata["last_day_have_vs_needed"] = market_cap_data[-1]["date"] + " : " + last_day_needed
         nyse = mcal.get_calendar('NYSE')
 
         #format: January 1, 2005
@@ -881,14 +875,26 @@ if __name__ == "__main__":
  
         # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
         #     continue
-        if i not in [1015, 1148, 1152]:
-            continue
+        # if i not in [1015, 1148, 1152]:
+        #     continue
 
         finchat_download_list = [545, 670, 680, 721, 727, 737, 743, 754, 762, 765, 767, 769, 771, 782, 784, 806, 861, 867, 868, 883, 901, 903, 904, 905, 910, 911, 914, 915, 916, 917, 918, 919, 922, 923, 925, 927, 931, 932, 933, 937, 939, 941, 943, 947, 948, 949, 950, 952, 953, 955, 956, 958, 960, 962, 968, 969, 973, 982, 989, 990, 993, 994, 995, 997, 999, 1000, 1007, 1011, 1016, 1017, 1019, 1022, 1023, 1025, 1032, 1033, 1034, 1036, 1037, 1038, 1039, 1040, 1042, 1043, 1044, 1046, 1049, 1052, 1057, 1060, 1063, 1064, 1065, 1066, 1067, 1073, 1075, 1078, 1080, 1081, 1084, 1085, 1086, 1087, 1088, 1089, 1090, 1091, 1092, 1094, 1095, 1097, 1098, 1100, 1103, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1113, 1114, 1117, 1119, 1120, 1125, 1126, 1127, 1128, 1129, 1130, 1131, 1133, 1136, 1137, 1138, 1140, 1142, 1146, 1147]
         finchat_screenshot_list = [586, 595, 609, 612, 649, 652, 659, 660, 662, 679, 691, 695, 714, 716, 718, 731, 733, 744, 747, 749, 750, 752, 753, 756, 757, 758, 759, 761, 770, 774, 775, 776, 780, 781, 786, 787, 790, 791, 797, 801, 803, 810, 817, 818, 819, 820, 821, 822, 824, 826, 827, 828, 835, 838, 842, 847, 848, 850, 859, 860, 862, 863, 864, 866, 872, 873, 874, 876, 877, 879, 880, 881, 884, 885, 886, 887, 888, 889, 890, 891, 892, 895, 898, 900, 912, 921, 924, 930, 936, 938, 942, 951, 954, 963, 965, 971, 983, 988, 1001, 1003, 1006, 1009, 1010, 1013, 1014, 1018, 1021, 1045, 1047, 1050, 1054, 1059, 1061, 1069, 1079, 1082, 1083, 1093, 1101, 1102, 1118, 1121, 1123, 1132, 1134, 1135, 1139, 1141, 1143, 1144, 1145, 1150]
+        # if i not in finchat_download_list:
+        #     continue
         # if i not in finchat_screenshot_list:
         #     continue
+        # if i not in ([1015, 1148, 1152] + finchat_download_list + finchat_screenshot_list):
+        #     continue    
 
+        companiesmarketcap_list = [366, 618, 693, 726, 732, 766, 772, 792, 799, 800, 812, 839, 852, 869, 871, 893, 894, 897, 907, 929, 935, 940, 964, 966, 975, 985, 987, 996, 998, 1027, 1056, 1058, 1068, 1122]
+        # if i not in companiesmarketcap_list:
+        #     continue
+            
+
+        kibot_list = [620, 646, 648, 656, 657, 658, 664, 683, 711, 725, 735, 743, 788, 804, 809, 853, 854, 855, 857, 926, 967, 1041, 1071, 1149]
+        if i not in kibot_list:
+            continue
         print(i)
 
 

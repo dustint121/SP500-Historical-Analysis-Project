@@ -6,7 +6,8 @@ from company_profile_func import *
 from datetime import datetime
 import pandas_market_calendars as mcal
 import cv2 
-
+import re
+from bs4 import BeautifulSoup
 
 load_dotenv()
 apikey = os.environ.get("fmp_apikey")
@@ -114,29 +115,138 @@ def get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata):
     return tiingo_market_cap_data
 
 
+#about 34 uses
+def get_companiesmarketcap_market_cap_data(index, start_date, end_date, marketcap_metadata):
+    #modify start date as needed; get later of current start date and start of 1998
+    start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
+    if start_date_check == "1998-01-02": start_date = "January 2, 1998"
+
+    URL_dict = {366:"https://companiesmarketcap.com/paramount/marketcap/"
+            ,618:"https://companiesmarketcap.com/monsanto/marketcap/", 693:"https://companiesmarketcap.com/noble-corp/marketcap/"
+            ,726:"https://companiesmarketcap.com/jcpenney/marketcap/", 732:"https://companiesmarketcap.com/sprint-corporation/marketcap/"
+            ,766:"https://companiesmarketcap.com/national-semiconductor/marketcap/", 772:"https://companiesmarketcap.com/qwest-communications-international/marketcap/"
+            ,792:"https://companiesmarketcap.com/sun-microsystems/marketcap/", 799:"https://companiesmarketcap.com/schering-plough/marketcap/"
+            ,800:"https://companiesmarketcap.com/wyeth/marketcap/", 812:"https://companiesmarketcap.com/noble-corp/marketcap/"
+            ,839:"https://companiesmarketcap.com/lehman-brothers/marketcap/", 852:"https://companiesmarketcap.com/bear-stearns/marketcap/"
+            ,869:"https://companiesmarketcap.com/ncr-corporation/marketcap/", 871:"https://companiesmarketcap.com/first-data-corporation/marketcap/"
+            ,893:"https://companiesmarketcap.com/bellsouth/marketcap/", 894:"https://companiesmarketcap.com/par-technology/marketcap/"
+            ,897:"https://companiesmarketcap.com/lucent-technologies/marketcap/"
+            ,907:"https://companiesmarketcap.com/gateway-inc/marketcap/", 929:"https://companiesmarketcap.com/att/marketcap/"
+            ,935:"https://companiesmarketcap.com/nextel-communications/marketcap/", 940:"https://companiesmarketcap.com/veritas-technologies/marketcap/"
+            ,964:"https://companiesmarketcap.com/pharmacia/marketcap/", 966:"https://companiesmarketcap.com/healthsouth/marketcap/"
+            ,975:"https://companiesmarketcap.com/nortel-networks/marketcap/", 985:"https://companiesmarketcap.com/worldcom/marketcap/"
+            ,987:"https://companiesmarketcap.com/compaq-computer/marketcap/", 996:"https://companiesmarketcap.com/enron/marketcap/"
+            ,998:"https://companiesmarketcap.com/global-crossing/marketcap/"
+            ,1027:"https://companiesmarketcap.com/seagram/marketcap/", 1056:"https://companiesmarketcap.com/warner-lambert/marketcap/"
+            ,1058:"https://companiesmarketcap.com/mediaone-group/marketcap/", 1068:"https://companiesmarketcap.com/pharmacia-upjohn/marketcap/"
+            ,1122:"https://companiesmarketcap.com/chrysler-corporation/marketcap/"
+            }
+
+    page_url = URL_dict[index]
+    response = requests.get(page_url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    data = soup.find("script",{"type": "text/javascript"}).string
+
+    # Use regex to find the data variable
+    pattern = re.compile(r"data\s*=\s*(\[\{.*?\}\]);")
+    match = pattern.search(data)
+    if match:
+        data = match.group(1)
+        data = json.loads(data)
+        for i, point in enumerate(data):
+            market_cap_in_millions = point["m"]
+            del data[i]['m']
+            data[i]["market_cap"] = market_cap_in_millions * (10 ** 5) #should be 10 ** 6, but data is off by 10
+        # print(data[:5], data[-5:])
+
+        #get relevant market cap range to return data
+        print(start_date, end_date)
+        nyse = mcal.get_calendar('NYSE') # Create a calendar for the New York Stock Exchange
+        market_open_days = nyse.valid_days(start_date=start_date, end_date=end_date) # Get the market open days within the specified range
+        market_cap_data = []
+        for i, date in enumerate(market_open_days):
+            month, day, year = date.month, date.day, date.year
+            if date.month < 10: month = "0" + str(month)
+            if date.day < 10: day = "0" + str(day)
+            date = str(year) + "-" + str(month) + "-" + str(day)
+            current_unix_time = int(datetime.strptime(date + " 00:00:00", "%Y-%m-%d %H:%M:%S").timestamp())
+
+            first_data = data[0]
+            second_data = data[1]
+            while True: #get correct two date ranges from available data
+                if len(data) == 2: break
+                if current_unix_time < first_data["d"] and current_unix_time < second_data["d"]: break
+
+                if (first_data["d"] < current_unix_time < second_data["d"]) == False:
+                    data.pop(0)
+                    first_data = data[0]
+                    second_data = data[1]
+                else:
+                    break
+            
+            #less than available date range
+            if current_unix_time < first_data["d"] and current_unix_time < second_data["d"]:
+                market_cap_data.append({"date":date, "market_cap":round(first_data["market_cap"], 2)})
+            #between chosen date ranges
+            elif (first_data["d"] < current_unix_time < second_data["d"]):
+                #value between 0-1 that tells where you are between the two chosen dates
+                x = (current_unix_time - first_data["d"]) / (second_data["d"] - first_data["d"])
+                market_cap_range = second_data["market_cap"] - first_data["market_cap"]
+                market_cap = round((market_cap_range * x) + first_data["market_cap"], 2) 
+                market_cap_data.append({"date":date, "market_cap":market_cap})
+            #larger than avaiable date range
+            elif current_unix_time > first_data["d"] and current_unix_time > second_data["d"]:
+                market_cap_data.append({"date":date, "market_cap":round(second_data["market_cap"], 2)})
+            else:
+                print("Unknown case")
+
+        marketcap_metadata["source"] = "companiesmarketcap.com"
+        return market_cap_data
+    else:
+        print("Data not found: companiesmarketcap.com")
+
+
 
 
 #about 25 uses
-def get_kibot_market_cap_data():
+def get_kibot_market_cap_data(index, ticker, start_date, end_date, marketcap_metadata):
+    marketcap_metadata["source"] = "kibot"
+
+    if index == 855: ticker = "HET" #edge case; changed ticker symbol later; HET -> CZR (Caesar's Entertainment)
+
+    #need to fix start and end date to right format: year-month-day (xxxx-xx-xx)
+    start_date = datetime.strptime(start_date, "%B %d, %Y").__str__()[:10]
+    end_date = datetime.strptime(end_date, "%B %d, %Y").__str__()[:10]
+
     authenciation_request = requests.get("http://api.kibot.com/?action=login&user=" + username + "&password=" + password)
-    print(authenciation_request.text)
+    # print(authenciation_request.text)
     headers = ["Date", "Open", "High", "Low", "Close", "Volume"]
     kibot_request = requests.get("http://api.kibot.com/?action=history&symbol=MSFT&interval=daily&period=10")
+    kibot_request = requests.get("http://api.kibot.com/?action=history&symbol=" + str(ticker) + "&interval=daily"
+                                 + "&startdate=" + str(start_date) + "&enddate=" + str(end_date))
 
     result_list = kibot_request.text.splitlines()
     stock_price_data = []
-
     for line in result_list:
         values = line.split(',')
         stock_price_data.append(dict(zip(headers, values)))
-    print(stock_price_data)
+    # print(stock_price_data)
 
+    ending_market_cap_dict = {620:6.11, 646:9, 648:7.8, 656:4, 657:1.6, 658:13.06, 664:14.5, 683:16.34
+                            , 711:3.65, 725:6.93, 735:23.41, 743:12.05, 788:3.2
+                            , 804:0.294, 809:1.05, 853:0.69, 854:7.03, 855:17.4, 857:1.82
+                            , 926:0.8, 967:0.23
+                            , 1041:5.69, 1071:0.63
+                            , 1149:2.52}
+    marketcap_price_ratio = ending_market_cap_dict[index] / float(stock_price_data[-1]["Close"])
 
-    price_to_market_cap_ratio_dict = {}
-
+    market_cap_data = []
     for data in stock_price_data:
         date_data = data["Date"].split("/")
         date = date_data[2] + "-" + date_data[0] + "-" + date_data[1]
+        market_cap = round(float(data["Close"]) * marketcap_price_ratio * (10 ** 9), 2)
+        market_cap_data.append({"date":date, "market_cap":market_cap})
+    return market_cap_data
 
     
 
@@ -151,7 +261,11 @@ def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_m
     if start_date_check == "1998-01-02": start_date = "January 2, 1998"
 
     #edge cases
-    if index in [1015, 1148, 1152]:
+    if index == 956: start_date = "March 13, 2001" #limited data
+    if index == 989: start_date = "March 18, 1999" #limited data
+    if index == 1084: end_date = "November 17, 1999" #more data than needed
+    if index == 1086: end_date = "December 2, 1999" #more data than needed
+    if index in [1015, 1148, 1152]: #these will be quickly processed instead of normal function
         #for CEN, 1015, 13 days of relevant data; needed
         market_caps = None
         if index == 1015:
@@ -218,7 +332,7 @@ def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_m
             if len(stock_price_list) == 1: #occurs after last point of list
                 if abs(unix_time - stock_price_list[0][0]) <= (86400 * 7): #at most a week of time difference
                     market_cap = round(stock_price_list[0][1] * 1000000000, 2)
-                    market_cap_data.append({"date":date, "marketCap":market_cap})
+                    market_cap_data.append({"date":date, "market_cap":market_cap})
                     break
                 else:
                     print("Last date is more than a day apart: " + date)
@@ -388,7 +502,7 @@ def process_finchat_image_screenshot(gray_image, length, height, start_date, end
         if bottom == False: #adjust lower market cap
             x = abs(lower_boundary - ticker_y_locations[-1]) / average_ticker_interval #distance reletive to a full ticker interval  
             min_market_cap = min_market_cap - (x * market_cap_ratio)
-    print("Market caps: " + str((min_market_cap, max_market_cap)))
+    # print("Market caps: " + str((min_market_cap, max_market_cap)))
 
 
     #with calculated boundaries, crop the image and do final processing to get reference list

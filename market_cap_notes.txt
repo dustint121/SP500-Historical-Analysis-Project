@@ -149,7 +149,7 @@
     #872, CBSS; finchat.io; kibot; marketcap = $8.6 billion (finchat.io); marketcap to stock price ratio is decent
     #873, KSE; finchat.io; kibot; marketcap = $7.42 billion (finchat.io); major changes in ratios
     #874, BMET; finchat.io; kibot; marketcap = $11.28 billion (finchat.io); marketcap to stock price ratio is decent
-    #875, DG; kibot; marketcap = $6.92 billion (https://media.kkr.com/news-details/?news_id=b26b148f-1e9c-413b-8ca7-daa74208fcc7&type=1&download=1)
+    #875, DG; can't find data; marketcap = $6.92 billion (https://media.kkr.com/news-details/?news_id=b26b148f-1e9c-413b-8ca7-daa74208fcc7&type=1&download=1)
     #876, MEL; finchat.io
     #877, PMCS; finchat.io; kibot; marketcap = $1.66 billion (finchat.io); marketcap to stock price ratio is near-exact
     #879, ADCT; finchat.io
