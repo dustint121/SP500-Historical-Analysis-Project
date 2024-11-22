@@ -5,14 +5,13 @@
     #what year has the most stocks added/removed in sp 500?
     # percentage of tech sector companies on nasdaq vs nyse
 
-    #89, 90 add TFCF, TFCFA data from investing.com to start
-    #162, KHC; add data from investing.com to start
+    #89, 90 add TFCF, TFCFA data from investing.com to start; marketcap = $51.8 billion  (https://www.businesswire.com/news/home/20190319005901/en/Disney-and-21st-Century-Fox-Announce-Per-Share-Value-in-Connection-with-71-Billion-Acquisition)
+    #162, KHC; marketcap = $47 billion; add data from investing.com to start (https://www.iclub.com/faq/Home/Article?id=427#gsc.tab=0)
     #366, PARA; companiesmarketcap.com; https://companiesmarketcap.com/paramount/marketcap/; have limited fmp/tiingo data before 2006 
 
     #545, INFO; finchat.io; kibot; marketcap = $43.35 billion (finchat.io)
     #586, STI; finchat.io; kibot (STI.A);   marketcap = $30.75 billion (finchat.io)
     #595, LLL; finchat.io; kibot; marketcap = $19.5 billion (finchat.io)
-
 
     #609, CA; finchat.io; kibot (need two call, before and after 2017); marketcap = $18.6 billion (finchat.io) 
     #612, XL; finchat.io; kibot; marketcap = $14.9 billion (finchat.io)
@@ -53,7 +52,7 @@
     #726, JCP; companiesmarketcap.com; kibot; marketcap = $2.85 billion (marketcap.com); https://companiesmarketcap.com/jcpenney/marketcap/
     #727, NYX; finchat.io; kibot; marketcap = $11.13 billion (finchat.io)
 
-    #728, DELL; have full data in pdf(https://i.dell.com/sites/csdocuments/Corporate_secure_Documents/en/dell-closing-costs.pdf); marketcap = $24.9 billion; 
+    #728, DELL; marketcap = $24.4 billion; have full data in pdf(https://i.dell.com/sites/csdocuments/Corporate_secure_Documents/en/dell-closing-costs.pdf); marketcap = $24.9 billion; 
 
     #731, BMC; finchat.io;
     #732, S; companiesmarketcap.com; https://companiesmarketcap.com/sprint-corporation/marketcap/

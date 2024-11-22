@@ -154,5 +154,55 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 #correct # of total files: 274
 
 
-date1 = datetime.strptime("2017-03-19", "%Y-%m-%d")
-print(date1.__str__()[:10])
+# date1 = datetime.strptime("2017-03-19", "%Y-%m-%d")
+# print(date1.__str__()[:10])
+
+
+# data = pd.read_csv("historical_stock_price\\162_KHC.csv")
+# data = pd.read_csv("historical_stock_price\\728_DELL.csv")
+
+
+# print(data.head(5))
+# marketcaps_dict = {89:51.8, 90:51.8, 162:47, 728:24.4}
+# marketcap_ratio = marketcaps_dict[728] / 13.73
+
+# indices =list(data[data["Date"] == "Please note that these closing prices reflect the Cumulative Split-Adjusted Price."].index)
+
+# marketcap_data = []
+# for i in range(len(indices) - 1):
+#     start, stop = indices[i] + 1, indices[i+1]
+#     marketcap_data_part1 = []
+#     marketcap_data_part2 = []
+#     for index in range(start, stop):
+#         date_parts_1 = data.iloc[index]["Date"].split("/")
+#         year, month, day = (date_parts_1[2], date_parts_1[0] if int(date_parts_1[0]) >= 10 else "0" + date_parts_1[0]
+#                             ,date_parts_1[1] if int(date_parts_1[1]) >= 10 else "0" + date_parts_1[1])
+#         date_1 = year + "-" + month + "-" + day
+#         marketcap_1 = round(float(data.iloc[index]["Stock Close Price"] * marketcap_ratio * 1000000000), 2)
+#         date_parts_2 = data.iloc[index]["Date.1"].split("/")
+#         year, month, day = (date_parts_2[2], date_parts_2[0] if int(date_parts_2[0]) >= 10 else "0" + date_parts_2[0]
+#                             ,date_parts_2[1] if int(date_parts_2[1]) >= 10 else "0" + date_parts_2[1])
+#         date_2 = year + "-" + month + "-" + day
+#         marketcap_2 = round(float(data.iloc[index]["Stock Close Price.1"] * marketcap_ratio * 1000000000), 2)
+#         marketcap_data_part1.append({"date":date_1, "market_cap": marketcap_1})
+#         marketcap_data_part2.append({"date":date_2, "market_cap": marketcap_2})
+
+#     marketcap_data = marketcap_data + marketcap_data_part1 + marketcap_data_part2 
+# for index in range(indices[-1]+1, len(data)):
+#     date_parts = data.iloc[index]["Date"].split("/")
+#     year, month, day = (date_parts[2], date_parts[0] if int(date_parts[0]) >= 10 else "0" + date_parts[0]
+#                         ,date_parts[1] if int(date_parts[1]) >= 10 else "0" + date_parts[1])
+#     date = year + "-" + month + "-" + day
+#     marketcap = round(float(data.iloc[index]["Stock Close Price"] * marketcap_ratio * 1000000000), 2)
+#     marketcap_data.append({"date":date, "market_cap": marketcap})
+
+
+
+# # print(indices)
+
+# print(marketcap_data[:5])
+# print(marketcap_data[-5:])
+
+
+
+
