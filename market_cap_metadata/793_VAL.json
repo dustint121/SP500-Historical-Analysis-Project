@@ -1,0 +1,9 @@
+{
+    "index": 793,
+    "ticker": "VAL",
+    "num_trading_days_to_calculate": 3839,
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2007-01-03 : 2007-01-03",
+    "last_day_have_vs_needed": "2009-12-22 : 2009-12-22",
+    "num_of_days_data": 750
+}

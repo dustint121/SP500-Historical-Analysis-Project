@@ -1,0 +1,9 @@
+{
+    "index": 604,
+    "ticker": "ESRX",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2003-09-25 : 2003-09-25",
+    "last_day_have_vs_needed": "2018-12-20 : 2018-12-21",
+    "missing_num_days_after": 1,
+    "num_of_days_data": 3837
+}

@@ -1,0 +1,9 @@
+{
+    "index": 926,
+    "ticker": "VC",
+    "source": "kibot",
+    "first_day_have_vs_needed": "2000-06-29 : 2000-06-28",
+    "last_day_have_vs_needed": "2005-12-30 : 2005-12-30",
+    "missing_num_days_before": 1,
+    "num_of_days_data": 1385
+}

@@ -1,0 +1,9 @@
+{
+    "index": 565,
+    "ticker": "CXO",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2016-02-19 : 2016-02-19",
+    "last_day_have_vs_needed": "2021-01-15 : 2021-01-20",
+    "missing_num_days_after": 2,
+    "num_of_days_data": 1237
+}

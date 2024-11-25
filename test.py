@@ -149,9 +149,9 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 
 
-#132 screenshots
+#134 screenshots
 #142 downloads
-#correct # of total files: 274
+#correct # of total files: 276
 
 
 # date1 = datetime.strptime("2017-03-19", "%Y-%m-%d")
@@ -206,3 +206,5 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 
 
+#1-500 marketcap : 35 minutes
+#500-1152 : 30 minutes

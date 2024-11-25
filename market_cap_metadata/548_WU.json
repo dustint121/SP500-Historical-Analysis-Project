@@ -1,0 +1,9 @@
+{
+    "index": 548,
+    "ticker": "WU",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2006-10-02 : 2006-09-29",
+    "last_day_have_vs_needed": "2021-12-17 : 2021-12-17",
+    "missing_num_days_before": 1,
+    "num_of_days_data": 3831
+}

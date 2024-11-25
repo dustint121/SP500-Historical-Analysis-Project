@@ -1,0 +1,8 @@
+{
+    "index": 1005,
+    "ticker": "TKR",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "1998-01-02 : 1998-01-02",
+    "last_day_have_vs_needed": "2001-08-06 : 2001-08-06",
+    "num_of_days_data": 906
+}

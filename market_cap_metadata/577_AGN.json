@@ -1,0 +1,9 @@
+{
+    "index": 577,
+    "ticker": "AGN",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "1999-04-09 : 1999-04-09",
+    "last_day_have_vs_needed": "2020-05-08 : 2020-05-11",
+    "missing_num_days_after": 1,
+    "num_of_days_data": 5306
+}

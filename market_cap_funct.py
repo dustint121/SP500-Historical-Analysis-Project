@@ -48,7 +48,6 @@ def get_fmp_market_cap_data(original_ticker, index):
     return fmp_market_cap_data
 
 
-
 #get market cap data from tiingo
 def get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata):
     headers = {'Content-Type': 'application/json'}
@@ -88,8 +87,7 @@ def get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata):
             missing_trading_days = nyse.valid_days(start_date=date_needed, end_date=first_date_in_market_cap_data)
             num_missing_trading_days = len(missing_trading_days)
 
-            # marketcap_metadata["first_day_given"] = f"{first_date_in_market_cap_data.month}/{first_date_in_market_cap_data.day}/{first_date_in_market_cap_data.year}"
-            # marketcap_metadata["first_day_needed"] = f"{date_needed.month}/{date_needed.day}/{date_needed.year}"
+
             marketcap_metadata["num_trading_days_to_calculate"] = num_missing_trading_days
             if num_missing_trading_days > 250:
                 print(str(first_date_in_market_cap_data) + " - " + str(date_needed))
@@ -114,6 +112,7 @@ def get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata):
                 print("Tiingo data error: Ending Dates aren't the same: " + ticker)
 
     return tiingo_market_cap_data
+
 
 #4 cases
 def get_misc_market_cap_data(index, ticker, marketcap_metadata):
@@ -153,7 +152,6 @@ def get_misc_market_cap_data(index, ticker, marketcap_metadata):
                 marketcap_2 = round(float(data.iloc[index]["Stock Close Price.1"] * marketcap_ratio * 1000000000), 2)
                 marketcap_data_part1.append({"date":date_1, "market_cap": marketcap_1})
                 marketcap_data_part2.append({"date":date_2, "market_cap": marketcap_2})
-            print(len(marketcap_data_part1), len(marketcap_data_part2))
             marketcap_data = marketcap_data + marketcap_data_part1 + marketcap_data_part2 
 
         for index in range(indices[-1]+1, len(data)): #for last part of data, only 2 columns
@@ -166,14 +164,16 @@ def get_misc_market_cap_data(index, ticker, marketcap_metadata):
         return marketcap_data
 
 
-
-#about 34 uses
+#about 36 uses
 def get_companiesmarketcap_market_cap_data(index, start_date, end_date, marketcap_metadata):
     #modify start date as needed; get later of current start date and start of 1998
     start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
     if start_date_check == "1998-01-02": start_date = "January 2, 1998"
+    #modify end date as needed for current SP 500 companies
+    if index in [366, 377, 499]: end_date = "September 30, 2024"
 
-    URL_dict = {366:"https://companiesmarketcap.com/paramount/marketcap/"
+    URL_dict = {366:"https://companiesmarketcap.com/paramount/marketcap/", 377:"https://companiesmarketcap.com/linde/marketcap/"
+            ,499:"https://companiesmarketcap.com/sp-global/marketcap/"
             ,618:"https://companiesmarketcap.com/monsanto/marketcap/", 693:"https://companiesmarketcap.com/noble-corp/marketcap/"
             ,726:"https://companiesmarketcap.com/jcpenney/marketcap/", 732:"https://companiesmarketcap.com/sprint-corporation/marketcap/"
             ,766:"https://companiesmarketcap.com/national-semiconductor/marketcap/", 772:"https://companiesmarketcap.com/qwest-communications-international/marketcap/"
@@ -212,7 +212,7 @@ def get_companiesmarketcap_market_cap_data(index, start_date, end_date, marketca
         # print(data[:5], data[-5:])
 
         #get relevant market cap range to return data
-        print(start_date, end_date)
+        # print(start_date, end_date)
         nyse = mcal.get_calendar('NYSE') # Create a calendar for the New York Stock Exchange
         market_open_days = nyse.valid_days(start_date=start_date, end_date=end_date) # Get the market open days within the specified range
         market_cap_data = []
@@ -258,8 +258,6 @@ def get_companiesmarketcap_market_cap_data(index, start_date, end_date, marketca
         print("Data not found: companiesmarketcap.com")
 
 
-
-
 #about 25 uses
 def get_kibot_market_cap_data(index, ticker, start_date, end_date, marketcap_metadata):
     marketcap_metadata["source"] = "kibot"
@@ -267,6 +265,8 @@ def get_kibot_market_cap_data(index, ticker, start_date, end_date, marketcap_met
     if index == 855: ticker = "HET" #edge case; changed ticker symbol later; HET -> CZR (Caesar's Entertainment)
 
     #need to fix start and end date to right format: year-month-day (xxxx-xx-xx)
+    start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
+    if start_date_check == "1998-01-02": start_date = "January 2, 1998"
     start_date = datetime.strptime(start_date, "%B %d, %Y").__str__()[:10]
     end_date = datetime.strptime(end_date, "%B %d, %Y").__str__()[:10]
 
@@ -282,7 +282,6 @@ def get_kibot_market_cap_data(index, ticker, start_date, end_date, marketcap_met
     for line in result_list:
         values = line.split(',')
         stock_price_data.append(dict(zip(headers, values)))
-    # print(stock_price_data)
 
     ending_market_cap_dict = {620:6.11, 646:9, 648:7.8, 656:4, 657:1.6, 658:13.06, 664:14.5, 683:16.34
                             , 711:3.65, 725:6.93, 735:23.41, 743:12.05, 788:3.2
@@ -300,17 +299,12 @@ def get_kibot_market_cap_data(index, ticker, start_date, end_date, marketcap_met
         market_cap_data.append({"date":date, "market_cap":market_cap})
     return market_cap_data
 
-    
-
-
-
-
-
 
 def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_metadata):
     #modify start date as needed; get later of current start date and start of 1998
     start_date_check = max(datetime.strptime(start_date, "%B %d, %Y"),  datetime.strptime("1998-01-02", "%Y-%m-%d")).__str__()[:10]
     if start_date_check == "1998-01-02": start_date = "January 2, 1998"
+    if end_date == None: end_date = "September 30, 2024"
 
     #edge cases
     if index == 956: start_date = "March 13, 2001" #limited data
@@ -349,7 +343,6 @@ def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_m
     length, height = gray_image.shape[1], gray_image.shape[0]
     min_market_cap, max_market_cap =  get_finchat_market_cap_range(index)
 
-    
     reference_list = [] #will be a list representing the image scaled to the proper x-range(date) and y-range(market-caps)
     #process the image data to get pixel data scaled properly(x-coord scales to unix time and y-coord scales to market_caps)
     if (length == 4000 and height == 1600) or index in [784]:
@@ -361,13 +354,8 @@ def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_m
         marketcap_metadata["image_type"] = "screenshot"
         reference_list = process_finchat_image_screenshot(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap)
 
-
-#NOTE: might currently not working for downloaded images
-    #seems to be for "Line ened too early": definitely not working for 1000
-
     nyse = mcal.get_calendar('NYSE') # Create a calendar for the New York Stock Exchange
     market_open_days = nyse.valid_days(start_date=start_date, end_date=end_date) # Get the market open days within the specified range
-
     market_cap_data = []
     stock_price_list = reference_list.copy()
     for day in market_open_days:
@@ -397,21 +385,8 @@ def get_finchat_market_cap_data(index, ticker, start_date, end_date, marketcap_m
                 break
             else:
                 stock_price_list.pop(0)
-
-
     marketcap_metadata["source"] = "finchat.io"
     return market_cap_data
-
-
-
-
-
-
-
-
-
-
-
 
 
 def process_finchat_image_download(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap):
@@ -482,7 +457,6 @@ def process_finchat_image_download(gray_image, length, height, start_date, end_d
         reference_list.append([x_coord,y_coord])
 
     return reference_list
-
 
 
 def process_finchat_image_screenshot(gray_image, length, height, start_date, end_date, min_market_cap, max_market_cap):
@@ -585,12 +559,11 @@ def process_finchat_image_screenshot(gray_image, length, height, start_date, end
 
 
 #return the min, max of the marketcap range in the finchat image 
-    #checked multiple times; all default listed caps below are correct; no further changes should be needed
 def get_finchat_market_cap_range(index):
     #store min and max of y-axis
     #will make code to double-check/adjust for screenshotted data
     finchat_download_dict = {545:(15,60), 670:(3,12), 680:(0,45)}
-    finchat_screenshot_dict = {586:(0,40), 595:(5,20), 609:(0,40), 612:(0,15), 649:(5,25), 652:(10,30), 659:(0, 250), 660:(0,140) 
+    finchat_screenshot_dict = {117:(0,40), 286:(0,40), 586:(0,40), 595:(5,20), 609:(0,40), 612:(0,15), 649:(5,25), 652:(10,30), 659:(0, 250), 660:(0,140) 
                             ,662:(2,7), 679:(0, 70), 691:(2,14), 695:(0,70)}
     #700s, fixed 767 image
     finchat_download_dict.update({721:(1,14), 727:(2,26), 737:(0,11), 743:(7,14), 754:(5,13), 762:(0,24), 765:(3.75,6.5)

@@ -1,0 +1,9 @@
+{
+    "index": 563,
+    "ticker": "VNT",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2020-10-09 : 2020-10-08",
+    "last_day_have_vs_needed": "2021-03-19 : 2021-03-19",
+    "missing_num_days_before": 1,
+    "num_of_days_data": 111
+}

@@ -1,0 +1,9 @@
+{
+    "index": 683,
+    "ticker": "ALTR",
+    "source": "kibot",
+    "first_day_have_vs_needed": "2000-04-17 : 2000-04-17",
+    "last_day_have_vs_needed": "2015-12-24 : 2015-12-28",
+    "missing_num_days_after": 1,
+    "num_of_days_data": 3948
+}

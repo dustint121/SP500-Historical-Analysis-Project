@@ -1,0 +1,9 @@
+{
+    "index": 528,
+    "ticker": "SBNY",
+    "source": "fmp",
+    "first_day_have_vs_needed": "2021-12-17 : 2021-12-17",
+    "last_day_have_vs_needed": "2023-03-10 : 2023-03-14",
+    "missing_num_days_after": 2,
+    "num_of_days_data": 308
+}

@@ -1,0 +1,9 @@
+{
+    "index": 525,
+    "ticker": "FRC",
+    "source": "fmp",
+    "first_day_have_vs_needed": "2018-12-31 : 2018-12-31",
+    "last_day_have_vs_needed": "2023-04-28 : 2023-05-03",
+    "missing_num_days_after": 3,
+    "num_of_days_data": 1090
+}

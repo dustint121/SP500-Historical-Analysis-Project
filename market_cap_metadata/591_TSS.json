@@ -1,0 +1,9 @@
+{
+    "index": 591,
+    "ticker": "TSS",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2007-12-31 : 2007-12-31",
+    "last_day_have_vs_needed": "2019-09-17 : 2019-09-20",
+    "missing_num_days_after": 3,
+    "num_of_days_data": 2949
+}

@@ -1,0 +1,9 @@
+{
+    "index": 519,
+    "ticker": "ATVI",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2015-08-28 : 2015-08-28",
+    "last_day_have_vs_needed": "2023-10-13 : 2023-10-17",
+    "missing_num_days_after": 2,
+    "num_of_days_data": 2046
+}

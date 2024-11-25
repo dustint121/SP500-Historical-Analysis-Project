@@ -6,9 +6,12 @@
     # percentage of tech sector companies on nasdaq vs nyse
 
     #89, 90 add TFCF, TFCFA data from investing.com to start; marketcap = $51.8 billion  (https://www.businesswire.com/news/home/20190319005901/en/Disney-and-21st-Century-Fox-Announce-Per-Share-Value-in-Connection-with-71-Billion-Acquisition)
+    #117, BKR; finchat.io
     #162, KHC; marketcap = $47 billion; add data from investing.com to start (https://www.iclub.com/faq/Home/Article?id=427#gsc.tab=0)
+    #286, VRTS; finchat.io
     #366, PARA; companiesmarketcap.com; https://companiesmarketcap.com/paramount/marketcap/; have limited fmp/tiingo data before 2006 
-
+    #377, LIN; companiesmarketcap.com; https://companiesmarketcap.com/linde/marketcap/
+    #499; SPGI; companiesmarketcap.com; https://companiesmarketcap.com/sp-global/marketcap/
     #545, INFO; finchat.io; kibot; marketcap = $43.35 billion (finchat.io)
     #586, STI; finchat.io; kibot (STI.A);   marketcap = $30.75 billion (finchat.io)
     #595, LLL; finchat.io; kibot; marketcap = $19.5 billion (finchat.io)
@@ -277,7 +280,7 @@
     #1012, CIT; can't find data
     #1013, SXCL; finchat.io; kibot; marketcap = $1.04 billion (finchat.io); marketcap to stock price ratio is near-exact
     #1014, BGG; finchat.io; under ticker BGGS.Q
-    #1015, CEN; too small to get in finchat.io; written out in code; only 13 days of latest data
+    #1015, CEN; too small to get in finchat.io; written out in code; limited data(only 13 days of latest data)
     #1016, OK; finchat.io
     #1017, SUB; finchat.io
     #1018, UK, finchat.io
@@ -285,7 +288,9 @@
     #1021, MEE; finchat.io; kibot; marketcap = $2.91 billion(finchat.io); marketcap to stock price ratio is decent; earlier in 769
     #1022, SMI; finchat.io
     #1023, RML; finchat.io
+
     #1024, PRD; buggy/limited data from tiingo; can't find data in finchat.io
+    
     #1025, NGH; finchat.io
     #1026, BS; can't find data
     #1027, VO; companiesmarketcap.com; https://companiesmarketcap.com/seagram/marketcap/ 

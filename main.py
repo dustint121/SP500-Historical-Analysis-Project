@@ -7,9 +7,6 @@ from datetime import datetime
 from company_profile_func import *
 from market_cap_funct import * 
 import pandas_market_calendars as mcal
-#NOTE : change code for market cap to get datas starting and ending from last valid trading days
-    #use import pandas_market_calendars as mcal
-
 
 
 # Actual keys is stored in a .env file.  Not good to store API key directly in script.
@@ -31,14 +28,11 @@ def get_sp_500_github_dataset():
 def get_raw_sp_500_data_from_fmp():
     current_sp_list = fmpsdk.sp500_constituent(apikey=apikey)
     current_sp_df = pd.DataFrame(columns=["Ticker", "Name", "Added_Date", "Removed_Date", "Replaces", "Removal_Reason"])
-
     for stock in current_sp_list:
         ticker = stock["symbol"]
         name = stock["name"]
         current_sp_df.loc[len(current_sp_df.index)] = [ticker, name, None, None, None, None]
-
     current_ticker_list = current_sp_df["Ticker"].to_list()
-
     #work in reverse to find the "added_date" of the current S&P stocks and "removed_date"
     date_list = ["October 1, 2024"]
     count = 0
@@ -152,15 +146,10 @@ def get_cleaned_sp_500_csv():
     sp_500_dict["Added_Date"][1045] = "January 2, 1996" # {1047: GAP} from github as GAPTQ
     sp_500_dict["Added_Date"][1046] = "November 3, 1998" # {1048 : NCE} : "1998-11-03" #from github
     sp_500_dict["Added_Date"][1053] = "January 2, 1996" # {1055 : MZ} from github as MZIAQ
-    #below 3 are not confirmed, but used for converience
-    sp_500_dict["Added_Date"][920] = "January 2, 1996"
-    sp_500_dict["Added_Date"][1026] = "January 2, 1996"
-    sp_500_dict["Added_Date"][1044] = "January 2, 1996"
-    # Missing added dates:    
-        # {922 : DAN} :   #not in github; 
-        # {1028 : BS} : #not found in github; not in tingo data either
-        # {1046 : OC} : #not found in github
-    #ENRNQ
+    #below 3 are not confirmed, but used for convenience
+    sp_500_dict["Added_Date"][920] = "January 2, 1996" # {922 : DAN} :  #not found in github
+    sp_500_dict["Added_Date"][1026] = "January 2, 1996" # {1028 : BS} : #not found in github
+    sp_500_dict["Added_Date"][1044] = "January 2, 1996" # {1046 : OC} : #not found in github
     pd.DataFrame(sp_500_dict).to_csv("cleaned_sp_500_dataset.csv", index=False)
 
 
@@ -677,14 +666,12 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         company_profile["sector"] = "Financial Services"
         company_profile["industry"] = "Banks - Regional"   
         company_profile["exchange"] = "NYSE" 
-
     else:
-        got_tingo_data = get_tiingo_company_regular_data(tiingo_ticker, company_name, company_profile)
-        got_tingo_metadata = (get_tiingo_company_metadata(tiingo_ticker, company_profile, meta_data_list) 
-                            if got_tingo_data == True else False)
-        if got_tingo_metadata == False:
+        got_tiingo_data = get_tiingo_company_regular_data(tiingo_ticker, company_name, company_profile)
+        got_tiingo_metadata = (get_tiingo_company_metadata(tiingo_ticker, company_profile, meta_data_list) 
+                            if got_tiingo_data == True else False)
+        if got_tiingo_metadata == False:
             get_fmp_metadata(original_ticker, company_name, company_profile, index)
-
 
     exchange_dict = {129:"NASDAQ",527:"NASDAQ"}
     exchange_dict.update({635:"NASDAQ",636:"NYSE",650:"NASDAQ",662:"NYSE",683:"NASDAQ",691:"NYSE",692:"NASDAQ",699:"NYSE"})
@@ -708,10 +695,7 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
     exchange_dict.update({1100:"NYSE",1101:"NASDAQ",1106:"NYSE",1107:"NYSE",1110:"NYSE",1112:"NASDAQ",1114:"NASDAQ"
                           ,1116:"NYSE",1118:"NYSE",1123:"NYSE",1124:"NYSE",1125:"NYSE",1126:"NYSE",1127:"NYSE",1128:"NYSE"
                           ,1129:"NYSE",1131:"NYSE",1132:"NASDAQ",1135:"NYSE",1146:"NYSE",1147:"NYSE"})
-
     if company_profile.get("exchange") not in ["NYSE","NASDAQ"] : company_profile["exchange"] = exchange_dict.get(index)
-
-
     if company_profile.get("sector") == None or company_profile.get("industry") == None:
         print("Missing sector and industry in profile data: " + original_ticker)
     if company_profile.get("exchange") not in ["NYSE","NASDAQ"]:
@@ -723,22 +707,25 @@ def get_company_data(tiingo_ticker, company_profile, company_name, meta_data_lis
         json.dump(company_profile, file, indent=4)
 
 
-
 def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date, company_name):
-    marketcap_metadata = {"index":index,"ticker":ticker} #used to store where we get our data source
+    marketcap_metadata = {"index":index,"ticker":original_ticker} #used to store where we get our data source
     market_cap_data = []
 
-    first_day_needed = datetime.strptime(added_date, "%B %d, %Y").__str__()[:10]
-    last_day_needed = (datetime.strptime("September 30, 2024", "%B %d, %Y").__str__()[:10] if removal_date == None
+    #need to double-check that first day and last_day are valid (not a weekend or holiday); fix if needed
+    date1 = max(datetime.strptime(added_date, "%B %d, %Y"), datetime.strptime("January 2, 1998", "%B %d, %Y")).__str__()[:10]
+    date2 = (datetime.strptime("September 30, 2024", "%B %d, %Y").__str__()[:10] if removal_date == None
                        else datetime.strptime(removal_date, "%B %d, %Y").__str__()[:10])
+    nyse = mcal.get_calendar('NYSE')
+    valid_trading_days = nyse.valid_days(start_date=date1, end_date=date2)   
+    first_day_needed = valid_trading_days[0].date().__str__()
+    last_day_needed = valid_trading_days[-1].date().__str__()
+
     finchat_download_list = [545, 670, 680, 721, 727, 737, 743, 754, 762, 765, 767, 769, 771, 782, 784, 806, 861, 867, 868, 883, 901, 903, 904, 905, 910, 911, 914, 915, 916, 917, 918, 919, 922, 923, 925, 927, 931, 932, 933, 937, 939, 941, 943, 947, 948, 949, 950, 952, 953, 955, 956, 958, 960, 962, 968, 969, 973, 982, 989, 990, 993, 994, 995, 997, 999, 1000, 1007, 1011, 1016, 1017, 1019, 1022, 1023, 1025, 1032, 1033, 1034, 1036, 1037, 1038, 1039, 1040, 1042, 1043, 1044, 1046, 1049, 1052, 1057, 1060, 1063, 1064, 1065, 1066, 1067, 1073, 1075, 1078, 1080, 1081, 1084, 1085, 1086, 1087, 1088, 1089, 1090, 1091, 1092, 1094, 1095, 1097, 1098, 1100, 1103, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1113, 1114, 1117, 1119, 1120, 1125, 1126, 1127, 1128, 1129, 1130, 1131, 1133, 1136, 1137, 1138, 1140, 1142, 1146, 1147]
-    finchat_screenshot_list = [586, 595, 609, 612, 649, 652, 659, 660, 662, 679, 691, 695, 714, 716, 718, 731, 733, 744, 747, 749, 750, 752, 753, 756, 757, 758, 759, 761, 770, 774, 775, 776, 780, 781, 786, 787, 790, 791, 797, 801, 803, 810, 817, 818, 819, 820, 821, 822, 824, 826, 827, 828, 835, 838, 842, 847, 848, 850, 859, 860, 862, 863, 864, 866, 872, 873, 874, 876, 877, 879, 880, 881, 884, 885, 886, 887, 888, 889, 890, 891, 892, 895, 898, 900, 912, 921, 924, 930, 936, 938, 942, 951, 954, 963, 965, 971, 983, 988, 1001, 1003, 1006, 1009, 1010, 1013, 1014, 1018, 1021, 1045, 1047, 1050, 1054, 1059, 1061, 1069, 1079, 1082, 1083, 1093, 1101, 1102, 1118, 1121, 1123, 1132, 1134, 1135, 1139, 1141, 1143, 1144, 1145, 1150]
-
-    companiesmarketcap_list = [366, 618, 693, 726, 732, 766, 772, 792, 799, 800, 812, 839, 852, 869, 871, 893, 894, 897, 907, 929, 935, 940, 964, 966, 975, 985, 987, 996, 998, 1027, 1056, 1058, 1068, 1122]
-
+    finchat_screenshot_list = [117, 286, 586, 595, 609, 612, 649, 652, 659, 660, 662, 679, 691, 695, 714, 716, 718, 731, 733, 744, 747, 749, 750, 752, 753, 756, 757, 758, 759, 761, 770, 774, 775, 776, 780, 781, 786, 787, 790, 791, 797, 801, 803, 810, 817, 818, 819, 820, 821, 822, 824, 826, 827, 828, 835, 838, 842, 847, 848, 850, 859, 860, 862, 863, 864, 866, 872, 873, 874, 876, 877, 879, 880, 881, 884, 885, 886, 887, 888, 889, 890, 891, 892, 895, 898, 900, 912, 921, 924, 930, 936, 938, 942, 951, 954, 963, 965, 971, 983, 988, 1001, 1003, 1006, 1009, 1010, 1013, 1014, 1018, 1021, 1045, 1047, 1050, 1054, 1059, 1061, 1069, 1079, 1082, 1083, 1093, 1101, 1102, 1118, 1121, 1123, 1132, 1134, 1135, 1139, 1141, 1143, 1144, 1145, 1150]
+    companiesmarketcap_list = [366, 377, 499, 618, 693, 726, 732, 766, 772, 792, 799, 800, 812, 839, 852, 869, 871, 893, 894, 897, 907, 929, 935, 940, 964, 966, 975, 985, 987, 996, 998, 1027, 1056, 1058, 1068, 1122]
     kibot_list = [620, 646, 648, 656, 657, 658, 664, 683, 711, 725, 735, 743, 788, 804, 809, 853, 854, 855, 857, 926, 967, 1041, 1071, 1149]
 
-    #edge case: 1 example, 728 DELL
+    #edge case: 728 DELL
     if index == 728:
         market_cap_data = get_misc_market_cap_data(index, original_ticker, marketcap_metadata)
     #finchat.io
@@ -746,7 +733,6 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
         market_cap_data = get_finchat_market_cap_data(index, original_ticker, added_date, removal_date, marketcap_metadata)
     #companiesmarketcap.com
     elif index in companiesmarketcap_list:
-        if index == 366: removal_date = "September 30, 2024"
         market_cap_data = get_companiesmarketcap_market_cap_data(index, added_date, removal_date, marketcap_metadata)
     #kibot.com
     elif index in kibot_list:
@@ -760,7 +746,6 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
         min_date_needed = max(added_date,  datetime.strptime("1998-01-02", "%Y-%m-%d"))
         tiingo_market_cap_data = []
         fmp_market_cap_data = []
-
         #get market cap data from tiingo
         if get_tiingo_company_regular_data(ticker,company_name,{}):
             tiingo_market_cap_data = get_tiingo_market_cap_data(ticker, added_date,marketcap_metadata)
@@ -776,74 +761,58 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
                 fmp_market_cap_data = [val for val in fmp_market_cap_data
                                         if val["market_cap"] != None and
                                         min_date_needed <= datetime.strptime(val["date"], "%Y-%m-%d") <= removal_date]
-                
+        #decide whether to use fmp or tiingo data      
         tiingo_has_more_data = len(fmp_market_cap_data) <= len(tiingo_market_cap_data)
         num_days = len(fmp_market_cap_data) - len(tiingo_market_cap_data)
-
-
-        if marketcap_metadata.get("num_trading_days_to_calculate"):
+        if marketcap_metadata.get("num_trading_days_to_calculate"): #consider fmp, if tiingo has too many calculations done
             tiingo_has_more_data = (len(fmp_market_cap_data) < (len(tiingo_market_cap_data) - marketcap_metadata["num_trading_days_to_calculate"])
                                         or len(fmp_market_cap_data) == 0)
             num_days = len(fmp_market_cap_data) - (len(tiingo_market_cap_data) - marketcap_metadata["num_trading_days_to_calculate"])
-
         if tiingo_has_more_data == False:
             print("Using fmp market data; more by: " + str(num_days))
             marketcap_metadata["source"] = "fmp"
-            # if marketcap_metadata.get("first_day_given"): del marketcap_metadata["first_day_given"]
-            # if marketcap_metadata.get("first_day_needed"): del marketcap_metadata["first_day_needed"]
             if marketcap_metadata.get("num_trading_days_to_calculate"): del marketcap_metadata["num_trading_days_to_calculate"]
         else:
             marketcap_metadata["source"] = "tiingo"
-        #decide whether to use fmp or tiingo data
         market_cap_data = tiingo_market_cap_data if tiingo_has_more_data else fmp_market_cap_data
-    
 
-    if index in [89,90,162]:
+    # add more data from investing.com for these 3 cases
+    if index in [89,90,162]: 
         add_info = {}
         additional_marketcap_data = get_misc_market_cap_data(index, original_ticker, add_info)
         market_cap_data = additional_marketcap_data + market_cap_data
         marketcap_metadata["source"] += " + " + add_info["source"]
 
-#NOTE: need to fix "first_day_have_vs_needed" and "last_day_have_vs_needed"
+    #handle marketcap metadata
     if len(market_cap_data) > 0:
         marketcap_metadata["first_day_have_vs_needed"] = market_cap_data[0]["date"] + " : " + first_day_needed
         marketcap_metadata["last_day_have_vs_needed"] = market_cap_data[-1]["date"] + " : " + last_day_needed
-        nyse = mcal.get_calendar('NYSE')
 
-        #format: January 1, 2005
         if type(added_date) == str:
-            added_date = datetime.strptime(added_date, "%B %d, %Y") 
+            added_date = datetime.strptime(added_date, "%B %d, %Y") #format: January 1, 2005
         if type(removal_date) == str:    
             removal_date = datetime.strptime(removal_date, "%B %d, %Y") 
-        #format: 2006-01-31
-        first_date_in_data = datetime.strptime(market_cap_data[0]["date"], "%Y-%m-%d")
-        last_date_in_data = datetime.strptime(market_cap_data[-1]["date"], "%Y-%m-%d")
-        start_of_1998 = datetime.strptime("January 2, 1998", "%B %d, %Y")
-
-        #get only needed data in list
         
-        min_date_needed = max(added_date,  start_of_1998)
-        market_cap_data = [data for data in market_cap_data
-                            if min_date_needed<= datetime.strptime(data["date"], "%Y-%m-%d") <= removal_date]
+        first_date_in_data = datetime.strptime(market_cap_data[0]["date"], "%Y-%m-%d") #format: 2006-01-31
+        last_date_in_data = datetime.strptime(market_cap_data[-1]["date"], "%Y-%m-%d")
 
+        min_date_needed = datetime.strptime(first_day_needed, "%Y-%m-%d")
         if min_date_needed < first_date_in_data:
-            trading_days = nyse.valid_days(start_date=min_date_needed, end_date=first_date_in_data)
-            if str(min_date_needed.date()) == str(trading_days[0].date()): #exclude first day if same 
-                trading_days = trading_days[1:]
-            days_between = len(trading_days)
-            if len(trading_days) > 0:
-                print(str(min_date_needed) + " - " + str(first_date_in_data))
+            missing_days = nyse.valid_days(start_date=min_date_needed, end_date=first_date_in_data)
+            if str(min_date_needed.date()) == str(missing_days[0].date()): #exclude first day if same 
+                missing_days = missing_days[1:]
+            days_between = len(missing_days)
+            if len(missing_days) > 0:
+                print(first_day_needed + " : " + first_date_in_data.date().__str__())
                 print("Missing days of earlier data for market cap: " + str(days_between))   
-                marketcap_metadata["first_day_have_vs_needed"] = (market_cap_data[0]["date"] + 
-                                                " : " + str(trading_days[-1].date()))
                 marketcap_metadata["missing_num_days_before"] = days_between
-        if last_date_in_data < removal_date:
-            trading_days = nyse.valid_days(start_date=last_date_in_data, end_date=removal_date)
-            if str(last_date_in_data.date()) == str(trading_days[0].date()): #exclude first day if same 
-                trading_days = trading_days[1:]
-            days_between = len(trading_days)
+        if last_date_in_data < datetime.strptime(last_day_needed, "%Y-%m-%d"):
+            missing_days = nyse.valid_days(start_date=last_date_in_data, end_date=last_day_needed)
+            if str(last_date_in_data.date()) == str(missing_days[0].date()): #exclude first day if same 
+                missing_days = missing_days[1:]
+            days_between = len(missing_days)
             if days_between > 0:
-                print(str(last_date_in_data) + " - " + str(removal_date))
+                print(last_date_in_data.date().__str__() + " : " + last_day_needed)
                 print("Missing days of later data for market cap: " + str(days_between))
                 marketcap_metadata["missing_num_days_after"] = days_between
     else:
@@ -851,7 +820,6 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
         print("No market cap data found: " + ticker)
 
     marketcap_metadata["num_of_days_data"] = len(market_cap_data)
-
 
     #store market cap data
     file_path = "company_market_cap_data/" + str(index) + "_" + original_ticker + ".json"
@@ -868,7 +836,6 @@ def get_market_cap_data(ticker, original_ticker, index, added_date, removal_date
 
 if __name__ == "__main__":
     # get_cleaned_sp_500_csv()
-
     df = pd.read_csv("cleaned_sp_500_dataset.csv")
     sp_500_dict = df.to_dict()
     tickers = list(sp_500_dict["Ticker"].values())
@@ -876,20 +843,17 @@ if __name__ == "__main__":
     added_dates = list(sp_500_dict["Added_Date"].values())
     removal_dates = list(sp_500_dict["Removed_Date"].values())
 
-    no_fmp_data_list = []
-    no_tiingo_data_list = []
-
     for i, ticker in enumerate(tickers[:1153]):
-        # if i < 1000:
-        #     continue
- 
-        # if i not in [89, 159, 272]: #FOX, NWS, GOOG #need fmp data
-        #     continue
+        if i < 500:
+            continue
+        # if i >= 500:
+        #     continue 
+
         # if i not in [1015, 1148, 1152]:
         #     continue
 
         finchat_download_list = [545, 670, 680, 721, 727, 737, 743, 754, 762, 765, 767, 769, 771, 782, 784, 806, 861, 867, 868, 883, 901, 903, 904, 905, 910, 911, 914, 915, 916, 917, 918, 919, 922, 923, 925, 927, 931, 932, 933, 937, 939, 941, 943, 947, 948, 949, 950, 952, 953, 955, 956, 958, 960, 962, 968, 969, 973, 982, 989, 990, 993, 994, 995, 997, 999, 1000, 1007, 1011, 1016, 1017, 1019, 1022, 1023, 1025, 1032, 1033, 1034, 1036, 1037, 1038, 1039, 1040, 1042, 1043, 1044, 1046, 1049, 1052, 1057, 1060, 1063, 1064, 1065, 1066, 1067, 1073, 1075, 1078, 1080, 1081, 1084, 1085, 1086, 1087, 1088, 1089, 1090, 1091, 1092, 1094, 1095, 1097, 1098, 1100, 1103, 1105, 1106, 1107, 1108, 1109, 1110, 1111, 1113, 1114, 1117, 1119, 1120, 1125, 1126, 1127, 1128, 1129, 1130, 1131, 1133, 1136, 1137, 1138, 1140, 1142, 1146, 1147]
-        finchat_screenshot_list = [586, 595, 609, 612, 649, 652, 659, 660, 662, 679, 691, 695, 714, 716, 718, 731, 733, 744, 747, 749, 750, 752, 753, 756, 757, 758, 759, 761, 770, 774, 775, 776, 780, 781, 786, 787, 790, 791, 797, 801, 803, 810, 817, 818, 819, 820, 821, 822, 824, 826, 827, 828, 835, 838, 842, 847, 848, 850, 859, 860, 862, 863, 864, 866, 872, 873, 874, 876, 877, 879, 880, 881, 884, 885, 886, 887, 888, 889, 890, 891, 892, 895, 898, 900, 912, 921, 924, 930, 936, 938, 942, 951, 954, 963, 965, 971, 983, 988, 1001, 1003, 1006, 1009, 1010, 1013, 1014, 1018, 1021, 1045, 1047, 1050, 1054, 1059, 1061, 1069, 1079, 1082, 1083, 1093, 1101, 1102, 1118, 1121, 1123, 1132, 1134, 1135, 1139, 1141, 1143, 1144, 1145, 1150]
+        finchat_screenshot_list = [117, 286, 586, 595, 609, 612, 649, 652, 659, 660, 662, 679, 691, 695, 714, 716, 718, 731, 733, 744, 747, 749, 750, 752, 753, 756, 757, 758, 759, 761, 770, 774, 775, 776, 780, 781, 786, 787, 790, 791, 797, 801, 803, 810, 817, 818, 819, 820, 821, 822, 824, 826, 827, 828, 835, 838, 842, 847, 848, 850, 859, 860, 862, 863, 864, 866, 872, 873, 874, 876, 877, 879, 880, 881, 884, 885, 886, 887, 888, 889, 890, 891, 892, 895, 898, 900, 912, 921, 924, 930, 936, 938, 942, 951, 954, 963, 965, 971, 983, 988, 1001, 1003, 1006, 1009, 1010, 1013, 1014, 1018, 1021, 1045, 1047, 1050, 1054, 1059, 1061, 1069, 1079, 1082, 1083, 1093, 1101, 1102, 1118, 1121, 1123, 1132, 1134, 1135, 1139, 1141, 1143, 1144, 1145, 1150]
         # if i not in finchat_download_list:
         #     continue
         # if i not in finchat_screenshot_list:
@@ -897,7 +861,7 @@ if __name__ == "__main__":
         # if i not in ([1015, 1148, 1152] + finchat_download_list + finchat_screenshot_list):
         #     continue    
 
-        companiesmarketcap_list = [366, 618, 693, 726, 732, 766, 772, 792, 799, 800, 812, 839, 852, 869, 871, 893, 894, 897, 907, 929, 935, 940, 964, 966, 975, 985, 987, 996, 998, 1027, 1056, 1058, 1068, 1122]
+        companiesmarketcap_list = [366, 377, 499, 618, 693, 726, 732, 766, 772, 792, 799, 800, 812, 839, 852, 869, 871, 893, 894, 897, 907, 929, 935, 940, 964, 966, 975, 985, 987, 996, 998, 1027, 1056, 1058, 1068, 1122]
         # if i not in companiesmarketcap_list:
         #     continue
             
@@ -907,13 +871,9 @@ if __name__ == "__main__":
         #     continue
 
         misc_list = [89,90,162,728]
-        if i not in misc_list:
-            continue
+        # if i not in misc_list:
+        #     continue
         print(i)
-
-
-
-
 
         original_ticker = ticker
         added_date = added_dates[i]
@@ -1077,16 +1037,10 @@ if __name__ == "__main__":
             if ticker == "SK":      ticker = "SK1"
             if ticker == "FLM":     ticker = "FLMIQ"
 
-        #will get market cap data and place into file
         # get_company_data(ticker, company_profile, company_name, meta_data_list, original_ticker, i)
         get_market_cap_data(ticker, original_ticker, i, added_date, removal_date, company_name)
-
-
-
 
     #NOTE: check 1048, RAD for market cap data; fmp has more data available and should be used if functioning correctly
         #for 1996-12-02, tiingo has $3.3 billion, while fmp has $5 billion
         #for 2001-06-28, tiingo has 3.5 billion, fmp has $4.2 billion, marketcap.com has $4.4 billion
         #for 2023-11-06, tiingo has $14.1 million, fmp has $13.7 million, marketcap.com has $36.8 million
-    #NOTE: check 1093, MTL/MBWM should use fmp data
-    #double check 977, GOLD for market cap calculation later

@@ -1,0 +1,9 @@
+{
+    "index": 26,
+    "ticker": "GEHC",
+    "source": "tiingo",
+    "first_day_have_vs_needed": "2023-01-04 : 2023-01-03",
+    "last_day_have_vs_needed": "2024-09-30 : 2024-09-30",
+    "missing_num_days_before": 1,
+    "num_of_days_data": 437
+}

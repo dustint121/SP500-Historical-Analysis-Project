@@ -1,0 +1,8 @@
+{
+    "index": 666,
+    "ticker": "CCEP",
+    "source": "fmp",
+    "first_day_have_vs_needed": "1998-10-07 : 1998-10-07",
+    "last_day_have_vs_needed": "2016-05-27 : 2016-05-27",
+    "num_of_days_data": 4439
+}
