@@ -160,3 +160,248 @@ def get_fmp_metadata(ticker, company_name, company_profile, index):
     else:        
         print("No FMP data retrieved for: " + ticker)
         return False
+
+#will return the company profile metadata for edge cases or return None
+def get_company_metadata_for_edge_cases(ticker, index):
+    company_profiles = {
+        ("INFO", 545): {
+            "company_name": "IHS Markit Ltd","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Information Technology Services","exchange": "NYSE"},
+        ("STI", 586): {
+            "company_name": "SunTrust Banks Inc","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","source": "tiingo","exchange": "NYSE"},
+        ("LLL", 595): {
+            "company_name": "L3 Communications Holdings Inc","is_delisted": True,"description": None,
+            "sector": "Industrials","industry": "Aerospace & Defense","source": "tiingo","exchange": "NYSE"},
+        ("CA", 611): {
+            "company_name": "CA Inc","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Software - Infrastructure","source": "tiingo","exchange": "NYSE"},
+        ("XL", 612): {
+            "company_name": "XL Group Ltd","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Insurance - Property & Casualty","exchange": "NYSE"},
+        ("DPS", 614): {
+            "company_name": "Dr Pepper Snapple Group Inc","is_delisted": True,"description": None,
+            "sector": "Consumer Defensive","industry": "Beverages - Non-Alcoholic","exchange": "NYSE"},
+        ("WYND", 620): {
+            "company_name": "Wyndham Worldwide Corp","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Lodging","exchange": "NYSE"},
+        ("DOW", 629): {
+            "company_name": "Dow Chemical Company","is_delisted": True,"description": None,
+            "sector": "Basic Materials","industry": "Chemicals","exchange": "NYSE"},
+        ("HAR", 648): {
+            "company_name": "Harman International Industries IncDE","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Consumer Electronics","exchange": "NYSE"},
+        ("SE", 652): {
+            "company_name": "Spectra Energy Corp","is_delisted": True,"description": None,
+            "sector": "Utilities","industry": "Utilities - Regulated Gas","exchange": "NYSE"},
+        ("EMC", 659): {
+            "company_name": "EMC Corporation","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Hardware, Equipment & Parts","exchange": "NYSE"},
+        ("FRX", 714): {
+            "company_name": "Forest Laboratories Inc","is_delisted": True,"description": None,
+            "sector": "Healthcare","industry": "Biotechnology","source": "tiingo","exchange": "NYSE"},
+        ("LSI", 716): {
+            "company_name": "LSI Corp","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Semiconductors","source": "tiingo","exchange": "NASDAQ"},
+        ("BEAM", 718): {
+            "company_name": "Beam Suntory Inc","is_delisted": True,"description": None,
+            "sector": "Consumer Defensive","industry": "Beverages - Wineries & Distilleries","exchange": "NYSE"},
+        ("JCP", 726): {
+            "company_name": "JCPenney","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Department Stores","exchange": "NYSE"},
+        ("NYX", 727): {
+            "company_name": "NYSE Euronext","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Asset Management","source": "tiingo","exchange": "NYSE"},
+        ("S", 732): {
+            "company_name": "Sprint Corp","is_delisted": True,"description": None,
+            "sector": "Communication Services","industry": "Telecom Services","source": "tiingo","exchange": "NYSE"},
+        ("PGN", 750): {
+            "company_name": "Progress Energy Inc.","is_delisted": True,"description": None,
+            "sector": "Utilities","industry": "Utilities - Regulated Electric","source": "tiingo","exchange": "NYSE"},
+        ("NVLS", 752): {
+            "company_name": "Novellus Systems Inc","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Semiconductor Equipment & Materials","source": "tiingo","exchange": "NASDAQ"},
+        ("EP", 753): {
+            "company_name": "El Paso Corp","is_delisted": True,"description": None,
+            "sector": "Energy","industry": "Oil & Gas E&P","source": "tiingo","exchange": "NYSE"},
+        ("CEG", 757): {
+            "company_name": "Constellation Energy Group Inc","is_delisted": True,"description": None,
+            "sector": "Utilities","industry": "Utilities - Regulated Electric","source": "tiingo","exchange": "NYSE"},
+        ("CPWR", 758): {
+            "company_name": "Compuware Corporation","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Software - Services","exchange": "NASDAQ"},
+        ("MI", 767): {
+            "company_name": "Marshall & Ilsley Corp","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","source": "tiingo","exchange": "NYSE"},
+        ("SII", 782): {
+            "company_name": "Smith International","is_delisted": True,"description": None,
+            "sector": "Energy","industry": "Oil & Gas Equipment & Services","exchange": "NYSE"},
+        ("STR", 784): {
+            "company_name": "Questar Corp","is_delisted": True,"description": None,
+            "sector": "Energy","industry": "Oil & Gas E&P","source": "tiingo","exchange": "NYSE"},
+        ("JAVA", 792): {
+            "company_name": "Sun Microsystems Inc.","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Scientific & Technical Instruments","source": "tiingo","exchange": "NASDAQ"},
+        ("DYN", 797): {
+            "company_name": "Dynegy Inc.","is_delisted": True,"description": None,
+            "sector": "Utilities","industry": "Utilities - Regulated Electric","source": "tiingo","exchange": "NYSE"},
+        ("HPC", 828): {
+            "company_name": "Hercules Inc.","is_delisted": True,"description": None,
+            "sector": "Basic Materials","industry": "Specialty Chemicals","source": "tiingo","exchange": "NYSE"},
+        ("EDS", 842): {
+            "company_name": "Electronic Data Systems","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Information Technology Services","exchange": "NYSE"},
+        ("TEK", 861): {
+            "company_name": "Tektronix Inc.","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Semiconductor Equipment & Materials","source": "tiingo","exchange": "NYSE"},
+        ("ADCT", 879): {
+            "company_name": "ADC Telecommunications Inc.","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Communication Equipment","source": "tiingo","exchange": "NASDAQ"},
+        ("MEDI", 880): {
+            "company_name": "MedImmune Inc.","is_delisted": True,"description": None,
+            "sector": "Healthcare","industry": "Biotechnology","source": "tiingo","exchange": "NASDAQ"},
+        ("CMX", 885): {
+            "company_name": "Caremark Rx Inc.","is_delisted": True,"description": None,
+            "sector": "Consumer Defensive","industry": "Pharmaceutical Retailers","source": "tiingo","exchange": "NYSE"},
+        ("LU", 897): {
+            "company_name": "Lucent Technologies Inc.","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Communication Equipment","source": "tiingo","exchange": "NYSE"},
+        ("MERQ", 924): {
+            "company_name": "Mercury Interactive Corp","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Software - Application","source": "tiingo","exchange": "NASDAQ"},
+        ("GP", 927): {
+            "company_name": "Georgia-Pacific Corporation","is_delisted": True,"description": None,
+            "sector": "Basic Materials","industry": "Paper & Paper Products","exchange": "NYSE"},
+        ("PVN", 931): {
+            "company_name": "Providian Financial Corporation","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","exchange": "NYSE"},
+        ("PWER", 942): {
+            "company_name": "Power-One, Inc","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Semiconductor Equipment & Materials","exchange": "NASDAQ"},
+        ("PSFT", 943): {
+            "company_name": "People Soft Inc","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Information Technology Services","exchange": "NASDAQ"},
+        ("UPC", 952): {
+            "company_name": "Union Planters Corp","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","source": "tiingo","exchange": "NYSE"},
+        ("PCS", 956): {
+            "company_name": "Sprint PCS Group","is_delisted": True,"description": None,
+            "sector": "Communication Services","industry": "Telecom Services","exchange": "NYSE"},
+        ("NSI", 995): {
+            "company_name": "National Service Industries Inc","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Personal Services","source": "tiingo","exchange": "NYSE"},
+        ("OAT", 1007): {
+            "company_name": "Quaker Oats Co","is_delisted": True,"description": None,
+            "sector": "Consumer Defensive","industry": "Packaged Foods","exchange": "NYSE"},
+        ("H", 1010): {
+            "company_name": "Harcourt General Inc.","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Publishing","exchange": "NYSE"},
+        ("FPC", 1032): {
+            "company_name": "Florida Progress Corp","is_delisted": True,"description": None,
+            "sector": "Utilities","industry": "Utilities - Regulated Electric","source": "tiingo","exchange": "NYSE"},
+        ("COMS", 1047): {
+            "company_name": "3Com Corp.","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Communication Equipment","source": "tiingo","exchange": "NASDAQ"},
+        ("USW", 1051): {
+            "company_name": "US West Inc.","is_delisted": True,"description": None,
+            "sector": "Communication Services","industry": "Telecommunications Services","exchange": "NYSE"},
+        ("NLV", 1074): {
+            "company_name": "NextLevel Systems Inc.","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Communication Equipment","exchange": "NYSE"},
+        ("LI", 1077): {
+            "company_name": "Laidlaw International, Inc.","is_delisted": True,"description": None,
+            "sector": "Industrials","industry": "General Transportation","exchange": "NYSE"},
+        ("TEN", 1083): {
+            "company_name": "Tenneco Inc.","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Auto Parts","source": "tiingo","exchange": "NYSE"},
+        ("AR", 1084): {
+            "company_name": "Asarco Inc.","is_delisted": True,"description": None,
+            "sector": "Basic Materials","industry": "Other Industrial Metals & Mining","source": "tiingo","exchange": "NYSE"},
+        ("SNT", 1085): {
+            "company_name": "Sonat Inc.","is_delisted": True,"description": None,
+            "sector": "Energy","industry": "Oil & Gas Midstream","source": "tiingo","exchange": "NYSE"},
+        ("BT", 1105): {
+            "company_name": "Bankers Trust Corp.","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","source": "tiingo","exchange": "NYSE"},
+        ("AN", 1117): {
+            "company_name": "Amoco Corp.","is_delisted": True,"description": None,
+            "sector": "Energy","industry": "Oil & Gas Refining & Marketing","source": "tiingo","exchange": "NYSE"},
+        ("GRN", 1119): {
+            "company_name": "General Reinsurance Corporation","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Reinsurance","exchange": "NYSE"},
+        ("AS", 1120): {
+            "company_name": "Armco Inc.","is_delisted": True,"description": None,
+            "sector": "Basic Materials","industry": "Steel","source": "tiingo","exchange": "NYSE"},
+        ("STO", 1121): {
+            "company_name": "Stone Container Corp.","is_delisted": True,"description": None,
+            "sector": "Basic Materials","industry": "Paper & Paper Products","exchange": "NYSE"},
+        ("C", 1122): {
+            "company_name": "Chrysler Corp","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Auto Manufacturers","source": "tiingo","exchange": "NYSE"},
+        ("MCIC", 1130): {
+            "company_name": "MCI Communications Corp","is_delisted": True,"description": None,
+            "sector": "Communication Services","industry": "Telecommunications Services","exchange": "NASDAQ"},
+        ("MST", 1133): {
+            "company_name": "Mercantile Stores Inc","is_delisted": True,"description": None,
+            "sector": "Consumer Cyclical","industry": "Department Stores","exchange": "NYSE"},
+        ("WAI", 1134): {
+            "company_name": "Western Atlas Inc.","is_delisted": True,"description": None,
+            "sector": "Energy","industry": "Oil & Gas Equipment & Services","source": "tiingo","exchange": "NYSE"},
+        ("BNL", 1138): {
+            "company_name": "Beneficial Corp","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Credit Services","source": "tiingo","exchange": "NYSE"},
+        ("GNT", 1140): {
+            "company_name": "Green Tree Financial Corp","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Mortgage Finance","exchange": "NYSE"},
+        ("PET", 1141): {
+            "company_name": "Pacific Enterprises","is_delisted": True,"description": None,
+            "sector": "Utilities","industry": "Utilities - Regulated Gas","source": "tiingo","exchange": "NYSE"},
+        ("DEC", 1142): {
+            "company_name": "Digital Equipment Corp","is_delisted": True,"description": None,
+            "sector": "Technology","industry": "Information Technology Services","exchange": "NYSE"},
+        ("CFL", 1143): {
+            "company_name": "Corestates Financial Corp","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","source": "tiingo","exchange": "NYSE"},
+        ("FG", 1144): {
+            "company_name": "USF&G Corp","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Insurance - Life","exchange": "NYSE"},
+        ("CBB", 1150): {
+            "company_name": "Caliber System Inc.","is_delisted": True,"description": None,
+            "sector": "Industrials","industry": "Integrated Freight & Logistics","exchange": "NYSE"},
+        ("BBI", 1152): {
+            "company_name": "Barnett Banks Inc.","is_delisted": True,"description": None,
+            "sector": "Financial Services","industry": "Banks - Regional","exchange": "NYSE"}
+    }
+    key = (ticker, index)
+    return company_profiles.get(key)
+
+
+
+
+
+
+#will return the stock exchange(NYSE or NASDAQ) for edge cases or return None
+def get_stock_exchange_for_edge_cases(index):
+    exchange_dict = {129:"NASDAQ",527:"NASDAQ"}
+    exchange_dict.update({635:"NASDAQ",636:"NYSE",650:"NASDAQ",662:"NYSE",683:"NASDAQ",691:"NYSE",692:"NASDAQ",699:"NYSE"})
+    exchange_dict.update({721:"NASDAQ",728:"NASDAQ",736:"NYSE",739:"NYSE",744:"NYSE",748:"NASDAQ",754:"NYSE",762:"NYSE"
+                          ,766:"NYSE",772:"NYSE",781:"NYSE",783:"NYSE",785:"NYSE",787:"NYSE"})
+    exchange_dict.update({800:"NYSE",803:"NYSE",806:"NYSE",818:"NYSE",824:"NYSE",826:"NYSE",827:"NYSE",835:"NYSE"
+                          ,838:"NYSE",840:"NYSE",841:"NYSE",848:"NYSE",853:"NYSE",854:"NYSE",859:"NYSE",860:"NYSE"
+                          ,863:"NYSE",864:"NYSE",866:"NYSE",868:"NYSE",872:"NASDAQ",873:"NYSE",874:"NASDAQ",876:"NYSE"
+                          ,886:"NYSE",888:"NYSE",889:"NASDAQ",890:"NYSE",892:"NYSE",893:"NYSE",898:"NYSE"})
+    exchange_dict.update({901:"NYSE",907:"NYSE",909:"NYSE",911:"NYSE",915:"NASDAQ",916:"NYSE",918:"NYSE",923:"NYSE"
+                          ,925:"NYSE",930:"NYSE",932:"NYSE",933:"NYSE",935:"NASDAQ",938:"NYSE",939:"NYSE",940:"NASDAQ"
+                          ,941:"NYSE",947:"NYSE",948:"NASDAQ",949:"NYSE",953:"NYSE",954:"NYSE",958:"NYSE",960:"NYSE"
+                          ,962:"NASDAQ",964:"NYSE",968:"NASDAQ",976:"NYSE",978:"NYSE",981:"NYSE",982:"NASDAQ",983:"NASDAQ"
+                          ,988:"NYSE",990:"NYSE",991:"NYSE",993:"NYSE",994:"NYSE",996:"NYSE",997:"NYSE",999:"NYSE"})
+    exchange_dict.update({1000:"NYSE",1003:"NYSE",1006:"NYSE",1015:"NYSE",1016:"NYSE",1017:"NYSE",1018:"NYSE",1019:"NYSE"
+                          ,1022:"NYSE",1024:"NYSE",1027:"NYSE",1033:"NYSE",1035:"NYSE",1036:"NYSE",1037:"NYSE",1038:"NYSE"
+                          ,1040:"NYSE",1043:"NYSE",1046:"NYSE",1048:"NYSE",1052:"NYSE",1053:"NYSE",1056:"NYSE",1057:"NYSE"
+                          ,1058:"NYSE",1059:"NYSE",1061:"NYSE",1063:"NYSE",1064:"NYSE",1066:"NYSE",1067:"NYSE",1068:"NYSE"
+                          ,1069:"NYSE",1071:"NYSE",1073:"NYSE",1075:"NYSE",1079:"NYSE",1081:"NYSE",1086:"NYSE",1087:"NYSE"
+                          ,1088:"NYSE",1089:"NYSE",1094:"NYSE",1096:"NYSE",1097:"NYSE",1098:"NYSE",1099:"NYSE"})
+    exchange_dict.update({1100:"NYSE",1101:"NASDAQ",1106:"NYSE",1107:"NYSE",1110:"NYSE",1112:"NASDAQ",1114:"NASDAQ"
+                          ,1116:"NYSE",1118:"NYSE",1123:"NYSE",1124:"NYSE",1125:"NYSE",1126:"NYSE",1127:"NYSE",1128:"NYSE"
+                          ,1129:"NYSE",1131:"NYSE",1132:"NASDAQ",1135:"NYSE",1146:"NYSE",1147:"NYSE"})
+    return exchange_dict.get(index)

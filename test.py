@@ -205,6 +205,6 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 
 
-
+#1-1152: 10 minutes
 #1-500 marketcap : 35 minutes
 #500-1152 : 30 minutes
