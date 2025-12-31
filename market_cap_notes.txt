@@ -62,7 +62,7 @@
     #733, APOL; finchat.io; kibot; marketcap = $1.99 billion (finchat.io); marketcap to stock price ratio is decent
     #735, HNZ; kibot; marketcap = $23.41 billion (eoddata.com); consider just adding needed data to existing tiingo data
     #737, CVH; finchat.io; kibot; marketcap = $6.77 billion (finchat.io); marketcap to stock price ratio is decent; consider just adding needed data to existing tiingo data
-    #743, CBE; kibot; marketcap = $12.05 billion (finchat.io) (also in 801); marketcap to stock price ratio is near-exact
+    #743, CBE; finchat.io; kibot; marketcap = $12.05 billion (finchat.io) (also in 801); marketcap to stock price ratio is near-exact
     #744, SUN; finchat.io
     #747, LXK; finchat.io; kibot; marketcap = $1.58 billion (finchat.io); marketcap to stock price ratio is decent
     #749, GR; finchat.io; kibot; marketcap = $16.05 billion (finchat.io); marketcap to stock price ratio is near-exact

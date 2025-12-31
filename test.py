@@ -1,15 +1,14 @@
 import os
 from dotenv import load_dotenv
-import fmpsdk
 import pandas as pd
 import requests
 import json
 import main
 import re
 from bs4 import BeautifulSoup
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import pandas_market_calendars as mcal
-from market_cap_funct import *
+from market_cap_func import *
 
 
 
@@ -158,53 +157,44 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 # print(date1.__str__()[:10])
 
 
-# data = pd.read_csv("historical_stock_price\\162_KHC.csv")
-# data = pd.read_csv("historical_stock_price\\728_DELL.csv")
-
-
-# print(data.head(5))
-# marketcaps_dict = {89:51.8, 90:51.8, 162:47, 728:24.4}
-# marketcap_ratio = marketcaps_dict[728] / 13.73
-
-# indices =list(data[data["Date"] == "Please note that these closing prices reflect the Cumulative Split-Adjusted Price."].index)
-
-# marketcap_data = []
-# for i in range(len(indices) - 1):
-#     start, stop = indices[i] + 1, indices[i+1]
-#     marketcap_data_part1 = []
-#     marketcap_data_part2 = []
-#     for index in range(start, stop):
-#         date_parts_1 = data.iloc[index]["Date"].split("/")
-#         year, month, day = (date_parts_1[2], date_parts_1[0] if int(date_parts_1[0]) >= 10 else "0" + date_parts_1[0]
-#                             ,date_parts_1[1] if int(date_parts_1[1]) >= 10 else "0" + date_parts_1[1])
-#         date_1 = year + "-" + month + "-" + day
-#         marketcap_1 = round(float(data.iloc[index]["Stock Close Price"] * marketcap_ratio * 1000000000), 2)
-#         date_parts_2 = data.iloc[index]["Date.1"].split("/")
-#         year, month, day = (date_parts_2[2], date_parts_2[0] if int(date_parts_2[0]) >= 10 else "0" + date_parts_2[0]
-#                             ,date_parts_2[1] if int(date_parts_2[1]) >= 10 else "0" + date_parts_2[1])
-#         date_2 = year + "-" + month + "-" + day
-#         marketcap_2 = round(float(data.iloc[index]["Stock Close Price.1"] * marketcap_ratio * 1000000000), 2)
-#         marketcap_data_part1.append({"date":date_1, "market_cap": marketcap_1})
-#         marketcap_data_part2.append({"date":date_2, "market_cap": marketcap_2})
-
-#     marketcap_data = marketcap_data + marketcap_data_part1 + marketcap_data_part2 
-# for index in range(indices[-1]+1, len(data)):
-#     date_parts = data.iloc[index]["Date"].split("/")
-#     year, month, day = (date_parts[2], date_parts[0] if int(date_parts[0]) >= 10 else "0" + date_parts[0]
-#                         ,date_parts[1] if int(date_parts[1]) >= 10 else "0" + date_parts[1])
-#     date = year + "-" + month + "-" + day
-#     marketcap = round(float(data.iloc[index]["Stock Close Price"] * marketcap_ratio * 1000000000), 2)
-#     marketcap_data.append({"date":date, "market_cap": marketcap})
+#local computer
+    #1-1152 company info: 10 minutes
+    #1-500 marketcap : 35 minutes
+    #500-1152 : 30 minutes
 
 
 
-# # print(indices)
-
-# print(marketcap_data[:5])
-# print(marketcap_data[-5:])
+#1-1152 everything on AWS GLue no parallezation (10 workers): 43 minutes 
 
 
 
-#1-1152: 10 minutes
-#1-500 marketcap : 35 minutes
-#500-1152 : 30 minutes
+df = pd.read_csv("cleaned_sp_500_dataset.csv")[:1153]
+sp_500_dict = df.to_dict()
+removal_dates = list(sp_500_dict["Removed_Date"].values())
+
+seen = set()
+a = [x for x in removal_dates if not (x in seen or seen.add(x))]
+a[0] = 'September 30, 2024'
+# print(a)
+
+date_interval_list = []
+for i in range(len(a) - 1):
+    #     start = (datetime.strptime(a[i+1], "%B %d, %Y") + timedelta(days=1)).__str__()[:10]
+    start = (datetime.strptime(a[i+1], "%B %d, %Y")).__str__()[:10]
+    # end = (datetime.strptime(a[i], "%B %d, %Y")).__str__()[:10]
+    end = ((datetime.strptime(a[i], "%B %d, %Y")) - timedelta(days=1)).__str__()[:10]
+
+    #minor changes to get date ranges to be inclusive
+    if start == '1998-01-09': start = '1998-01-02' #for last interval
+    if end == '2024-09-29': end = '2024-09-30' #for last interval
+    pair = (start, end)
+    date_interval_list.append(pair) 
+
+print(date_interval_list)
+#valid if added date is before or during time interval (<= time_end of interval)
+ #and removal date is during or after time interval (>= time start of interval)
+print(len(date_interval_list))
+
+result_df = pd.DataFrame(date_interval_list, columns=['date_range_start', 'date_range_end'])
+result_df.to_csv('SP500_date_ranges.csv', index=False)
+
