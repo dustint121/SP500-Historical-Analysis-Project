@@ -17,22 +17,23 @@ username = os.environ.get("kibot_user")
 password = os.environ.get("kibot_password")
 
 #get market cap data from fmp
-def get_fmp_market_cap_data(original_ticker, index):
-    start_year = 2020
-    end_year = 2024
-    if index >  570:
-        start_year = 2016
-        end_year = 2020
-    if index > 680:
-        start_year = 2012
-        end_year = 2016
-    if index > 750:
-        years_to_subtract = ((index - 550) // 100) * 4
-        start_year = 2020 - years_to_subtract
-        end_year = 2024 - years_to_subtract
-    if index > 1200:
-        start_year = 1922
-        end_year = 1996       
+def get_fmp_market_cap_data(original_ticker, index, start_year=None, end_year=None):
+    if start_year == None and end_year == None:
+        start_year = 2020
+        end_year = 2024
+        if index >  570:
+            start_year = 2016
+            end_year = 2020
+        if index > 680:
+            start_year = 2012
+            end_year = 2016
+        if index > 750:
+            years_to_subtract = ((index - 550) // 100) * 4
+            start_year = 2020 - years_to_subtract
+            end_year = 2024 - years_to_subtract
+        if index > 1200:
+            start_year = 1922
+            end_year = 1996       
     fmp_market_cap_data = []
     while True:
         fmp_url = f"https://financialmodelingprep.com/api/v3/historical-market-capitalization/{original_ticker}?from={start_year}-01-01&to={end_year}-12-31&apikey={apikey}"

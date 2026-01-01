@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-import fmpsdk
 import pandas as pd
 import json
 from datetime import datetime
@@ -26,7 +25,8 @@ def get_sp_500_github_dataset():
 
 
 def get_raw_sp_500_data_from_fmp():
-    current_sp_list = fmpsdk.sp500_constituent(apikey=apikey)
+    request = requests.get(f"https://financialmodelingprep.com/stable/sp500-constituent?apikey={apikey}")
+    current_sp_list = request.json() # is a list of dicts/json objects
     current_sp_df = pd.DataFrame(columns=["Ticker", "Name", "Added_Date", "Removed_Date", "Replaces", "Removal_Reason"])
     for stock in current_sp_list:
         ticker = stock["symbol"]
@@ -36,7 +36,9 @@ def get_raw_sp_500_data_from_fmp():
     #work in reverse to find the "added_date" of the current S&P stocks and "removed_date"
     date_list = ["October 1, 2024"]
     count = 0
-    historical_list = fmpsdk.historical_sp500_constituent(apikey=apikey)
+
+    request = requests.get(f"https://financialmodelingprep.com/stable/historical-sp500-constituent?apikey={fmp_apikey}")
+    historical_list = request.json() # is a list of dicts/json objects
     for stock in historical_list:
         date = stock["dateAdded"]
         added_ticker = stock["symbol"]

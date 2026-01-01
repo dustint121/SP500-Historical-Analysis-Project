@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import pandas as pd
 import requests
 import json
-import main
+import part1_main_get_data
 import re
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone, timedelta
@@ -166,35 +166,34 @@ tiingo_meta_data_index = {'A': 0, 'B': 1787, 'C': 2763, 'D': 4607, 'E': 5244, 'F
 
 #1-1152 everything on AWS GLue no parallezation (10 workers): 43 minutes 
 
+if __name__ == "__main__":
+    df = pd.read_csv("cleaned_sp_500_dataset.csv")[:1153]
+    sp_500_dict = df.to_dict()
+    removal_dates = list(sp_500_dict["Removed_Date"].values())
 
+    seen = set()
+    a = [x for x in removal_dates if not (x in seen or seen.add(x))]
+    a[0] = 'September 30, 2024'
+    # print(a)
 
-df = pd.read_csv("cleaned_sp_500_dataset.csv")[:1153]
-sp_500_dict = df.to_dict()
-removal_dates = list(sp_500_dict["Removed_Date"].values())
+    date_interval_list = []
+    for i in range(len(a) - 1):
+        #     start = (datetime.strptime(a[i+1], "%B %d, %Y") + timedelta(days=1)).__str__()[:10]
+        start = (datetime.strptime(a[i+1], "%B %d, %Y")).__str__()[:10]
+        # end = (datetime.strptime(a[i], "%B %d, %Y")).__str__()[:10]
+        end = ((datetime.strptime(a[i], "%B %d, %Y")) - timedelta(days=1)).__str__()[:10]
 
-seen = set()
-a = [x for x in removal_dates if not (x in seen or seen.add(x))]
-a[0] = 'September 30, 2024'
-# print(a)
+        #minor changes to get date ranges to be inclusive
+        if start == '1998-01-09': start = '1998-01-02' #for last interval
+        if end == '2024-09-29': end = '2024-09-30' #for last interval
+        pair = (start, end)
+        date_interval_list.append(pair) 
 
-date_interval_list = []
-for i in range(len(a) - 1):
-    #     start = (datetime.strptime(a[i+1], "%B %d, %Y") + timedelta(days=1)).__str__()[:10]
-    start = (datetime.strptime(a[i+1], "%B %d, %Y")).__str__()[:10]
-    # end = (datetime.strptime(a[i], "%B %d, %Y")).__str__()[:10]
-    end = ((datetime.strptime(a[i], "%B %d, %Y")) - timedelta(days=1)).__str__()[:10]
+    print(date_interval_list)
+    #valid if added date is before or during time interval (<= time_end of interval)
+    #and removal date is during or after time interval (>= time start of interval)
+    print(len(date_interval_list))
 
-    #minor changes to get date ranges to be inclusive
-    if start == '1998-01-09': start = '1998-01-02' #for last interval
-    if end == '2024-09-29': end = '2024-09-30' #for last interval
-    pair = (start, end)
-    date_interval_list.append(pair) 
-
-print(date_interval_list)
-#valid if added date is before or during time interval (<= time_end of interval)
- #and removal date is during or after time interval (>= time start of interval)
-print(len(date_interval_list))
-
-result_df = pd.DataFrame(date_interval_list, columns=['date_range_start', 'date_range_end'])
-result_df.to_csv('SP500_date_ranges.csv', index=False)
+    result_df = pd.DataFrame(date_interval_list, columns=['date_range_start', 'date_range_end'])
+    result_df.to_csv('part1_SP500_date_ranges.csv', index=False)
 

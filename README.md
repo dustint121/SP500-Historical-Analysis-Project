@@ -27,7 +27,7 @@ Notes:
 	* Screenshotted stock charts to calculate marketcap
 * https://companiesmarketcap.com/
 	* webscrapped website for some companies and marketcap data
-* investing.com
+* https://www.investing.com/ 
 	* download csv files for relevant stocks
 * https://eoddata.com/
 	* download csv files for relevant stocks
