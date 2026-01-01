@@ -1,8 +1,6 @@
 from dotenv import load_dotenv
 import os
 import requests
-import fmpsdk
-
 
 load_dotenv()
 apikey = os.environ.get("fmp_apikey")
@@ -115,13 +113,16 @@ def get_tiingo_company_metadata(ticker, company_profile, meta_data_list):
     if match_found == False:
         print("No tiingo meta data found for: " + ticker)
         return False
+ 
 
-
-def get_fmp_metadata(ticker, company_name, company_profile, index):
-    fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
+def get_fmp_metadata(ticker, company_name, company_profile, index, part_2=False):
+    # https://financialmodelingprep.com/stable/profile?symbol=AAPL&apikey=4Wex9fEsJry4yFLT6k0mfNDxSKsHf726
+    request = requests.get(f"https://financialmodelingprep.com/stable/profile?symbol={ticker}&apikey={apikey}")
+    fmp_bio_list = request.json()
+    # fmp_bio_list = fmpsdk.company_profile(apikey=apikey, symbol=ticker)
     if (len(fmp_bio_list) > 0):
         fmp_data = fmp_bio_list[0]
-        is_valid_exchange = fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"]
+        is_valid_exchange = fmp_data["exchange"] in ["NASDAQ", "NYSE"]
         company_name = company_name.replace('. ', ' ').replace('.', ' ') #do not remove commas, just "."
         is_right_company = False
         if fmp_data["companyName"] != None:
@@ -133,6 +134,7 @@ def get_fmp_metadata(ticker, company_name, company_profile, index):
                 is_right_company = company_name.lower()[:8] in fmp_data["companyName"].lower().replace('. ', ' ').replace('.', ' ')
 
         has_exception = False
+        if part_2 and has_exception == False: has_exception = ticker in ["SMCI","PCG","WAB","CBOE","IBM","SLB"]
         if has_exception == False: has_exception = index<500 and ticker in ["BK","BF-B","LLY","GE","IMB"] #<500; unneeded
         if has_exception == False: has_exception = 500<=index<600 and ticker in ["XOM"] #500s; unneeded
         #nothing in 600s
@@ -146,8 +148,7 @@ def get_fmp_metadata(ticker, company_name, company_profile, index):
             company_profile["is_delisted"] = not fmp_data["isActivelyTrading"]
             company_profile["description"] = fmp_data["description"]
             company_profile["source"] = "fmp"
-            company_profile["exchange"] = fmp_data["exchangeShortName"] if fmp_data["exchangeShortName"] in ["NASDAQ", "NYSE"] else None
-
+            company_profile["exchange"] = fmp_data["exchange"] if fmp_data["exchange"] in ["NASDAQ", "NYSE"] else None
 
             if fmp_data["sector"] in [None, ""]:
                 print("Issue with fmp metadata: " + ticker)

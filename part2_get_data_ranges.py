@@ -3,7 +3,6 @@ from datetime import datetime
 import requests
 import os
 from dotenv import load_dotenv
-#import fmpsdk # no longer supported as of August 31, 2025
 
 load_dotenv()
 

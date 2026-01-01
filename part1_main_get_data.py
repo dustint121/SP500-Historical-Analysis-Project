@@ -37,7 +37,7 @@ def get_raw_sp_500_data_from_fmp():
     date_list = ["October 1, 2024"]
     count = 0
 
-    request = requests.get(f"https://financialmodelingprep.com/stable/historical-sp500-constituent?apikey={fmp_apikey}")
+    request = requests.get(f"https://financialmodelingprep.com/stable/historical-sp500-constituent?apikey={apikey}")
     historical_list = request.json() # is a list of dicts/json objects
     for stock in historical_list:
         date = stock["dateAdded"]
