@@ -16,8 +16,21 @@ tiingo_token = os.environ.get("tiingo_token")
 username = os.environ.get("kibot_user")
 password = os.environ.get("kibot_password")
 
+
+def part_2_get_fmp_market_cap_data(symbol, start_date=None, end_date=None):
+    url = f"https://financialmodelingprep.com/stable/historical-market-capitalization?symbol={symbol}&from={start_date}&to={end_date}&apikey={apikey}"
+    req = requests.get(url)
+    if req.status_code == 200:
+        fmp_market_cap_data = req.json()
+        fmp_market_cap_data = [{"date":data["date"],"market_cap":data["marketCap"]} for data in fmp_market_cap_data]
+        fmp_market_cap_data.reverse() #reverse the list to go from earliest to latest date like tiingo data
+        return fmp_market_cap_data
+    else:
+        print(f"Error fetching FMP market cap data for {symbol}: {req.status_code}")
+        return []
+
 #get market cap data from fmp
-def get_fmp_market_cap_data(original_ticker, index, start_year=None, end_year=None):
+def get_fmp_market_cap_data(original_ticker, index, start_year=None, end_year=None, part2=False):
     if start_year == None and end_year == None:
         start_year = 2020
         end_year = 2024
@@ -44,6 +57,8 @@ def get_fmp_market_cap_data(original_ticker, index, start_year=None, end_year=No
         fmp_market_cap_data += result
         start_year -= 5
         end_year -= 5
+        if part2:
+            break #only need to run once for part 2
     fmp_market_cap_data = [{"date":data["date"],"market_cap":data["marketCap"]} for data in fmp_market_cap_data]
     fmp_market_cap_data.reverse() #reverse the list to go from earliest to latest date like tiingo data
     return fmp_market_cap_data

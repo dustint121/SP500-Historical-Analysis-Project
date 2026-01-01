@@ -5,4 +5,7 @@
 /company_profiles
 # /historical_stock_price
 # /finchat_market_cap_images
+/part2_data/company_market_cap_data
+/part2_data/company_profiles
+/part2_data/market_cap_metadata
 /misc

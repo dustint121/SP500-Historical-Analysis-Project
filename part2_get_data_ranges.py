@@ -89,7 +89,7 @@ if __name__ == "__main__":
                         day = day.replace(',', '')
                         day = '0' + day if len(day) == 1 else day
                         month_number = datetime.strptime(month, '%B').month
-                        sp_500_df.at[index, 'dateAdded'] = f"{month_number}/{day}/{year}"
+                        sp_500_df.at[index, 'dateAdded'] = f"{year}-{month_number}-{day}"
                         break
         if pd.isnull(row['sector']) or row['sector'] is None:
             # look up sector from request: https://financialmodelingprep.com/stable/profile?symbol=LKQ&apikey=4Wex9fEsJry4yFLT6k0mfNDxSKsHf726
