@@ -1,9 +1,0 @@
-{
-    "index": 692,
-    "ticker": "DTV",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2006-12-01 : 2006-12-01",
-    "last_day_have_vs_needed": "2015-07-24 : 2015-07-28",
-    "missing_num_days_after": 2,
-    "num_of_days_data": 2175
-}

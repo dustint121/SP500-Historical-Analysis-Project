@@ -1,9 +1,0 @@
-{
-    "index": 809,
-    "ticker": "GM",
-    "source": "kibot",
-    "first_day_have_vs_needed": "1998-01-02 : 1998-01-02",
-    "last_day_have_vs_needed": "2009-05-01 : 2009-06-02",
-    "missing_num_days_after": 21,
-    "num_of_days_data": 2850
-}

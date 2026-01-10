@@ -1,9 +1,0 @@
-{
-    "index": 568,
-    "ticker": "NBL",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2007-10-05 : 2007-10-05",
-    "last_day_have_vs_needed": "2020-10-06 : 2020-10-09",
-    "missing_num_days_after": 3,
-    "num_of_days_data": 3274
-}

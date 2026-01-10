@@ -1,9 +1,0 @@
-{
-    "index": 725,
-    "ticker": "MOLX",
-    "source": "kibot",
-    "first_day_have_vs_needed": "1999-11-30 : 1999-11-30",
-    "last_day_have_vs_needed": "2013-12-06 : 2013-12-09",
-    "missing_num_days_after": 1,
-    "num_of_days_data": 3522
-}

@@ -1,9 +1,0 @@
-{
-    "index": 126,
-    "ticker": "SRE",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "1998-06-30 : 1998-06-29",
-    "last_day_have_vs_needed": "2024-09-30 : 2024-09-30",
-    "missing_num_days_before": 1,
-    "num_of_days_data": 6606
-}

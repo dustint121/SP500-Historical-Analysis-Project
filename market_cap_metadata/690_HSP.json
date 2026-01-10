@@ -1,9 +1,0 @@
-{
-    "index": 690,
-    "ticker": "HSP",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2004-05-03 : 2004-04-30",
-    "last_day_have_vs_needed": "2015-09-02 : 2015-09-02",
-    "missing_num_days_before": 1,
-    "num_of_days_data": 2855
-}

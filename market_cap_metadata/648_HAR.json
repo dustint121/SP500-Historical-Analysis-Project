@@ -1,9 +1,0 @@
-{
-    "index": 648,
-    "ticker": "HAR",
-    "source": "kibot",
-    "first_day_have_vs_needed": "2006-01-31 : 2006-01-31",
-    "last_day_have_vs_needed": "2017-03-10 : 2017-03-15",
-    "missing_num_days_after": 3,
-    "num_of_days_data": 2797
-}

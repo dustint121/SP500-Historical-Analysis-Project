@@ -1,8 +1,0 @@
-{
-    "index": 129,
-    "ticker": "CBOE",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2017-02-28 : 2017-02-28",
-    "last_day_have_vs_needed": "2024-09-30 : 2024-09-30",
-    "num_of_days_data": 1910
-}

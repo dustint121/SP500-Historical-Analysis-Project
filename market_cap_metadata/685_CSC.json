@@ -1,9 +1,0 @@
-{
-    "index": 685,
-    "ticker": "CSC",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2001-01-02 : 1998-01-02",
-    "last_day_have_vs_needed": "2015-11-30 : 2015-11-30",
-    "missing_num_days_before": 756,
-    "num_of_days_data": 3745
-}

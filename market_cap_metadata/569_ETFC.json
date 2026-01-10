@@ -1,9 +1,0 @@
-{
-    "index": 569,
-    "ticker": "ETFC",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2004-03-31 : 2004-03-31",
-    "last_day_have_vs_needed": "2020-10-02 : 2020-10-06",
-    "missing_num_days_after": 2,
-    "num_of_days_data": 4157
-}

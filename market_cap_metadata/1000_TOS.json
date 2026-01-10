@@ -1,9 +1,0 @@
-{
-    "index": 1000,
-    "ticker": "TOS",
-    "image_type": "download",
-    "source": "finchat.io",
-    "first_day_have_vs_needed": "1999-09-17 : 1999-09-17",
-    "last_day_have_vs_needed": "2001-09-17 : 2001-09-17",
-    "num_of_days_data": 501
-}

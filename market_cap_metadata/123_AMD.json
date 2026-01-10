@@ -1,8 +1,0 @@
-{
-    "index": 123,
-    "ticker": "AMD",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2017-03-20 : 2017-03-20",
-    "last_day_have_vs_needed": "2024-09-30 : 2024-09-30",
-    "num_of_days_data": 1896
-}

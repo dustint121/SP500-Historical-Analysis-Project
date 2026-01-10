@@ -1,9 +1,0 @@
-{
-    "index": 661,
-    "ticker": "CPGX",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2015-07-01 : 2015-07-01",
-    "last_day_have_vs_needed": "2016-07-01 : 2016-07-05",
-    "missing_num_days_after": 1,
-    "num_of_days_data": 254
-}

@@ -1,9 +1,0 @@
-{
-    "index": 688,
-    "ticker": "HCBK",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "2007-02-14 : 2007-02-14",
-    "last_day_have_vs_needed": "2015-10-30 : 2015-11-02",
-    "missing_num_days_after": 1,
-    "num_of_days_data": 2195
-}

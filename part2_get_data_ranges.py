@@ -44,8 +44,24 @@ if __name__ == "__main__":
 
     # list goes from most recent to oldest; need to remove json objects that are past Sept. 30, 2024
     temp_list = []
+    date_ranges = []
+    end_date = None
+    start_date = None
     for record in historical_sp_list:
+        if record['date'] > '2026-01-01': #skip entries beyond 2025
+            continue
         if record['date'] >= '2024-09-30':
+            if start_date == None or record['date'] < start_date:
+                # print("Checking date:", record['date'])
+                # print("Previous start_date:", start_date)
+                #end date is the previous start date
+                end_date = start_date if start_date is not None else '2026-01-01'
+                if end_date != "2026-01-01": # decrease end date by one day
+                    end_date_dt = datetime.strptime(end_date, '%Y-%m-%d')
+                    end_date_dt = end_date_dt.replace(day=end_date_dt.day - 1)
+                    end_date = end_date_dt.strftime('%Y-%m-%d')
+                start_date = record['date']
+                date_ranges.append((record['date'], end_date))
             temp_list.append(record)
         else:
             break
@@ -112,4 +128,8 @@ if __name__ == "__main__":
     #make new directory for "part2_data" if it doesn't exist
     if not os.path.exists("part2_data"):
         os.makedirs("part2_data")
-    sp_500_df.to_csv("part2_data/sp_500_dataset.csv", index=False)
+    # sp_500_df.to_csv("part2_data/sp_500_dataset.csv", index=False)
+
+    # write date ranges to a csv file with columns start_date and end_date
+    date_ranges_df = pd.DataFrame(date_ranges, columns=['date_range_start', 'date_range_end'])
+    date_ranges_df.to_csv("part2_data/sp_500_date_ranges.csv", index=False)

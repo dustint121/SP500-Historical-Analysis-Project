@@ -1,9 +1,0 @@
-{
-    "index": 580,
-    "ticker": "RTN",
-    "source": "tiingo",
-    "first_day_have_vs_needed": "1998-01-02 : 1998-01-02",
-    "last_day_have_vs_needed": "2020-04-03 : 2020-04-06",
-    "missing_num_days_after": 1,
-    "num_of_days_data": 5600
-}

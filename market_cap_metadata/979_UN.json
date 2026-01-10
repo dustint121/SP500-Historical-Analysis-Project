@@ -1,9 +1,0 @@
-{
-    "index": 979,
-    "ticker": "UN",
-    "num_trading_days_to_calculate": 4820,
-    "source": "tiingo",
-    "first_day_have_vs_needed": "1998-01-02 : 1998-01-02",
-    "last_day_have_vs_needed": "2002-07-19 : 2002-07-19",
-    "num_of_days_data": 1142
-}
