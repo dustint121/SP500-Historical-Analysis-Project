@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import datetime
 import requests
+import calendar
 import os
 from dotenv import load_dotenv
 
@@ -9,7 +10,210 @@ load_dotenv()
 fmp_apikey = os.environ.get("fmp_apikey")
 tiingo_token = os.environ.get("tiingo_token")
 
+def get_final_date_ranges():
+    # This function will return the final date ranges for the SP500 dataset
+    # combine date_ranges.csv and sp_500_dataset.csv from part1_data/ and part2_data/
+    full_date_ranges_df = pd.DataFrame()
+    part1_date_ranges_df = pd.read_csv("part1_data/SP500_date_ranges.csv")
+    part2_date_ranges_df = pd.read_csv("part2_data/sp_500_date_ranges.csv")
+        
+    part1_date_ranges_df = part1_date_ranges_df.iloc[1:] # need to remove first row from part1_date_ranges_df
+        # need to add 2024-09-23 to 2024-10-29 to fill gap between part1 and part2
+    full_date_ranges_df = pd.concat([part2_date_ranges_df, pd.DataFrame([{
+        'date_range_start': '2024-09-23',
+        'date_range_end': '2024-10-29'
+    }]), part1_date_ranges_df], ignore_index=True)
+
+    full_date_ranges_df.to_csv("final_data/SP500_date_ranges.csv", index=False)
+    return full_date_ranges_df
+
+
+def get_raw_date_ranges_test():
+    request = requests.get(f"https://financialmodelingprep.com/stable/historical-sp500-constituent?apikey={fmp_apikey}")
+    historical_sp_list = request.json() # is a list of dicts/json objects
+
+    end_date, start_date = None, None
+    date_ranges = []
+    date_ranges_dict = {} # key is start_date : end_date, value is number of constituents
+    for record in historical_sp_list:
+        date = record['date'] #should match a date_range_start in full_date_ranges_df
+        if date > '2025-12-31':
+            continue
+        if date < '1998-01-01':
+            break  #we only need up to 1998-01-01
+
+
+        if start_date is None or date < start_date:
+            end_date = start_date if start_date is not None else '2026-01-01'
+            start_date = date
+            if end_date != "2026-01-01": # decrease end date by one day
+                end_date_dt = datetime.strptime(end_date, '%Y-%m-%d')
+                #need to handle end of month cases
+                if end_date_dt.day == 1:
+                    # print("Date with day 1 found:", end_date)
+                    new_month = end_date_dt.month - 1
+                    year = end_date_dt.year
+                    if new_month == 0:
+                        new_month = 12
+                        year -= 1
+                    num_days = calendar.monthrange(year, new_month)[1]
+                    # last_day = datetime.date(year, new_month, num_days)
+                    # create last day datetime
+                    last_day = end_date_dt.replace(month=new_month, day=num_days) 
+                    end_date_dt = last_day
+                else:
+                    end_date_dt = end_date_dt.replace(day=end_date_dt.day - 1)
+                end_date = end_date_dt.strftime('%Y-%m-%d')
+            date_ranges.append({
+                'date_range_start': start_date,
+                'date_range_end': end_date
+            })
+
+    raw_date_ranges_df = pd.DataFrame(date_ranges)
+    # raw_date_ranges_df.to_csv("final_data/SP500_raw_date_ranges.csv", index=False)
+    return raw_date_ranges_df
+
+
+
+def update_date_ranges_with_constituents(full_date_ranges_df):
+    # request = requests.get(f"https://financialmodelingprep.com/stable/sp500-constituent?apikey={fmp_apikey}")
+    # current_sp500_constituents = request.json()  # is a list of dicts/json objects
+    # # just get symbols from current_sp500_constituents
+    # current_sp500_constituents = [record['symbol'] for record in current_sp500_constituents]
+
+    # #write current_sp500_constituents to a text file in final_data/date_range_constituents/ named 2025-12-31_constituents.txt
+    # with open(f"final_data/2025-12-31_constituents.txt", "w") as f:
+    #     for symbol in current_sp500_constituents:
+    #         f.write(f"{symbol}\n")
+
+    current_sp500_constituents = []
+    # get current SP500 constituents from 2025-12-31_constituents.txt
+    with open(f"final_data/2025-12-31_constituents.txt", "r") as f:
+        for line in f:
+            current_sp500_constituents.append(line.strip())
+
+    #create a folder final_data/date_range_constituents/ if it doesn't exist
+    if not os.path.exists("final_data/date_range_constituents/"):
+        os.makedirs("final_data/date_range_constituents/")
+
+
+    number_of_sp500_constituents = 503  #as of end of 2025
+    full_date_ranges_df['number_of_constituents'] = None
+    # for first date range, should be 503
+    full_date_ranges_df.at[0, 'number_of_constituents'] = 503
+    # for subsequent date ranges, need to get historical constituents
+    request = requests.get(f"https://financialmodelingprep.com/stable/historical-sp500-constituent?apikey={fmp_apikey}")
+    historical_sp_list = request.json() # is a list of dicts/json objects
+    for record in historical_sp_list:
+        date = record['date'] #should match a date_range_start in full_date_ranges_df
+        if date > '2025-12-31': #skip entries beyond 2025
+            continue
+        if date < '1998-01-01':
+            break  #we only need up to 1998-01-01
+        # check if date in full_date_ranges_df has None for number_of_constituents
+
+        # if date == "2024-04-01": date = "2024-04-02"  #fix for known date issue from FMP
+
+        index_match = full_date_ranges_df[full_date_ranges_df['date_range_start'] == date].index
+        if len(index_match) > 0:
+            index = index_match[0]
+
+            # if number_of_sp500_constituents is None, set to current number
+            if full_date_ranges_df.at[index, 'number_of_constituents'] is None:
+                full_date_ranges_df.at[index, 'number_of_constituents'] = number_of_sp500_constituents
+
+            is_removing_security = record['removedTicker'] is not None and record['removedTicker'] != ''
+            is_adding_security = record['addedSecurity'] is not None and record['addedSecurity'] != ''
+
+            #NOTE: working backwards in time, so adding security means removing from current list, and vice versa
+            # update to current number_of_sp500_constituents if empty
+            if full_date_ranges_df.at[index, 'number_of_constituents'] is None: 
+                full_date_ranges_df.at[index, 'number_of_constituents'] = number_of_sp500_constituents
+            # if both adding and removing securities, adjust accordingly
+            if is_removing_security and is_adding_security:
+                current_sp500_constituents.append(record['removedTicker'])
+                if record['symbol'] in current_sp500_constituents:
+                    current_sp500_constituents.remove(record['symbol'])
+                # exceptions to handle" SOLSV , GEN, FI
+                elif record['symbol'] == "SOLSV":
+                        current_sp500_constituents.remove("SOLS")
+                # two tickers with GEN, different exchanges; unsure if actually part of SP500
+                elif record['symbol'] == "GEN":
+                    print(f"Issue with GEN ticker on date {date}, skipping removal.")
+                    number_of_sp500_constituents += 1 # temporarily adjust count
+
+                # FI -> FISV
+                elif record['symbol'] == "FI":
+                    current_sp500_constituents.remove("FISV")
+                else:
+                    print(f"1_Warning: Ticker {record['symbol']} to be removed on date {date} not found in current constituents.")
+                number_of_sp500_constituents += 0
+            elif is_removing_security:
+                current_sp500_constituents.append(record['removedTicker'])
+                # print(f"Just removing security on date {date}")
+                #check if removedTicker is in current_sp500_constituents
+                # if record['removedTicker'] in current_sp500_constituents:
+                #     current_sp500_constituents.remove(record['removedTicker'])
+                number_of_sp500_constituents += 1
+            elif is_adding_security:
+                # print(f"Just adding security on date {date}")
+                if record['symbol'] in current_sp500_constituents:
+                    current_sp500_constituents.remove(record['symbol'])
+                else:
+                    print(f"2_Warning: Ticker {record['addedSecurity']} to be removed on date {date} not found in current constituents.")
+                
+                number_of_sp500_constituents -= 1
+
+            full_date_ranges_df.at[index, 'number_of_constituents'] = number_of_sp500_constituents
+
+            #save current_sp500_constitutents to a text file in final_data/date_range_constituents/ named {date}_constituents.txt
+            with open(f"final_data/date_range_constituents/{date}_constituents.txt", "w") as f:
+                #sort current_sp500_constituents alphabetically
+                current_sp500_constituents.sort()
+                f.write("\n".join(current_sp500_constituents))
+
+            # #check if number_of_constituents is not 503
+            # if number_of_sp500_constituents != 503:
+            #     print(f"Date: {date}, Number of constituents: {number_of_sp500_constituents}")
+            # check if number_of_constituents matches length of current_sp500_constituents
+            if number_of_sp500_constituents != len(current_sp500_constituents):
+                print(f"3_Warning: Date: {date}, Number of constituents: {number_of_sp500_constituents}, Length of current constituents list: {len(current_sp500_constituents)}")
+
+        else:
+            print (f"Date {date} not found in date ranges.")
+    
+    #Add 1998-01-01 to 1998-01-08 with last known number_of_constituents
+    full_date_ranges_df = pd.concat([full_date_ranges_df, pd.DataFrame([{
+                                    'date_range_start': '1998-01-01',
+                                    'date_range_end': '1998-01-08',
+                                    'number_of_constituents': number_of_sp500_constituents
+                                }])], ignore_index=True)
+    # update data_ranges file with number_of_constituents
+    full_date_ranges_df.to_csv("final_data/SP500_date_ranges.csv", index=False)
+
+
+
+
+
+
+        # check if date in full_date_ranges_df has None for number_of_constituents
 if __name__ == "__main__":
+    # make final_data/ folder if it doesn't exist
+    if not os.path.exists("final_data/"):
+        os.makedirs("final_data/")
+
+    full_date_ranges_df = get_raw_date_ranges_test()  #create raw date ranges file
+    # full_date_ranges_df = get_final_date_ranges()  #create final date ranges file and get dataframe
+    
+    update_date_ranges_with_constituents(full_date_ranges_df)  #update date ranges with number of constituents
+
+ 
+    # stop execution here for now
+    if True:
+        exit()
+
+
+
     #part2_data/sp_500_dataset.csv
     sp_500_df = pd.read_csv("part2_data/sp_500_dataset.csv")
 
