@@ -28,8 +28,8 @@ if __name__ == "__main__":
         os.makedirs("part2_data/market_cap_metadata/")
 
     for index, row in sp_500_data_ranges_df.iterrows():
-        if index < 500:
-            continue
+        # if index < 500:
+        #     continue
         print(index)
         company_profile = {}
         symbol = row['symbol']
@@ -39,12 +39,13 @@ if __name__ == "__main__":
         date_removed = row['dateRemoved']
 
         # #get company profile data and add to folder in part2/company_profiles/
-        # got_metadata = get_fmp_metadata(symbol, name, company_profile, index, part_2=True) #return True/False and update company_profile dict
+        company_profile["ticker"] = symbol
+        got_metadata = get_fmp_metadata(symbol, name, company_profile, index, part_2=True) #return True/False and update company_profile dict
         # # print(f"Got metadata for {symbol}: {got_metadata}")
         # #write company profile to file
-        # profile_filename = f"part2_data/company_profiles/{index}_{symbol}.json"
-        # with open(profile_filename, 'w') as f:
-        #     json.dump(company_profile, f, indent=4)
+        profile_filename = f"part2_data/company_profiles/{index}_{symbol}.json"
+        with open(profile_filename, 'w') as f:
+            json.dump(company_profile, f, indent=4)
 
         
         # get company market cap data between date_added and date_removed and add to folder in part2/market_cap_data/

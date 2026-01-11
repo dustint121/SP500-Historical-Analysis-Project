@@ -4,6 +4,7 @@ import requests
 import calendar
 import json
 import os
+import pandas_market_calendars as mcal
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -44,7 +45,7 @@ def get_raw_date_ranges_test():
                     num_days = calendar.monthrange(year, new_month)[1]
                     # last_day = datetime.date(year, new_month, num_days)
                     # create last day datetime
-                    last_day = end_date_dt.replace(month=new_month, day=num_days) 
+                    last_day = end_date_dt.replace(month=new_month, day=num_days, year=year) 
                     end_date_dt = last_day
                 else:
                     end_date_dt = end_date_dt.replace(day=end_date_dt.day - 1)
@@ -178,34 +179,49 @@ def update_date_ranges_with_constituents(full_date_ranges_df):
 
 
 
+# get all trading days between 1998-01-01 and 2025-12-31
+    #7045 trading days total expected
+def get_all_trading_days(): 
+    nyse = mcal.get_calendar('NYSE')
+    schedule = nyse.schedule(start_date='1998-01-01', end_date='2025-12-31')
+    list_of_trading_days = schedule.index.date.tolist()
 
+    # write list_of_trading_days to csv file
+    pd.DataFrame(list_of_trading_days, columns=['trading_date']).to_csv("final_data/all_trading_days.csv", index=False)
+    
+    # put in pandas dataframe
+    df = pd.DataFrame(list_of_trading_days, columns=['trading_date'])
 
+    #convert trading_date to date format YYYY-MM-DD
+    df['trading_date'] = pd.to_datetime(df['trading_date']).dt.strftime('%Y-%m-%d')
 
+    #read SP500_date_ranges.csv to get date ranges
+    date_ranges_df = pd.read_csv("final_data/SP500_date_ranges.csv")
+    #convert date_range_start and date_range_end to date format YYYY-MM-DD
+    date_ranges_df['date_range_start'] = pd.to_datetime(date_ranges_df['date_range_start']).dt.strftime('%Y-%m-%d')
+    date_ranges_df['date_range_end'] = pd.to_datetime(date_ranges_df['date_range_end']).dt.strftime('%Y-%m-%d')
 
+    #left join df with date_ranges_df on condition that trading_date is between date_range_start and date_range_end
+         # get number of constituents for each trading day
+    merged_df = (
+            df
+            .merge(date_ranges_df, how="cross")
+            .query("trading_date >= date_range_start and trading_date <= date_range_end")
+        )
+    
+    # sort merged_df by trading_date
+    merged_df = merged_df.sort_values(by='trading_date').reset_index(drop=True)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # check for duplicate trading_date entries
+    if merged_df['trading_date'].duplicated().any():
+        print("Warning: Duplicate trading_date entries found in merged_df.")
+        print(merged_df[merged_df['trading_date'].duplicated(keep=False)].sort_values(by='trading_date'))
+    else:
+        print("No duplicate trading_date entries found in merged_df for trading days.")
+    #write to csv file
+    merged_df.to_csv("final_data/trading_days_with_constituents.csv", index=False)
+    # return list of trading days
+    return merged_df['trading_date'].tolist()
 
 
         # check if date in full_date_ranges_df has None for number_of_constituents
@@ -214,13 +230,13 @@ if __name__ == "__main__":
     if not os.path.exists("final_data/"):
         os.makedirs("final_data/")
 
-    # full_date_ranges_df = get_raw_date_ranges_test()  #create raw date ranges file
-    # update_date_ranges_with_constituents(full_date_ranges_df)  #update date ranges with number of constituents
-
+    full_date_ranges_df = get_raw_date_ranges_test()  #create raw date ranges file
+    update_date_ranges_with_constituents(full_date_ranges_df)  #update date ranges with number of constituents
+    get_all_trading_days()  #get all trading days between 1998-01-01 and 2025-12-31
  
     # # stop execution here for now
-    # if True:
-    #     exit()
+    if True:
+        exit()
 
 
 
@@ -266,7 +282,7 @@ if __name__ == "__main__":
 
 
     # NOTES:
-        #24 stocks were added after Sept. 30, 2024
+        #24 stocks were added after Sept. 30, 2024 and before Dec. 31, 2025
         #25 were also removed from the main SP500 dataset
 
 
