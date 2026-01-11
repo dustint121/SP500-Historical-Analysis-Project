@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 import requests
 import calendar
+import json
 import os
 from dotenv import load_dotenv
 
@@ -10,22 +11,6 @@ load_dotenv()
 fmp_apikey = os.environ.get("fmp_apikey")
 tiingo_token = os.environ.get("tiingo_token")
 
-def get_final_date_ranges():
-    # This function will return the final date ranges for the SP500 dataset
-    # combine date_ranges.csv and sp_500_dataset.csv from part1_data/ and part2_data/
-    full_date_ranges_df = pd.DataFrame()
-    part1_date_ranges_df = pd.read_csv("part1_data/SP500_date_ranges.csv")
-    part2_date_ranges_df = pd.read_csv("part2_data/sp_500_date_ranges.csv")
-        
-    part1_date_ranges_df = part1_date_ranges_df.iloc[1:] # need to remove first row from part1_date_ranges_df
-        # need to add 2024-09-23 to 2024-10-29 to fill gap between part1 and part2
-    full_date_ranges_df = pd.concat([part2_date_ranges_df, pd.DataFrame([{
-        'date_range_start': '2024-09-23',
-        'date_range_end': '2024-10-29'
-    }]), part1_date_ranges_df], ignore_index=True)
-
-    full_date_ranges_df.to_csv("final_data/SP500_date_ranges.csv", index=False)
-    return full_date_ranges_df
 
 
 def get_raw_date_ranges_test():
@@ -196,21 +181,46 @@ def update_date_ranges_with_constituents(full_date_ranges_df):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         # check if date in full_date_ranges_df has None for number_of_constituents
 if __name__ == "__main__":
     # make final_data/ folder if it doesn't exist
     if not os.path.exists("final_data/"):
         os.makedirs("final_data/")
 
-    full_date_ranges_df = get_raw_date_ranges_test()  #create raw date ranges file
-    # full_date_ranges_df = get_final_date_ranges()  #create final date ranges file and get dataframe
-    
-    update_date_ranges_with_constituents(full_date_ranges_df)  #update date ranges with number of constituents
+    # full_date_ranges_df = get_raw_date_ranges_test()  #create raw date ranges file
+    # update_date_ranges_with_constituents(full_date_ranges_df)  #update date ranges with number of constituents
 
  
-    # stop execution here for now
-    if True:
-        exit()
+    # # stop execution here for now
+    # if True:
+    #     exit()
 
 
 
@@ -302,9 +312,9 @@ if __name__ == "__main__":
                 #copy file to final folder with new index
                 new_filename = f"{final_index}_{symbol}.json"
                 with open(os.path.join("part2_data/market_cap_metadata/", filename), 'r') as f:
-                    data = f.read()
+                    data = json.load(f)
                 with open(os.path.join("final_data/market_cap_metadata/", new_filename), 'w') as f:
-                    f.write(data)
+                    json.dump(data, f, indent=4)
                 break
         final_index += 1
 
@@ -383,19 +393,19 @@ if __name__ == "__main__":
         # combine market cap data files, part1 + part2, both are json files with a list of dicts/json objects
         part1_data, part2_data = None, None
         with open(os.path.join("part1_data/company_market_cap_data/", part1_file), 'r') as f:
-            part1_data = f.read()
+            part1_data = json.load(f)
         with open(os.path.join("part2_data/company_market_cap_data/", part2_file), 'r') as f:
-            part2_data = f.read()
+            part2_data = json.load(f)
 
 
         # get metadata source from both files
         part1_data_source, part2_data_source = None, None
         with open(os.path.join("part1_data/market_cap_metadata/", part1_file), 'r') as f:
-            part1_metadata = f.read()
-            part1_data_source = eval(part1_metadata).get('source', None)
+            part1_metadata = json.load(f)
+            part1_data_source = part1_metadata.get('source', None)
         with open(os.path.join("part2_data/market_cap_metadata/", part2_file), 'r') as f:
-            part2_metadata = f.read()
-            part2_data_source = eval(part2_metadata).get('source', None)
+            part2_metadata = json.load(f)
+            part2_data_source = part2_metadata.get('source', None)
 
         data_source = None
         if part1_data_source == part2_data_source:
@@ -406,12 +416,19 @@ if __name__ == "__main__":
  
         #combine the two json strings into one list of dicts/json objects
         combined_data = []
-        combined_data.extend(eval(part1_data))
-        combined_data.extend(eval(part2_data))
-        #write combined data to final folder
+        combined_data = part1_data + part2_data
+        # print(type(combined_data))
+        # print(combined_data[0])
+        # print(combined_data)
+
+        #write combined data to final folder as json file
         new_filename = f"{final_index}_{symbol}.json"
         with open(os.path.join("final_data/company_market_cap_data/", new_filename), 'w') as f:
-            f.write(str(combined_data))
+            # need to replace single quotes with double quotes for valid json
+            # f.write(str(combined_data).replace("'", '"'))
+            # write as json
+
+            json.dump(combined_data, f, indent=4)
 
         with open(os.path.join("part2_data/company_profiles/", f"{file2_index}_{symbol}.json"), 'r') as f:
             profile_data = f.read()
@@ -429,7 +446,7 @@ if __name__ == "__main__":
                 "last_day_of_data": combined_data[-1]['date'] if combined_data else None,
                 "number of trading days": len(combined_data)
             }
-            f.write(str(metadata))
+            json.dump(metadata, f, indent=4)
 
         final_index += 1
         file1_index += 1
@@ -464,21 +481,20 @@ if __name__ == "__main__":
             final_filename = f"{final_index}_{symbol}.json"
             # copy market cap data file
             with open(os.path.join("part1_data/company_market_cap_data/", file_name), 'r') as f:
-                data = f.read()
+                data = json.load(f)
                 with open(os.path.join("final_data/company_market_cap_data/", final_filename), 'w') as f:
-                    f.write(data)
+                    json.dump(data, f, indent=4)
             # copy company profile file
             with open(os.path.join("part1_data/company_profiles/", file_name), 'r') as f:
-                data = f.read()
+                data = json.load(f)
                 with open(os.path.join("final_data/company_profiles/", final_filename), 'w') as f:
-                    f.write(data)
+                    json.dump(data, f, indent=4)
             # copy market cap metadata file
             with open(os.path.join("part1_data/market_cap_metadata/", file_name), 'r') as f:
-                data = f.read()
+                data = json.load(f)
                 with open(os.path.join("final_data/market_cap_metadata/", final_filename), 'w') as f:
-                    f.write(data)
+                    json.dump(data, f, indent=4)
             final_index += 1
 
 
-    
-    print(f"Finished going through part1 files. Final index is now {final_index}.")       
+    print(f"Finished going through part1 files. Final index is now {final_index}.")
