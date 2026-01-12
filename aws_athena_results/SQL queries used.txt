@@ -1,0 +1,199 @@
+NOTE: creates a view/stored query with daily data on available number of companies versus the expected amount for SP500
+
+
+
+
+CREATE OR REPLACE VIEW "daily_available_sp500_data" AS 
+WITH
+  actual_count AS (
+   SELECT
+     date
+   , count(*) num_actual_constituents
+   FROM
+     "sp500_db_final"."parquet_marketcaps"
+   GROUP BY date
+   ORDER BY date ASC
+) 
+SELECT
+  trading_date date
+, num_constituents expected_num_constituents
+, num_actual_constituents
+, round((CAST(num_actual_constituents AS DECIMAL(18, 3)) / CAST(num_constituents AS DECIMAL(18, 3))), 5) available_data_prop
+FROM
+  ("sp500_db_final"."parquet_trading_days" trading_days
+LEFT JOIN actual_count ON (trading_days.trading_date = actual_count.date))
+ORDER BY trading_date ASC
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+NOTE: creates a view/stored query with SP500 total market cap based on available data
+
+
+
+
+
+
+CREATE OR REPLACE VIEW "daily_sp500_market_cap" AS 
+SELECT
+  date
+, sum(market_cap) SP500_total_market_cap
+FROM
+  "sp500_db_final"."parquet_marketcaps"
+GROUP BY date
+ORDER BY date ASC
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+
+NOTE: creates a view/stored query with top company by market cap for SP500 daily from 1998-2025
+
+
+CREATE OR REPLACE VIEW "daily_top_sp500_company" AS 
+WITH
+  ranked AS (
+   SELECT
+     date
+   , index
+   , ticker
+   , market_cap
+   , ROW_NUMBER() OVER (PARTITION BY date ORDER BY market_cap DESC) rn
+   FROM
+     "sp500_db_final"."parquet_marketcaps"
+) 
+SELECT
+  date
+, ranked.index
+, ranked.ticker
+, market_cap
+, profiles.company_name
+FROM
+  (ranked
+LEFT JOIN "sp500_db_final"."parquet_company_profiles" profiles ON (ranked.index = profiles.index))
+WHERE (rn = 1)
+ORDER BY date ASC
+
+
+
+
+
+--------------------------------------------------------------------------------------------
+Query to compare calculated total SP500 market cap from data vs expected market cap based on actual index calculations.
+
+
+
+SELECT t1.date, sp500_total_market_cap as calculated_market_cap, "total_market_capitalization#1" as expected_market_cap
+        ,CAST(sp500_total_market_cap as DECIMAL(20,3)) / 
+        CAST("total_market_capitalization#1" as DECIMAL(20,3))
+            as sp500_market_cap_calc_ratio
+
+        , available_data_prop
+FROM daily_sp500_market_cap as t1  
+JOIN sp500_db_final.parquet_sp500_marketcap_expectations as t2 
+                on t1.date = t2.date
+JOIN daily_available_sp500_data as t3 on t2.date = t3.date
+-- WHERE t2.date is null
+ORDER BY DATE desc
+
+
+
+-- daily_sp500_market_cap has three invalid dates: 1998-01-19 , 2001-09-14, 2016-02-27
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+
+Query to get tech sector composition percentage for SP500 by market cap daily
+
+WITH technology_stocks as (
+                                SELECT date, market_cap, t1.index, t1.ticker, company_name, sector
+                                FROM sp500_db_final.parquet_marketcaps as t1
+                                LEFT JOIN sp500_db_final.parquet_company_profiles as t2 on t1.index = t2.index
+                                WHERE t2.sector = 'Technology'
+                                ORDER BY date, t1.index
+                                )
+    ,daily_tech_table as    (
+                                SELECT date, sum(market_cap) as sector_market_cap
+                                FROM technology_stocks
+                                GROUP BY date
+                                ORDER BY date
+                                )
+SELECT t1.*, t2.sp500_total_market_cap,
+        CAST(t1.sector_market_cap as DECIMAL(20,3)) / CAST(t2.sp500_total_market_cap as DECIMAL(20,3))
+            as tech_SP500_prop
+        , t3.available_data_prop
+FROM daily_tech_table as t1 
+JOIN daily_sp500_market_cap as t2 on t1.date = t2.date
+LEFT JOIN daily_available_sp500_data as t3 on t2.date = t3.date
+-- WHERE available_data_prop is null
+WHERE t1.date != DATE '1998-01-19' --1st Martin Luther King Day on Monday
+        and t1.date != DATE '2001-09-14' -- not trading day
+ORDER BY t1.date desc
+
+
+-----------------------------------------------------------------------------------------------------------
+
+Query to get finance sector composition percentage for SP500 by market cap daily
+
+WITH technology_stocks as (
+                                SELECT date, market_cap, t1.index, t1.ticker, company_name, sector
+                                FROM sp500_db_final.parquet_marketcaps as t1
+                                LEFT JOIN sp500_db_final.parquet_company_profiles as t2 on t1.index = t2.index
+                                WHERE t2.sector = 'Financial Services'
+                                ORDER BY date, t1.index
+                                )
+    ,daily_fin_table as    (
+                                SELECT date, sum(market_cap) as sector_market_cap
+                                FROM technology_stocks
+                                GROUP BY date
+                                ORDER BY date
+                                )
+SELECT t1.*, t2.sp500_total_market_cap,
+        CAST(t1.sector_market_cap as DECIMAL(20,3)) / CAST(t2.sp500_total_market_cap as DECIMAL(20,3))
+            as finance_SP500_prop
+        , t3.available_data_prop
+FROM daily_fin_table as t1 
+JOIN daily_sp500_market_cap as t2 on t1.date = t2.date
+LEFT JOIN daily_available_sp500_data as t3 on t2.date = t3.date
+WHERE t1.date != DATE '1998-01-19' --1st Martin Luther King Day on Monday
+-- ORDER BY finance_SP500_prop desc
+ORDER BY t1.date desc
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+Query to get daily top company's (by market cap) percentage composition of the SP500 
+
+SELECT t1.date, index, ticker, company_name, market_cap as company_market_cap, SP500_total_market_cap
+        ,CAST(market_cap as DECIMAL(20,3)) / 
+        CAST(SP500_total_market_cap as DECIMAL(20,3))
+            as company_prop_of_SP500
+        ,available_data_prop
+FROM daily_top_sp500_company as t1 
+JOIN daily_sp500_market_cap as t2 on t1.date = t2.date
+JOIN daily_available_sp500_data as t3 on t2.date = t3.date
+-- WHERE t1.date != DATE '1998-01-19' and t1.date != DATE '2001-09-14' and t1.date != DATE '2016-02-27'
+ORDER BY t1.date desc
+-- ORDER BY company_prop_of_SP500 desc
+
+
+-- daily_sp500_market_cap has three invalid dates: 1998-01-19 , 2001-09-14, 2016-02-27
+
+
+
+
+

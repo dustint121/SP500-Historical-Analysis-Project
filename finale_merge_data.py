@@ -180,11 +180,17 @@ def update_date_ranges_with_constituents(full_date_ranges_df):
 
 
 # get all trading days between 1998-01-01 and 2025-12-31
-    #7045 trading days total expected
+    #7043 trading days total expected
 def get_all_trading_days(): 
     nyse = mcal.get_calendar('NYSE')
     schedule = nyse.schedule(start_date='1998-01-01', end_date='2025-12-31')
     list_of_trading_days = schedule.index.date.tolist()
+
+    #need to remove trading day: 2025-01-09 (Jimmy Carter funeral; market closed)
+    print(f"Total number of trading days before removal: {len(list_of_trading_days)}")  #should be 7044
+    list_of_trading_days = [date for date in list_of_trading_days if date != datetime(2025, 1, 9).date()]
+    # print(list_of_trading_days[:5])  #print first 5 trading days
+    print(f"Total number of trading days: {len(list_of_trading_days)}")  #should be 7043
 
     # write list_of_trading_days to csv file
     pd.DataFrame(list_of_trading_days, columns=['trading_date']).to_csv("final_data/all_trading_days.csv", index=False)
@@ -235,8 +241,8 @@ if __name__ == "__main__":
     get_all_trading_days()  #get all trading days between 1998-01-01 and 2025-12-31
  
     # # stop execution here for now
-    if True:
-        exit()
+    # if True:
+    #     exit()
 
 
 
