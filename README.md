@@ -110,7 +110,7 @@ My project repo for collecting and analyzing market cap data from  1998-2025. Th
 		* No specific order of scripts can be given due to changes in APIs and libraries availability over time.
 
 # Running Code on AWS
-4. Set up AWS S3 by storing "final folder" into a bucket. Final version of folder can be found [here]()
+4. Set up AWS S3 by storing "final folder" into a bucket. Final version of folder can be found [here](https://drive.google.com/drive/folders/1jV2xlN1wLJ7dg3rLvGvHJC-JBX_lns0Z?usp=sharing)
 5. Go to AWS Glue and upload **SP500_Convert_to_Parquet_Finale.ipynb**; change variable/file names as needs and run
 6. Go to AWS Athena and run queries as stored in "aws_athena_results\SQL queries used.txt"
 
